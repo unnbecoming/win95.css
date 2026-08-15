@@ -82,7 +82,7 @@ test('generated CSS ALU matches independent operation oracles in Chromium', asyn
   try {
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto(`http://127.0.0.1:${address.port}`);
+    await page.goto(`http://127.0.0.1:${address.port}/alu.html`);
     await page.waitForFunction(() => window.css386?.alu);
     const cases = vectors();
     const actual = await page.evaluate((items) => items.map(([a, b, op]) => window.css386.alu(a, b, op)), cases);

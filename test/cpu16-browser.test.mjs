@@ -12,7 +12,7 @@ const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 function serve() {
   const server = createServer((request, response) => {
     const pathname = new URL(request.url, 'http://localhost').pathname;
-    const target = path.resolve(root, `.${pathname}`);
+    const target = path.resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
     if (!target.startsWith(`${root}${path.sep}`)) { response.writeHead(403).end(); return; }
     try {
       response.setHeader('content-type', types[path.extname(target)] ?? 'application/octet-stream');
@@ -44,7 +44,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
 
-    await page.goto(`${baseUrl}/cpu.html`);
+    await page.goto(`${baseUrl}/`);
     await page.waitForFunction(() => window.css386cpu?.run);
     const publicDemo = await page.evaluate(() => ({ result: window.css386cpu.run(), rendered: {
       ip: document.querySelector('[data-state="ip"]').textContent,

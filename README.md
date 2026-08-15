@@ -53,7 +53,7 @@ npm test
 
 The tests regenerate both CSS artifacts, exercise the ALU and seed CPU in headless Chromium, compare latched state against independent oracles, and verify the exact byte-bus trace.
 
-Open `index.html` for the ALU instrument or `cpu.html` for the ROM spine through any static HTTP server.
+Open `index.html` for the current ROM spine or `alu.html` for the standalone operation-selected ALU. `cpu.html` remains as a compatibility door to the same CPU instrument.
 
 ## Shape of the project
 

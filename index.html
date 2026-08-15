@@ -2,61 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CSS/386 — ALU bring-up</title>
-  <link rel="stylesheet" href="./generated/alu32.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CSS/386 executing a tiny real-mode x86 ROM byte stream through a generic JavaScript byte bus.">
+  <title>CSS/386 · x86 ROM spine</title>
   <link rel="stylesheet" href="./src/site.css">
+  <link rel="stylesheet" href="./generated/cpu16.css">
 </head>
 <body>
   <main>
     <header>
-      <p class="eyebrow">win95.css / bring-up instrument 0001</p>
+      <p class="eyebrow">win95.css / current organ</p>
       <h1>CSS/386</h1>
-      <p class="lede">A 32-bit operation-selected ALU and architectural flags computed by generated CSS. JavaScript only drives pins, samples pins, and latches the state bank.</p>
+      <p class="lede">CSS owns the fetch phases, x86 opcode decode, register transfer, ALU, flags, fault, and halt. JavaScript is an opcode-blind byte-storage bus.</p>
     </header>
 
-    <section class="instrument css386-chip" id="chip">
-      <form>
-        <label>A <input id="a" value="4294967295" inputmode="numeric"></label>
-        <label>operation
-          <select id="op">
-            <option value="0">ADD</option>
-            <option value="1">SUB</option>
-            <option value="2">AND</option>
-            <option value="3">OR</option>
-            <option value="4">XOR</option>
-          </select>
-        </label>
-        <label>B <input id="b" value="1" inputmode="numeric"></label>
-        <button type="submit">clock</button>
-      </form>
-
-      <div class="result-row">
-        <span class="label">latched R</span>
-        <output id="result">0x00000000</output>
-      </div>
-
+    <section class="instrument">
+      <div class="rom-row"><span class="label">ROM</span><code id="rom"></code><button id="run" type="button">cold boot</button></div>
+      <div id="cpu-mount"><div id="cpu" class="css386-cpu"></div></div>
+      <dl class="flags cpu-state">
+        <div><dt>IP</dt><dd data-state="ip">0000</dd></div>
+        <div><dt>AX</dt><dd data-state="ax">0000</dd></div>
+        <div><dt>IR</dt><dd data-state="ir">00</dd></div>
+        <div><dt>phase</dt><dd data-state="phase">0</dd></div>
+        <div><dt>halted</dt><dd data-state="halted">0</dd></div>
+        <div><dt>faulted</dt><dd data-state="faulted">0</dd></div>
+      </dl>
       <dl class="flags">
-        <div><dt>CF</dt><dd data-flag="cf">0</dd></div>
-        <div><dt>PF</dt><dd data-flag="pf">0</dd></div>
-        <div><dt>AF</dt><dd data-flag="af">0</dd></div>
-        <div><dt>ZF</dt><dd data-flag="zf">0</dd></div>
-        <div><dt>SF</dt><dd data-flag="sf">0</dd></div>
-        <div><dt>OF</dt><dd data-flag="of">0</dd></div>
+        <div><dt>CF</dt><dd data-state="cf">0</dd></div>
+        <div><dt>PF</dt><dd data-state="pf">0</dd></div>
+        <div><dt>AF</dt><dd data-state="af">0</dd></div>
+        <div><dt>ZF</dt><dd data-state="zf">0</dd></div>
+        <div><dt>SF</dt><dd data-state="sf">0</dd></div>
+        <div><dt>OF</dt><dd data-state="of">0</dd></div>
       </dl>
       <dl class="metrics">
-        <div><dt>cycle</dt><dd><span id="cycle-ms">—</span> ms</dd></div>
+        <div><dt>bus cycles</dt><dd id="cycles">—</dd></div>
+        <div><dt>elapsed</dt><dd><span id="elapsed">—</span> ms</dd></div>
         <div><dt>clock</dt><dd><span id="wtf-hz">—</span> WTFHz</dd></div>
-        <div><dt>stylesheet</dt><dd><span id="css-bytes">—</span> bytes</dd></div>
       </dl>
-      <p id="status">CSS state latched.</p>
+      <pre id="trace" aria-label="byte bus trace"></pre>
     </section>
 
     <footer>
-      <p><strong>honesty boundary</strong> — generated CSS owns operation decode, arithmetic, logic, and flags. <code>chip.js</code> is manifest-driven and contains no ALU or EFLAGS logic.</p>
-      <p>current claim: one operation-selected datapath works. the <a href="./cpu.html">ROM spine</a> now executes a tiny real x86 byte stream, but this is not a complete x86 CPU yet and Windows 95 is not running here.</p>
+      <p><strong>current claim</strong> — a fixed-<code>CS=0</code> 16-bit seed core executes <code>MOV AX,iw</code>, <code>MOV [moffs16],AX</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. It is not a complete 8086 or 386 yet.</p>
+      <p><a href="./alu.html">operation-selected ALU →</a></p>
     </footer>
   </main>
-  <script type="module" src="./src/app.js"></script>
+  <script type="module" src="./src/cpu-app.js"></script>
 </body>
 </html>
