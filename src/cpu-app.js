@@ -2,7 +2,7 @@ import { CssChip } from './chip.js';
 import { ByteBusMachine } from './byte-bus-machine.js';
 
 const manifest = await fetch('./generated/cpu16.manifest.json').then((response) => response.json());
-const rom = Uint8Array.from([0xb8, 0x34, 0x12, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
+const rom = Uint8Array.from([0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
 const hex = (value, width) => value.toString(16).padStart(width, '0');
 document.querySelector('#rom').textContent = [...rom].map((byte) => hex(byte, 2)).join(' ');
 
@@ -11,7 +11,9 @@ function run() {
   cpu.id = 'cpu';
   cpu.className = 'css386-cpu';
   document.querySelector('#cpu').replaceWith(cpu);
-  const machine = new ByteBusMachine(new CssChip(cpu, manifest), rom);
+  const memory = new Uint8Array(0x10000);
+  memory.set(rom);
+  const machine = new ByteBusMachine(new CssChip(cpu, manifest), memory);
   const started = performance.now();
   const result = machine.run(256);
   const elapsed = performance.now() - started;
@@ -22,7 +24,7 @@ function run() {
   document.querySelector('#cycles').textContent = String(result.trace.length);
   document.querySelector('#elapsed').textContent = elapsed.toFixed(3);
   document.querySelector('#wtf-hz').textContent = (result.trace.length * 1000 / elapsed).toFixed(3);
-  document.querySelector('#trace').textContent = result.trace.map(({ cycle, address, data }) => `${String(cycle).padStart(2, '0')}  read  [${hex(address, 4)}] → ${hex(data, 2)}`).join('\n');
+  document.querySelector('#trace').textContent = result.trace.map(({ cycle, kind, address, data }) => `${String(cycle).padStart(2, '0')}  ${kind.padEnd(5)} [${hex(address, 4)}] ${kind === 'read' ? '→' : '←'} ${hex(data, 2)}`).join('\n');
   return { ...result, elapsed };
 }
 

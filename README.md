@@ -12,12 +12,12 @@ The repository currently contains two generated organs:
 
 - a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
 - a fixed-`CS=0` 16-bit seed core with CSS-owned `IP`, `AX`, `IR`, immediate, phase, halt, fault, and flags;
-- CSS decodes real x86 `MOV AX,iw`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
-- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read addresses and records the trace;
+- CSS decodes real x86 `MOV AX,iw`, `MOV [moffs16],AX`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
+- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins and records the trace;
 - an independent browser proof executes a 13-byte ROM to `AX=12c8`, `IP=000d`, then verifies overflow, borrow, HLT, and invalid-opcode faulting;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The seed CPU is **302 nets / 58,035 CSS bytes**.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The write-capable seed CPU is **400 nets / 80,292 CSS bytes**.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -34,7 +34,7 @@ CSS owns:
 The runtime JavaScript owns:
 
 - manifest-declared bus serialization and deserialization;
-- opaque byte storage behind CSS-emitted address/read pins;
+- opaque byte storage behind CSS-emitted address/read/write/data pins;
 - driving CSS input pins and sampling CSS output pins;
 - one atomic generic state-bank latch;
 - UI, bus trace, and diagnostics.

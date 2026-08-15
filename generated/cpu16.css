@@ -335,6 +335,54 @@
   initial-value: 0;
 }
 
+@property --immHigh-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immHigh-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --phase-0 {
   syntax: "<number>";
   inherits: false;
@@ -419,7 +467,37 @@
   initial-value: 0;
 }
 
+@property --phase-write-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-write-high {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --read-phase {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --write-phase {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --bus-read {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -473,6 +551,18 @@
   initial-value: 0;
 }
 
+@property --fetched-store {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-store {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-hlt {
   syntax: "<number>";
   inherits: false;
@@ -510,6 +600,12 @@
 }
 
 @property --capture-imm-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --capture-imm-high {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -827,6 +923,12 @@
   initial-value: 0;
 }
 
+@property --next-immHigh-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-1 {
   syntax: "<number>";
   inherits: false;
@@ -834,6 +936,12 @@
 }
 
 @property --next-immLow-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immHigh-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -851,6 +959,12 @@
   initial-value: 0;
 }
 
+@property --next-immHigh-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-3 {
   syntax: "<number>";
   inherits: false;
@@ -858,6 +972,12 @@
 }
 
 @property --next-immLow-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immHigh-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -875,6 +995,12 @@
   initial-value: 0;
 }
 
+@property --next-immHigh-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-5 {
   syntax: "<number>";
   inherits: false;
@@ -882,6 +1008,12 @@
 }
 
 @property --next-immLow-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immHigh-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -899,6 +1031,12 @@
   initial-value: 0;
 }
 
+@property --next-immHigh-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-7 {
   syntax: "<number>";
   inherits: false;
@@ -906,6 +1044,18 @@
 }
 
 @property --next-immLow-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immHigh-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --begin-store {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -936,6 +1086,444 @@
 }
 
 @property --next-faulted {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-address-next-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --store-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-write-data-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1868,6 +2456,14 @@
   --immLow-5: 0;
   --immLow-6: 0;
   --immLow-7: 0;
+  --immHigh-0: 0;
+  --immHigh-1: 0;
+  --immHigh-2: 0;
+  --immHigh-3: 0;
+  --immHigh-4: 0;
+  --immHigh-5: 0;
+  --immHigh-6: 0;
+  --immHigh-7: 0;
   --phase-0: 0;
   --phase-1: 0;
   --phase-2: 0;
@@ -1882,7 +2478,12 @@
   --phase-opcode: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
   --phase-imm-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
   --phase-imm-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
-  --bus-read: calc(1 - var(--halted));
+  --phase-write-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
+  --phase-write-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + var(--phase-2)) / 2), 1);
+  --read-phase: min(1, calc(var(--phase-opcode) + var(--phase-imm-low) + var(--phase-imm-high)));
+  --write-phase: min(1, calc(var(--phase-write-low) + var(--phase-write-high)));
+  --bus-read: round(down, calc(calc(calc(1 - var(--halted)) + var(--read-phase)) / 2), 1);
+  --bus-write: round(down, calc(calc(calc(1 - var(--halted)) + var(--write-phase)) / 2), 1);
   --fetched-mov: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-mov: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
@@ -1891,14 +2492,17 @@
   --opcode-sub: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
   --opcode-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
-  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor)));
+  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store)));
   --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-hlt)));
   --fetched-invalid: calc(1 - var(--fetched-supported));
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
   --capture-imm-low: round(down, calc(calc(var(--phase-imm-low) + var(--bus-read)) / 2), 1);
-  --execute: round(down, calc(calc(var(--phase-imm-high) + var(--bus-read)) / 2), 1);
+  --capture-imm-high: round(down, calc(calc(var(--phase-imm-high) + var(--bus-read)) / 2), 1);
+  --execute: round(down, calc(calc(var(--capture-imm-high) + calc(1 - var(--opcode-store))) / 2), 1);
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
   --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);
@@ -1950,25 +2554,107 @@
   --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-15)) / 2), 1)));
   --next-ir-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-0)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-0)) / 2), 1)));
   --next-immLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-0)) / 2), 1)));
+  --next-immHigh-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-0)) / 2), 1)));
   --next-ir-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-1)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-1)) / 2), 1)));
   --next-immLow-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-1)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-1)) / 2), 1)));
+  --next-immHigh-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-1)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-1)) / 2), 1)));
   --next-ir-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-2)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-2)) / 2), 1)));
   --next-immLow-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-2)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-2)) / 2), 1)));
+  --next-immHigh-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-2)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-2)) / 2), 1)));
   --next-ir-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-3)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-3)) / 2), 1)));
   --next-immLow-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-3)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-3)) / 2), 1)));
+  --next-immHigh-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-3)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-3)) / 2), 1)));
   --next-ir-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-4)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-4)) / 2), 1)));
   --next-immLow-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-4)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-4)) / 2), 1)));
+  --next-immHigh-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-4)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-4)) / 2), 1)));
   --next-ir-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-5)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-5)) / 2), 1)));
   --next-immLow-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-5)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-5)) / 2), 1)));
+  --next-immHigh-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-5)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-5)) / 2), 1)));
   --next-ir-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-6)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-6)) / 2), 1)));
   --next-immLow-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-6)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-6)) / 2), 1)));
+  --next-immHigh-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-6)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-6)) / 2), 1)));
   --next-ir-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-7)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-7)) / 2), 1)));
   --next-immLow-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-7)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-7)) / 2), 1)));
-  --next-phase-0: round(down, calc(calc(var(--capture-opcode) + var(--fetched-immediate)) / 2), 1);
-  --next-phase-1: var(--capture-imm-low);
-  --next-phase-2: 0;
+  --next-immHigh-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-7)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-7)) / 2), 1)));
+  --begin-store: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-store)) / 2), 1);
+  --next-phase-0: min(1, calc(round(down, calc(calc(var(--capture-opcode) + var(--fetched-immediate)) / 2), 1) + var(--begin-store)));
+  --next-phase-1: min(1, calc(var(--capture-imm-low) + var(--begin-store)));
+  --next-phase-2: var(--phase-write-low);
   --next-halted: min(1, calc(var(--halted) + round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-hlt) + var(--fetched-invalid)))) / 2), 1)));
   --next-faulted: min(1, calc(var(--faulted) + round(down, calc(calc(var(--capture-opcode) + var(--fetched-invalid)) / 2), 1)));
+  --store-carry-0: 1;
+  --store-address-0: var(--immLow-0);
+  --store-address-next-0: mod(calc(var(--store-address-0) + var(--store-carry-0)), 2);
+  --store-carry-1: round(down, calc(calc(var(--store-address-0) + var(--store-carry-0)) / 2), 1);
+  --bus-address-0: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-0)) / 2), 1)));
+  --store-address-1: var(--immLow-1);
+  --store-address-next-1: mod(calc(var(--store-address-1) + var(--store-carry-1)), 2);
+  --store-carry-2: round(down, calc(calc(var(--store-address-1) + var(--store-carry-1)) / 2), 1);
+  --bus-address-1: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-1)) / 2), 1)));
+  --store-address-2: var(--immLow-2);
+  --store-address-next-2: mod(calc(var(--store-address-2) + var(--store-carry-2)), 2);
+  --store-carry-3: round(down, calc(calc(var(--store-address-2) + var(--store-carry-2)) / 2), 1);
+  --bus-address-2: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-2)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-2)) / 2), 1)));
+  --store-address-3: var(--immLow-3);
+  --store-address-next-3: mod(calc(var(--store-address-3) + var(--store-carry-3)), 2);
+  --store-carry-4: round(down, calc(calc(var(--store-address-3) + var(--store-carry-3)) / 2), 1);
+  --bus-address-3: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-3)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-3)) / 2), 1)));
+  --store-address-4: var(--immLow-4);
+  --store-address-next-4: mod(calc(var(--store-address-4) + var(--store-carry-4)), 2);
+  --store-carry-5: round(down, calc(calc(var(--store-address-4) + var(--store-carry-4)) / 2), 1);
+  --bus-address-4: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-4)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-4)) / 2), 1)));
+  --store-address-5: var(--immLow-5);
+  --store-address-next-5: mod(calc(var(--store-address-5) + var(--store-carry-5)), 2);
+  --store-carry-6: round(down, calc(calc(var(--store-address-5) + var(--store-carry-5)) / 2), 1);
+  --bus-address-5: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-5)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-5)) / 2), 1)));
+  --store-address-6: var(--immLow-6);
+  --store-address-next-6: mod(calc(var(--store-address-6) + var(--store-carry-6)), 2);
+  --store-carry-7: round(down, calc(calc(var(--store-address-6) + var(--store-carry-6)) / 2), 1);
+  --bus-address-6: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-6)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-6)) / 2), 1)));
+  --store-address-7: var(--immLow-7);
+  --store-address-next-7: mod(calc(var(--store-address-7) + var(--store-carry-7)), 2);
+  --store-carry-8: round(down, calc(calc(var(--store-address-7) + var(--store-carry-7)) / 2), 1);
+  --bus-address-7: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-7)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-7)) / 2), 1)));
+  --store-address-8: var(--immHigh-0);
+  --store-address-next-8: mod(calc(var(--store-address-8) + var(--store-carry-8)), 2);
+  --store-carry-9: round(down, calc(calc(var(--store-address-8) + var(--store-carry-8)) / 2), 1);
+  --bus-address-8: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-8)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-8)) / 2), 1)));
+  --store-address-9: var(--immHigh-1);
+  --store-address-next-9: mod(calc(var(--store-address-9) + var(--store-carry-9)), 2);
+  --store-carry-10: round(down, calc(calc(var(--store-address-9) + var(--store-carry-9)) / 2), 1);
+  --bus-address-9: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-9)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-9)) / 2), 1)));
+  --store-address-10: var(--immHigh-2);
+  --store-address-next-10: mod(calc(var(--store-address-10) + var(--store-carry-10)), 2);
+  --store-carry-11: round(down, calc(calc(var(--store-address-10) + var(--store-carry-10)) / 2), 1);
+  --bus-address-10: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-10)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-10)) / 2), 1)));
+  --store-address-11: var(--immHigh-3);
+  --store-address-next-11: mod(calc(var(--store-address-11) + var(--store-carry-11)), 2);
+  --store-carry-12: round(down, calc(calc(var(--store-address-11) + var(--store-carry-11)) / 2), 1);
+  --bus-address-11: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-11)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-11)) / 2), 1)));
+  --store-address-12: var(--immHigh-4);
+  --store-address-next-12: mod(calc(var(--store-address-12) + var(--store-carry-12)), 2);
+  --store-carry-13: round(down, calc(calc(var(--store-address-12) + var(--store-carry-12)) / 2), 1);
+  --bus-address-12: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-12)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-12)) / 2), 1)));
+  --store-address-13: var(--immHigh-5);
+  --store-address-next-13: mod(calc(var(--store-address-13) + var(--store-carry-13)), 2);
+  --store-carry-14: round(down, calc(calc(var(--store-address-13) + var(--store-carry-13)) / 2), 1);
+  --bus-address-13: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-13)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-13)) / 2), 1)));
+  --store-address-14: var(--immHigh-6);
+  --store-address-next-14: mod(calc(var(--store-address-14) + var(--store-carry-14)), 2);
+  --store-carry-15: round(down, calc(calc(var(--store-address-14) + var(--store-carry-14)) / 2), 1);
+  --bus-address-14: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-14)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-14)) / 2), 1)));
+  --store-address-15: var(--immHigh-7);
+  --store-address-next-15: mod(calc(var(--store-address-15) + var(--store-carry-15)), 2);
+  --store-carry-16: round(down, calc(calc(var(--store-address-15) + var(--store-carry-15)) / 2), 1);
+  --bus-address-15: min(1, calc(round(down, calc(calc(var(--bus-read) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + var(--store-address-15)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--store-address-next-15)) / 2), 1)));
+  --bus-write-data-0: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-8)) / 2), 1)));
+  --bus-write-data-1: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-9)) / 2), 1)));
+  --bus-write-data-2: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-10)) / 2), 1)));
+  --bus-write-data-3: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-11)) / 2), 1)));
+  --bus-write-data-4: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-12)) / 2), 1)));
+  --bus-write-data-5: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-13)) / 2), 1)));
+  --bus-write-data-6: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-14)) / 2), 1)));
+  --bus-write-data-7: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-15)) / 2), 1)));
   --immediate-0: var(--immLow-0);
   --immediate-1: var(--immLow-1);
   --immediate-2: var(--immLow-2);

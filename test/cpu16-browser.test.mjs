@@ -28,7 +28,10 @@ async function execute(page, baseUrl, rom) {
     const [{ CssChip }, { ByteBusMachine }] = await Promise.all([import('/src/chip.js'), import('/src/byte-bus-machine.js')]);
     const manifest = await fetch('/generated/cpu16.manifest.json').then((response) => response.json());
     const chip = new CssChip(document.querySelector('#cpu'), manifest);
-    return new ByteBusMachine(chip, Uint8Array.from(bytes)).run(256);
+    const memory = new Uint8Array(0x10000);
+    memory.set(bytes);
+    const result = new ByteBusMachine(chip, memory).run(256);
+    return { ...result, memory: [...memory] };
   }, rom);
 }
 
@@ -49,39 +52,52 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       cycles: document.querySelector('#cycles').textContent,
       trace: document.querySelector('#trace').textContent,
     } }));
-    assert.equal(publicDemo.result.state.ip, 13);
+    assert.equal(publicDemo.result.state.ip, 16);
     assert.equal(publicDemo.result.state.ax, 0x12c8);
-    assert.equal(publicDemo.rendered.ip, '000d');
+    assert.equal(publicDemo.rendered.ip, '0010');
     assert.equal(publicDemo.rendered.ax, '12c8');
-    assert.equal(publicDemo.rendered.cycles, '13');
+    assert.equal(publicDemo.rendered.cycles, '18');
     assert.match(publicDemo.rendered.trace, /^00  read  \[0000\] → b8/m);
-    assert.match(publicDemo.rendered.trace, /12  read  \[000c\] → f4$/m);
+    assert.match(publicDemo.rendered.trace, /06  write \[2000\] ← 34/m);
+    assert.match(publicDemo.rendered.trace, /07  write \[2001\] ← 12/m);
+    assert.match(publicDemo.rendered.trace, /17  read  \[000f\] → f4$/m);
 
     const rom = [0xb8, 0x34, 0x12, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00, 0xf4];
     const normal = await execute(page, baseUrl, rom);
-    assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, address, data })));
+    assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ir: 0xf4, immLow: 1, phase: 0, halted: 1, faulted: 0,
+      ip: 13, ax: 0x12c8, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ir: 0xf4, immLow: 0, phase: 0, halted: 1, faulted: 0,
+      ip: 7, ax: 0, ir: 0xf4, immLow: 0, immHigh: 0x80, phase: 0, halted: 1, faulted: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ir: 0xf4, immLow: 1, phase: 0, halted: 1, faulted: 0,
+      ip: 7, ax: 0xffff, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
     const invalid = await execute(page, baseUrl, [0x90]);
-    assert.deepEqual(invalid.trace, [{ cycle: 0, address: 0, data: 0x90 }]);
+    assert.deepEqual(invalid.trace, [{ cycle: 0, kind: 'read', address: 0, data: 0x90 }]);
     assert.equal(invalid.state.ip, 1);
     assert.equal(invalid.state.halted, 1);
     assert.equal(invalid.state.faulted, 1);
+
+    const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
+    assert.equal(store.memory[0x2000], 0x34);
+    assert.equal(store.memory[0x2001], 0x12);
+    assert.deepEqual(store.trace.slice(6, 8), [
+      { cycle: 6, kind: 'write', address: 0x2000, data: 0x34 },
+      { cycle: 7, kind: 'write', address: 0x2001, data: 0x12 },
+    ]);
+    assert.deepEqual(store.trace[8], { cycle: 8, kind: 'read', address: 6, data: 0xf4 });
+    assert.equal(store.state.ip, 7);
+    assert.equal(store.state.ax, 0x1234);
   } finally {
     await browser?.close();
     await new Promise((resolve) => server.close(resolve));
