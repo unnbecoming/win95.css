@@ -19,9 +19,18 @@
     <section class="instrument">
       <div class="rom-row"><span class="label">ROM</span><code id="rom"></code><button id="run" type="button">cold boot</button></div>
       <div id="cpu-mount"><div id="cpu" class="css386-cpu"></div></div>
+      <dl class="flags register-file">
+        <div><dt>AX</dt><dd data-state="ax">0000</dd></div>
+        <div><dt>CX</dt><dd data-state="cx">0000</dd></div>
+        <div><dt>DX</dt><dd data-state="dx">0000</dd></div>
+        <div><dt>BX</dt><dd data-state="bx">0000</dd></div>
+        <div><dt>SP</dt><dd data-state="sp">0000</dd></div>
+        <div><dt>BP</dt><dd data-state="bp">0000</dd></div>
+        <div><dt>SI</dt><dd data-state="si">0000</dd></div>
+        <div><dt>DI</dt><dd data-state="di">0000</dd></div>
+      </dl>
       <dl class="flags cpu-state">
         <div><dt>IP</dt><dd data-state="ip">0000</dd></div>
-        <div><dt>AX</dt><dd data-state="ax">0000</dd></div>
         <div><dt>IR</dt><dd data-state="ir">00</dd></div>
         <div><dt>phase</dt><dd data-state="phase">0</dd></div>
         <div><dt>halted</dt><dd data-state="halted">0</dd></div>
@@ -44,7 +53,7 @@
     </section>
 
     <footer>
-      <p><strong>current claim</strong> — a fixed-<code>CS=0</code> 16-bit seed core executes <code>MOV AX,iw</code>, <code>MOV [moffs16],AX</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. It is not a complete 8086 or 386 yet.</p>
+      <p><strong>current claim</strong> — a fixed-<code>CS=0</code> 16-bit seed core has the full general register file and executes <code>MOV r16,iw</code>, <code>MOV [moffs16],AX</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. It is not a complete 8086 or 386 yet.</p>
       <p><a href="./alu.html">operation-selected ALU →</a></p>
     </footer>
   </main>
