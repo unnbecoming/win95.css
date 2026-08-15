@@ -22,6 +22,7 @@ button:hover { background: #c2ffd8; }
 .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 24px 20px; }
 #result { font-size: clamp(2rem, 8vw, 4.5rem); color: #a7f3c4; }
 .flags { display: grid; grid-template-columns: repeat(6, 1fr); margin: 0; padding: 0 24px 24px; gap: 8px; }
+.register-file { grid-template-columns: repeat(8, 1fr); }
 .flags div { border: 1px solid #2e3933; padding: 12px; text-align: center; }
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; padding: 0 24px 24px; }
 .metrics div { border-top: 1px solid #2e3933; padding-top: 12px; }
@@ -40,6 +41,6 @@ code { color: #a7f3c4; }
 @media (max-width: 680px) {
   main { padding-top: 36px; }
   form, .rom-row { grid-template-columns: 1fr; }
-  .flags { grid-template-columns: repeat(3, 1fr); }
+  .flags, .register-file { grid-template-columns: repeat(3, 1fr); }
   .metrics { grid-template-columns: 1fr; }
 }

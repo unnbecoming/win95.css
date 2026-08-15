@@ -35,6 +35,7 @@ export function compileNetlist(netlist, className) {
     signals: signalPins,
     latches: netlist.latches,
     outputs: netlist.outputs ?? {},
+    aliases: netlist.aliases ?? {},
     ...(netlist.byteBus ? { byteBus: netlist.byteBus } : {}),
   };
   return { css, manifest, netCount: properties.length };

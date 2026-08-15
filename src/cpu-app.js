@@ -2,7 +2,11 @@ import { CssChip } from './chip.js';
 import { ByteBusMachine } from './byte-bus-machine.js';
 
 const manifest = await fetch('./generated/cpu16.manifest.json').then((response) => response.json());
-const rom = Uint8Array.from([0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
+const rom = Uint8Array.from([
+  0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00,
+  0xb9, 0x22, 0x22, 0xba, 0x33, 0x33, 0xbb, 0x44, 0x44, 0xbc, 0x55, 0x55,
+  0xbd, 0x66, 0x66, 0xbe, 0x77, 0x77, 0xbf, 0x88, 0x88, 0xf4,
+]);
 const hex = (value, width) => value.toString(16).padStart(width, '0');
 document.querySelector('#rom').textContent = [...rom].map((byte) => hex(byte, 2)).join(' ');
 
@@ -19,7 +23,7 @@ function run() {
   const elapsed = performance.now() - started;
   for (const [name, value] of Object.entries(result.state)) {
     const output = document.querySelector(`[data-state="${name}"]`);
-    if (output) output.textContent = ['ip', 'ax'].includes(name) ? hex(value, 4) : name === 'ir' ? hex(value, 2) : String(value);
+    if (output) output.textContent = ['ip', 'ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].includes(name) ? hex(value, 4) : name === 'ir' ? hex(value, 2) : String(value);
   }
   document.querySelector('#cycles').textContent = String(result.trace.length);
   document.querySelector('#elapsed').textContent = elapsed.toFixed(3);

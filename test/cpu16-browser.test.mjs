@@ -8,6 +8,7 @@ import { chromium } from 'playwright';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
+const zeroOtherRegisters = { cx: 0, dx: 0, bx: 0, sp: 0, bp: 0, si: 0, di: 0 };
 
 function serve() {
   const server = createServer((request, response) => {
@@ -52,33 +53,37 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       cycles: document.querySelector('#cycles').textContent,
       trace: document.querySelector('#trace').textContent,
     } }));
-    assert.equal(publicDemo.result.state.ip, 16);
+    assert.equal(publicDemo.result.state.ip, 37);
     assert.equal(publicDemo.result.state.ax, 0x12c8);
-    assert.equal(publicDemo.rendered.ip, '0010');
+    assert.equal(publicDemo.rendered.ip, '0025');
     assert.equal(publicDemo.rendered.ax, '12c8');
-    assert.equal(publicDemo.rendered.cycles, '18');
+    assert.equal(publicDemo.rendered.cycles, '39');
     assert.match(publicDemo.rendered.trace, /^00  read  \[0000\] → b8/m);
     assert.match(publicDemo.rendered.trace, /06  write \[2000\] ← 34/m);
     assert.match(publicDemo.rendered.trace, /07  write \[2001\] ← 12/m);
-    assert.match(publicDemo.rendered.trace, /17  read  \[000f\] → f4$/m);
+    assert.match(publicDemo.rendered.trace, /38  read  \[0024\] → f4$/m);
+    assert.deepEqual(
+      Object.fromEntries(['cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, publicDemo.result.state[name]])),
+      { cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 },
+    );
 
     const rom = [0xb8, 0x34, 0x12, 0x05, 0x02, 0x00, 0x35, 0xff, 0x00, 0x2d, 0x01, 0x00, 0xf4];
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ir: 0xf4, immLow: 0, immHigh: 0x80, phase: 0, halted: 1, faulted: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ir: 0xf4, immLow: 0, immHigh: 0x80, phase: 0, halted: 1, faulted: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ir: 0xf4, immLow: 1, immHigh: 0, phase: 0, halted: 1, faulted: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
@@ -98,6 +103,20 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(store.trace[8], { cycle: 8, kind: 'read', address: 6, data: 0xf4 });
     assert.equal(store.state.ip, 7);
     assert.equal(store.state.ax, 0x1234);
+
+    const registerProgram = [
+      0xb8, 0x11, 0x11, 0xb9, 0x22, 0x22, 0xba, 0x33, 0x33, 0xbb, 0x44, 0x44,
+      0xbc, 0x55, 0x55, 0xbd, 0x66, 0x66, 0xbe, 0x77, 0x77, 0xbf, 0x88, 0x88, 0xf4,
+    ];
+    const registerFile = await execute(page, baseUrl, registerProgram);
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, registerFile.state[name]])),
+      { ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 },
+    );
+    assert.equal(registerFile.state.ip, 25);
+    assert.equal(registerFile.state.halted, 1);
+    const manifest = await page.evaluate(() => fetch('/generated/cpu16.manifest.json').then((response) => response.json()));
+    assert.deepEqual(Object.keys(manifest.aliases), ['al', 'cl', 'dl', 'bl', 'ah', 'ch', 'dh', 'bh']);
   } finally {
     await browser?.close();
     await new Promise((resolve) => server.close(resolve));

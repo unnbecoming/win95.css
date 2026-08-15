@@ -5,7 +5,8 @@ const WIDTH = 16;
 const bits = (prefix, width) => Array.from({ length: width }, (_, index) => `${prefix}-${index}`);
 const signalBits = (prefix, width) => bits(prefix, width).map(ref);
 const signal = {};
-const opcodes = { mov: 0xb8, add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, hlt: 0xf4 };
+const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
+const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 3, 0);
 signal['phase-imm-low'] = equalConstant('phase', 3, 1);
@@ -20,6 +21,12 @@ for (const [name, opcode] of Object.entries(opcodes)) {
   signal[`fetched-${name}`] = equalConstant('busData', 8, opcode);
   signal[`opcode-${name}`] = equalConstant('ir', 8, opcode);
 }
+for (const [index, register] of registers.entries()) {
+  signal[`fetched-mov-${register}`] = equalConstant('busData', 8, 0xb8 + index);
+  signal[`opcode-mov-${register}`] = equalConstant('ir', 8, 0xb8 + index);
+}
+signal['fetched-mov'] = anyBits(registers.map((register) => ref(`fetched-mov-${register}`)));
+signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${register}`)));
 signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store'].map((name) => ref(`fetched-${name}`)));
 signal['fetched-supported'] = orBit(ref('fetched-immediate'), ref('fetched-hlt'));
 signal['fetched-invalid'] = notBit(ref('fetched-supported'));
@@ -74,11 +81,18 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`alu-carry-${index + 1}`] = floor(div(add(ref(`alu-ab-${index}`), ref(`alu-carry-${index}`)), lit(2)));
   signal[`alu-xor-${index}`] = xorBit(ref(`ax-${index}`), ref(`immediate-${index}`));
   signal[`alu-result-${index}`] = anyBits([
-    andBit(ref('opcode-mov'), ref(`immediate-${index}`)),
+    andBit(ref('opcode-mov-ax'), ref(`immediate-${index}`)),
     andBit(ref('select-arithmetic'), ref(`alu-arithmetic-${index}`)),
     andBit(ref('opcode-xor'), ref(`alu-xor-${index}`)),
   ]);
-  signal[`next-ax-${index}`] = muxBit(ref('execute'), ref(`ax-${index}`), ref(`alu-result-${index}`));
+}
+signal['update-ax'] = andBit(ref('execute'), anyBits([ref('opcode-mov-ax'), ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')]));
+for (const register of registers) {
+  signal[`write-${register}`] = register === 'ax' ? ref('update-ax') : andBit(ref('execute'), ref(`opcode-mov-${register}`));
+  for (let index = 0; index < WIDTH; index++) {
+    const source = register === 'ax' ? ref(`alu-result-${index}`) : ref(`immediate-${index}`);
+    signal[`next-${register}-${index}`] = muxBit(ref(`write-${register}`), ref(`${register}-${index}`), source);
+  }
 }
 
 signal['alu-arithmetic-cf'] = muxBit(ref('opcode-sub'), ref('alu-carry-16'), notBit(ref('alu-carry-16')));
@@ -98,16 +112,24 @@ export const cpu16 = {
   name: 'css386-real-mode-seed',
   inputs: { busData: { width: 8 } },
   state: {
-    ip: { width: 16 }, ax: { width: 16 }, ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, phase: { width: 3 },
+    ip: { width: 16 },
+    ...Object.fromEntries(registers.map((register) => [register, { width: 16 }])),
+    ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, phase: { width: 3 },
     halted: { width: 1 }, faulted: { width: 1 },
     cf: { width: 1 }, pf: { width: 1 }, af: { width: 1 }, zf: { width: 1 }, sf: { width: 1 }, of: { width: 1 },
   },
   signals: signal,
   latches: {
-    ip: bits('next-ip', 16), ax: bits('next-ax', 16), ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), phase: bits('next-phase', 3),
+    ip: bits('next-ip', 16),
+    ...Object.fromEntries(registers.map((register) => [register, bits(`next-${register}`, 16)])),
+    ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), phase: bits('next-phase', 3),
     halted: ['next-halted'], faulted: ['next-faulted'],
     cf: ['next-cf'], pf: ['next-pf'], af: ['next-af'], zf: ['next-zf'], sf: ['next-sf'], of: ['next-of'],
   },
   outputs: { busAddress: bits('bus-address', 16), busRead: ['bus-read'], busWrite: ['bus-write'], busWriteData: bits('bus-write-data', 8) },
+  aliases: Object.fromEntries([
+    ...['al', 'cl', 'dl', 'bl'].map((name, index) => [name, bits(registers[index], 8)]),
+    ...['ah', 'ch', 'dh', 'bh'].map((name, index) => [name, bits(registers[index], 16).slice(8)]),
+  ]),
   byteBus: { addressOutput: 'busAddress', readOutput: 'busRead', writeOutput: 'busWrite', writeDataOutput: 'busWriteData', dataInput: 'busData' },
 };
