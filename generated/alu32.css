@@ -383,6 +383,24 @@
   initial-value: 0;
 }
 
+@property --op-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --op-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --op-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --r-0 {
   syntax: "<number>";
   inherits: false;
@@ -611,7 +629,49 @@
   initial-value: 0;
 }
 
+@property --select-add {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-sub {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-and {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-or {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-xor {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-arithmetic {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -623,7 +683,7 @@
   initial-value: 0;
 }
 
-@property --sum-0 {
+@property --arithmetic-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -635,13 +695,43 @@
   initial-value: 0;
 }
 
+@property --and-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-1 {
+@property --arithmetic-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -653,13 +743,43 @@
   initial-value: 0;
 }
 
+@property --and-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-2 {
+@property --arithmetic-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -671,13 +791,43 @@
   initial-value: 0;
 }
 
+@property --and-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-3 {
+@property --arithmetic-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -689,13 +839,43 @@
   initial-value: 0;
 }
 
+@property --and-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-4 {
+@property --arithmetic-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -707,13 +887,43 @@
   initial-value: 0;
 }
 
+@property --and-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-5 {
+@property --arithmetic-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -725,13 +935,43 @@
   initial-value: 0;
 }
 
+@property --and-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-6 {
+@property --arithmetic-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -743,13 +983,43 @@
   initial-value: 0;
 }
 
+@property --and-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-7 {
+@property --arithmetic-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -761,13 +1031,43 @@
   initial-value: 0;
 }
 
+@property --and-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-8 {
+@property --arithmetic-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -779,13 +1079,43 @@
   initial-value: 0;
 }
 
+@property --and-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-9 {
+@property --arithmetic-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -797,13 +1127,43 @@
   initial-value: 0;
 }
 
+@property --and-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-10 {
+@property --arithmetic-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -815,13 +1175,43 @@
   initial-value: 0;
 }
 
+@property --and-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-11 {
+@property --arithmetic-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -833,13 +1223,43 @@
   initial-value: 0;
 }
 
+@property --and-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-12 {
+@property --arithmetic-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -851,13 +1271,43 @@
   initial-value: 0;
 }
 
+@property --and-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-13 {
+@property --arithmetic-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -869,13 +1319,43 @@
   initial-value: 0;
 }
 
+@property --and-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-14 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-14 {
+@property --arithmetic-14 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -887,13 +1367,43 @@
   initial-value: 0;
 }
 
+@property --and-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-15 {
+@property --arithmetic-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -905,13 +1415,43 @@
   initial-value: 0;
 }
 
+@property --and-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-16 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-16 {
+@property --arithmetic-16 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -923,13 +1463,43 @@
   initial-value: 0;
 }
 
+@property --and-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-17 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-17 {
+@property --arithmetic-17 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -941,13 +1511,43 @@
   initial-value: 0;
 }
 
+@property --and-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-18 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-18 {
+@property --arithmetic-18 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -959,13 +1559,43 @@
   initial-value: 0;
 }
 
+@property --and-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-19 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-19 {
+@property --arithmetic-19 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -977,13 +1607,43 @@
   initial-value: 0;
 }
 
+@property --and-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-20 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-20 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-20 {
+@property --arithmetic-20 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -995,13 +1655,43 @@
   initial-value: 0;
 }
 
+@property --and-20 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-20 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-20 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-20 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-21 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-21 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-21 {
+@property --arithmetic-21 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1013,13 +1703,43 @@
   initial-value: 0;
 }
 
+@property --and-21 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-21 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-21 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-21 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-22 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-22 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-22 {
+@property --arithmetic-22 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1031,13 +1751,43 @@
   initial-value: 0;
 }
 
+@property --and-22 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-22 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-22 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-22 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-23 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-23 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-23 {
+@property --arithmetic-23 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1049,13 +1799,43 @@
   initial-value: 0;
 }
 
+@property --and-23 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-23 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-23 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-23 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-24 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-24 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-24 {
+@property --arithmetic-24 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1067,13 +1847,43 @@
   initial-value: 0;
 }
 
+@property --and-24 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-24 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-24 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-24 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-25 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-25 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-25 {
+@property --arithmetic-25 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1085,13 +1895,43 @@
   initial-value: 0;
 }
 
+@property --and-25 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-25 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-25 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-25 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-26 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-26 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-26 {
+@property --arithmetic-26 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1103,13 +1943,43 @@
   initial-value: 0;
 }
 
+@property --and-26 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-26 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-26 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-26 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-27 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-27 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-27 {
+@property --arithmetic-27 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1121,13 +1991,43 @@
   initial-value: 0;
 }
 
+@property --and-27 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-27 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-27 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-27 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-28 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-28 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-28 {
+@property --arithmetic-28 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1139,13 +2039,43 @@
   initial-value: 0;
 }
 
+@property --and-28 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-28 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-28 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-28 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-29 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-29 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-29 {
+@property --arithmetic-29 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1157,13 +2087,43 @@
   initial-value: 0;
 }
 
+@property --and-29 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-29 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-29 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-29 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-30 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-30 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-30 {
+@property --arithmetic-30 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1175,19 +2135,85 @@
   initial-value: 0;
 }
 
+@property --and-30 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-30 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-30 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-30 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --effective-b-31 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ab-31 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
-@property --sum-31 {
+@property --arithmetic-31 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
 
 @property --carry-32 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --and-31 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --or-31 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --xor-31 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --result-31 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --arithmetic-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --arithmetic-af {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1294,6 +2320,9 @@
   --b-29: 0;
   --b-30: 0;
   --b-31: 0;
+  --op-0: 0;
+  --op-1: 0;
+  --op-2: 0;
   --r-0: 0;
   --r-1: 0;
   --r-2: 0;
@@ -1332,107 +2361,275 @@
   --zf: 0;
   --sf: 0;
   --of: 0;
-  --carry-0: 0;
-  --ab-0: calc(var(--a-0) + var(--b-0));
-  --sum-0: mod(calc(var(--ab-0) + var(--carry-0)), 2);
+  --select-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--op-0))) / 2), 1) + calc(1 - var(--op-1))) / 2), 1) + calc(1 - var(--op-2))) / 2), 1);
+  --select-sub: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--op-0)) / 2), 1) + calc(1 - var(--op-1))) / 2), 1) + calc(1 - var(--op-2))) / 2), 1);
+  --select-and: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--op-0))) / 2), 1) + var(--op-1)) / 2), 1) + calc(1 - var(--op-2))) / 2), 1);
+  --select-or: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--op-0)) / 2), 1) + var(--op-1)) / 2), 1) + calc(1 - var(--op-2))) / 2), 1);
+  --select-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--op-0))) / 2), 1) + calc(1 - var(--op-1))) / 2), 1) + var(--op-2)) / 2), 1);
+  --select-arithmetic: min(1, calc(var(--select-add) + var(--select-sub)));
+  --carry-0: var(--select-sub);
+  --effective-b-0: mod(calc(var(--b-0) + var(--select-sub)), 2);
+  --ab-0: calc(var(--a-0) + var(--effective-b-0));
+  --arithmetic-0: mod(calc(var(--ab-0) + var(--carry-0)), 2);
   --carry-1: round(down, calc(calc(var(--ab-0) + var(--carry-0)) / 2), 1);
-  --ab-1: calc(var(--a-1) + var(--b-1));
-  --sum-1: mod(calc(var(--ab-1) + var(--carry-1)), 2);
+  --and-0: round(down, calc(calc(var(--a-0) + var(--b-0)) / 2), 1);
+  --or-0: min(1, calc(var(--a-0) + var(--b-0)));
+  --xor-0: mod(calc(var(--a-0) + var(--b-0)), 2);
+  --result-0: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-0)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-0)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-0)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-0)) / 2), 1)));
+  --effective-b-1: mod(calc(var(--b-1) + var(--select-sub)), 2);
+  --ab-1: calc(var(--a-1) + var(--effective-b-1));
+  --arithmetic-1: mod(calc(var(--ab-1) + var(--carry-1)), 2);
   --carry-2: round(down, calc(calc(var(--ab-1) + var(--carry-1)) / 2), 1);
-  --ab-2: calc(var(--a-2) + var(--b-2));
-  --sum-2: mod(calc(var(--ab-2) + var(--carry-2)), 2);
+  --and-1: round(down, calc(calc(var(--a-1) + var(--b-1)) / 2), 1);
+  --or-1: min(1, calc(var(--a-1) + var(--b-1)));
+  --xor-1: mod(calc(var(--a-1) + var(--b-1)), 2);
+  --result-1: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-1)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-1)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-1)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-1)) / 2), 1)));
+  --effective-b-2: mod(calc(var(--b-2) + var(--select-sub)), 2);
+  --ab-2: calc(var(--a-2) + var(--effective-b-2));
+  --arithmetic-2: mod(calc(var(--ab-2) + var(--carry-2)), 2);
   --carry-3: round(down, calc(calc(var(--ab-2) + var(--carry-2)) / 2), 1);
-  --ab-3: calc(var(--a-3) + var(--b-3));
-  --sum-3: mod(calc(var(--ab-3) + var(--carry-3)), 2);
+  --and-2: round(down, calc(calc(var(--a-2) + var(--b-2)) / 2), 1);
+  --or-2: min(1, calc(var(--a-2) + var(--b-2)));
+  --xor-2: mod(calc(var(--a-2) + var(--b-2)), 2);
+  --result-2: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-2)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-2)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-2)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-2)) / 2), 1)));
+  --effective-b-3: mod(calc(var(--b-3) + var(--select-sub)), 2);
+  --ab-3: calc(var(--a-3) + var(--effective-b-3));
+  --arithmetic-3: mod(calc(var(--ab-3) + var(--carry-3)), 2);
   --carry-4: round(down, calc(calc(var(--ab-3) + var(--carry-3)) / 2), 1);
-  --ab-4: calc(var(--a-4) + var(--b-4));
-  --sum-4: mod(calc(var(--ab-4) + var(--carry-4)), 2);
+  --and-3: round(down, calc(calc(var(--a-3) + var(--b-3)) / 2), 1);
+  --or-3: min(1, calc(var(--a-3) + var(--b-3)));
+  --xor-3: mod(calc(var(--a-3) + var(--b-3)), 2);
+  --result-3: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-3)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-3)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-3)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-3)) / 2), 1)));
+  --effective-b-4: mod(calc(var(--b-4) + var(--select-sub)), 2);
+  --ab-4: calc(var(--a-4) + var(--effective-b-4));
+  --arithmetic-4: mod(calc(var(--ab-4) + var(--carry-4)), 2);
   --carry-5: round(down, calc(calc(var(--ab-4) + var(--carry-4)) / 2), 1);
-  --ab-5: calc(var(--a-5) + var(--b-5));
-  --sum-5: mod(calc(var(--ab-5) + var(--carry-5)), 2);
+  --and-4: round(down, calc(calc(var(--a-4) + var(--b-4)) / 2), 1);
+  --or-4: min(1, calc(var(--a-4) + var(--b-4)));
+  --xor-4: mod(calc(var(--a-4) + var(--b-4)), 2);
+  --result-4: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-4)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-4)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-4)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-4)) / 2), 1)));
+  --effective-b-5: mod(calc(var(--b-5) + var(--select-sub)), 2);
+  --ab-5: calc(var(--a-5) + var(--effective-b-5));
+  --arithmetic-5: mod(calc(var(--ab-5) + var(--carry-5)), 2);
   --carry-6: round(down, calc(calc(var(--ab-5) + var(--carry-5)) / 2), 1);
-  --ab-6: calc(var(--a-6) + var(--b-6));
-  --sum-6: mod(calc(var(--ab-6) + var(--carry-6)), 2);
+  --and-5: round(down, calc(calc(var(--a-5) + var(--b-5)) / 2), 1);
+  --or-5: min(1, calc(var(--a-5) + var(--b-5)));
+  --xor-5: mod(calc(var(--a-5) + var(--b-5)), 2);
+  --result-5: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-5)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-5)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-5)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-5)) / 2), 1)));
+  --effective-b-6: mod(calc(var(--b-6) + var(--select-sub)), 2);
+  --ab-6: calc(var(--a-6) + var(--effective-b-6));
+  --arithmetic-6: mod(calc(var(--ab-6) + var(--carry-6)), 2);
   --carry-7: round(down, calc(calc(var(--ab-6) + var(--carry-6)) / 2), 1);
-  --ab-7: calc(var(--a-7) + var(--b-7));
-  --sum-7: mod(calc(var(--ab-7) + var(--carry-7)), 2);
+  --and-6: round(down, calc(calc(var(--a-6) + var(--b-6)) / 2), 1);
+  --or-6: min(1, calc(var(--a-6) + var(--b-6)));
+  --xor-6: mod(calc(var(--a-6) + var(--b-6)), 2);
+  --result-6: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-6)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-6)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-6)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-6)) / 2), 1)));
+  --effective-b-7: mod(calc(var(--b-7) + var(--select-sub)), 2);
+  --ab-7: calc(var(--a-7) + var(--effective-b-7));
+  --arithmetic-7: mod(calc(var(--ab-7) + var(--carry-7)), 2);
   --carry-8: round(down, calc(calc(var(--ab-7) + var(--carry-7)) / 2), 1);
-  --ab-8: calc(var(--a-8) + var(--b-8));
-  --sum-8: mod(calc(var(--ab-8) + var(--carry-8)), 2);
+  --and-7: round(down, calc(calc(var(--a-7) + var(--b-7)) / 2), 1);
+  --or-7: min(1, calc(var(--a-7) + var(--b-7)));
+  --xor-7: mod(calc(var(--a-7) + var(--b-7)), 2);
+  --result-7: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-7)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-7)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-7)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-7)) / 2), 1)));
+  --effective-b-8: mod(calc(var(--b-8) + var(--select-sub)), 2);
+  --ab-8: calc(var(--a-8) + var(--effective-b-8));
+  --arithmetic-8: mod(calc(var(--ab-8) + var(--carry-8)), 2);
   --carry-9: round(down, calc(calc(var(--ab-8) + var(--carry-8)) / 2), 1);
-  --ab-9: calc(var(--a-9) + var(--b-9));
-  --sum-9: mod(calc(var(--ab-9) + var(--carry-9)), 2);
+  --and-8: round(down, calc(calc(var(--a-8) + var(--b-8)) / 2), 1);
+  --or-8: min(1, calc(var(--a-8) + var(--b-8)));
+  --xor-8: mod(calc(var(--a-8) + var(--b-8)), 2);
+  --result-8: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-8)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-8)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-8)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-8)) / 2), 1)));
+  --effective-b-9: mod(calc(var(--b-9) + var(--select-sub)), 2);
+  --ab-9: calc(var(--a-9) + var(--effective-b-9));
+  --arithmetic-9: mod(calc(var(--ab-9) + var(--carry-9)), 2);
   --carry-10: round(down, calc(calc(var(--ab-9) + var(--carry-9)) / 2), 1);
-  --ab-10: calc(var(--a-10) + var(--b-10));
-  --sum-10: mod(calc(var(--ab-10) + var(--carry-10)), 2);
+  --and-9: round(down, calc(calc(var(--a-9) + var(--b-9)) / 2), 1);
+  --or-9: min(1, calc(var(--a-9) + var(--b-9)));
+  --xor-9: mod(calc(var(--a-9) + var(--b-9)), 2);
+  --result-9: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-9)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-9)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-9)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-9)) / 2), 1)));
+  --effective-b-10: mod(calc(var(--b-10) + var(--select-sub)), 2);
+  --ab-10: calc(var(--a-10) + var(--effective-b-10));
+  --arithmetic-10: mod(calc(var(--ab-10) + var(--carry-10)), 2);
   --carry-11: round(down, calc(calc(var(--ab-10) + var(--carry-10)) / 2), 1);
-  --ab-11: calc(var(--a-11) + var(--b-11));
-  --sum-11: mod(calc(var(--ab-11) + var(--carry-11)), 2);
+  --and-10: round(down, calc(calc(var(--a-10) + var(--b-10)) / 2), 1);
+  --or-10: min(1, calc(var(--a-10) + var(--b-10)));
+  --xor-10: mod(calc(var(--a-10) + var(--b-10)), 2);
+  --result-10: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-10)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-10)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-10)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-10)) / 2), 1)));
+  --effective-b-11: mod(calc(var(--b-11) + var(--select-sub)), 2);
+  --ab-11: calc(var(--a-11) + var(--effective-b-11));
+  --arithmetic-11: mod(calc(var(--ab-11) + var(--carry-11)), 2);
   --carry-12: round(down, calc(calc(var(--ab-11) + var(--carry-11)) / 2), 1);
-  --ab-12: calc(var(--a-12) + var(--b-12));
-  --sum-12: mod(calc(var(--ab-12) + var(--carry-12)), 2);
+  --and-11: round(down, calc(calc(var(--a-11) + var(--b-11)) / 2), 1);
+  --or-11: min(1, calc(var(--a-11) + var(--b-11)));
+  --xor-11: mod(calc(var(--a-11) + var(--b-11)), 2);
+  --result-11: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-11)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-11)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-11)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-11)) / 2), 1)));
+  --effective-b-12: mod(calc(var(--b-12) + var(--select-sub)), 2);
+  --ab-12: calc(var(--a-12) + var(--effective-b-12));
+  --arithmetic-12: mod(calc(var(--ab-12) + var(--carry-12)), 2);
   --carry-13: round(down, calc(calc(var(--ab-12) + var(--carry-12)) / 2), 1);
-  --ab-13: calc(var(--a-13) + var(--b-13));
-  --sum-13: mod(calc(var(--ab-13) + var(--carry-13)), 2);
+  --and-12: round(down, calc(calc(var(--a-12) + var(--b-12)) / 2), 1);
+  --or-12: min(1, calc(var(--a-12) + var(--b-12)));
+  --xor-12: mod(calc(var(--a-12) + var(--b-12)), 2);
+  --result-12: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-12)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-12)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-12)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-12)) / 2), 1)));
+  --effective-b-13: mod(calc(var(--b-13) + var(--select-sub)), 2);
+  --ab-13: calc(var(--a-13) + var(--effective-b-13));
+  --arithmetic-13: mod(calc(var(--ab-13) + var(--carry-13)), 2);
   --carry-14: round(down, calc(calc(var(--ab-13) + var(--carry-13)) / 2), 1);
-  --ab-14: calc(var(--a-14) + var(--b-14));
-  --sum-14: mod(calc(var(--ab-14) + var(--carry-14)), 2);
+  --and-13: round(down, calc(calc(var(--a-13) + var(--b-13)) / 2), 1);
+  --or-13: min(1, calc(var(--a-13) + var(--b-13)));
+  --xor-13: mod(calc(var(--a-13) + var(--b-13)), 2);
+  --result-13: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-13)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-13)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-13)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-13)) / 2), 1)));
+  --effective-b-14: mod(calc(var(--b-14) + var(--select-sub)), 2);
+  --ab-14: calc(var(--a-14) + var(--effective-b-14));
+  --arithmetic-14: mod(calc(var(--ab-14) + var(--carry-14)), 2);
   --carry-15: round(down, calc(calc(var(--ab-14) + var(--carry-14)) / 2), 1);
-  --ab-15: calc(var(--a-15) + var(--b-15));
-  --sum-15: mod(calc(var(--ab-15) + var(--carry-15)), 2);
+  --and-14: round(down, calc(calc(var(--a-14) + var(--b-14)) / 2), 1);
+  --or-14: min(1, calc(var(--a-14) + var(--b-14)));
+  --xor-14: mod(calc(var(--a-14) + var(--b-14)), 2);
+  --result-14: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-14)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-14)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-14)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-14)) / 2), 1)));
+  --effective-b-15: mod(calc(var(--b-15) + var(--select-sub)), 2);
+  --ab-15: calc(var(--a-15) + var(--effective-b-15));
+  --arithmetic-15: mod(calc(var(--ab-15) + var(--carry-15)), 2);
   --carry-16: round(down, calc(calc(var(--ab-15) + var(--carry-15)) / 2), 1);
-  --ab-16: calc(var(--a-16) + var(--b-16));
-  --sum-16: mod(calc(var(--ab-16) + var(--carry-16)), 2);
+  --and-15: round(down, calc(calc(var(--a-15) + var(--b-15)) / 2), 1);
+  --or-15: min(1, calc(var(--a-15) + var(--b-15)));
+  --xor-15: mod(calc(var(--a-15) + var(--b-15)), 2);
+  --result-15: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-15)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-15)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-15)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-15)) / 2), 1)));
+  --effective-b-16: mod(calc(var(--b-16) + var(--select-sub)), 2);
+  --ab-16: calc(var(--a-16) + var(--effective-b-16));
+  --arithmetic-16: mod(calc(var(--ab-16) + var(--carry-16)), 2);
   --carry-17: round(down, calc(calc(var(--ab-16) + var(--carry-16)) / 2), 1);
-  --ab-17: calc(var(--a-17) + var(--b-17));
-  --sum-17: mod(calc(var(--ab-17) + var(--carry-17)), 2);
+  --and-16: round(down, calc(calc(var(--a-16) + var(--b-16)) / 2), 1);
+  --or-16: min(1, calc(var(--a-16) + var(--b-16)));
+  --xor-16: mod(calc(var(--a-16) + var(--b-16)), 2);
+  --result-16: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-16)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-16)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-16)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-16)) / 2), 1)));
+  --effective-b-17: mod(calc(var(--b-17) + var(--select-sub)), 2);
+  --ab-17: calc(var(--a-17) + var(--effective-b-17));
+  --arithmetic-17: mod(calc(var(--ab-17) + var(--carry-17)), 2);
   --carry-18: round(down, calc(calc(var(--ab-17) + var(--carry-17)) / 2), 1);
-  --ab-18: calc(var(--a-18) + var(--b-18));
-  --sum-18: mod(calc(var(--ab-18) + var(--carry-18)), 2);
+  --and-17: round(down, calc(calc(var(--a-17) + var(--b-17)) / 2), 1);
+  --or-17: min(1, calc(var(--a-17) + var(--b-17)));
+  --xor-17: mod(calc(var(--a-17) + var(--b-17)), 2);
+  --result-17: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-17)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-17)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-17)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-17)) / 2), 1)));
+  --effective-b-18: mod(calc(var(--b-18) + var(--select-sub)), 2);
+  --ab-18: calc(var(--a-18) + var(--effective-b-18));
+  --arithmetic-18: mod(calc(var(--ab-18) + var(--carry-18)), 2);
   --carry-19: round(down, calc(calc(var(--ab-18) + var(--carry-18)) / 2), 1);
-  --ab-19: calc(var(--a-19) + var(--b-19));
-  --sum-19: mod(calc(var(--ab-19) + var(--carry-19)), 2);
+  --and-18: round(down, calc(calc(var(--a-18) + var(--b-18)) / 2), 1);
+  --or-18: min(1, calc(var(--a-18) + var(--b-18)));
+  --xor-18: mod(calc(var(--a-18) + var(--b-18)), 2);
+  --result-18: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-18)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-18)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-18)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-18)) / 2), 1)));
+  --effective-b-19: mod(calc(var(--b-19) + var(--select-sub)), 2);
+  --ab-19: calc(var(--a-19) + var(--effective-b-19));
+  --arithmetic-19: mod(calc(var(--ab-19) + var(--carry-19)), 2);
   --carry-20: round(down, calc(calc(var(--ab-19) + var(--carry-19)) / 2), 1);
-  --ab-20: calc(var(--a-20) + var(--b-20));
-  --sum-20: mod(calc(var(--ab-20) + var(--carry-20)), 2);
+  --and-19: round(down, calc(calc(var(--a-19) + var(--b-19)) / 2), 1);
+  --or-19: min(1, calc(var(--a-19) + var(--b-19)));
+  --xor-19: mod(calc(var(--a-19) + var(--b-19)), 2);
+  --result-19: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-19)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-19)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-19)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-19)) / 2), 1)));
+  --effective-b-20: mod(calc(var(--b-20) + var(--select-sub)), 2);
+  --ab-20: calc(var(--a-20) + var(--effective-b-20));
+  --arithmetic-20: mod(calc(var(--ab-20) + var(--carry-20)), 2);
   --carry-21: round(down, calc(calc(var(--ab-20) + var(--carry-20)) / 2), 1);
-  --ab-21: calc(var(--a-21) + var(--b-21));
-  --sum-21: mod(calc(var(--ab-21) + var(--carry-21)), 2);
+  --and-20: round(down, calc(calc(var(--a-20) + var(--b-20)) / 2), 1);
+  --or-20: min(1, calc(var(--a-20) + var(--b-20)));
+  --xor-20: mod(calc(var(--a-20) + var(--b-20)), 2);
+  --result-20: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-20)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-20)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-20)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-20)) / 2), 1)));
+  --effective-b-21: mod(calc(var(--b-21) + var(--select-sub)), 2);
+  --ab-21: calc(var(--a-21) + var(--effective-b-21));
+  --arithmetic-21: mod(calc(var(--ab-21) + var(--carry-21)), 2);
   --carry-22: round(down, calc(calc(var(--ab-21) + var(--carry-21)) / 2), 1);
-  --ab-22: calc(var(--a-22) + var(--b-22));
-  --sum-22: mod(calc(var(--ab-22) + var(--carry-22)), 2);
+  --and-21: round(down, calc(calc(var(--a-21) + var(--b-21)) / 2), 1);
+  --or-21: min(1, calc(var(--a-21) + var(--b-21)));
+  --xor-21: mod(calc(var(--a-21) + var(--b-21)), 2);
+  --result-21: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-21)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-21)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-21)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-21)) / 2), 1)));
+  --effective-b-22: mod(calc(var(--b-22) + var(--select-sub)), 2);
+  --ab-22: calc(var(--a-22) + var(--effective-b-22));
+  --arithmetic-22: mod(calc(var(--ab-22) + var(--carry-22)), 2);
   --carry-23: round(down, calc(calc(var(--ab-22) + var(--carry-22)) / 2), 1);
-  --ab-23: calc(var(--a-23) + var(--b-23));
-  --sum-23: mod(calc(var(--ab-23) + var(--carry-23)), 2);
+  --and-22: round(down, calc(calc(var(--a-22) + var(--b-22)) / 2), 1);
+  --or-22: min(1, calc(var(--a-22) + var(--b-22)));
+  --xor-22: mod(calc(var(--a-22) + var(--b-22)), 2);
+  --result-22: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-22)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-22)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-22)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-22)) / 2), 1)));
+  --effective-b-23: mod(calc(var(--b-23) + var(--select-sub)), 2);
+  --ab-23: calc(var(--a-23) + var(--effective-b-23));
+  --arithmetic-23: mod(calc(var(--ab-23) + var(--carry-23)), 2);
   --carry-24: round(down, calc(calc(var(--ab-23) + var(--carry-23)) / 2), 1);
-  --ab-24: calc(var(--a-24) + var(--b-24));
-  --sum-24: mod(calc(var(--ab-24) + var(--carry-24)), 2);
+  --and-23: round(down, calc(calc(var(--a-23) + var(--b-23)) / 2), 1);
+  --or-23: min(1, calc(var(--a-23) + var(--b-23)));
+  --xor-23: mod(calc(var(--a-23) + var(--b-23)), 2);
+  --result-23: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-23)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-23)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-23)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-23)) / 2), 1)));
+  --effective-b-24: mod(calc(var(--b-24) + var(--select-sub)), 2);
+  --ab-24: calc(var(--a-24) + var(--effective-b-24));
+  --arithmetic-24: mod(calc(var(--ab-24) + var(--carry-24)), 2);
   --carry-25: round(down, calc(calc(var(--ab-24) + var(--carry-24)) / 2), 1);
-  --ab-25: calc(var(--a-25) + var(--b-25));
-  --sum-25: mod(calc(var(--ab-25) + var(--carry-25)), 2);
+  --and-24: round(down, calc(calc(var(--a-24) + var(--b-24)) / 2), 1);
+  --or-24: min(1, calc(var(--a-24) + var(--b-24)));
+  --xor-24: mod(calc(var(--a-24) + var(--b-24)), 2);
+  --result-24: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-24)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-24)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-24)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-24)) / 2), 1)));
+  --effective-b-25: mod(calc(var(--b-25) + var(--select-sub)), 2);
+  --ab-25: calc(var(--a-25) + var(--effective-b-25));
+  --arithmetic-25: mod(calc(var(--ab-25) + var(--carry-25)), 2);
   --carry-26: round(down, calc(calc(var(--ab-25) + var(--carry-25)) / 2), 1);
-  --ab-26: calc(var(--a-26) + var(--b-26));
-  --sum-26: mod(calc(var(--ab-26) + var(--carry-26)), 2);
+  --and-25: round(down, calc(calc(var(--a-25) + var(--b-25)) / 2), 1);
+  --or-25: min(1, calc(var(--a-25) + var(--b-25)));
+  --xor-25: mod(calc(var(--a-25) + var(--b-25)), 2);
+  --result-25: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-25)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-25)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-25)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-25)) / 2), 1)));
+  --effective-b-26: mod(calc(var(--b-26) + var(--select-sub)), 2);
+  --ab-26: calc(var(--a-26) + var(--effective-b-26));
+  --arithmetic-26: mod(calc(var(--ab-26) + var(--carry-26)), 2);
   --carry-27: round(down, calc(calc(var(--ab-26) + var(--carry-26)) / 2), 1);
-  --ab-27: calc(var(--a-27) + var(--b-27));
-  --sum-27: mod(calc(var(--ab-27) + var(--carry-27)), 2);
+  --and-26: round(down, calc(calc(var(--a-26) + var(--b-26)) / 2), 1);
+  --or-26: min(1, calc(var(--a-26) + var(--b-26)));
+  --xor-26: mod(calc(var(--a-26) + var(--b-26)), 2);
+  --result-26: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-26)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-26)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-26)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-26)) / 2), 1)));
+  --effective-b-27: mod(calc(var(--b-27) + var(--select-sub)), 2);
+  --ab-27: calc(var(--a-27) + var(--effective-b-27));
+  --arithmetic-27: mod(calc(var(--ab-27) + var(--carry-27)), 2);
   --carry-28: round(down, calc(calc(var(--ab-27) + var(--carry-27)) / 2), 1);
-  --ab-28: calc(var(--a-28) + var(--b-28));
-  --sum-28: mod(calc(var(--ab-28) + var(--carry-28)), 2);
+  --and-27: round(down, calc(calc(var(--a-27) + var(--b-27)) / 2), 1);
+  --or-27: min(1, calc(var(--a-27) + var(--b-27)));
+  --xor-27: mod(calc(var(--a-27) + var(--b-27)), 2);
+  --result-27: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-27)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-27)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-27)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-27)) / 2), 1)));
+  --effective-b-28: mod(calc(var(--b-28) + var(--select-sub)), 2);
+  --ab-28: calc(var(--a-28) + var(--effective-b-28));
+  --arithmetic-28: mod(calc(var(--ab-28) + var(--carry-28)), 2);
   --carry-29: round(down, calc(calc(var(--ab-28) + var(--carry-28)) / 2), 1);
-  --ab-29: calc(var(--a-29) + var(--b-29));
-  --sum-29: mod(calc(var(--ab-29) + var(--carry-29)), 2);
+  --and-28: round(down, calc(calc(var(--a-28) + var(--b-28)) / 2), 1);
+  --or-28: min(1, calc(var(--a-28) + var(--b-28)));
+  --xor-28: mod(calc(var(--a-28) + var(--b-28)), 2);
+  --result-28: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-28)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-28)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-28)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-28)) / 2), 1)));
+  --effective-b-29: mod(calc(var(--b-29) + var(--select-sub)), 2);
+  --ab-29: calc(var(--a-29) + var(--effective-b-29));
+  --arithmetic-29: mod(calc(var(--ab-29) + var(--carry-29)), 2);
   --carry-30: round(down, calc(calc(var(--ab-29) + var(--carry-29)) / 2), 1);
-  --ab-30: calc(var(--a-30) + var(--b-30));
-  --sum-30: mod(calc(var(--ab-30) + var(--carry-30)), 2);
+  --and-29: round(down, calc(calc(var(--a-29) + var(--b-29)) / 2), 1);
+  --or-29: min(1, calc(var(--a-29) + var(--b-29)));
+  --xor-29: mod(calc(var(--a-29) + var(--b-29)), 2);
+  --result-29: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-29)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-29)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-29)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-29)) / 2), 1)));
+  --effective-b-30: mod(calc(var(--b-30) + var(--select-sub)), 2);
+  --ab-30: calc(var(--a-30) + var(--effective-b-30));
+  --arithmetic-30: mod(calc(var(--ab-30) + var(--carry-30)), 2);
   --carry-31: round(down, calc(calc(var(--ab-30) + var(--carry-30)) / 2), 1);
-  --ab-31: calc(var(--a-31) + var(--b-31));
-  --sum-31: mod(calc(var(--ab-31) + var(--carry-31)), 2);
+  --and-30: round(down, calc(calc(var(--a-30) + var(--b-30)) / 2), 1);
+  --or-30: min(1, calc(var(--a-30) + var(--b-30)));
+  --xor-30: mod(calc(var(--a-30) + var(--b-30)), 2);
+  --result-30: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-30)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-30)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-30)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-30)) / 2), 1)));
+  --effective-b-31: mod(calc(var(--b-31) + var(--select-sub)), 2);
+  --ab-31: calc(var(--a-31) + var(--effective-b-31));
+  --arithmetic-31: mod(calc(var(--ab-31) + var(--carry-31)), 2);
   --carry-32: round(down, calc(calc(var(--ab-31) + var(--carry-31)) / 2), 1);
-  --next-cf: var(--carry-32);
-  --next-af: var(--carry-4);
-  --next-zf: calc(1 - min(1, calc(var(--sum-0) + var(--sum-1) + var(--sum-2) + var(--sum-3) + var(--sum-4) + var(--sum-5) + var(--sum-6) + var(--sum-7) + var(--sum-8) + var(--sum-9) + var(--sum-10) + var(--sum-11) + var(--sum-12) + var(--sum-13) + var(--sum-14) + var(--sum-15) + var(--sum-16) + var(--sum-17) + var(--sum-18) + var(--sum-19) + var(--sum-20) + var(--sum-21) + var(--sum-22) + var(--sum-23) + var(--sum-24) + var(--sum-25) + var(--sum-26) + var(--sum-27) + var(--sum-28) + var(--sum-29) + var(--sum-30) + var(--sum-31))));
-  --next-sf: var(--sum-31);
-  --next-of: mod(calc(var(--carry-31) + var(--carry-32)), 2);
-  --next-pf: calc(1 - mod(calc(var(--sum-0) + var(--sum-1) + var(--sum-2) + var(--sum-3) + var(--sum-4) + var(--sum-5) + var(--sum-6) + var(--sum-7)), 2));
+  --and-31: round(down, calc(calc(var(--a-31) + var(--b-31)) / 2), 1);
+  --or-31: min(1, calc(var(--a-31) + var(--b-31)));
+  --xor-31: mod(calc(var(--a-31) + var(--b-31)), 2);
+  --result-31: min(1, calc(round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-31)) / 2), 1) + round(down, calc(calc(var(--select-and) + var(--and-31)) / 2), 1) + round(down, calc(calc(var(--select-or) + var(--or-31)) / 2), 1) + round(down, calc(calc(var(--select-xor) + var(--xor-31)) / 2), 1)));
+  --arithmetic-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--select-sub)) + var(--carry-32)) / 2), 1) + round(down, calc(calc(var(--select-sub) + calc(1 - var(--carry-32))) / 2), 1)));
+  --arithmetic-af: min(1, calc(round(down, calc(calc(calc(1 - var(--select-sub)) + var(--carry-4)) / 2), 1) + round(down, calc(calc(var(--select-sub) + calc(1 - var(--carry-4))) / 2), 1)));
+  --next-cf: round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-cf)) / 2), 1);
+  --next-af: round(down, calc(calc(var(--select-arithmetic) + var(--arithmetic-af)) / 2), 1);
+  --next-zf: calc(1 - min(1, calc(var(--result-0) + var(--result-1) + var(--result-2) + var(--result-3) + var(--result-4) + var(--result-5) + var(--result-6) + var(--result-7) + var(--result-8) + var(--result-9) + var(--result-10) + var(--result-11) + var(--result-12) + var(--result-13) + var(--result-14) + var(--result-15) + var(--result-16) + var(--result-17) + var(--result-18) + var(--result-19) + var(--result-20) + var(--result-21) + var(--result-22) + var(--result-23) + var(--result-24) + var(--result-25) + var(--result-26) + var(--result-27) + var(--result-28) + var(--result-29) + var(--result-30) + var(--result-31))));
+  --next-sf: var(--result-31);
+  --next-of: round(down, calc(calc(var(--select-arithmetic) + mod(calc(var(--carry-31) + var(--carry-32)), 2)) / 2), 1);
+  --next-pf: calc(1 - mod(calc(var(--result-0) + var(--result-1) + var(--result-2) + var(--result-3) + var(--result-4) + var(--result-5) + var(--result-6) + var(--result-7)), 2));
 }

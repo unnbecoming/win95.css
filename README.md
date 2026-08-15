@@ -6,17 +6,18 @@ The distant target is deliberately ridiculous: boot an unmodified Windows 95 RTM
 
 That is **not** the current claim.
 
-## Current milestone: the first organ twitches
+## Current milestone: the second organ has teeth
 
-The repository currently contains one 32-bit `ADD` datapath:
+The repository currently contains a 32-bit operation-selected ALU:
 
-- operands are driven as 64 registered one-bit CSS custom properties;
-- generated CSS performs a 32-stage ripple carry;
+- operands and a three-bit operation selector are driven as registered one-bit CSS custom properties;
+- generated CSS decodes and executes `ADD`, `SUB`, `AND`, `OR`, and `XOR`;
 - generated CSS produces the latched result plus `CF`, `PF`, `AF`, `ZF`, `SF`, and `OF`;
 - a manifest-driven JavaScript shim drives physical pins, samples pins, and latches the state bank;
-- an independent oracle differential-tests 1,009 edge/random vectors in real Chromium.
+- an independent oracle differential-tests 1,045 mixed edge/random operation vectors in real Chromium;
+- the demo reports actual cycle milliseconds, derived WTFHz, and generated stylesheet bytes.
 
-The generated artifact is currently **205 registered one-bit nets** and about **25 KiB of CSS**.
+The generated artifact is currently **376 registered one-bit nets** and **59,998 bytes of CSS**.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -24,9 +25,10 @@ The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a t
 
 CSS owns:
 
-- the ripple-carry network;
+- operation decode and selection;
+- the shared add/sub carry network and bitwise logic paths;
 - result-bit computation;
-- all architectural ADD flags;
+- architectural result flags (logical operations deliberately drive undefined `AF` to zero for now);
 - combinational next-state pins.
 
 The runtime JavaScript owns:
@@ -37,7 +39,7 @@ The runtime JavaScript owns:
 - one generic state-bank latch;
 - UI and diagnostics.
 
-`src/chip.js` contains no addition, carry, parity, overflow, or x86 flag logic. The arithmetic oracle exists only in the browser test and is not loaded by the demo.
+`src/chip.js` contains no operation decode, arithmetic, carry, parity, overflow, or x86 flag logic. The independent operation oracles exist only in the browser test and are not loaded by the demo.
 
 If runtime JavaScript eventually branches on opcode, addressing mode, flag meaning, privilege level, segment type, page-table semantics, or exception vector, the central claim has failed.
 
@@ -64,8 +66,8 @@ Open `index.html` through any static HTTP server to use the bring-up instrument 
 
 The likely milestone ladder is:
 
-1. `ADD` and architectural flags — **working**
-2. broader ALU + register-transfer microsteps
+1. operation-selected `ADD`/`SUB`/`AND`/`OR`/`XOR` plus flags — **working**
+2. register-transfer microsteps
 3. tiny real-mode fetch/decode loop and bus traces
 4. 386 protected mode, paging, privilege, faults, and differential conformance
 5. BIOS and a small real-mode guest

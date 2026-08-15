@@ -12,13 +12,21 @@
     <header>
       <p class="eyebrow">win95.css / bring-up instrument 0001</p>
       <h1>CSS/386</h1>
-      <p class="lede">A 32-bit ADD datapath and architectural flags computed by generated CSS. JavaScript only drives pins, samples pins, and latches the state bank.</p>
+      <p class="lede">A 32-bit operation-selected ALU and architectural flags computed by generated CSS. JavaScript only drives pins, samples pins, and latches the state bank.</p>
     </header>
 
     <section class="instrument css386-chip" id="chip">
       <form>
         <label>A <input id="a" value="4294967295" inputmode="numeric"></label>
-        <span class="operator">+</span>
+        <label>operation
+          <select id="op">
+            <option value="0">ADD</option>
+            <option value="1">SUB</option>
+            <option value="2">AND</option>
+            <option value="3">OR</option>
+            <option value="4">XOR</option>
+          </select>
+        </label>
         <label>B <input id="b" value="1" inputmode="numeric"></label>
         <button type="submit">clock</button>
       </form>
@@ -36,11 +44,16 @@
         <div><dt>SF</dt><dd data-flag="sf">0</dd></div>
         <div><dt>OF</dt><dd data-flag="of">0</dd></div>
       </dl>
+      <dl class="metrics">
+        <div><dt>cycle</dt><dd><span id="cycle-ms">—</span> ms</dd></div>
+        <div><dt>clock</dt><dd><span id="wtf-hz">—</span> WTFHz</dd></div>
+        <div><dt>stylesheet</dt><dd><span id="css-bytes">—</span> bytes</dd></div>
+      </dl>
       <p id="status">CSS state latched.</p>
     </section>
 
     <footer>
-      <p><strong>honesty boundary</strong> — generated CSS owns arithmetic and flags. <code>chip.js</code> is manifest-driven and contains no ADD or EFLAGS logic.</p>
+      <p><strong>honesty boundary</strong> — generated CSS owns operation decode, arithmetic, logic, and flags. <code>chip.js</code> is manifest-driven and contains no ALU or EFLAGS logic.</p>
       <p>current claim: one combinational datapath works. this is not an x86 CPU yet, and Windows 95 is not running here.</p>
     </footer>
   </main>
