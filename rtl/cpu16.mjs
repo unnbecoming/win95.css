@@ -6,7 +6,7 @@ const bits = (prefix, width) => Array.from({ length: width }, (_, index) => `${p
 const signalBits = (prefix, width) => bits(prefix, width).map(ref);
 const signal = {};
 const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
-const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, call: 0xe8, jmp: 0xe9, ret: 0xc3, hlt: 0xf4 };
+const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, jz: 0x74, jnz: 0x75, call: 0xe8, jmp: 0xe9, ret: 0xc3, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 3, 0);
 signal['phase-imm-low'] = equalConstant('phase', 3, 1);
@@ -32,7 +32,9 @@ for (const [index, register] of registers.entries()) {
 signal['fetched-mov'] = anyBits(registers.map((register) => ref(`fetched-mov-${register}`)));
 signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${register}`)));
 signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store', 'call', 'jmp'].map((name) => ref(`fetched-${name}`)));
-signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-ret'), ref('fetched-hlt')]);
+signal['fetched-short'] = orBit(ref('fetched-jz'), ref('fetched-jnz'));
+signal['opcode-short'] = orBit(ref('opcode-jz'), ref('opcode-jnz'));
+signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-ret'), ref('fetched-hlt')]);
 signal['fetched-invalid'] = notBit(ref('fetched-supported'));
 signal['capture-opcode'] = andBit(ref('phase-opcode'), ref('bus-read'));
 signal['capture-imm-low'] = andBit(ref('phase-imm-low'), ref('bus-read'));
@@ -56,8 +58,8 @@ signal['begin-call'] = andBit(ref('capture-imm-high'), ref('opcode-call'));
 signal['begin-write'] = orBit(ref('begin-store'), ref('begin-call'));
 signal['begin-ret'] = andBit(ref('capture-opcode'), ref('fetched-ret'));
 signal['finish-ret'] = andBit(ref('phase-ret-high'), ref('bus-read'));
-signal['next-phase-0'] = anyBits([andBit(ref('capture-opcode'), ref('fetched-immediate')), ref('begin-write'), ref('begin-ret')]);
-signal['next-phase-1'] = anyBits([ref('capture-imm-low'), ref('begin-write'), ref('phase-ret-low')]);
+signal['next-phase-0'] = anyBits([andBit(ref('capture-opcode'), orBit(ref('fetched-immediate'), ref('fetched-short'))), ref('begin-write'), ref('begin-ret')]);
+signal['next-phase-1'] = anyBits([andBit(ref('capture-imm-low'), notBit(ref('opcode-short'))), ref('begin-write'), ref('phase-ret-low')]);
 signal['next-phase-2'] = anyBits([ref('phase-write-low'), ref('begin-ret'), ref('phase-ret-low')]);
 signal['next-halted'] = orBit(ref('halted'), andBit(ref('capture-opcode'), orBit(ref('fetched-hlt'), ref('fetched-invalid'))));
 signal['next-faulted'] = orBit(ref('faulted'), andBit(ref('capture-opcode'), ref('fetched-invalid')));
@@ -89,13 +91,22 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`immediate-${index}`] = index < 8 ? ref(`immLow-${index}`) : ref(`busData-${index - 8}`);
 }
 signal['take-near-branch'] = andBit(ref('capture-imm-high'), orBit(ref('opcode-jmp'), ref('opcode-call')));
+signal['execute-short'] = andBit(ref('capture-imm-low'), ref('opcode-short'));
+signal['short-condition'] = orBit(andBit(ref('opcode-jz'), ref('zf')), andBit(ref('opcode-jnz'), notBit(ref('zf'))));
+signal['take-short-branch'] = andBit(ref('execute-short'), ref('short-condition'));
 signal['branch-carry-0'] = lit(0);
+signal['short-carry-0'] = lit(0);
 for (let index = 0; index < WIDTH; index++) {
   signal[`branch-sum-${index}`] = add(ref(`ip-inc-${index}`), ref(`immediate-${index}`));
   signal[`branch-result-${index}`] = mod(add(ref(`branch-sum-${index}`), ref(`branch-carry-${index}`)), lit(2));
   signal[`branch-carry-${index + 1}`] = floor(div(add(ref(`branch-sum-${index}`), ref(`branch-carry-${index}`)), lit(2)));
+  signal[`short-displacement-${index}`] = index < 8 ? ref(`busData-${index}`) : ref('busData-7');
+  signal[`short-sum-${index}`] = add(ref(`ip-inc-${index}`), ref(`short-displacement-${index}`));
+  signal[`short-result-${index}`] = mod(add(ref(`short-sum-${index}`), ref(`short-carry-${index}`)), lit(2));
+  signal[`short-carry-${index + 1}`] = floor(div(add(ref(`short-sum-${index}`), ref(`short-carry-${index}`)), lit(2)));
   signal[`ret-target-${index}`] = index < 8 ? ref(`stackLow-${index}`) : ref(`busData-${index - 8}`);
-  signal[`branch-ip-${index}`] = muxBit(ref('take-near-branch'), ref(`ip-base-${index}`), ref(`branch-result-${index}`));
+  signal[`near-ip-${index}`] = muxBit(ref('take-near-branch'), ref(`ip-base-${index}`), ref(`branch-result-${index}`));
+  signal[`branch-ip-${index}`] = muxBit(ref('take-short-branch'), ref(`near-ip-${index}`), ref(`short-result-${index}`));
   signal[`next-ip-${index}`] = muxBit(ref('finish-ret'), ref(`branch-ip-${index}`), ref(`ret-target-${index}`));
   signal[`next-returnIp-${index}`] = muxBit(ref('begin-call'), ref(`returnIp-${index}`), ref(`ip-inc-${index}`));
 }

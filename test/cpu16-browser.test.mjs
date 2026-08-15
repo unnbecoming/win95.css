@@ -53,20 +53,21 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       cycles: document.querySelector('#cycles').textContent,
       trace: document.querySelector('#trace').textContent,
     } }));
-    assert.equal(publicDemo.result.state.ip, 46);
+    assert.equal(publicDemo.result.state.ip, 54);
     assert.equal(publicDemo.result.state.ax, 0x12c8);
-    assert.equal(publicDemo.rendered.ip, '002e');
+    assert.equal(publicDemo.rendered.ip, '0036');
     assert.equal(publicDemo.rendered.ax, '12c8');
-    assert.equal(publicDemo.rendered.cycles, '53');
+    assert.equal(publicDemo.rendered.cycles, '71');
     assert.match(publicDemo.rendered.trace, /^00  read  \[0000\] → e9/m);
     assert.match(publicDemo.rendered.trace, /^03  read  \[0006\] → b8/m);
-    assert.match(publicDemo.rendered.trace, /09  write \[2000\] ← 34/m);
-    assert.match(publicDemo.rendered.trace, /10  write \[2001\] ← 12/m);
-    assert.match(publicDemo.rendered.trace, /44  write \[5553\] ← 2d/m);
-    assert.match(publicDemo.rendered.trace, /45  write \[5554\] ← 00/m);
-    assert.match(publicDemo.rendered.trace, /50  read  \[5553\] → 2d/m);
-    assert.match(publicDemo.rendered.trace, /51  read  \[5554\] → 00/m);
-    assert.match(publicDemo.rendered.trace, /52  read  \[002d\] → f4$/m);
+    assert.match(publicDemo.rendered.trace, /27  write \[2000\] ← 34/m);
+    assert.match(publicDemo.rendered.trace, /28  write \[2001\] ← 12/m);
+    assert.match(publicDemo.rendered.trace, /62  write \[5553\] ← 35/m);
+    assert.match(publicDemo.rendered.trace, /63  write \[5554\] ← 00/m);
+    assert.match(publicDemo.rendered.trace, /68  read  \[5553\] → 35/m);
+    assert.match(publicDemo.rendered.trace, /69  read  \[5554\] → 00/m);
+    assert.match(publicDemo.rendered.trace, /70  read  \[0035\] → f4$/m);
+    assert.deepEqual(publicDemo.result.trace.slice(3, 21).map(({ address }) => address), [6, 7, 8, 9, 10, 11, 12, 13, 9, 10, 11, 12, 13, 9, 10, 11, 12, 13]);
     assert.deepEqual(publicDemo.result.trace.slice(0, 4).map(({ address }) => address), [0, 1, 2, 6]);
     assert.equal(publicDemo.result.trace.some(({ address }) => [3, 4, 5].includes(address)), false);
     assert.deepEqual(
@@ -106,6 +107,14 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(jumped.state.ip, 10);
     assert.equal(jumped.state.halted, 1);
     assert.equal(jumped.state.faulted, 0);
+
+    const looped = await execute(page, baseUrl, [0xb8, 0x03, 0x00, 0x2d, 0x01, 0x00, 0x75, 0xfb, 0xf4]);
+    assert.deepEqual(looped.trace.map(({ address }) => address), [0, 1, 2, 3, 4, 5, 6, 7, 3, 4, 5, 6, 7, 3, 4, 5, 6, 7, 8]);
+    assert.equal(looped.state.ax, 0);
+    assert.equal(looped.state.zf, 1);
+    assert.equal(looped.state.ip, 9);
+    assert.equal(looped.state.halted, 1);
+    assert.equal(looped.state.faulted, 0);
 
     const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
     assert.equal(store.memory[0x2000], 0x34);
