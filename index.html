@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS/386 — ALU bring-up</title>
+  <link rel="stylesheet" href="./generated/alu32.css">
+  <link rel="stylesheet" href="./src/site.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">win95.css / bring-up instrument 0001</p>
+      <h1>CSS/386</h1>
+      <p class="lede">A 32-bit ADD datapath and architectural flags computed by generated CSS. JavaScript only drives pins, samples pins, and latches the state bank.</p>
+    </header>
+
+    <section class="instrument css386-chip" id="chip">
+      <form>
+        <label>A <input id="a" value="4294967295" inputmode="numeric"></label>
+        <span class="operator">+</span>
+        <label>B <input id="b" value="1" inputmode="numeric"></label>
+        <button type="submit">clock</button>
+      </form>
+
+      <div class="result-row">
+        <span class="label">latched R</span>
+        <output id="result">0x00000000</output>
+      </div>
+
+      <dl class="flags">
+        <div><dt>CF</dt><dd data-flag="cf">0</dd></div>
+        <div><dt>PF</dt><dd data-flag="pf">0</dd></div>
+        <div><dt>AF</dt><dd data-flag="af">0</dd></div>
+        <div><dt>ZF</dt><dd data-flag="zf">0</dd></div>
+        <div><dt>SF</dt><dd data-flag="sf">0</dd></div>
+        <div><dt>OF</dt><dd data-flag="of">0</dd></div>
+      </dl>
+      <p id="status">CSS state latched.</p>
+    </section>
+
+    <footer>
+      <p><strong>honesty boundary</strong> — generated CSS owns arithmetic and flags. <code>chip.js</code> is manifest-driven and contains no ADD or EFLAGS logic.</p>
+      <p>current claim: one combinational datapath works. this is not an x86 CPU yet, and Windows 95 is not running here.</p>
+    </footer>
+  </main>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

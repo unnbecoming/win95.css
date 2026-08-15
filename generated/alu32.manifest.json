@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "name": "css386-alu32-add-ripple",
+  "inputs": {
+    "a": {
+      "width": 32
+    },
+    "b": {
+      "width": 32
+    }
+  },
+  "state": {
+    "r": {
+      "width": 32
+    },
+    "cf": {
+      "width": 1
+    },
+    "pf": {
+      "width": 1
+    },
+    "af": {
+      "width": 1
+    },
+    "zf": {
+      "width": 1
+    },
+    "sf": {
+      "width": 1
+    },
+    "of": {
+      "width": 1
+    }
+  },
+  "signals": [
+    "carry-0",
+    "ab-0",
+    "sum-0",
+    "carry-1",
+    "ab-1",
+    "sum-1",
+    "carry-2",
+    "ab-2",
+    "sum-2",
+    "carry-3",
+    "ab-3",
+    "sum-3",
+    "carry-4",
+    "ab-4",
+    "sum-4",
+    "carry-5",
+    "ab-5",
+    "sum-5",
+    "carry-6",
+    "ab-6",
+    "sum-6",
+    "carry-7",
+    "ab-7",
+    "sum-7",
+    "carry-8",
+    "ab-8",
+    "sum-8",
+    "carry-9",
+    "ab-9",
+    "sum-9",
+    "carry-10",
+    "ab-10",
+    "sum-10",
+    "carry-11",
+    "ab-11",
+    "sum-11",
+    "carry-12",
+    "ab-12",
+    "sum-12",
+    "carry-13",
+    "ab-13",
+    "sum-13",
+    "carry-14",
+    "ab-14",
+    "sum-14",
+    "carry-15",
+    "ab-15",
+    "sum-15",
+    "carry-16",
+    "ab-16",
+    "sum-16",
+    "carry-17",
+    "ab-17",
+    "sum-17",
+    "carry-18",
+    "ab-18",
+    "sum-18",
+    "carry-19",
+    "ab-19",
+    "sum-19",
+    "carry-20",
+    "ab-20",
+    "sum-20",
+    "carry-21",
+    "ab-21",
+    "sum-21",
+    "carry-22",
+    "ab-22",
+    "sum-22",
+    "carry-23",
+    "ab-23",
+    "sum-23",
+    "carry-24",
+    "ab-24",
+    "sum-24",
+    "carry-25",
+    "ab-25",
+    "sum-25",
+    "carry-26",
+    "ab-26",
+    "sum-26",
+    "carry-27",
+    "ab-27",
+    "sum-27",
+    "carry-28",
+    "ab-28",
+    "sum-28",
+    "carry-29",
+    "ab-29",
+    "sum-29",
+    "carry-30",
+    "ab-30",
+    "sum-30",
+    "carry-31",
+    "ab-31",
+    "sum-31",
+    "carry-32",
+    "next-cf",
+    "next-af",
+    "next-zf",
+    "next-sf",
+    "next-of",
+    "next-pf"
+  ],
+  "latches": {
+    "r": [
+      "sum-0",
+      "sum-1",
+      "sum-2",
+      "sum-3",
+      "sum-4",
+      "sum-5",
+      "sum-6",
+      "sum-7",
+      "sum-8",
+      "sum-9",
+      "sum-10",
+      "sum-11",
+      "sum-12",
+      "sum-13",
+      "sum-14",
+      "sum-15",
+      "sum-16",
+      "sum-17",
+      "sum-18",
+      "sum-19",
+      "sum-20",
+      "sum-21",
+      "sum-22",
+      "sum-23",
+      "sum-24",
+      "sum-25",
+      "sum-26",
+      "sum-27",
+      "sum-28",
+      "sum-29",
+      "sum-30",
+      "sum-31"
+    ],
+    "cf": [
+      "next-cf"
+    ],
+    "pf": [
+      "next-pf"
+    ],
+    "af": [
+      "next-af"
+    ],
+    "zf": [
+      "next-zf"
+    ],
+    "sf": [
+      "next-sf"
+    ],
+    "of": [
+      "next-of"
+    ]
+  }
+}

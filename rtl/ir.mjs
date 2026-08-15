@@ -1,0 +1,10 @@
+export const ref = (name) => ({ op: 'ref', name });
+export const lit = (value) => ({ op: 'lit', value });
+export const add = (...args) => ({ op: 'add', args });
+export const sub = (left, right) => ({ op: 'sub', left, right });
+export const mul = (...args) => ({ op: 'mul', args });
+export const div = (left, right) => ({ op: 'div', left, right });
+export const mod = (left, right) => ({ op: 'mod', left, right });
+export const floor = (value) => ({ op: 'floor', value });
+export const min = (...args) => ({ op: 'min', args });
+export const abs = (value) => ({ op: 'abs', value });

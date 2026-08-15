@@ -1,0 +1,14 @@
+{
+  "name": "win95.css",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "description": "An honest experiment toward an i386-compatible CPU implemented in generated CSS.",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "test": "npm run generate && node --test test/alu32-browser.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}
