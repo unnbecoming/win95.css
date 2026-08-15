@@ -6,7 +6,7 @@ const bits = (prefix, width) => Array.from({ length: width }, (_, index) => `${p
 const signalBits = (prefix, width) => bits(prefix, width).map(ref);
 const signal = {};
 const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
-const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, hlt: 0xf4 };
+const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, jmp: 0xe9, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 3, 0);
 signal['phase-imm-low'] = equalConstant('phase', 3, 1);
@@ -27,7 +27,7 @@ for (const [index, register] of registers.entries()) {
 }
 signal['fetched-mov'] = anyBits(registers.map((register) => ref(`fetched-mov-${register}`)));
 signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${register}`)));
-signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store'].map((name) => ref(`fetched-${name}`)));
+signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store', 'jmp'].map((name) => ref(`fetched-${name}`)));
 signal['fetched-supported'] = orBit(ref('fetched-immediate'), ref('fetched-hlt'));
 signal['fetched-invalid'] = notBit(ref('fetched-supported'));
 signal['capture-opcode'] = andBit(ref('phase-opcode'), ref('bus-read'));
@@ -39,7 +39,7 @@ signal['ip-carry-0'] = lit(1);
 for (let index = 0; index < WIDTH; index++) {
   signal[`ip-inc-${index}`] = xorBit(ref(`ip-${index}`), ref(`ip-carry-${index}`));
   signal[`ip-carry-${index + 1}`] = andBit(ref(`ip-${index}`), ref(`ip-carry-${index}`));
-  signal[`next-ip-${index}`] = muxBit(ref('bus-read'), ref(`ip-${index}`), ref(`ip-inc-${index}`));
+  signal[`ip-base-${index}`] = muxBit(ref('bus-read'), ref(`ip-${index}`), ref(`ip-inc-${index}`));
 }
 
 for (let index = 0; index < 8; index++) {
@@ -71,6 +71,14 @@ for (let index = 0; index < 8; index++) {
 
 for (let index = 0; index < WIDTH; index++) {
   signal[`immediate-${index}`] = index < 8 ? ref(`immLow-${index}`) : ref(`busData-${index - 8}`);
+}
+signal['take-near-jump'] = andBit(ref('capture-imm-high'), ref('opcode-jmp'));
+signal['branch-carry-0'] = lit(0);
+for (let index = 0; index < WIDTH; index++) {
+  signal[`branch-sum-${index}`] = add(ref(`ip-inc-${index}`), ref(`immediate-${index}`));
+  signal[`branch-result-${index}`] = mod(add(ref(`branch-sum-${index}`), ref(`branch-carry-${index}`)), lit(2));
+  signal[`branch-carry-${index + 1}`] = floor(div(add(ref(`branch-sum-${index}`), ref(`branch-carry-${index}`)), lit(2)));
+  signal[`next-ip-${index}`] = muxBit(ref('take-near-jump'), ref(`ip-base-${index}`), ref(`branch-result-${index}`));
 }
 signal['select-arithmetic'] = orBit(ref('opcode-add'), ref('opcode-sub'));
 signal['alu-carry-0'] = ref('opcode-sub');

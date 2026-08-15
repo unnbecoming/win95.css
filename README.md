@@ -12,12 +12,12 @@ The repository currently contains two generated organs:
 
 - a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
 - a fixed-`CS=0` 16-bit seed core with CSS-owned `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, and flags;
-- CSS decodes the full real x86 `B8..BF` `MOV r16,iw` family, `MOV [moffs16],AX`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
+- CSS decodes the full real x86 `B8..BF` `MOV r16,iw` family, `MOV [moffs16],AX`, `JMP rel16`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
 - a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins and records the trace;
 - an independent browser proof executes a 13-byte ROM to `AX=12c8`, `IP=000d`, then verifies overflow, borrow, HLT, and invalid-opcode faulting;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The register-file CPU is **649 nets / 130,167 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The branch-capable CPU is **717 nets / 144,430 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 

@@ -53,15 +53,18 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       cycles: document.querySelector('#cycles').textContent,
       trace: document.querySelector('#trace').textContent,
     } }));
-    assert.equal(publicDemo.result.state.ip, 37);
+    assert.equal(publicDemo.result.state.ip, 43);
     assert.equal(publicDemo.result.state.ax, 0x12c8);
-    assert.equal(publicDemo.rendered.ip, '0025');
+    assert.equal(publicDemo.rendered.ip, '002b');
     assert.equal(publicDemo.rendered.ax, '12c8');
-    assert.equal(publicDemo.rendered.cycles, '39');
-    assert.match(publicDemo.rendered.trace, /^00  read  \[0000\] → b8/m);
-    assert.match(publicDemo.rendered.trace, /06  write \[2000\] ← 34/m);
-    assert.match(publicDemo.rendered.trace, /07  write \[2001\] ← 12/m);
-    assert.match(publicDemo.rendered.trace, /38  read  \[0024\] → f4$/m);
+    assert.equal(publicDemo.rendered.cycles, '42');
+    assert.match(publicDemo.rendered.trace, /^00  read  \[0000\] → e9/m);
+    assert.match(publicDemo.rendered.trace, /^03  read  \[0006\] → b8/m);
+    assert.match(publicDemo.rendered.trace, /09  write \[2000\] ← 34/m);
+    assert.match(publicDemo.rendered.trace, /10  write \[2001\] ← 12/m);
+    assert.match(publicDemo.rendered.trace, /41  read  \[002a\] → f4$/m);
+    assert.deepEqual(publicDemo.result.trace.slice(0, 4).map(({ address }) => address), [0, 1, 2, 6]);
+    assert.equal(publicDemo.result.trace.some(({ address }) => [3, 4, 5].includes(address)), false);
     assert.deepEqual(
       Object.fromEntries(['cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, publicDemo.result.state[name]])),
       { cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 },
@@ -92,6 +95,13 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(invalid.state.ip, 1);
     assert.equal(invalid.state.halted, 1);
     assert.equal(invalid.state.faulted, 1);
+
+    const jumped = await execute(page, baseUrl, [0xe9, 0x03, 0x00, 0x90, 0x90, 0x90, 0xb8, 0x34, 0x12, 0xf4]);
+    assert.deepEqual(jumped.trace.map(({ address }) => address), [0, 1, 2, 6, 7, 8, 9]);
+    assert.equal(jumped.state.ax, 0x1234);
+    assert.equal(jumped.state.ip, 10);
+    assert.equal(jumped.state.halted, 1);
+    assert.equal(jumped.state.faulted, 0);
 
     const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
     assert.equal(store.memory[0x2000], 0x34);

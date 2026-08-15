@@ -1223,6 +1223,18 @@
   initial-value: 0;
 }
 
+@property --fetched-jmp {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-jmp {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-hlt {
   syntax: "<number>";
   inherits: false;
@@ -1403,7 +1415,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-0 {
+@property --ip-base-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1421,7 +1433,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-1 {
+@property --ip-base-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1439,7 +1451,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-2 {
+@property --ip-base-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1457,7 +1469,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-3 {
+@property --ip-base-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1475,7 +1487,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-4 {
+@property --ip-base-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1493,7 +1505,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-5 {
+@property --ip-base-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1511,7 +1523,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-6 {
+@property --ip-base-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1529,7 +1541,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-7 {
+@property --ip-base-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1547,7 +1559,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-8 {
+@property --ip-base-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1565,7 +1577,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-9 {
+@property --ip-base-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1583,7 +1595,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-10 {
+@property --ip-base-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1601,7 +1613,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-11 {
+@property --ip-base-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1619,7 +1631,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-12 {
+@property --ip-base-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1637,7 +1649,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-13 {
+@property --ip-base-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1655,7 +1667,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-14 {
+@property --ip-base-14 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1673,7 +1685,7 @@
   initial-value: 0;
 }
 
-@property --next-ip-15 {
+@property --ip-base-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2388,6 +2400,402 @@
 }
 
 @property --immediate-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --take-near-jump {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-sum-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-result-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --branch-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4098,6 +4506,8 @@
   --opcode-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-mov-ax: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -4118,7 +4528,7 @@
   --opcode-mov-di: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-mov: min(1, calc(var(--fetched-mov-ax) + var(--fetched-mov-cx) + var(--fetched-mov-dx) + var(--fetched-mov-bx) + var(--fetched-mov-sp) + var(--fetched-mov-bp) + var(--fetched-mov-si) + var(--fetched-mov-di)));
   --opcode-mov: min(1, calc(var(--opcode-mov-ax) + var(--opcode-mov-cx) + var(--opcode-mov-dx) + var(--opcode-mov-bx) + var(--opcode-mov-sp) + var(--opcode-mov-bp) + var(--opcode-mov-si) + var(--opcode-mov-di)));
-  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store)));
+  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-jmp)));
   --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-hlt)));
   --fetched-invalid: calc(1 - var(--fetched-supported));
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
@@ -4128,52 +4538,52 @@
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
   --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);
-  --next-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-0)) / 2), 1)));
+  --ip-base-0: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-0)) / 2), 1)));
   --ip-inc-1: mod(calc(var(--ip-1) + var(--ip-carry-1)), 2);
   --ip-carry-2: round(down, calc(calc(var(--ip-1) + var(--ip-carry-1)) / 2), 1);
-  --next-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-1)) / 2), 1)));
+  --ip-base-1: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-1)) / 2), 1)));
   --ip-inc-2: mod(calc(var(--ip-2) + var(--ip-carry-2)), 2);
   --ip-carry-3: round(down, calc(calc(var(--ip-2) + var(--ip-carry-2)) / 2), 1);
-  --next-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-2)) / 2), 1)));
+  --ip-base-2: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-2)) / 2), 1)));
   --ip-inc-3: mod(calc(var(--ip-3) + var(--ip-carry-3)), 2);
   --ip-carry-4: round(down, calc(calc(var(--ip-3) + var(--ip-carry-3)) / 2), 1);
-  --next-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-3)) / 2), 1)));
+  --ip-base-3: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-3)) / 2), 1)));
   --ip-inc-4: mod(calc(var(--ip-4) + var(--ip-carry-4)), 2);
   --ip-carry-5: round(down, calc(calc(var(--ip-4) + var(--ip-carry-4)) / 2), 1);
-  --next-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-4)) / 2), 1)));
+  --ip-base-4: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-4)) / 2), 1)));
   --ip-inc-5: mod(calc(var(--ip-5) + var(--ip-carry-5)), 2);
   --ip-carry-6: round(down, calc(calc(var(--ip-5) + var(--ip-carry-5)) / 2), 1);
-  --next-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-5)) / 2), 1)));
+  --ip-base-5: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-5)) / 2), 1)));
   --ip-inc-6: mod(calc(var(--ip-6) + var(--ip-carry-6)), 2);
   --ip-carry-7: round(down, calc(calc(var(--ip-6) + var(--ip-carry-6)) / 2), 1);
-  --next-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-6)) / 2), 1)));
+  --ip-base-6: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-6)) / 2), 1)));
   --ip-inc-7: mod(calc(var(--ip-7) + var(--ip-carry-7)), 2);
   --ip-carry-8: round(down, calc(calc(var(--ip-7) + var(--ip-carry-7)) / 2), 1);
-  --next-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-7)) / 2), 1)));
+  --ip-base-7: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-7)) / 2), 1)));
   --ip-inc-8: mod(calc(var(--ip-8) + var(--ip-carry-8)), 2);
   --ip-carry-9: round(down, calc(calc(var(--ip-8) + var(--ip-carry-8)) / 2), 1);
-  --next-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-8)) / 2), 1)));
+  --ip-base-8: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-8)) / 2), 1)));
   --ip-inc-9: mod(calc(var(--ip-9) + var(--ip-carry-9)), 2);
   --ip-carry-10: round(down, calc(calc(var(--ip-9) + var(--ip-carry-9)) / 2), 1);
-  --next-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-9)) / 2), 1)));
+  --ip-base-9: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-9)) / 2), 1)));
   --ip-inc-10: mod(calc(var(--ip-10) + var(--ip-carry-10)), 2);
   --ip-carry-11: round(down, calc(calc(var(--ip-10) + var(--ip-carry-10)) / 2), 1);
-  --next-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-10)) / 2), 1)));
+  --ip-base-10: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-10)) / 2), 1)));
   --ip-inc-11: mod(calc(var(--ip-11) + var(--ip-carry-11)), 2);
   --ip-carry-12: round(down, calc(calc(var(--ip-11) + var(--ip-carry-11)) / 2), 1);
-  --next-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-11)) / 2), 1)));
+  --ip-base-11: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-11)) / 2), 1)));
   --ip-inc-12: mod(calc(var(--ip-12) + var(--ip-carry-12)), 2);
   --ip-carry-13: round(down, calc(calc(var(--ip-12) + var(--ip-carry-12)) / 2), 1);
-  --next-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-12)) / 2), 1)));
+  --ip-base-12: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-12)) / 2), 1)));
   --ip-inc-13: mod(calc(var(--ip-13) + var(--ip-carry-13)), 2);
   --ip-carry-14: round(down, calc(calc(var(--ip-13) + var(--ip-carry-13)) / 2), 1);
-  --next-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-13)) / 2), 1)));
+  --ip-base-13: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-13)) / 2), 1)));
   --ip-inc-14: mod(calc(var(--ip-14) + var(--ip-carry-14)), 2);
   --ip-carry-15: round(down, calc(calc(var(--ip-14) + var(--ip-carry-14)) / 2), 1);
-  --next-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-14)) / 2), 1)));
+  --ip-base-14: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-14)) / 2), 1)));
   --ip-inc-15: mod(calc(var(--ip-15) + var(--ip-carry-15)), 2);
   --ip-carry-16: round(down, calc(calc(var(--ip-15) + var(--ip-carry-15)) / 2), 1);
-  --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-15)) / 2), 1)));
+  --ip-base-15: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-15)) / 2), 1)));
   --next-ir-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-0)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-0)) / 2), 1)));
   --next-immLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-0)) / 2), 1)));
   --next-immHigh-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-0)) / 2), 1)));
@@ -4293,6 +4703,72 @@
   --immediate-13: var(--busData-5);
   --immediate-14: var(--busData-6);
   --immediate-15: var(--busData-7);
+  --take-near-jump: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-jmp)) / 2), 1);
+  --branch-carry-0: 0;
+  --branch-sum-0: calc(var(--ip-inc-0) + var(--immediate-0));
+  --branch-result-0: mod(calc(var(--branch-sum-0) + var(--branch-carry-0)), 2);
+  --branch-carry-1: round(down, calc(calc(var(--branch-sum-0) + var(--branch-carry-0)) / 2), 1);
+  --next-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-0)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-0)) / 2), 1)));
+  --branch-sum-1: calc(var(--ip-inc-1) + var(--immediate-1));
+  --branch-result-1: mod(calc(var(--branch-sum-1) + var(--branch-carry-1)), 2);
+  --branch-carry-2: round(down, calc(calc(var(--branch-sum-1) + var(--branch-carry-1)) / 2), 1);
+  --next-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-1)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-1)) / 2), 1)));
+  --branch-sum-2: calc(var(--ip-inc-2) + var(--immediate-2));
+  --branch-result-2: mod(calc(var(--branch-sum-2) + var(--branch-carry-2)), 2);
+  --branch-carry-3: round(down, calc(calc(var(--branch-sum-2) + var(--branch-carry-2)) / 2), 1);
+  --next-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-2)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-2)) / 2), 1)));
+  --branch-sum-3: calc(var(--ip-inc-3) + var(--immediate-3));
+  --branch-result-3: mod(calc(var(--branch-sum-3) + var(--branch-carry-3)), 2);
+  --branch-carry-4: round(down, calc(calc(var(--branch-sum-3) + var(--branch-carry-3)) / 2), 1);
+  --next-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-3)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-3)) / 2), 1)));
+  --branch-sum-4: calc(var(--ip-inc-4) + var(--immediate-4));
+  --branch-result-4: mod(calc(var(--branch-sum-4) + var(--branch-carry-4)), 2);
+  --branch-carry-5: round(down, calc(calc(var(--branch-sum-4) + var(--branch-carry-4)) / 2), 1);
+  --next-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-4)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-4)) / 2), 1)));
+  --branch-sum-5: calc(var(--ip-inc-5) + var(--immediate-5));
+  --branch-result-5: mod(calc(var(--branch-sum-5) + var(--branch-carry-5)), 2);
+  --branch-carry-6: round(down, calc(calc(var(--branch-sum-5) + var(--branch-carry-5)) / 2), 1);
+  --next-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-5)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-5)) / 2), 1)));
+  --branch-sum-6: calc(var(--ip-inc-6) + var(--immediate-6));
+  --branch-result-6: mod(calc(var(--branch-sum-6) + var(--branch-carry-6)), 2);
+  --branch-carry-7: round(down, calc(calc(var(--branch-sum-6) + var(--branch-carry-6)) / 2), 1);
+  --next-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-6)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-6)) / 2), 1)));
+  --branch-sum-7: calc(var(--ip-inc-7) + var(--immediate-7));
+  --branch-result-7: mod(calc(var(--branch-sum-7) + var(--branch-carry-7)), 2);
+  --branch-carry-8: round(down, calc(calc(var(--branch-sum-7) + var(--branch-carry-7)) / 2), 1);
+  --next-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-7)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-7)) / 2), 1)));
+  --branch-sum-8: calc(var(--ip-inc-8) + var(--immediate-8));
+  --branch-result-8: mod(calc(var(--branch-sum-8) + var(--branch-carry-8)), 2);
+  --branch-carry-9: round(down, calc(calc(var(--branch-sum-8) + var(--branch-carry-8)) / 2), 1);
+  --next-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-8)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-8)) / 2), 1)));
+  --branch-sum-9: calc(var(--ip-inc-9) + var(--immediate-9));
+  --branch-result-9: mod(calc(var(--branch-sum-9) + var(--branch-carry-9)), 2);
+  --branch-carry-10: round(down, calc(calc(var(--branch-sum-9) + var(--branch-carry-9)) / 2), 1);
+  --next-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-9)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-9)) / 2), 1)));
+  --branch-sum-10: calc(var(--ip-inc-10) + var(--immediate-10));
+  --branch-result-10: mod(calc(var(--branch-sum-10) + var(--branch-carry-10)), 2);
+  --branch-carry-11: round(down, calc(calc(var(--branch-sum-10) + var(--branch-carry-10)) / 2), 1);
+  --next-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-10)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-10)) / 2), 1)));
+  --branch-sum-11: calc(var(--ip-inc-11) + var(--immediate-11));
+  --branch-result-11: mod(calc(var(--branch-sum-11) + var(--branch-carry-11)), 2);
+  --branch-carry-12: round(down, calc(calc(var(--branch-sum-11) + var(--branch-carry-11)) / 2), 1);
+  --next-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-11)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-11)) / 2), 1)));
+  --branch-sum-12: calc(var(--ip-inc-12) + var(--immediate-12));
+  --branch-result-12: mod(calc(var(--branch-sum-12) + var(--branch-carry-12)), 2);
+  --branch-carry-13: round(down, calc(calc(var(--branch-sum-12) + var(--branch-carry-12)) / 2), 1);
+  --next-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-12)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-12)) / 2), 1)));
+  --branch-sum-13: calc(var(--ip-inc-13) + var(--immediate-13));
+  --branch-result-13: mod(calc(var(--branch-sum-13) + var(--branch-carry-13)), 2);
+  --branch-carry-14: round(down, calc(calc(var(--branch-sum-13) + var(--branch-carry-13)) / 2), 1);
+  --next-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-13)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-13)) / 2), 1)));
+  --branch-sum-14: calc(var(--ip-inc-14) + var(--immediate-14));
+  --branch-result-14: mod(calc(var(--branch-sum-14) + var(--branch-carry-14)), 2);
+  --branch-carry-15: round(down, calc(calc(var(--branch-sum-14) + var(--branch-carry-14)) / 2), 1);
+  --next-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-14)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-14)) / 2), 1)));
+  --branch-sum-15: calc(var(--ip-inc-15) + var(--immediate-15));
+  --branch-result-15: mod(calc(var(--branch-sum-15) + var(--branch-carry-15)), 2);
+  --branch-carry-16: round(down, calc(calc(var(--branch-sum-15) + var(--branch-carry-15)) / 2), 1);
+  --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-jump)) + var(--ip-base-15)) / 2), 1) + round(down, calc(calc(var(--take-near-jump) + var(--branch-result-15)) / 2), 1)));
   --select-arithmetic: min(1, calc(var(--opcode-add) + var(--opcode-sub)));
   --alu-carry-0: var(--opcode-sub);
   --alu-effective-b-0: mod(calc(var(--immediate-0) + var(--opcode-sub)), 2);
