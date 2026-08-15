@@ -18,7 +18,7 @@ function run() {
   cpu.id = 'cpu';
   cpu.className = 'css386-cpu';
   document.querySelector('#cpu').replaceWith(cpu);
-  const memory = new Uint8Array(0x10000);
+  const memory = new Uint8Array(0x100000);
   memory.set(rom);
   const machine = new ByteBusMachine(new CssChip(cpu, manifest), memory);
   const started = performance.now();
@@ -26,12 +26,12 @@ function run() {
   const elapsed = performance.now() - started;
   for (const [name, value] of Object.entries(result.state)) {
     const output = document.querySelector(`[data-state="${name}"]`);
-    if (output) output.textContent = ['ip', 'ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].includes(name) ? hex(value, 4) : name === 'ir' ? hex(value, 2) : String(value);
+    if (output) output.textContent = ['ip', 'ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es'].includes(name) ? hex(value, 4) : name === 'ir' ? hex(value, 2) : String(value);
   }
   document.querySelector('#cycles').textContent = String(result.trace.length);
   document.querySelector('#elapsed').textContent = elapsed.toFixed(3);
   document.querySelector('#wtf-hz').textContent = (result.trace.length * 1000 / elapsed).toFixed(3);
-  document.querySelector('#trace').textContent = result.trace.map(({ cycle, kind, address, data }) => `${String(cycle).padStart(2, '0')}  ${kind.padEnd(5)} [${hex(address, 4)}] ${kind === 'read' ? '→' : '←'} ${hex(data, 2)}`).join('\n');
+  document.querySelector('#trace').textContent = result.trace.map(({ cycle, kind, address, data }) => `${String(cycle).padStart(2, '0')}  ${kind.padEnd(5)} [${hex(address, 5)}] ${kind === 'read' ? '→' : '←'} ${hex(data, 2)}`).join('\n');
   return { ...result, elapsed };
 }
 

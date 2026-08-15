@@ -11,13 +11,14 @@ That is **not** the current claim.
 The repository currently contains two generated organs:
 
 - a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
-- a fixed-`CS=0` 16-bit seed core with CSS-owned `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, and flags;
+- a 16-bit real-mode seed core with CSS-owned `CS/DS/SS/ES`, `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, and flags;
 - CSS decodes the full real x86 `B8..BF` `MOV r16,iw` family, `MOV [moffs16],AX`, `JMP rel16`, `CALL rel16`, `RET`, `JZ rel8`, `JNZ rel8`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
-- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins and records the trace;
-- an independent browser proof executes a 13-byte ROM to `AX=12c8`, `IP=000d`, then verifies overflow, borrow, HLT, and invalid-opcode faulting;
+- CSS forms 20-bit physical addresses as `segment << 4 + offset`: instruction fetches use `CS:IP`, direct stores use `DS:moffs16`, and CALL/RET traffic uses `SS:SP`;
+- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins against opaque 1 MiB storage and records the trace;
+- independent browser proofs preserve the complete zero-segment trace and separately verify nonzero `CS:IP` fetches at physical `12350h`, `DS:moffs16` writes at `10020h`, and `SS:SP` stack traffic at `27ffeh`;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The conditional-branch CPU is **1,030 nets / 219,584 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The segmented CPU is **1,174 nets / 242,359 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -26,6 +27,7 @@ The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a t
 CSS owns:
 
 - operation and x86 opcode decode;
+- real-mode segment selection and 20-bit physical address formation;
 - fetch-phase transitions, `IP` increment, register transfer, halt, and invalid-opcode faulting;
 - the shared add/sub carry networks and bitwise logic paths;
 - result-bit computation and architectural flags (logical operations deliberately drive undefined `AF` to zero for now);
@@ -69,7 +71,7 @@ The likely milestone ladder is:
 
 1. operation-selected `ADD`/`SUB`/`AND`/`OR`/`XOR` plus flags — **working**
 2. atomic register-transfer microsteps — **working**
-3. fixed-`CS=0` real-mode fetch/decode loop and byte-bus traces — **working subset**
+3. segmented real-mode fetch/decode loop and 20-bit byte-bus traces — **working subset**
 4. 386 protected mode, paging, privilege, faults, and differential conformance
 5. BIOS and a small real-mode guest
 6. Windows 95 Safe Mode

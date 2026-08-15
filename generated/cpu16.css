@@ -911,6 +911,390 @@
   initial-value: 0;
 }
 
+@property --cs-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cs-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ds-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ss-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --es-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --ir-0 {
   syntax: "<number>";
   inherits: false;
@@ -2135,6 +2519,24 @@
   initial-value: 0;
 }
 
+@property --data-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --call-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --stack-access {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --store-address-0 {
   syntax: "<number>";
   inherits: false;
@@ -2165,7 +2567,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-0 {
+@property --bus-offset-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2201,7 +2609,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-1 {
+@property --bus-offset-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2237,7 +2651,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-2 {
+@property --bus-offset-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2273,7 +2693,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-3 {
+@property --bus-offset-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2309,7 +2735,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-4 {
+@property --bus-offset-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2345,7 +2777,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-5 {
+@property --bus-offset-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2381,7 +2819,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-6 {
+@property --bus-offset-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2417,7 +2861,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-7 {
+@property --bus-offset-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2453,7 +2903,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-8 {
+@property --bus-offset-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2489,7 +2945,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-9 {
+@property --bus-offset-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2525,7 +2987,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-10 {
+@property --bus-offset-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2561,7 +3029,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-11 {
+@property --bus-offset-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2597,7 +3071,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-12 {
+@property --bus-offset-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2633,7 +3113,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-13 {
+@property --bus-offset-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2669,7 +3155,13 @@
   initial-value: 0;
 }
 
-@property --bus-address-14 {
+@property --bus-offset-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-14 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2705,7 +3197,379 @@
   initial-value: 0;
 }
 
+@property --bus-offset-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-segment-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --bus-address-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-17 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-18 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-sum-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-address-19 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --physical-carry-20 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -6332,6 +7196,70 @@
   --di-13: 0;
   --di-14: 0;
   --di-15: 0;
+  --cs-0: 0;
+  --cs-1: 0;
+  --cs-2: 0;
+  --cs-3: 0;
+  --cs-4: 0;
+  --cs-5: 0;
+  --cs-6: 0;
+  --cs-7: 0;
+  --cs-8: 0;
+  --cs-9: 0;
+  --cs-10: 0;
+  --cs-11: 0;
+  --cs-12: 0;
+  --cs-13: 0;
+  --cs-14: 0;
+  --cs-15: 0;
+  --ds-0: 0;
+  --ds-1: 0;
+  --ds-2: 0;
+  --ds-3: 0;
+  --ds-4: 0;
+  --ds-5: 0;
+  --ds-6: 0;
+  --ds-7: 0;
+  --ds-8: 0;
+  --ds-9: 0;
+  --ds-10: 0;
+  --ds-11: 0;
+  --ds-12: 0;
+  --ds-13: 0;
+  --ds-14: 0;
+  --ds-15: 0;
+  --ss-0: 0;
+  --ss-1: 0;
+  --ss-2: 0;
+  --ss-3: 0;
+  --ss-4: 0;
+  --ss-5: 0;
+  --ss-6: 0;
+  --ss-7: 0;
+  --ss-8: 0;
+  --ss-9: 0;
+  --ss-10: 0;
+  --ss-11: 0;
+  --ss-12: 0;
+  --ss-13: 0;
+  --ss-14: 0;
+  --ss-15: 0;
+  --es-0: 0;
+  --es-1: 0;
+  --es-2: 0;
+  --es-3: 0;
+  --es-4: 0;
+  --es-5: 0;
+  --es-6: 0;
+  --es-7: 0;
+  --es-8: 0;
+  --es-9: 0;
+  --es-10: 0;
+  --es-11: 0;
+  --es-12: 0;
+  --es-13: 0;
+  --es-14: 0;
+  --es-15: 0;
   --ir-0: 0;
   --ir-1: 0;
   --ir-2: 0;
@@ -6536,102 +7464,182 @@
   --next-faulted: min(1, calc(var(--faulted) + round(down, calc(calc(var(--capture-opcode) + var(--fetched-invalid)) / 2), 1)));
   --address-carry-0: 1;
   --stack-carry-0: 1;
+  --data-write: round(down, calc(calc(var(--write-phase) + var(--opcode-store)) / 2), 1);
+  --call-write: round(down, calc(calc(var(--write-phase) + var(--opcode-call)) / 2), 1);
+  --stack-access: min(1, calc(var(--stack-read) + var(--call-write)));
   --store-address-0: var(--immLow-0);
   --store-address-next-0: mod(calc(var(--store-address-0) + var(--address-carry-0)), 2);
   --stack-address-next-0: mod(calc(var(--sp-0) + var(--stack-carry-0)), 2);
   --address-carry-1: round(down, calc(calc(var(--store-address-0) + var(--address-carry-0)) / 2), 1);
   --stack-carry-1: round(down, calc(calc(var(--sp-0) + var(--stack-carry-0)) / 2), 1);
-  --bus-address-0: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-0)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-0)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-0)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-0)) / 2), 1)));
+  --bus-offset-0: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-0)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-0)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-0)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-0)) / 2), 1)));
+  --bus-segment-0: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-0)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-0)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-0)) / 2), 1)));
   --store-address-1: var(--immLow-1);
   --store-address-next-1: mod(calc(var(--store-address-1) + var(--address-carry-1)), 2);
   --stack-address-next-1: mod(calc(var(--sp-1) + var(--stack-carry-1)), 2);
   --address-carry-2: round(down, calc(calc(var(--store-address-1) + var(--address-carry-1)) / 2), 1);
   --stack-carry-2: round(down, calc(calc(var(--sp-1) + var(--stack-carry-1)) / 2), 1);
-  --bus-address-1: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-1)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-1)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-1)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-1)) / 2), 1)));
+  --bus-offset-1: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-1)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-1)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-1)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-1)) / 2), 1)));
+  --bus-segment-1: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-1)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-1)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-1)) / 2), 1)));
   --store-address-2: var(--immLow-2);
   --store-address-next-2: mod(calc(var(--store-address-2) + var(--address-carry-2)), 2);
   --stack-address-next-2: mod(calc(var(--sp-2) + var(--stack-carry-2)), 2);
   --address-carry-3: round(down, calc(calc(var(--store-address-2) + var(--address-carry-2)) / 2), 1);
   --stack-carry-3: round(down, calc(calc(var(--sp-2) + var(--stack-carry-2)) / 2), 1);
-  --bus-address-2: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-2)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-2)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-2)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-2)) / 2), 1)));
+  --bus-offset-2: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-2)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-2)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-2)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-2)) / 2), 1)));
+  --bus-segment-2: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-2)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-2)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-2)) / 2), 1)));
   --store-address-3: var(--immLow-3);
   --store-address-next-3: mod(calc(var(--store-address-3) + var(--address-carry-3)), 2);
   --stack-address-next-3: mod(calc(var(--sp-3) + var(--stack-carry-3)), 2);
   --address-carry-4: round(down, calc(calc(var(--store-address-3) + var(--address-carry-3)) / 2), 1);
   --stack-carry-4: round(down, calc(calc(var(--sp-3) + var(--stack-carry-3)) / 2), 1);
-  --bus-address-3: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-3)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-3)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-3)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-3)) / 2), 1)));
+  --bus-offset-3: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-3)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-3)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-3)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-3)) / 2), 1)));
+  --bus-segment-3: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-3)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-3)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-3)) / 2), 1)));
   --store-address-4: var(--immLow-4);
   --store-address-next-4: mod(calc(var(--store-address-4) + var(--address-carry-4)), 2);
   --stack-address-next-4: mod(calc(var(--sp-4) + var(--stack-carry-4)), 2);
   --address-carry-5: round(down, calc(calc(var(--store-address-4) + var(--address-carry-4)) / 2), 1);
   --stack-carry-5: round(down, calc(calc(var(--sp-4) + var(--stack-carry-4)) / 2), 1);
-  --bus-address-4: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-4)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-4)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-4)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-4)) / 2), 1)));
+  --bus-offset-4: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-4)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-4)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-4)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-4)) / 2), 1)));
+  --bus-segment-4: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-4)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-4)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-4)) / 2), 1)));
   --store-address-5: var(--immLow-5);
   --store-address-next-5: mod(calc(var(--store-address-5) + var(--address-carry-5)), 2);
   --stack-address-next-5: mod(calc(var(--sp-5) + var(--stack-carry-5)), 2);
   --address-carry-6: round(down, calc(calc(var(--store-address-5) + var(--address-carry-5)) / 2), 1);
   --stack-carry-6: round(down, calc(calc(var(--sp-5) + var(--stack-carry-5)) / 2), 1);
-  --bus-address-5: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-5)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-5)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-5)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-5)) / 2), 1)));
+  --bus-offset-5: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-5)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-5)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-5)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-5)) / 2), 1)));
+  --bus-segment-5: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-5)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-5)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-5)) / 2), 1)));
   --store-address-6: var(--immLow-6);
   --store-address-next-6: mod(calc(var(--store-address-6) + var(--address-carry-6)), 2);
   --stack-address-next-6: mod(calc(var(--sp-6) + var(--stack-carry-6)), 2);
   --address-carry-7: round(down, calc(calc(var(--store-address-6) + var(--address-carry-6)) / 2), 1);
   --stack-carry-7: round(down, calc(calc(var(--sp-6) + var(--stack-carry-6)) / 2), 1);
-  --bus-address-6: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-6)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-6)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-6)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-6)) / 2), 1)));
+  --bus-offset-6: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-6)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-6)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-6)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-6)) / 2), 1)));
+  --bus-segment-6: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-6)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-6)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-6)) / 2), 1)));
   --store-address-7: var(--immLow-7);
   --store-address-next-7: mod(calc(var(--store-address-7) + var(--address-carry-7)), 2);
   --stack-address-next-7: mod(calc(var(--sp-7) + var(--stack-carry-7)), 2);
   --address-carry-8: round(down, calc(calc(var(--store-address-7) + var(--address-carry-7)) / 2), 1);
   --stack-carry-8: round(down, calc(calc(var(--sp-7) + var(--stack-carry-7)) / 2), 1);
-  --bus-address-7: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-7)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-7)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-7)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-7)) / 2), 1)));
+  --bus-offset-7: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-7)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-7)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-7)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-7)) / 2), 1)));
+  --bus-segment-7: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-7)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-7)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-7)) / 2), 1)));
   --store-address-8: var(--immHigh-0);
   --store-address-next-8: mod(calc(var(--store-address-8) + var(--address-carry-8)), 2);
   --stack-address-next-8: mod(calc(var(--sp-8) + var(--stack-carry-8)), 2);
   --address-carry-9: round(down, calc(calc(var(--store-address-8) + var(--address-carry-8)) / 2), 1);
   --stack-carry-9: round(down, calc(calc(var(--sp-8) + var(--stack-carry-8)) / 2), 1);
-  --bus-address-8: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-8)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-8)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-8)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-8)) / 2), 1)));
+  --bus-offset-8: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-8)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-8)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-8)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-8)) / 2), 1)));
+  --bus-segment-8: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-8)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-8)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-8)) / 2), 1)));
   --store-address-9: var(--immHigh-1);
   --store-address-next-9: mod(calc(var(--store-address-9) + var(--address-carry-9)), 2);
   --stack-address-next-9: mod(calc(var(--sp-9) + var(--stack-carry-9)), 2);
   --address-carry-10: round(down, calc(calc(var(--store-address-9) + var(--address-carry-9)) / 2), 1);
   --stack-carry-10: round(down, calc(calc(var(--sp-9) + var(--stack-carry-9)) / 2), 1);
-  --bus-address-9: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-9)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-9)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-9)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-9)) / 2), 1)));
+  --bus-offset-9: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-9)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-9)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-9)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-9)) / 2), 1)));
+  --bus-segment-9: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-9)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-9)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-9)) / 2), 1)));
   --store-address-10: var(--immHigh-2);
   --store-address-next-10: mod(calc(var(--store-address-10) + var(--address-carry-10)), 2);
   --stack-address-next-10: mod(calc(var(--sp-10) + var(--stack-carry-10)), 2);
   --address-carry-11: round(down, calc(calc(var(--store-address-10) + var(--address-carry-10)) / 2), 1);
   --stack-carry-11: round(down, calc(calc(var(--sp-10) + var(--stack-carry-10)) / 2), 1);
-  --bus-address-10: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-10)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-10)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-10)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-10)) / 2), 1)));
+  --bus-offset-10: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-10)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-10)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-10)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-10)) / 2), 1)));
+  --bus-segment-10: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-10)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-10)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-10)) / 2), 1)));
   --store-address-11: var(--immHigh-3);
   --store-address-next-11: mod(calc(var(--store-address-11) + var(--address-carry-11)), 2);
   --stack-address-next-11: mod(calc(var(--sp-11) + var(--stack-carry-11)), 2);
   --address-carry-12: round(down, calc(calc(var(--store-address-11) + var(--address-carry-11)) / 2), 1);
   --stack-carry-12: round(down, calc(calc(var(--sp-11) + var(--stack-carry-11)) / 2), 1);
-  --bus-address-11: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-11)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-11)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-11)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-11)) / 2), 1)));
+  --bus-offset-11: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-11)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-11)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-11)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-11)) / 2), 1)));
+  --bus-segment-11: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-11)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-11)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-11)) / 2), 1)));
   --store-address-12: var(--immHigh-4);
   --store-address-next-12: mod(calc(var(--store-address-12) + var(--address-carry-12)), 2);
   --stack-address-next-12: mod(calc(var(--sp-12) + var(--stack-carry-12)), 2);
   --address-carry-13: round(down, calc(calc(var(--store-address-12) + var(--address-carry-12)) / 2), 1);
   --stack-carry-13: round(down, calc(calc(var(--sp-12) + var(--stack-carry-12)) / 2), 1);
-  --bus-address-12: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-12)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-12)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-12)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-12)) / 2), 1)));
+  --bus-offset-12: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-12)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-12)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-12)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-12)) / 2), 1)));
+  --bus-segment-12: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-12)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-12)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-12)) / 2), 1)));
   --store-address-13: var(--immHigh-5);
   --store-address-next-13: mod(calc(var(--store-address-13) + var(--address-carry-13)), 2);
   --stack-address-next-13: mod(calc(var(--sp-13) + var(--stack-carry-13)), 2);
   --address-carry-14: round(down, calc(calc(var(--store-address-13) + var(--address-carry-13)) / 2), 1);
   --stack-carry-14: round(down, calc(calc(var(--sp-13) + var(--stack-carry-13)) / 2), 1);
-  --bus-address-13: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-13)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-13)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-13)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-13)) / 2), 1)));
+  --bus-offset-13: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-13)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-13)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-13)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-13)) / 2), 1)));
+  --bus-segment-13: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-13)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-13)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-13)) / 2), 1)));
   --store-address-14: var(--immHigh-6);
   --store-address-next-14: mod(calc(var(--store-address-14) + var(--address-carry-14)), 2);
   --stack-address-next-14: mod(calc(var(--sp-14) + var(--stack-carry-14)), 2);
   --address-carry-15: round(down, calc(calc(var(--store-address-14) + var(--address-carry-14)) / 2), 1);
   --stack-carry-15: round(down, calc(calc(var(--sp-14) + var(--stack-carry-14)) / 2), 1);
-  --bus-address-14: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-14)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-14)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-14)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-14)) / 2), 1)));
+  --bus-offset-14: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-14)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-14)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-14)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-14)) / 2), 1)));
+  --bus-segment-14: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-14)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-14)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-14)) / 2), 1)));
   --store-address-15: var(--immHigh-7);
   --store-address-next-15: mod(calc(var(--store-address-15) + var(--address-carry-15)), 2);
   --stack-address-next-15: mod(calc(var(--sp-15) + var(--stack-carry-15)), 2);
   --address-carry-16: round(down, calc(calc(var(--store-address-15) + var(--address-carry-15)) / 2), 1);
   --stack-carry-16: round(down, calc(calc(var(--sp-15) + var(--stack-carry-15)) / 2), 1);
-  --bus-address-15: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-15)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-15)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-15)) / 2), 1)));
+  --bus-offset-15: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--phase-write-low) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-15)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--sp-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + var(--store-address-next-15)) / 2), 1) + round(down, calc(calc(var(--opcode-call) + var(--stack-address-next-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--phase-ret-high) + var(--stack-address-next-15)) / 2), 1)));
+  --bus-segment-15: min(1, calc(round(down, calc(calc(var(--instruction-read) + var(--cs-15)) / 2), 1) + round(down, calc(calc(var(--data-write) + var(--ds-15)) / 2), 1) + round(down, calc(calc(var(--stack-access) + var(--ss-15)) / 2), 1)));
+  --physical-carry-0: 0;
+  --physical-sum-0: calc(0 + var(--bus-offset-0));
+  --bus-address-0: mod(calc(var(--physical-sum-0) + var(--physical-carry-0)), 2);
+  --physical-carry-1: round(down, calc(calc(var(--physical-sum-0) + var(--physical-carry-0)) / 2), 1);
+  --physical-sum-1: calc(0 + var(--bus-offset-1));
+  --bus-address-1: mod(calc(var(--physical-sum-1) + var(--physical-carry-1)), 2);
+  --physical-carry-2: round(down, calc(calc(var(--physical-sum-1) + var(--physical-carry-1)) / 2), 1);
+  --physical-sum-2: calc(0 + var(--bus-offset-2));
+  --bus-address-2: mod(calc(var(--physical-sum-2) + var(--physical-carry-2)), 2);
+  --physical-carry-3: round(down, calc(calc(var(--physical-sum-2) + var(--physical-carry-2)) / 2), 1);
+  --physical-sum-3: calc(0 + var(--bus-offset-3));
+  --bus-address-3: mod(calc(var(--physical-sum-3) + var(--physical-carry-3)), 2);
+  --physical-carry-4: round(down, calc(calc(var(--physical-sum-3) + var(--physical-carry-3)) / 2), 1);
+  --physical-sum-4: calc(var(--bus-segment-0) + var(--bus-offset-4));
+  --bus-address-4: mod(calc(var(--physical-sum-4) + var(--physical-carry-4)), 2);
+  --physical-carry-5: round(down, calc(calc(var(--physical-sum-4) + var(--physical-carry-4)) / 2), 1);
+  --physical-sum-5: calc(var(--bus-segment-1) + var(--bus-offset-5));
+  --bus-address-5: mod(calc(var(--physical-sum-5) + var(--physical-carry-5)), 2);
+  --physical-carry-6: round(down, calc(calc(var(--physical-sum-5) + var(--physical-carry-5)) / 2), 1);
+  --physical-sum-6: calc(var(--bus-segment-2) + var(--bus-offset-6));
+  --bus-address-6: mod(calc(var(--physical-sum-6) + var(--physical-carry-6)), 2);
+  --physical-carry-7: round(down, calc(calc(var(--physical-sum-6) + var(--physical-carry-6)) / 2), 1);
+  --physical-sum-7: calc(var(--bus-segment-3) + var(--bus-offset-7));
+  --bus-address-7: mod(calc(var(--physical-sum-7) + var(--physical-carry-7)), 2);
+  --physical-carry-8: round(down, calc(calc(var(--physical-sum-7) + var(--physical-carry-7)) / 2), 1);
+  --physical-sum-8: calc(var(--bus-segment-4) + var(--bus-offset-8));
+  --bus-address-8: mod(calc(var(--physical-sum-8) + var(--physical-carry-8)), 2);
+  --physical-carry-9: round(down, calc(calc(var(--physical-sum-8) + var(--physical-carry-8)) / 2), 1);
+  --physical-sum-9: calc(var(--bus-segment-5) + var(--bus-offset-9));
+  --bus-address-9: mod(calc(var(--physical-sum-9) + var(--physical-carry-9)), 2);
+  --physical-carry-10: round(down, calc(calc(var(--physical-sum-9) + var(--physical-carry-9)) / 2), 1);
+  --physical-sum-10: calc(var(--bus-segment-6) + var(--bus-offset-10));
+  --bus-address-10: mod(calc(var(--physical-sum-10) + var(--physical-carry-10)), 2);
+  --physical-carry-11: round(down, calc(calc(var(--physical-sum-10) + var(--physical-carry-10)) / 2), 1);
+  --physical-sum-11: calc(var(--bus-segment-7) + var(--bus-offset-11));
+  --bus-address-11: mod(calc(var(--physical-sum-11) + var(--physical-carry-11)), 2);
+  --physical-carry-12: round(down, calc(calc(var(--physical-sum-11) + var(--physical-carry-11)) / 2), 1);
+  --physical-sum-12: calc(var(--bus-segment-8) + var(--bus-offset-12));
+  --bus-address-12: mod(calc(var(--physical-sum-12) + var(--physical-carry-12)), 2);
+  --physical-carry-13: round(down, calc(calc(var(--physical-sum-12) + var(--physical-carry-12)) / 2), 1);
+  --physical-sum-13: calc(var(--bus-segment-9) + var(--bus-offset-13));
+  --bus-address-13: mod(calc(var(--physical-sum-13) + var(--physical-carry-13)), 2);
+  --physical-carry-14: round(down, calc(calc(var(--physical-sum-13) + var(--physical-carry-13)) / 2), 1);
+  --physical-sum-14: calc(var(--bus-segment-10) + var(--bus-offset-14));
+  --bus-address-14: mod(calc(var(--physical-sum-14) + var(--physical-carry-14)), 2);
+  --physical-carry-15: round(down, calc(calc(var(--physical-sum-14) + var(--physical-carry-14)) / 2), 1);
+  --physical-sum-15: calc(var(--bus-segment-11) + var(--bus-offset-15));
+  --bus-address-15: mod(calc(var(--physical-sum-15) + var(--physical-carry-15)), 2);
+  --physical-carry-16: round(down, calc(calc(var(--physical-sum-15) + var(--physical-carry-15)) / 2), 1);
+  --physical-sum-16: calc(var(--bus-segment-12) + 0);
+  --bus-address-16: mod(calc(var(--physical-sum-16) + var(--physical-carry-16)), 2);
+  --physical-carry-17: round(down, calc(calc(var(--physical-sum-16) + var(--physical-carry-16)) / 2), 1);
+  --physical-sum-17: calc(var(--bus-segment-13) + 0);
+  --bus-address-17: mod(calc(var(--physical-sum-17) + var(--physical-carry-17)), 2);
+  --physical-carry-18: round(down, calc(calc(var(--physical-sum-17) + var(--physical-carry-17)) / 2), 1);
+  --physical-sum-18: calc(var(--bus-segment-14) + 0);
+  --bus-address-18: mod(calc(var(--physical-sum-18) + var(--physical-carry-18)), 2);
+  --physical-carry-19: round(down, calc(calc(var(--physical-sum-18) + var(--physical-carry-18)) / 2), 1);
+  --physical-sum-19: calc(var(--bus-segment-15) + 0);
+  --bus-address-19: mod(calc(var(--physical-sum-19) + var(--physical-carry-19)), 2);
+  --physical-carry-20: round(down, calc(calc(var(--physical-sum-19) + var(--physical-carry-19)) / 2), 1);
   --bus-write-data-0: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--opcode-call) + min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--returnIp-0)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--returnIp-8)) / 2), 1)))) / 2), 1)));
   --next-stackLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--phase-ret-low)) + var(--stackLow-0)) / 2), 1) + round(down, calc(calc(var(--phase-ret-low) + var(--busData-0)) / 2), 1)));
   --bus-write-data-1: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-call)) + min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--ax-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--opcode-call) + min(1, calc(round(down, calc(calc(calc(1 - var(--phase-write-high)) + var(--returnIp-1)) / 2), 1) + round(down, calc(calc(var(--phase-write-high) + var(--returnIp-9)) / 2), 1)))) / 2), 1)));
