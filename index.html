@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="CSS/386 executing a tiny real-mode x86 ROM byte stream through a generic JavaScript byte bus.">
-  <title>CSS/386 · x86 ROM spine</title>
+  <meta name="description" content="CSS/386 entering through the x86 reset vector and far-jumping to a synthetic real-mode landing ROM.">
+  <title>CSS/386 · x86 reset-vector spine</title>
   <link rel="stylesheet" href="./src/site.css">
   <link rel="stylesheet" href="./generated/cpu16.css">
 </head>
@@ -13,11 +13,11 @@
     <header>
       <p class="eyebrow">win95.css / current organ</p>
       <h1>CSS/386</h1>
-      <p class="lede">CSS owns the fetch phases, x86 opcode decode, register transfer, ALU, flags, fault, and halt. JavaScript is an opcode-blind byte-storage bus.</p>
+      <p class="lede">CSS owns reset state, fetch phases, x86 opcode decode, far transfer, register transfer, ALU, flags, fault, and halt. JavaScript is an opcode-blind byte-storage bus.</p>
     </header>
 
     <section class="instrument">
-      <div class="rom-row"><span class="label">ROM</span><code id="rom"></code><button id="run" type="button">cold boot</button></div>
+      <div class="rom-row"><span class="label">RESET → LANDING</span><code id="rom"></code><button id="run" type="button">cold boot</button></div>
       <div id="cpu-mount"><div id="cpu" class="css386-cpu"></div></div>
       <dl class="flags register-file">
         <div><dt>AX</dt><dd data-state="ax">0000</dd></div>
@@ -59,7 +59,7 @@
     </section>
 
     <footer>
-      <p><strong>current claim</strong> — a segmented 16-bit real-mode seed core has <code>CS/DS/SS/ES</code>, a 20-bit physical bus, and the full general register file and executes <code>MOV r16,iw</code>, <code>MOV [moffs16],AX</code>, <code>JMP rel16</code>, <code>CALL rel16</code>, <code>RET</code>, <code>JZ rel8</code>, <code>JNZ rel8</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. It is not a complete 8086 or 386 yet.</p>
+      <p><strong>current claim</strong> — a segmented 16-bit real-mode seed core has <code>CS/DS/SS/ES</code>, a 20-bit physical bus, the full general register file, generated <code>F000:FFF0</code> reset state, and executes <code>MOV r16,iw</code>, <code>MOV [moffs16],AX</code>, <code>JMP rel16</code>, <code>JMP ptr16:16</code>, <code>CALL rel16</code>, <code>RET</code>, <code>JZ rel8</code>, <code>JNZ rel8</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. The <code>07c00</code> landing ROM is synthetic: this is not a BIOS, boot sector, complete 8086, or 386 yet.</p>
       <p><a href="./alu.html">operation-selected ALU →</a></p>
     </footer>
   </main>

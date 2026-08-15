@@ -1439,6 +1439,54 @@
   initial-value: 0;
 }
 
+@property --farSegLow-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --farSegLow-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --stackLow-0 {
   syntax: "<number>";
   inherits: false;
@@ -1601,6 +1649,12 @@
   initial-value: 0;
 }
 
+@property --phase-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --halted {
   syntax: "<number>";
   inherits: false;
@@ -1686,6 +1740,18 @@
 }
 
 @property --phase-ret-high {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-far-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-far-high {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1818,6 +1884,18 @@
 }
 
 @property --opcode-jmp {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-far {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-far {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -1998,6 +2076,18 @@
 }
 
 @property --capture-imm-high {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --capture-far-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --capture-far-high {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2321,6 +2411,12 @@
   initial-value: 0;
 }
 
+@property --next-farSegLow-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-1 {
   syntax: "<number>";
   inherits: false;
@@ -2334,6 +2430,12 @@
 }
 
 @property --next-immHigh-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-farSegLow-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2357,6 +2459,12 @@
   initial-value: 0;
 }
 
+@property --next-farSegLow-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-3 {
   syntax: "<number>";
   inherits: false;
@@ -2370,6 +2478,12 @@
 }
 
 @property --next-immHigh-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-farSegLow-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2393,6 +2507,12 @@
   initial-value: 0;
 }
 
+@property --next-farSegLow-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-5 {
   syntax: "<number>";
   inherits: false;
@@ -2406,6 +2526,12 @@
 }
 
 @property --next-immHigh-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-farSegLow-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2429,6 +2555,12 @@
   initial-value: 0;
 }
 
+@property --next-farSegLow-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ir-7 {
   syntax: "<number>";
   inherits: false;
@@ -2442,6 +2574,12 @@
 }
 
 @property --next-immHigh-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-farSegLow-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2477,6 +2615,18 @@
   initial-value: 0;
 }
 
+@property --begin-far {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-far {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-phase-0 {
   syntax: "<number>";
   inherits: false;
@@ -2490,6 +2640,12 @@
 }
 
 @property --next-phase-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-phase-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -3863,6 +4019,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-0 {
   syntax: "<number>";
   inherits: false;
@@ -3870,6 +4038,18 @@
 }
 
 @property --next-returnIp-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -3935,6 +4115,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-1 {
   syntax: "<number>";
   inherits: false;
@@ -3942,6 +4134,18 @@
 }
 
 @property --next-returnIp-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4007,6 +4211,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-2 {
   syntax: "<number>";
   inherits: false;
@@ -4014,6 +4230,18 @@
 }
 
 @property --next-returnIp-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4079,6 +4307,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-3 {
   syntax: "<number>";
   inherits: false;
@@ -4086,6 +4326,18 @@
 }
 
 @property --next-returnIp-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4151,6 +4403,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-4 {
   syntax: "<number>";
   inherits: false;
@@ -4158,6 +4422,18 @@
 }
 
 @property --next-returnIp-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4223,6 +4499,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-5 {
   syntax: "<number>";
   inherits: false;
@@ -4230,6 +4518,18 @@
 }
 
 @property --next-returnIp-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4295,6 +4595,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-6 {
   syntax: "<number>";
   inherits: false;
@@ -4302,6 +4614,18 @@
 }
 
 @property --next-returnIp-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4367,6 +4691,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-7 {
   syntax: "<number>";
   inherits: false;
@@ -4374,6 +4710,18 @@
 }
 
 @property --next-returnIp-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4439,6 +4787,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-8 {
   syntax: "<number>";
   inherits: false;
@@ -4446,6 +4806,18 @@
 }
 
 @property --next-returnIp-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4511,6 +4883,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-9 {
   syntax: "<number>";
   inherits: false;
@@ -4518,6 +4902,18 @@
 }
 
 @property --next-returnIp-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4583,6 +4979,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-10 {
   syntax: "<number>";
   inherits: false;
@@ -4590,6 +4998,18 @@
 }
 
 @property --next-returnIp-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4655,6 +5075,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-11 {
   syntax: "<number>";
   inherits: false;
@@ -4662,6 +5094,18 @@
 }
 
 @property --next-returnIp-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4727,6 +5171,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-12 {
   syntax: "<number>";
   inherits: false;
@@ -4734,6 +5190,18 @@
 }
 
 @property --next-returnIp-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4799,6 +5267,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-13 {
   syntax: "<number>";
   inherits: false;
@@ -4806,6 +5286,18 @@
 }
 
 @property --next-returnIp-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4871,6 +5363,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-14 {
   syntax: "<number>";
   inherits: false;
@@ -4878,6 +5382,18 @@
 }
 
 @property --next-returnIp-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-14 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4943,6 +5459,18 @@
   initial-value: 0;
 }
 
+@property --return-ip-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-offset-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-ip-15 {
   syntax: "<number>";
   inherits: false;
@@ -4950,6 +5478,18 @@
 }
 
 @property --next-returnIp-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --far-segment-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cs-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7056,18 +7596,18 @@
   --ip-1: 0;
   --ip-2: 0;
   --ip-3: 0;
-  --ip-4: 0;
-  --ip-5: 0;
-  --ip-6: 0;
-  --ip-7: 0;
-  --ip-8: 0;
-  --ip-9: 0;
-  --ip-10: 0;
-  --ip-11: 0;
-  --ip-12: 0;
-  --ip-13: 0;
-  --ip-14: 0;
-  --ip-15: 0;
+  --ip-4: 1;
+  --ip-5: 1;
+  --ip-6: 1;
+  --ip-7: 1;
+  --ip-8: 1;
+  --ip-9: 1;
+  --ip-10: 1;
+  --ip-11: 1;
+  --ip-12: 1;
+  --ip-13: 1;
+  --ip-14: 1;
+  --ip-15: 1;
   --ax-0: 0;
   --ax-1: 0;
   --ax-2: 0;
@@ -7208,10 +7748,10 @@
   --cs-9: 0;
   --cs-10: 0;
   --cs-11: 0;
-  --cs-12: 0;
-  --cs-13: 0;
-  --cs-14: 0;
-  --cs-15: 0;
+  --cs-12: 1;
+  --cs-13: 1;
+  --cs-14: 1;
+  --cs-15: 1;
   --ds-0: 0;
   --ds-1: 0;
   --ds-2: 0;
@@ -7284,6 +7824,14 @@
   --immHigh-5: 0;
   --immHigh-6: 0;
   --immHigh-7: 0;
+  --farSegLow-0: 0;
+  --farSegLow-1: 0;
+  --farSegLow-2: 0;
+  --farSegLow-3: 0;
+  --farSegLow-4: 0;
+  --farSegLow-5: 0;
+  --farSegLow-6: 0;
+  --farSegLow-7: 0;
   --stackLow-0: 0;
   --stackLow-1: 0;
   --stackLow-2: 0;
@@ -7311,6 +7859,7 @@
   --phase-0: 0;
   --phase-1: 0;
   --phase-2: 0;
+  --phase-3: 0;
   --halted: 0;
   --faulted: 0;
   --cf: 0;
@@ -7319,14 +7868,16 @@
   --zf: 0;
   --sf: 0;
   --of: 0;
-  --phase-opcode: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
-  --phase-imm-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
-  --phase-imm-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
-  --phase-write-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
-  --phase-write-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + var(--phase-2)) / 2), 1);
-  --phase-ret-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + var(--phase-2)) / 2), 1);
-  --phase-ret-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + var(--phase-2)) / 2), 1);
-  --instruction-read: min(1, calc(var(--phase-opcode) + var(--phase-imm-low) + var(--phase-imm-high)));
+  --phase-opcode: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-imm-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-imm-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-write-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-write-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + var(--phase-2)) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-ret-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + var(--phase-2)) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-ret-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + var(--phase-2)) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-far-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + var(--phase-1)) / 2), 1) + var(--phase-2)) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
+  --phase-far-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + var(--phase-3)) / 2), 1);
+  --instruction-read: min(1, calc(var(--phase-opcode) + var(--phase-imm-low) + var(--phase-imm-high) + var(--phase-far-low) + var(--phase-far-high)));
   --stack-read: min(1, calc(var(--phase-ret-low) + var(--phase-ret-high)));
   --read-phase: min(1, calc(var(--instruction-read) + var(--stack-read)));
   --write-phase: min(1, calc(var(--phase-write-low) + var(--phase-write-high)));
@@ -7348,6 +7899,8 @@
   --opcode-call: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-far: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-far: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-ret: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-ret: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -7370,7 +7923,7 @@
   --opcode-mov-di: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-mov: min(1, calc(var(--fetched-mov-ax) + var(--fetched-mov-cx) + var(--fetched-mov-dx) + var(--fetched-mov-bx) + var(--fetched-mov-sp) + var(--fetched-mov-bp) + var(--fetched-mov-si) + var(--fetched-mov-di)));
   --opcode-mov: min(1, calc(var(--opcode-mov-ax) + var(--opcode-mov-cx) + var(--opcode-mov-dx) + var(--opcode-mov-bx) + var(--opcode-mov-sp) + var(--opcode-mov-bp) + var(--opcode-mov-si) + var(--opcode-mov-di)));
-  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp)));
+  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far)));
   --fetched-short: min(1, calc(var(--fetched-jz) + var(--fetched-jnz)));
   --opcode-short: min(1, calc(var(--opcode-jz) + var(--opcode-jnz)));
   --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-short) + var(--fetched-ret) + var(--fetched-hlt)));
@@ -7378,6 +7931,8 @@
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
   --capture-imm-low: round(down, calc(calc(var(--phase-imm-low) + var(--bus-read)) / 2), 1);
   --capture-imm-high: round(down, calc(calc(var(--phase-imm-high) + var(--bus-read)) / 2), 1);
+  --capture-far-low: round(down, calc(calc(var(--phase-far-low) + var(--bus-read)) / 2), 1);
+  --capture-far-high: round(down, calc(calc(var(--phase-far-high) + var(--bus-read)) / 2), 1);
   --execute: round(down, calc(calc(var(--capture-imm-high) + calc(1 - var(--opcode-store))) / 2), 1);
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
@@ -7431,35 +7986,46 @@
   --next-ir-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-0)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-0)) / 2), 1)));
   --next-immLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-0)) / 2), 1)));
   --next-immHigh-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-0)) / 2), 1)));
+  --next-farSegLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-0)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-0)) / 2), 1)));
   --next-ir-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-1)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-1)) / 2), 1)));
   --next-immLow-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-1)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-1)) / 2), 1)));
   --next-immHigh-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-1)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-1)) / 2), 1)));
+  --next-farSegLow-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-1)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-1)) / 2), 1)));
   --next-ir-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-2)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-2)) / 2), 1)));
   --next-immLow-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-2)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-2)) / 2), 1)));
   --next-immHigh-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-2)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-2)) / 2), 1)));
+  --next-farSegLow-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-2)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-2)) / 2), 1)));
   --next-ir-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-3)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-3)) / 2), 1)));
   --next-immLow-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-3)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-3)) / 2), 1)));
   --next-immHigh-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-3)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-3)) / 2), 1)));
+  --next-farSegLow-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-3)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-3)) / 2), 1)));
   --next-ir-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-4)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-4)) / 2), 1)));
   --next-immLow-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-4)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-4)) / 2), 1)));
   --next-immHigh-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-4)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-4)) / 2), 1)));
+  --next-farSegLow-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-4)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-4)) / 2), 1)));
   --next-ir-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-5)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-5)) / 2), 1)));
   --next-immLow-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-5)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-5)) / 2), 1)));
   --next-immHigh-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-5)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-5)) / 2), 1)));
+  --next-farSegLow-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-5)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-5)) / 2), 1)));
   --next-ir-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-6)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-6)) / 2), 1)));
   --next-immLow-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-6)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-6)) / 2), 1)));
   --next-immHigh-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-6)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-6)) / 2), 1)));
+  --next-farSegLow-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-6)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-6)) / 2), 1)));
   --next-ir-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-7)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-7)) / 2), 1)));
   --next-immLow-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-7)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-7)) / 2), 1)));
   --next-immHigh-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-high)) + var(--immHigh-7)) / 2), 1) + round(down, calc(calc(var(--capture-imm-high) + var(--busData-7)) / 2), 1)));
+  --next-farSegLow-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-far-low)) + var(--farSegLow-7)) / 2), 1) + round(down, calc(calc(var(--capture-far-low) + var(--busData-7)) / 2), 1)));
   --begin-store: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-store)) / 2), 1);
   --begin-call: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-call)) / 2), 1);
   --begin-write: min(1, calc(var(--begin-store) + var(--begin-call)));
   --begin-ret: round(down, calc(calc(var(--capture-opcode) + var(--fetched-ret)) / 2), 1);
   --finish-ret: round(down, calc(calc(var(--phase-ret-high) + var(--bus-read)) / 2), 1);
-  --next-phase-0: min(1, calc(round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-immediate) + var(--fetched-short)))) / 2), 1) + var(--begin-write) + var(--begin-ret)));
-  --next-phase-1: min(1, calc(round(down, calc(calc(var(--capture-imm-low) + calc(1 - var(--opcode-short))) / 2), 1) + var(--begin-write) + var(--phase-ret-low)));
-  --next-phase-2: min(1, calc(var(--phase-write-low) + var(--begin-ret) + var(--phase-ret-low)));
+  --begin-far: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-far)) / 2), 1);
+  --finish-far: var(--capture-far-high);
+  --next-phase-0: min(1, calc(round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-immediate) + var(--fetched-short)))) / 2), 1) + var(--begin-write) + var(--begin-ret) + var(--begin-far)));
+  --next-phase-1: min(1, calc(round(down, calc(calc(var(--capture-imm-low) + calc(1 - var(--opcode-short))) / 2), 1) + var(--begin-write) + var(--phase-ret-low) + var(--begin-far)));
+  --next-phase-2: min(1, calc(var(--phase-write-low) + var(--begin-ret) + var(--phase-ret-low) + var(--begin-far)));
+  --next-phase-3: var(--phase-far-low);
   --next-halted: min(1, calc(var(--halted) + round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-hlt) + var(--fetched-invalid)))) / 2), 1)));
   --next-faulted: min(1, calc(var(--faulted) + round(down, calc(calc(var(--capture-opcode) + var(--fetched-invalid)) / 2), 1)));
   --address-carry-0: 1;
@@ -7688,8 +8254,12 @@
   --ret-target-0: var(--stackLow-0);
   --near-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-0)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-0)) / 2), 1)));
   --branch-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-0)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-0)) / 2), 1)));
-  --next-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-0)) / 2), 1)));
+  --return-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-0)) / 2), 1)));
+  --far-offset-0: var(--immLow-0);
+  --next-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-0)) / 2), 1)));
   --next-returnIp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-0)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-0)) / 2), 1)));
+  --far-segment-0: var(--farSegLow-0);
+  --next-cs-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-0)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-0)) / 2), 1)));
   --branch-sum-1: calc(var(--ip-inc-1) + var(--immediate-1));
   --branch-result-1: mod(calc(var(--branch-sum-1) + var(--branch-carry-1)), 2);
   --branch-carry-2: round(down, calc(calc(var(--branch-sum-1) + var(--branch-carry-1)) / 2), 1);
@@ -7700,8 +8270,12 @@
   --ret-target-1: var(--stackLow-1);
   --near-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-1)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-1)) / 2), 1)));
   --branch-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-1)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-1)) / 2), 1)));
-  --next-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-1)) / 2), 1)));
+  --return-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-1)) / 2), 1)));
+  --far-offset-1: var(--immLow-1);
+  --next-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-1)) / 2), 1)));
   --next-returnIp-1: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-1)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-1)) / 2), 1)));
+  --far-segment-1: var(--farSegLow-1);
+  --next-cs-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-1)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-1)) / 2), 1)));
   --branch-sum-2: calc(var(--ip-inc-2) + var(--immediate-2));
   --branch-result-2: mod(calc(var(--branch-sum-2) + var(--branch-carry-2)), 2);
   --branch-carry-3: round(down, calc(calc(var(--branch-sum-2) + var(--branch-carry-2)) / 2), 1);
@@ -7712,8 +8286,12 @@
   --ret-target-2: var(--stackLow-2);
   --near-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-2)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-2)) / 2), 1)));
   --branch-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-2)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-2)) / 2), 1)));
-  --next-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-2)) / 2), 1)));
+  --return-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-2)) / 2), 1)));
+  --far-offset-2: var(--immLow-2);
+  --next-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-2)) / 2), 1)));
   --next-returnIp-2: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-2)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-2)) / 2), 1)));
+  --far-segment-2: var(--farSegLow-2);
+  --next-cs-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-2)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-2)) / 2), 1)));
   --branch-sum-3: calc(var(--ip-inc-3) + var(--immediate-3));
   --branch-result-3: mod(calc(var(--branch-sum-3) + var(--branch-carry-3)), 2);
   --branch-carry-4: round(down, calc(calc(var(--branch-sum-3) + var(--branch-carry-3)) / 2), 1);
@@ -7724,8 +8302,12 @@
   --ret-target-3: var(--stackLow-3);
   --near-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-3)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-3)) / 2), 1)));
   --branch-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-3)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-3)) / 2), 1)));
-  --next-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-3)) / 2), 1)));
+  --return-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-3)) / 2), 1)));
+  --far-offset-3: var(--immLow-3);
+  --next-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-3)) / 2), 1)));
   --next-returnIp-3: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-3)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-3)) / 2), 1)));
+  --far-segment-3: var(--farSegLow-3);
+  --next-cs-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-3)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-3)) / 2), 1)));
   --branch-sum-4: calc(var(--ip-inc-4) + var(--immediate-4));
   --branch-result-4: mod(calc(var(--branch-sum-4) + var(--branch-carry-4)), 2);
   --branch-carry-5: round(down, calc(calc(var(--branch-sum-4) + var(--branch-carry-4)) / 2), 1);
@@ -7736,8 +8318,12 @@
   --ret-target-4: var(--stackLow-4);
   --near-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-4)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-4)) / 2), 1)));
   --branch-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-4)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-4)) / 2), 1)));
-  --next-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-4)) / 2), 1)));
+  --return-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-4)) / 2), 1)));
+  --far-offset-4: var(--immLow-4);
+  --next-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-4)) / 2), 1)));
   --next-returnIp-4: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-4)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-4)) / 2), 1)));
+  --far-segment-4: var(--farSegLow-4);
+  --next-cs-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-4)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-4)) / 2), 1)));
   --branch-sum-5: calc(var(--ip-inc-5) + var(--immediate-5));
   --branch-result-5: mod(calc(var(--branch-sum-5) + var(--branch-carry-5)), 2);
   --branch-carry-6: round(down, calc(calc(var(--branch-sum-5) + var(--branch-carry-5)) / 2), 1);
@@ -7748,8 +8334,12 @@
   --ret-target-5: var(--stackLow-5);
   --near-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-5)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-5)) / 2), 1)));
   --branch-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-5)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-5)) / 2), 1)));
-  --next-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-5)) / 2), 1)));
+  --return-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-5)) / 2), 1)));
+  --far-offset-5: var(--immLow-5);
+  --next-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-5)) / 2), 1)));
   --next-returnIp-5: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-5)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-5)) / 2), 1)));
+  --far-segment-5: var(--farSegLow-5);
+  --next-cs-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-5)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-5)) / 2), 1)));
   --branch-sum-6: calc(var(--ip-inc-6) + var(--immediate-6));
   --branch-result-6: mod(calc(var(--branch-sum-6) + var(--branch-carry-6)), 2);
   --branch-carry-7: round(down, calc(calc(var(--branch-sum-6) + var(--branch-carry-6)) / 2), 1);
@@ -7760,8 +8350,12 @@
   --ret-target-6: var(--stackLow-6);
   --near-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-6)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-6)) / 2), 1)));
   --branch-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-6)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-6)) / 2), 1)));
-  --next-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-6)) / 2), 1)));
+  --return-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-6)) / 2), 1)));
+  --far-offset-6: var(--immLow-6);
+  --next-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-6)) / 2), 1)));
   --next-returnIp-6: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-6)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-6)) / 2), 1)));
+  --far-segment-6: var(--farSegLow-6);
+  --next-cs-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-6)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-6)) / 2), 1)));
   --branch-sum-7: calc(var(--ip-inc-7) + var(--immediate-7));
   --branch-result-7: mod(calc(var(--branch-sum-7) + var(--branch-carry-7)), 2);
   --branch-carry-8: round(down, calc(calc(var(--branch-sum-7) + var(--branch-carry-7)) / 2), 1);
@@ -7772,8 +8366,12 @@
   --ret-target-7: var(--stackLow-7);
   --near-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-7)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-7)) / 2), 1)));
   --branch-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-7)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-7)) / 2), 1)));
-  --next-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-7)) / 2), 1)));
+  --return-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-7)) / 2), 1)));
+  --far-offset-7: var(--immLow-7);
+  --next-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-7)) / 2), 1)));
   --next-returnIp-7: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-7)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-7)) / 2), 1)));
+  --far-segment-7: var(--farSegLow-7);
+  --next-cs-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-7)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-7)) / 2), 1)));
   --branch-sum-8: calc(var(--ip-inc-8) + var(--immediate-8));
   --branch-result-8: mod(calc(var(--branch-sum-8) + var(--branch-carry-8)), 2);
   --branch-carry-9: round(down, calc(calc(var(--branch-sum-8) + var(--branch-carry-8)) / 2), 1);
@@ -7784,8 +8382,12 @@
   --ret-target-8: var(--busData-0);
   --near-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-8)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-8)) / 2), 1)));
   --branch-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-8)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-8)) / 2), 1)));
-  --next-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-8)) / 2), 1)));
+  --return-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-8)) / 2), 1)));
+  --far-offset-8: var(--immHigh-0);
+  --next-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-8)) / 2), 1)));
   --next-returnIp-8: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-8)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-8)) / 2), 1)));
+  --far-segment-8: var(--busData-0);
+  --next-cs-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-8)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-8)) / 2), 1)));
   --branch-sum-9: calc(var(--ip-inc-9) + var(--immediate-9));
   --branch-result-9: mod(calc(var(--branch-sum-9) + var(--branch-carry-9)), 2);
   --branch-carry-10: round(down, calc(calc(var(--branch-sum-9) + var(--branch-carry-9)) / 2), 1);
@@ -7796,8 +8398,12 @@
   --ret-target-9: var(--busData-1);
   --near-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-9)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-9)) / 2), 1)));
   --branch-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-9)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-9)) / 2), 1)));
-  --next-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-9)) / 2), 1)));
+  --return-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-9)) / 2), 1)));
+  --far-offset-9: var(--immHigh-1);
+  --next-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-9)) / 2), 1)));
   --next-returnIp-9: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-9)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-9)) / 2), 1)));
+  --far-segment-9: var(--busData-1);
+  --next-cs-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-9)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-9)) / 2), 1)));
   --branch-sum-10: calc(var(--ip-inc-10) + var(--immediate-10));
   --branch-result-10: mod(calc(var(--branch-sum-10) + var(--branch-carry-10)), 2);
   --branch-carry-11: round(down, calc(calc(var(--branch-sum-10) + var(--branch-carry-10)) / 2), 1);
@@ -7808,8 +8414,12 @@
   --ret-target-10: var(--busData-2);
   --near-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-10)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-10)) / 2), 1)));
   --branch-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-10)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-10)) / 2), 1)));
-  --next-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-10)) / 2), 1)));
+  --return-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-10)) / 2), 1)));
+  --far-offset-10: var(--immHigh-2);
+  --next-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-10)) / 2), 1)));
   --next-returnIp-10: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-10)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-10)) / 2), 1)));
+  --far-segment-10: var(--busData-2);
+  --next-cs-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-10)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-10)) / 2), 1)));
   --branch-sum-11: calc(var(--ip-inc-11) + var(--immediate-11));
   --branch-result-11: mod(calc(var(--branch-sum-11) + var(--branch-carry-11)), 2);
   --branch-carry-12: round(down, calc(calc(var(--branch-sum-11) + var(--branch-carry-11)) / 2), 1);
@@ -7820,8 +8430,12 @@
   --ret-target-11: var(--busData-3);
   --near-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-11)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-11)) / 2), 1)));
   --branch-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-11)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-11)) / 2), 1)));
-  --next-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-11)) / 2), 1)));
+  --return-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-11)) / 2), 1)));
+  --far-offset-11: var(--immHigh-3);
+  --next-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-11)) / 2), 1)));
   --next-returnIp-11: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-11)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-11)) / 2), 1)));
+  --far-segment-11: var(--busData-3);
+  --next-cs-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-11)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-11)) / 2), 1)));
   --branch-sum-12: calc(var(--ip-inc-12) + var(--immediate-12));
   --branch-result-12: mod(calc(var(--branch-sum-12) + var(--branch-carry-12)), 2);
   --branch-carry-13: round(down, calc(calc(var(--branch-sum-12) + var(--branch-carry-12)) / 2), 1);
@@ -7832,8 +8446,12 @@
   --ret-target-12: var(--busData-4);
   --near-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-12)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-12)) / 2), 1)));
   --branch-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-12)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-12)) / 2), 1)));
-  --next-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-12)) / 2), 1)));
+  --return-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-12)) / 2), 1)));
+  --far-offset-12: var(--immHigh-4);
+  --next-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-12)) / 2), 1)));
   --next-returnIp-12: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-12)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-12)) / 2), 1)));
+  --far-segment-12: var(--busData-4);
+  --next-cs-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-12)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-12)) / 2), 1)));
   --branch-sum-13: calc(var(--ip-inc-13) + var(--immediate-13));
   --branch-result-13: mod(calc(var(--branch-sum-13) + var(--branch-carry-13)), 2);
   --branch-carry-14: round(down, calc(calc(var(--branch-sum-13) + var(--branch-carry-13)) / 2), 1);
@@ -7844,8 +8462,12 @@
   --ret-target-13: var(--busData-5);
   --near-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-13)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-13)) / 2), 1)));
   --branch-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-13)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-13)) / 2), 1)));
-  --next-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-13)) / 2), 1)));
+  --return-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-13)) / 2), 1)));
+  --far-offset-13: var(--immHigh-5);
+  --next-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-13)) / 2), 1)));
   --next-returnIp-13: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-13)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-13)) / 2), 1)));
+  --far-segment-13: var(--busData-5);
+  --next-cs-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-13)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-13)) / 2), 1)));
   --branch-sum-14: calc(var(--ip-inc-14) + var(--immediate-14));
   --branch-result-14: mod(calc(var(--branch-sum-14) + var(--branch-carry-14)), 2);
   --branch-carry-15: round(down, calc(calc(var(--branch-sum-14) + var(--branch-carry-14)) / 2), 1);
@@ -7856,8 +8478,12 @@
   --ret-target-14: var(--busData-6);
   --near-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-14)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-14)) / 2), 1)));
   --branch-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-14)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-14)) / 2), 1)));
-  --next-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-14)) / 2), 1)));
+  --return-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-14)) / 2), 1)));
+  --far-offset-14: var(--immHigh-6);
+  --next-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-14)) / 2), 1)));
   --next-returnIp-14: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-14)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-14)) / 2), 1)));
+  --far-segment-14: var(--busData-6);
+  --next-cs-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-14)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-14)) / 2), 1)));
   --branch-sum-15: calc(var(--ip-inc-15) + var(--immediate-15));
   --branch-result-15: mod(calc(var(--branch-sum-15) + var(--branch-carry-15)), 2);
   --branch-carry-16: round(down, calc(calc(var(--branch-sum-15) + var(--branch-carry-15)) / 2), 1);
@@ -7868,8 +8494,12 @@
   --ret-target-15: var(--busData-7);
   --near-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--take-near-branch)) + var(--ip-base-15)) / 2), 1) + round(down, calc(calc(var(--take-near-branch) + var(--branch-result-15)) / 2), 1)));
   --branch-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-15)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-15)) / 2), 1)));
-  --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-15)) / 2), 1)));
+  --return-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--branch-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-15)) / 2), 1)));
+  --far-offset-15: var(--immHigh-7);
+  --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--return-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-offset-15)) / 2), 1)));
   --next-returnIp-15: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--returnIp-15)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--ip-inc-15)) / 2), 1)));
+  --far-segment-15: var(--busData-7);
+  --next-cs-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far)) + var(--cs-15)) / 2), 1) + round(down, calc(calc(var(--finish-far) + var(--far-segment-15)) / 2), 1)));
   --select-arithmetic: min(1, calc(var(--opcode-add) + var(--opcode-sub)));
   --alu-carry-0: var(--opcode-sub);
   --alu-effective-b-0: mod(calc(var(--immediate-0) + var(--opcode-sub)), 2);

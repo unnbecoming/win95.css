@@ -6,19 +6,21 @@ The distant target is deliberately ridiculous: boot an unmodified Windows 95 RTM
 
 That is **not** the current claim.
 
-## Current milestone: the first executable spine
+## Current milestone: the reset-vector executable spine
 
 The repository currently contains two generated organs:
 
 - a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
 - a 16-bit real-mode seed core with CSS-owned `CS/DS/SS/ES`, `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, and flags;
-- CSS decodes the full real x86 `B8..BF` `MOV r16,iw` family, `MOV [moffs16],AX`, `JMP rel16`, `CALL rel16`, `RET`, `JZ rel8`, `JNZ rel8`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
+- generated CSS reset state starts at architectural `CS=F000h`, `IP=FFF0h`, fetching physical `FFFF0h`;
+- CSS decodes the full real x86 `B8..BF` `MOV r16,iw` family, `MOV [moffs16],AX`, `JMP rel16`, `JMP ptr16:16`, `CALL rel16`, `RET`, `JZ rel8`, `JNZ rel8`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
 - CSS forms 20-bit physical addresses as `segment << 4 + offset`: instruction fetches use `CS:IP`, direct stores use `DS:moffs16`, and CALL/RET traffic uses `SS:SP`;
 - a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins against opaque 1 MiB storage and records the trace;
-- independent browser proofs preserve the complete zero-segment trace and separately verify nonzero `CS:IP` fetches at physical `12350h`, `DS:moffs16` writes at `10020h`, and `SS:SP` stack traffic at `27ffeh`;
+- the public trace begins at `FFFF0h`, fetches the five-byte `EA 0000:7c00` reset stub, then lands at physical `07c00h`; this is a synthetic landing ROM, not a BIOS or boot sector;
+- independent browser proofs preserve ordinary zero-segment execution, verify nonzero `CS:IP`, `DS:moffs16`, and `SS:SP` addressing, and execute an unrelated far jump from `1234:0010` to `3000:2000`;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The segmented CPU is **1,174 nets / 242,359 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The reset-vector CPU is **1,264 nets / 261,645 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -28,7 +30,7 @@ CSS owns:
 
 - operation and x86 opcode decode;
 - real-mode segment selection and 20-bit physical address formation;
-- fetch-phase transitions, `IP` increment, register transfer, halt, and invalid-opcode faulting;
+- generated reset defaults, fetch-phase transitions, `IP` increment, far `CS:IP` transfer, register transfer, halt, and invalid-opcode faulting;
 - the shared add/sub carry networks and bitwise logic paths;
 - result-bit computation and architectural flags (logical operations deliberately drive undefined `AF` to zero for now);
 - every combinational next-state pin.
@@ -55,7 +57,7 @@ npm test
 
 The tests regenerate both CSS artifacts, exercise the ALU and seed CPU in headless Chromium, compare latched state against independent oracles, and verify the exact byte-bus trace.
 
-Open `index.html` for the current ROM spine or `alu.html` for the standalone operation-selected ALU. `cpu.html` is a compatibility redirect to the homepage, preventing duplicate instrument markup from drifting.
+Open `index.html` for the reset-vector and synthetic landing-ROM spine or `alu.html` for the standalone operation-selected ALU. `cpu.html` is a compatibility redirect to the homepage, preventing duplicate instrument markup from drifting.
 
 ## Shape of the project
 

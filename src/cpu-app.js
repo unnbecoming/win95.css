@@ -2,6 +2,8 @@ import { CssChip } from './chip.js';
 import { ByteBusMachine } from './byte-bus-machine.js';
 
 const manifest = await fetch('./generated/cpu16.manifest.json').then((response) => response.json());
+const resetStub = Uint8Array.from([0xea, 0x00, 0x7c, 0x00, 0x00]);
+const landingAddress = 0x7c00;
 const rom = Uint8Array.from([
   0xe9, 0x03, 0x00, 0x90, 0x90, 0x90,
   0xb8, 0x03, 0x00, 0x2d, 0x01, 0x00, 0x75, 0xfb,
@@ -11,7 +13,7 @@ const rom = Uint8Array.from([
   0xe8, 0x01, 0x00, 0xf4, 0x35, 0x00, 0x00, 0xc3,
 ]);
 const hex = (value, width) => value.toString(16).padStart(width, '0');
-document.querySelector('#rom').textContent = [...rom].map((byte) => hex(byte, 2)).join(' ');
+document.querySelector('#rom').textContent = `ffff0: ${[...resetStub].map((byte) => hex(byte, 2)).join(' ')}  →  07c00: ${[...rom].map((byte) => hex(byte, 2)).join(' ')}`;
 
 function run() {
   const cpu = document.createElement('div');
@@ -19,7 +21,8 @@ function run() {
   cpu.className = 'css386-cpu';
   document.querySelector('#cpu').replaceWith(cpu);
   const memory = new Uint8Array(0x100000);
-  memory.set(rom);
+  memory.set(resetStub, 0xffff0);
+  memory.set(rom, landingAddress);
   const machine = new ByteBusMachine(new CssChip(cpu, manifest), memory);
   const started = performance.now();
   const result = machine.run(256);
@@ -36,5 +39,5 @@ function run() {
 }
 
 document.querySelector('#run').addEventListener('click', run);
-window.css386cpu = { run, manifest, rom: [...rom] };
+window.css386cpu = { run, manifest, resetStub: [...resetStub], landingAddress, rom: [...rom] };
 run();
