@@ -43,14 +43,28 @@ export class CssChip {
     return Object.fromEntries(names.map((name) => [name, numericValue(this.element, name)]));
   }
 
+  readPins(sourcePins) {
+    return sourcePins.reduce((value, pin, index) => value + numericValue(this.element, pin) * 2 ** index, 0);
+  }
+
+  outputs() {
+    return Object.fromEntries(Object.entries(this.manifest.outputs ?? {}).map(([name, pins]) => [name, this.readPins(pins)]));
+  }
+
+  state() {
+    return Object.fromEntries(Object.entries(this.manifest.state).map(([name, port]) => [name, this.readBus(name, port)]));
+  }
+
   cycle() {
-    for (const [state, sourcePins] of Object.entries(this.manifest.latches)) {
+    const next = Object.fromEntries(Object.entries(this.manifest.latches).map(([state, sourcePins]) => [
+      state, sourcePins.map((pin) => numericValue(this.element, pin)),
+    ]));
+    for (const [state, values] of Object.entries(next)) {
       const port = this.manifest.state[state];
       for (let index = 0; index < port.width; index++) {
-        const bit = numericValue(this.element, sourcePins[index]);
-        this.element.style.setProperty(`--${pinName(state, port.width, index)}`, String(bit));
+        this.element.style.setProperty(`--${pinName(state, port.width, index)}`, String(values[index]));
       }
     }
-    return Object.fromEntries(Object.entries(this.manifest.state).map(([name, port]) => [name, this.readBus(name, port)]));
+    return this.state();
   }
 }

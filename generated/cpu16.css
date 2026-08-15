@@ -1,0 +1,2117 @@
+/* Generated. Do not hand-edit. */
+@property --busData-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --busData-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ax-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ir-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immLow-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --halted {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --faulted {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --pf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --zf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --of {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-opcode {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-imm-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --phase-imm-high {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-read {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-add {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-add {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-sub {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-sub {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-xor {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-xor {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-hlt {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-hlt {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-immediate {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-supported {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-invalid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --capture-opcode {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --capture-imm-low {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --execute {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-inc-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ip-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ip-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ir-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-immLow-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-phase-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-phase-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-phase-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-halted {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-faulted {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --immediate-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --select-arithmetic {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-effective-b-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-ab-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-xor-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-result-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ax-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-arithmetic-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-pf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-zf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --alu-of {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --update-flags {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-pf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-zf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-of {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.css386-cpu {
+  --busData-0: 0;
+  --busData-1: 0;
+  --busData-2: 0;
+  --busData-3: 0;
+  --busData-4: 0;
+  --busData-5: 0;
+  --busData-6: 0;
+  --busData-7: 0;
+  --ip-0: 0;
+  --ip-1: 0;
+  --ip-2: 0;
+  --ip-3: 0;
+  --ip-4: 0;
+  --ip-5: 0;
+  --ip-6: 0;
+  --ip-7: 0;
+  --ip-8: 0;
+  --ip-9: 0;
+  --ip-10: 0;
+  --ip-11: 0;
+  --ip-12: 0;
+  --ip-13: 0;
+  --ip-14: 0;
+  --ip-15: 0;
+  --ax-0: 0;
+  --ax-1: 0;
+  --ax-2: 0;
+  --ax-3: 0;
+  --ax-4: 0;
+  --ax-5: 0;
+  --ax-6: 0;
+  --ax-7: 0;
+  --ax-8: 0;
+  --ax-9: 0;
+  --ax-10: 0;
+  --ax-11: 0;
+  --ax-12: 0;
+  --ax-13: 0;
+  --ax-14: 0;
+  --ax-15: 0;
+  --ir-0: 0;
+  --ir-1: 0;
+  --ir-2: 0;
+  --ir-3: 0;
+  --ir-4: 0;
+  --ir-5: 0;
+  --ir-6: 0;
+  --ir-7: 0;
+  --immLow-0: 0;
+  --immLow-1: 0;
+  --immLow-2: 0;
+  --immLow-3: 0;
+  --immLow-4: 0;
+  --immLow-5: 0;
+  --immLow-6: 0;
+  --immLow-7: 0;
+  --phase-0: 0;
+  --phase-1: 0;
+  --phase-2: 0;
+  --halted: 0;
+  --faulted: 0;
+  --cf: 0;
+  --pf: 0;
+  --af: 0;
+  --zf: 0;
+  --sf: 0;
+  --of: 0;
+  --phase-opcode: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
+  --phase-imm-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
+  --phase-imm-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1);
+  --bus-read: calc(1 - var(--halted));
+  --fetched-mov: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
+  --opcode-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-sub: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
+  --opcode-sub: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
+  --opcode-xor: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor)));
+  --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-hlt)));
+  --fetched-invalid: calc(1 - var(--fetched-supported));
+  --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
+  --capture-imm-low: round(down, calc(calc(var(--phase-imm-low) + var(--bus-read)) / 2), 1);
+  --execute: round(down, calc(calc(var(--phase-imm-high) + var(--bus-read)) / 2), 1);
+  --ip-carry-0: 1;
+  --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
+  --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);
+  --next-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-0)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-0)) / 2), 1)));
+  --ip-inc-1: mod(calc(var(--ip-1) + var(--ip-carry-1)), 2);
+  --ip-carry-2: round(down, calc(calc(var(--ip-1) + var(--ip-carry-1)) / 2), 1);
+  --next-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-1)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-1)) / 2), 1)));
+  --ip-inc-2: mod(calc(var(--ip-2) + var(--ip-carry-2)), 2);
+  --ip-carry-3: round(down, calc(calc(var(--ip-2) + var(--ip-carry-2)) / 2), 1);
+  --next-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-2)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-2)) / 2), 1)));
+  --ip-inc-3: mod(calc(var(--ip-3) + var(--ip-carry-3)), 2);
+  --ip-carry-4: round(down, calc(calc(var(--ip-3) + var(--ip-carry-3)) / 2), 1);
+  --next-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-3)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-3)) / 2), 1)));
+  --ip-inc-4: mod(calc(var(--ip-4) + var(--ip-carry-4)), 2);
+  --ip-carry-5: round(down, calc(calc(var(--ip-4) + var(--ip-carry-4)) / 2), 1);
+  --next-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-4)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-4)) / 2), 1)));
+  --ip-inc-5: mod(calc(var(--ip-5) + var(--ip-carry-5)), 2);
+  --ip-carry-6: round(down, calc(calc(var(--ip-5) + var(--ip-carry-5)) / 2), 1);
+  --next-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-5)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-5)) / 2), 1)));
+  --ip-inc-6: mod(calc(var(--ip-6) + var(--ip-carry-6)), 2);
+  --ip-carry-7: round(down, calc(calc(var(--ip-6) + var(--ip-carry-6)) / 2), 1);
+  --next-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-6)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-6)) / 2), 1)));
+  --ip-inc-7: mod(calc(var(--ip-7) + var(--ip-carry-7)), 2);
+  --ip-carry-8: round(down, calc(calc(var(--ip-7) + var(--ip-carry-7)) / 2), 1);
+  --next-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-7)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-7)) / 2), 1)));
+  --ip-inc-8: mod(calc(var(--ip-8) + var(--ip-carry-8)), 2);
+  --ip-carry-9: round(down, calc(calc(var(--ip-8) + var(--ip-carry-8)) / 2), 1);
+  --next-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-8)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-8)) / 2), 1)));
+  --ip-inc-9: mod(calc(var(--ip-9) + var(--ip-carry-9)), 2);
+  --ip-carry-10: round(down, calc(calc(var(--ip-9) + var(--ip-carry-9)) / 2), 1);
+  --next-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-9)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-9)) / 2), 1)));
+  --ip-inc-10: mod(calc(var(--ip-10) + var(--ip-carry-10)), 2);
+  --ip-carry-11: round(down, calc(calc(var(--ip-10) + var(--ip-carry-10)) / 2), 1);
+  --next-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-10)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-10)) / 2), 1)));
+  --ip-inc-11: mod(calc(var(--ip-11) + var(--ip-carry-11)), 2);
+  --ip-carry-12: round(down, calc(calc(var(--ip-11) + var(--ip-carry-11)) / 2), 1);
+  --next-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-11)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-11)) / 2), 1)));
+  --ip-inc-12: mod(calc(var(--ip-12) + var(--ip-carry-12)), 2);
+  --ip-carry-13: round(down, calc(calc(var(--ip-12) + var(--ip-carry-12)) / 2), 1);
+  --next-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-12)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-12)) / 2), 1)));
+  --ip-inc-13: mod(calc(var(--ip-13) + var(--ip-carry-13)), 2);
+  --ip-carry-14: round(down, calc(calc(var(--ip-13) + var(--ip-carry-13)) / 2), 1);
+  --next-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-13)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-13)) / 2), 1)));
+  --ip-inc-14: mod(calc(var(--ip-14) + var(--ip-carry-14)), 2);
+  --ip-carry-15: round(down, calc(calc(var(--ip-14) + var(--ip-carry-14)) / 2), 1);
+  --next-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-14)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-14)) / 2), 1)));
+  --ip-inc-15: mod(calc(var(--ip-15) + var(--ip-carry-15)), 2);
+  --ip-carry-16: round(down, calc(calc(var(--ip-15) + var(--ip-carry-15)) / 2), 1);
+  --next-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--bus-read)) + var(--ip-15)) / 2), 1) + round(down, calc(calc(var(--bus-read) + var(--ip-inc-15)) / 2), 1)));
+  --next-ir-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-0)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-0)) / 2), 1)));
+  --next-immLow-0: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-0)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-0)) / 2), 1)));
+  --next-ir-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-1)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-1)) / 2), 1)));
+  --next-immLow-1: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-1)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-1)) / 2), 1)));
+  --next-ir-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-2)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-2)) / 2), 1)));
+  --next-immLow-2: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-2)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-2)) / 2), 1)));
+  --next-ir-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-3)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-3)) / 2), 1)));
+  --next-immLow-3: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-3)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-3)) / 2), 1)));
+  --next-ir-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-4)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-4)) / 2), 1)));
+  --next-immLow-4: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-4)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-4)) / 2), 1)));
+  --next-ir-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-5)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-5)) / 2), 1)));
+  --next-immLow-5: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-5)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-5)) / 2), 1)));
+  --next-ir-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-6)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-6)) / 2), 1)));
+  --next-immLow-6: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-6)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-6)) / 2), 1)));
+  --next-ir-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-opcode)) + var(--ir-7)) / 2), 1) + round(down, calc(calc(var(--capture-opcode) + var(--busData-7)) / 2), 1)));
+  --next-immLow-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-imm-low)) + var(--immLow-7)) / 2), 1) + round(down, calc(calc(var(--capture-imm-low) + var(--busData-7)) / 2), 1)));
+  --next-phase-0: round(down, calc(calc(var(--capture-opcode) + var(--fetched-immediate)) / 2), 1);
+  --next-phase-1: var(--capture-imm-low);
+  --next-phase-2: 0;
+  --next-halted: min(1, calc(var(--halted) + round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-hlt) + var(--fetched-invalid)))) / 2), 1)));
+  --next-faulted: min(1, calc(var(--faulted) + round(down, calc(calc(var(--capture-opcode) + var(--fetched-invalid)) / 2), 1)));
+  --immediate-0: var(--immLow-0);
+  --immediate-1: var(--immLow-1);
+  --immediate-2: var(--immLow-2);
+  --immediate-3: var(--immLow-3);
+  --immediate-4: var(--immLow-4);
+  --immediate-5: var(--immLow-5);
+  --immediate-6: var(--immLow-6);
+  --immediate-7: var(--immLow-7);
+  --immediate-8: var(--busData-0);
+  --immediate-9: var(--busData-1);
+  --immediate-10: var(--busData-2);
+  --immediate-11: var(--busData-3);
+  --immediate-12: var(--busData-4);
+  --immediate-13: var(--busData-5);
+  --immediate-14: var(--busData-6);
+  --immediate-15: var(--busData-7);
+  --select-arithmetic: min(1, calc(var(--opcode-add) + var(--opcode-sub)));
+  --alu-carry-0: var(--opcode-sub);
+  --alu-effective-b-0: mod(calc(var(--immediate-0) + var(--opcode-sub)), 2);
+  --alu-ab-0: calc(var(--ax-0) + var(--alu-effective-b-0));
+  --alu-arithmetic-0: mod(calc(var(--alu-ab-0) + var(--alu-carry-0)), 2);
+  --alu-carry-1: round(down, calc(calc(var(--alu-ab-0) + var(--alu-carry-0)) / 2), 1);
+  --alu-xor-0: mod(calc(var(--ax-0) + var(--immediate-0)), 2);
+  --alu-result-0: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-0)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-0)) / 2), 1)));
+  --next-ax-0: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-0)) / 2), 1)));
+  --alu-effective-b-1: mod(calc(var(--immediate-1) + var(--opcode-sub)), 2);
+  --alu-ab-1: calc(var(--ax-1) + var(--alu-effective-b-1));
+  --alu-arithmetic-1: mod(calc(var(--alu-ab-1) + var(--alu-carry-1)), 2);
+  --alu-carry-2: round(down, calc(calc(var(--alu-ab-1) + var(--alu-carry-1)) / 2), 1);
+  --alu-xor-1: mod(calc(var(--ax-1) + var(--immediate-1)), 2);
+  --alu-result-1: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-1)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-1)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-1)) / 2), 1)));
+  --next-ax-1: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-1)) / 2), 1)));
+  --alu-effective-b-2: mod(calc(var(--immediate-2) + var(--opcode-sub)), 2);
+  --alu-ab-2: calc(var(--ax-2) + var(--alu-effective-b-2));
+  --alu-arithmetic-2: mod(calc(var(--alu-ab-2) + var(--alu-carry-2)), 2);
+  --alu-carry-3: round(down, calc(calc(var(--alu-ab-2) + var(--alu-carry-2)) / 2), 1);
+  --alu-xor-2: mod(calc(var(--ax-2) + var(--immediate-2)), 2);
+  --alu-result-2: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-2)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-2)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-2)) / 2), 1)));
+  --next-ax-2: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-2)) / 2), 1)));
+  --alu-effective-b-3: mod(calc(var(--immediate-3) + var(--opcode-sub)), 2);
+  --alu-ab-3: calc(var(--ax-3) + var(--alu-effective-b-3));
+  --alu-arithmetic-3: mod(calc(var(--alu-ab-3) + var(--alu-carry-3)), 2);
+  --alu-carry-4: round(down, calc(calc(var(--alu-ab-3) + var(--alu-carry-3)) / 2), 1);
+  --alu-xor-3: mod(calc(var(--ax-3) + var(--immediate-3)), 2);
+  --alu-result-3: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-3)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-3)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-3)) / 2), 1)));
+  --next-ax-3: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-3)) / 2), 1)));
+  --alu-effective-b-4: mod(calc(var(--immediate-4) + var(--opcode-sub)), 2);
+  --alu-ab-4: calc(var(--ax-4) + var(--alu-effective-b-4));
+  --alu-arithmetic-4: mod(calc(var(--alu-ab-4) + var(--alu-carry-4)), 2);
+  --alu-carry-5: round(down, calc(calc(var(--alu-ab-4) + var(--alu-carry-4)) / 2), 1);
+  --alu-xor-4: mod(calc(var(--ax-4) + var(--immediate-4)), 2);
+  --alu-result-4: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-4)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-4)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-4)) / 2), 1)));
+  --next-ax-4: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-4)) / 2), 1)));
+  --alu-effective-b-5: mod(calc(var(--immediate-5) + var(--opcode-sub)), 2);
+  --alu-ab-5: calc(var(--ax-5) + var(--alu-effective-b-5));
+  --alu-arithmetic-5: mod(calc(var(--alu-ab-5) + var(--alu-carry-5)), 2);
+  --alu-carry-6: round(down, calc(calc(var(--alu-ab-5) + var(--alu-carry-5)) / 2), 1);
+  --alu-xor-5: mod(calc(var(--ax-5) + var(--immediate-5)), 2);
+  --alu-result-5: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-5)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-5)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-5)) / 2), 1)));
+  --next-ax-5: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-5)) / 2), 1)));
+  --alu-effective-b-6: mod(calc(var(--immediate-6) + var(--opcode-sub)), 2);
+  --alu-ab-6: calc(var(--ax-6) + var(--alu-effective-b-6));
+  --alu-arithmetic-6: mod(calc(var(--alu-ab-6) + var(--alu-carry-6)), 2);
+  --alu-carry-7: round(down, calc(calc(var(--alu-ab-6) + var(--alu-carry-6)) / 2), 1);
+  --alu-xor-6: mod(calc(var(--ax-6) + var(--immediate-6)), 2);
+  --alu-result-6: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-6)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-6)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-6)) / 2), 1)));
+  --next-ax-6: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-6)) / 2), 1)));
+  --alu-effective-b-7: mod(calc(var(--immediate-7) + var(--opcode-sub)), 2);
+  --alu-ab-7: calc(var(--ax-7) + var(--alu-effective-b-7));
+  --alu-arithmetic-7: mod(calc(var(--alu-ab-7) + var(--alu-carry-7)), 2);
+  --alu-carry-8: round(down, calc(calc(var(--alu-ab-7) + var(--alu-carry-7)) / 2), 1);
+  --alu-xor-7: mod(calc(var(--ax-7) + var(--immediate-7)), 2);
+  --alu-result-7: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-7)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-7)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-7)) / 2), 1)));
+  --next-ax-7: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-7)) / 2), 1)));
+  --alu-effective-b-8: mod(calc(var(--immediate-8) + var(--opcode-sub)), 2);
+  --alu-ab-8: calc(var(--ax-8) + var(--alu-effective-b-8));
+  --alu-arithmetic-8: mod(calc(var(--alu-ab-8) + var(--alu-carry-8)), 2);
+  --alu-carry-9: round(down, calc(calc(var(--alu-ab-8) + var(--alu-carry-8)) / 2), 1);
+  --alu-xor-8: mod(calc(var(--ax-8) + var(--immediate-8)), 2);
+  --alu-result-8: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-8)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-8)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-8)) / 2), 1)));
+  --next-ax-8: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-8)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-8)) / 2), 1)));
+  --alu-effective-b-9: mod(calc(var(--immediate-9) + var(--opcode-sub)), 2);
+  --alu-ab-9: calc(var(--ax-9) + var(--alu-effective-b-9));
+  --alu-arithmetic-9: mod(calc(var(--alu-ab-9) + var(--alu-carry-9)), 2);
+  --alu-carry-10: round(down, calc(calc(var(--alu-ab-9) + var(--alu-carry-9)) / 2), 1);
+  --alu-xor-9: mod(calc(var(--ax-9) + var(--immediate-9)), 2);
+  --alu-result-9: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-9)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-9)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-9)) / 2), 1)));
+  --next-ax-9: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-9)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-9)) / 2), 1)));
+  --alu-effective-b-10: mod(calc(var(--immediate-10) + var(--opcode-sub)), 2);
+  --alu-ab-10: calc(var(--ax-10) + var(--alu-effective-b-10));
+  --alu-arithmetic-10: mod(calc(var(--alu-ab-10) + var(--alu-carry-10)), 2);
+  --alu-carry-11: round(down, calc(calc(var(--alu-ab-10) + var(--alu-carry-10)) / 2), 1);
+  --alu-xor-10: mod(calc(var(--ax-10) + var(--immediate-10)), 2);
+  --alu-result-10: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-10)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-10)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-10)) / 2), 1)));
+  --next-ax-10: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-10)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-10)) / 2), 1)));
+  --alu-effective-b-11: mod(calc(var(--immediate-11) + var(--opcode-sub)), 2);
+  --alu-ab-11: calc(var(--ax-11) + var(--alu-effective-b-11));
+  --alu-arithmetic-11: mod(calc(var(--alu-ab-11) + var(--alu-carry-11)), 2);
+  --alu-carry-12: round(down, calc(calc(var(--alu-ab-11) + var(--alu-carry-11)) / 2), 1);
+  --alu-xor-11: mod(calc(var(--ax-11) + var(--immediate-11)), 2);
+  --alu-result-11: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-11)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-11)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-11)) / 2), 1)));
+  --next-ax-11: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-11)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-11)) / 2), 1)));
+  --alu-effective-b-12: mod(calc(var(--immediate-12) + var(--opcode-sub)), 2);
+  --alu-ab-12: calc(var(--ax-12) + var(--alu-effective-b-12));
+  --alu-arithmetic-12: mod(calc(var(--alu-ab-12) + var(--alu-carry-12)), 2);
+  --alu-carry-13: round(down, calc(calc(var(--alu-ab-12) + var(--alu-carry-12)) / 2), 1);
+  --alu-xor-12: mod(calc(var(--ax-12) + var(--immediate-12)), 2);
+  --alu-result-12: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-12)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-12)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-12)) / 2), 1)));
+  --next-ax-12: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-12)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-12)) / 2), 1)));
+  --alu-effective-b-13: mod(calc(var(--immediate-13) + var(--opcode-sub)), 2);
+  --alu-ab-13: calc(var(--ax-13) + var(--alu-effective-b-13));
+  --alu-arithmetic-13: mod(calc(var(--alu-ab-13) + var(--alu-carry-13)), 2);
+  --alu-carry-14: round(down, calc(calc(var(--alu-ab-13) + var(--alu-carry-13)) / 2), 1);
+  --alu-xor-13: mod(calc(var(--ax-13) + var(--immediate-13)), 2);
+  --alu-result-13: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-13)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-13)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-13)) / 2), 1)));
+  --next-ax-13: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-13)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-13)) / 2), 1)));
+  --alu-effective-b-14: mod(calc(var(--immediate-14) + var(--opcode-sub)), 2);
+  --alu-ab-14: calc(var(--ax-14) + var(--alu-effective-b-14));
+  --alu-arithmetic-14: mod(calc(var(--alu-ab-14) + var(--alu-carry-14)), 2);
+  --alu-carry-15: round(down, calc(calc(var(--alu-ab-14) + var(--alu-carry-14)) / 2), 1);
+  --alu-xor-14: mod(calc(var(--ax-14) + var(--immediate-14)), 2);
+  --alu-result-14: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-14)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-14)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-14)) / 2), 1)));
+  --next-ax-14: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-14)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-14)) / 2), 1)));
+  --alu-effective-b-15: mod(calc(var(--immediate-15) + var(--opcode-sub)), 2);
+  --alu-ab-15: calc(var(--ax-15) + var(--alu-effective-b-15));
+  --alu-arithmetic-15: mod(calc(var(--alu-ab-15) + var(--alu-carry-15)), 2);
+  --alu-carry-16: round(down, calc(calc(var(--alu-ab-15) + var(--alu-carry-15)) / 2), 1);
+  --alu-xor-15: mod(calc(var(--ax-15) + var(--immediate-15)), 2);
+  --alu-result-15: min(1, calc(round(down, calc(calc(var(--opcode-mov) + var(--immediate-15)) / 2), 1) + round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-15)) / 2), 1) + round(down, calc(calc(var(--opcode-xor) + var(--alu-xor-15)) / 2), 1)));
+  --next-ax-15: min(1, calc(round(down, calc(calc(calc(1 - var(--execute)) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--execute) + var(--alu-result-15)) / 2), 1)));
+  --alu-arithmetic-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-sub)) + var(--alu-carry-16)) / 2), 1) + round(down, calc(calc(var(--opcode-sub) + calc(1 - var(--alu-carry-16))) / 2), 1)));
+  --alu-arithmetic-af: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-sub)) + var(--alu-carry-4)) / 2), 1) + round(down, calc(calc(var(--opcode-sub) + calc(1 - var(--alu-carry-4))) / 2), 1)));
+  --alu-cf: round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-cf)) / 2), 1);
+  --alu-af: round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-af)) / 2), 1);
+  --alu-pf: calc(1 - mod(calc(var(--alu-result-0) + var(--alu-result-1) + var(--alu-result-2) + var(--alu-result-3) + var(--alu-result-4) + var(--alu-result-5) + var(--alu-result-6) + var(--alu-result-7)), 2));
+  --alu-zf: calc(1 - min(1, calc(var(--alu-result-0) + var(--alu-result-1) + var(--alu-result-2) + var(--alu-result-3) + var(--alu-result-4) + var(--alu-result-5) + var(--alu-result-6) + var(--alu-result-7) + var(--alu-result-8) + var(--alu-result-9) + var(--alu-result-10) + var(--alu-result-11) + var(--alu-result-12) + var(--alu-result-13) + var(--alu-result-14) + var(--alu-result-15))));
+  --alu-sf: var(--alu-result-15);
+  --alu-of: round(down, calc(calc(var(--select-arithmetic) + mod(calc(var(--alu-carry-15) + var(--alu-carry-16)), 2)) / 2), 1);
+  --update-flags: round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-xor)))) / 2), 1);
+  --next-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--cf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-cf)) / 2), 1)));
+  --next-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--pf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-pf)) / 2), 1)));
+  --next-af: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--af)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-af)) / 2), 1)));
+  --next-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--zf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-zf)) / 2), 1)));
+  --next-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--sf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-sf)) / 2), 1)));
+  --next-of: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--of)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-of)) / 2), 1)));
+}

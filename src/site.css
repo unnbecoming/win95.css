@@ -29,12 +29,17 @@ button:hover { background: #c2ffd8; }
 dt { margin-bottom: 8px; }
 dd { margin: 0; font-size: 1.3rem; }
 #status { margin: 0; border-top: 1px solid #2e3933; padding: 14px 24px; color: #8b9d94; font-size: .8rem; }
+.rom-row { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 20px 24px; border-bottom: 1px solid #2e3933; }
+.rom-row code { overflow-wrap: anywhere; color: #a7f3c4; }
+#cpu-mount { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; }
+#trace { margin: 0; padding: 20px 24px; border-top: 1px solid #2e3933; color: #a7f3c4; line-height: 1.55; overflow: auto; }
+a { color: #a7f3c4; }
 footer { display: grid; gap: 10px; color: #829088; line-height: 1.6; font-size: .82rem; }
 footer p { margin: 0; }
 code { color: #a7f3c4; }
 @media (max-width: 680px) {
   main { padding-top: 36px; }
-  form { grid-template-columns: 1fr; }
+  form, .rom-row { grid-template-columns: 1fr; }
   .flags { grid-template-columns: repeat(3, 1fr); }
   .metrics { grid-template-columns: 1fr; }
 }

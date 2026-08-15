@@ -6,18 +6,18 @@ The distant target is deliberately ridiculous: boot an unmodified Windows 95 RTM
 
 That is **not** the current claim.
 
-## Current milestone: the second organ has teeth
+## Current milestone: the first executable spine
 
-The repository currently contains a 32-bit operation-selected ALU:
+The repository currently contains two generated organs:
 
-- operands and a three-bit operation selector are driven as registered one-bit CSS custom properties;
-- generated CSS decodes and executes `ADD`, `SUB`, `AND`, `OR`, and `XOR`;
-- generated CSS produces the latched result plus `CF`, `PF`, `AF`, `ZF`, `SF`, and `OF`;
-- a manifest-driven JavaScript shim drives physical pins, samples pins, and latches the state bank;
-- an independent oracle differential-tests 1,045 mixed edge/random operation vectors in real Chromium;
-- the demo reports actual cycle milliseconds, derived WTFHz, and generated stylesheet bytes.
+- a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
+- a fixed-`CS=0` 16-bit seed core with CSS-owned `IP`, `AX`, `IR`, immediate, phase, halt, fault, and flags;
+- CSS decodes real x86 `MOV AX,iw`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, and `HLT` opcodes;
+- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read addresses and records the trace;
+- an independent browser proof executes a 13-byte ROM to `AX=12c8`, `IP=000d`, then verifies overflow, borrow, HLT, and invalid-opcode faulting;
+- the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated artifact is currently **376 registered one-bit nets** and **59,998 bytes of CSS**.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The seed CPU is **302 nets / 58,035 CSS bytes**.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -25,21 +25,21 @@ The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a t
 
 CSS owns:
 
-- operation decode and selection;
-- the shared add/sub carry network and bitwise logic paths;
-- result-bit computation;
-- architectural result flags (logical operations deliberately drive undefined `AF` to zero for now);
-- combinational next-state pins.
+- operation and x86 opcode decode;
+- fetch-phase transitions, `IP` increment, register transfer, halt, and invalid-opcode faulting;
+- the shared add/sub carry networks and bitwise logic paths;
+- result-bit computation and architectural flags (logical operations deliberately drive undefined `AF` to zero for now);
+- every combinational next-state pin.
 
 The runtime JavaScript owns:
 
 - manifest-declared bus serialization and deserialization;
-- driving CSS input pins;
-- sampling CSS output pins;
-- one generic state-bank latch;
-- UI and diagnostics.
+- opaque byte storage behind CSS-emitted address/read pins;
+- driving CSS input pins and sampling CSS output pins;
+- one atomic generic state-bank latch;
+- UI, bus trace, and diagnostics.
 
-`src/chip.js` contains no operation decode, arithmetic, carry, parity, overflow, or x86 flag logic. The independent operation oracles exist only in the browser test and are not loaded by the demo.
+`src/chip.js` and `src/byte-bus-machine.js` contain no opcode decode, arithmetic, carry, parity, overflow, or x86 flag logic. The independent operation/x86 oracles exist only in browser tests and are not loaded by either demo.
 
 If runtime JavaScript eventually branches on opcode, addressing mode, flag meaning, privilege level, segment type, page-table semantics, or exception vector, the central claim has failed.
 
@@ -51,24 +51,25 @@ npx playwright install chromium
 npm test
 ```
 
-The test regenerates `generated/alu32.css`, opens the demo in headless Chromium, and compares every latched state against an independent JavaScript oracle.
+The tests regenerate both CSS artifacts, exercise the ALU and seed CPU in headless Chromium, compare latched state against independent oracles, and verify the exact byte-bus trace.
 
-Open `index.html` through any static HTTP server to use the bring-up instrument interactively.
+Open `index.html` for the ALU instrument or `cpu.html` for the ROM spine through any static HTTP server.
 
 ## Shape of the project
 
 - `rtl/` — small declarative netlist source and development-only reference evaluator
-- `scripts/generate.mjs` — IR to generated CSS + manifest
-- `generated/` — auditable generated netlist artifact
-- `src/chip.js` — generic physical glue/latch
-- `src/app.js` — demo UI only
+- `scripts/generate.mjs` — shared IR to generated CSS + manifest compiler
+- `generated/` — auditable generated ALU and CPU artifacts
+- `src/chip.js` — generic physical glue/atomic latch
+- `src/byte-bus-machine.js` — generic manifest-driven byte storage bus
+- `src/app.js` / `src/cpu-app.js` — demo UI only
 - `test/` — real-browser differential tests
 
 The likely milestone ladder is:
 
 1. operation-selected `ADD`/`SUB`/`AND`/`OR`/`XOR` plus flags — **working**
-2. register-transfer microsteps
-3. tiny real-mode fetch/decode loop and bus traces
+2. atomic register-transfer microsteps — **working**
+3. fixed-`CS=0` real-mode fetch/decode loop and byte-bus traces — **working subset**
 4. 386 protected mode, paging, privilege, faults, and differential conformance
 5. BIOS and a small real-mode guest
 6. Windows 95 Safe Mode

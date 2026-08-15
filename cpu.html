@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CSS/386 executing a tiny real-mode x86 ROM byte stream through a generic JavaScript byte bus.">
+  <title>CSS/386 · ROM spine</title>
+  <link rel="stylesheet" href="./src/site.css">
+  <link rel="stylesheet" href="./generated/cpu16.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">win95.css / organ three</p>
+      <h1>ROM spine</h1>
+      <p class="lede">CSS owns the fetch phases, x86 opcode decode, register transfer, ALU, flags, fault, and halt. JavaScript is an opcode-blind byte-storage bus.</p>
+    </header>
+
+    <section class="instrument">
+      <div class="rom-row"><span class="label">ROM</span><code id="rom"></code><button id="run" type="button">cold boot</button></div>
+      <div id="cpu-mount"><div id="cpu" class="css386-cpu"></div></div>
+      <dl class="flags cpu-state">
+        <div><dt>IP</dt><dd data-state="ip">0000</dd></div>
+        <div><dt>AX</dt><dd data-state="ax">0000</dd></div>
+        <div><dt>IR</dt><dd data-state="ir">00</dd></div>
+        <div><dt>phase</dt><dd data-state="phase">0</dd></div>
+        <div><dt>halted</dt><dd data-state="halted">0</dd></div>
+        <div><dt>faulted</dt><dd data-state="faulted">0</dd></div>
+      </dl>
+      <dl class="flags">
+        <div><dt>CF</dt><dd data-state="cf">0</dd></div>
+        <div><dt>PF</dt><dd data-state="pf">0</dd></div>
+        <div><dt>AF</dt><dd data-state="af">0</dd></div>
+        <div><dt>ZF</dt><dd data-state="zf">0</dd></div>
+        <div><dt>SF</dt><dd data-state="sf">0</dd></div>
+        <div><dt>OF</dt><dd data-state="of">0</dd></div>
+      </dl>
+      <dl class="metrics">
+        <div><dt>bus cycles</dt><dd id="cycles">—</dd></div>
+        <div><dt>elapsed</dt><dd><span id="elapsed">—</span> ms</dd></div>
+        <div><dt>clock</dt><dd><span id="wtf-hz">—</span> WTFHz</dd></div>
+      </dl>
+      <pre id="trace" aria-label="byte bus trace"></pre>
+    </section>
+
+    <footer>
+      <p><strong>current claim</strong> — a fixed-<code>CS=0</code> 16-bit seed core executes <code>MOV AX,iw</code>, <code>ADD AX,iw</code>, <code>SUB AX,iw</code>, <code>XOR AX,iw</code>, and <code>HLT</code>. It is not a complete 8086 or 386 yet.</p>
+      <p><a href="./">← operation-selected ALU</a></p>
+    </footer>
+  </main>
+  <script type="module" src="./src/cpu-app.js"></script>
+</body>
+</html>
