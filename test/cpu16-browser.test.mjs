@@ -45,6 +45,21 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
 
+    await page.goto(`${baseUrl}/test/cpu16.html`);
+    const seeded = await page.evaluate(async () => {
+      const { CssChip } = await import('/src/chip.js');
+      const manifest = await fetch('/generated/cpu16.manifest.json').then((response) => response.json());
+      const chip = new CssChip(document.querySelector('#cpu'), manifest);
+      const state = chip.seedState({ ip: 0x1234, ax: 0xabcd });
+      let unknown;
+      try { chip.seedState({ nope: 1 }); } catch (error) { unknown = error.message; }
+      return { state, unknown };
+    });
+    assert.equal(seeded.state.ip, 0x1234);
+    assert.equal(seeded.state.ax, 0xabcd);
+    assert.equal(seeded.state.cx, 0);
+    assert.equal(seeded.unknown, 'unknown state nope');
+
     await page.goto(`${baseUrl}/`);
     await page.waitForFunction(() => window.css386cpu?.run);
     const publicDemo = await page.evaluate(() => ({ result: window.css386cpu.run(), rendered: {

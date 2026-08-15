@@ -55,6 +55,16 @@ export class CssChip {
     return Object.fromEntries(Object.entries(this.manifest.state).map(([name, port]) => [name, this.readBus(name, port)]));
   }
 
+  seedState(values = {}) {
+    for (const name of Object.keys(values)) {
+      if (!(name in this.manifest.state)) throw new Error(`unknown state ${name}`);
+    }
+    for (const [name, port] of Object.entries(this.manifest.state)) {
+      this.writeBus(name, port, values[name] ?? port.initial ?? 0);
+    }
+    return this.state();
+  }
+
   cycle() {
     const next = Object.fromEntries(Object.entries(this.manifest.latches).map(([state, sourcePins]) => [
       state, sourcePins.map((pin) => numericValue(this.element, pin)),
