@@ -1667,6 +1667,12 @@
   initial-value: 0;
 }
 
+@property --if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --cf {
   syntax: "<number>";
   inherits: false;
@@ -1883,6 +1889,18 @@
   initial-value: 0;
 }
 
+@property --fetched-movSreg {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-movSreg {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-store {
   syntax: "<number>";
   inherits: false;
@@ -1962,6 +1980,30 @@
 }
 
 @property --opcode-ret {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-cli {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-cli {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-sti {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-sti {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2129,6 +2171,12 @@
   initial-value: 0;
 }
 
+@property --fetched-simple {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-supported {
   syntax: "<number>";
   inherits: false;
@@ -2183,7 +2231,55 @@
   initial-value: 0;
 }
 
+@property --mov-sreg-es {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --mov-sreg-ss {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --mov-sreg-ds {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --mov-sreg-selector-valid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --modrm-gpr-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --mov-sreg-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --modrm-address-invalid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --mov-sreg-selector-invalid {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -2196,6 +2292,18 @@
 }
 
 @property --execute {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --update-if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-if {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -6911,6 +7019,24 @@
   initial-value: 0;
 }
 
+@property --next-es-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-1 {
   syntax: "<number>";
   inherits: false;
@@ -6942,6 +7068,24 @@
 }
 
 @property --modrm-result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -6983,6 +7127,24 @@
   initial-value: 0;
 }
 
+@property --next-es-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-3 {
   syntax: "<number>";
   inherits: false;
@@ -7014,6 +7176,24 @@
 }
 
 @property --modrm-result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7055,6 +7235,24 @@
   initial-value: 0;
 }
 
+@property --next-es-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-5 {
   syntax: "<number>";
   inherits: false;
@@ -7086,6 +7284,24 @@
 }
 
 @property --modrm-result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7127,6 +7343,24 @@
   initial-value: 0;
 }
 
+@property --next-es-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-7 {
   syntax: "<number>";
   inherits: false;
@@ -7158,6 +7392,24 @@
 }
 
 @property --modrm-result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7199,6 +7451,24 @@
   initial-value: 0;
 }
 
+@property --next-es-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-9 {
   syntax: "<number>";
   inherits: false;
@@ -7230,6 +7500,24 @@
 }
 
 @property --modrm-result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7271,6 +7559,24 @@
   initial-value: 0;
 }
 
+@property --next-es-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-11 {
   syntax: "<number>";
   inherits: false;
@@ -7302,6 +7608,24 @@
 }
 
 @property --modrm-result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7343,6 +7667,24 @@
   initial-value: 0;
 }
 
+@property --next-es-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-13 {
   syntax: "<number>";
   inherits: false;
@@ -7374,6 +7716,24 @@
 }
 
 @property --modrm-result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -7415,6 +7775,24 @@
   initial-value: 0;
 }
 
+@property --next-es-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-reg-value-15 {
   syntax: "<number>";
   inherits: false;
@@ -7446,6 +7824,24 @@
 }
 
 @property --modrm-result-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-es-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ss-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-ds-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -10370,6 +10766,7 @@
   --phase-3: 0;
   --halted: 0;
   --faulted: 0;
+  --if: 0;
   --cf: 0;
   --pf: 0;
   --af: 0;
@@ -10406,6 +10803,8 @@
   --opcode-movRmReg: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-movRegRm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-movRegRm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-movSreg: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-movSreg: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-store: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-jz: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
@@ -10420,6 +10819,10 @@
   --opcode-far: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-ret: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-ret: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-cli: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-cli: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-sti: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-sti: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-mov-ax: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -10443,11 +10846,12 @@
   --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far)));
   --fetched-short: min(1, calc(var(--fetched-jz) + var(--fetched-jnz)));
   --opcode-short: min(1, calc(var(--opcode-jz) + var(--opcode-jnz)));
-  --fetched-modrm: min(1, calc(var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-xorRegRm)));
-  --opcode-modrm: min(1, calc(var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm)));
+  --fetched-modrm: min(1, calc(var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-xorRegRm) + var(--fetched-movSreg)));
+  --opcode-modrm: min(1, calc(var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm) + var(--opcode-movSreg)));
   --opcode-modrm-to-reg: min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
   --opcode-modrm-xor: min(1, calc(var(--opcode-xorRmReg) + var(--opcode-xorRegRm)));
-  --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-short) + var(--fetched-modrm) + var(--fetched-ret) + var(--fetched-hlt)));
+  --fetched-simple: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
+  --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-short) + var(--fetched-modrm) + var(--fetched-simple) + var(--fetched-ret) + var(--fetched-hlt)));
   --fetched-invalid: calc(1 - var(--fetched-supported));
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
   --capture-imm-low: round(down, calc(calc(var(--phase-imm-low) + var(--bus-read)) / 2), 1);
@@ -10456,9 +10860,19 @@
   --capture-far-high: round(down, calc(calc(var(--phase-far-high) + var(--bus-read)) / 2), 1);
   --capture-modrm: round(down, calc(calc(var(--phase-modrm) + var(--bus-read)) / 2), 1);
   --modrm-register: round(down, calc(calc(var(--busData-7) + var(--busData-6)) / 2), 1);
+  --mov-sreg-es: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
+  --mov-sreg-ss: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
+  --mov-sreg-ds: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
+  --mov-sreg-selector-valid: min(1, calc(var(--mov-sreg-es) + var(--mov-sreg-ss) + var(--mov-sreg-ds)));
   --modrm-commit: round(down, calc(calc(var(--capture-modrm) + var(--modrm-register)) / 2), 1);
-  --modrm-invalid: round(down, calc(calc(var(--capture-modrm) + calc(1 - var(--modrm-register))) / 2), 1);
+  --modrm-gpr-commit: round(down, calc(calc(var(--modrm-commit) + calc(1 - var(--opcode-movSreg))) / 2), 1);
+  --mov-sreg-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-movSreg) + var(--mov-sreg-selector-valid)) / 2), 1)) / 2), 1);
+  --modrm-address-invalid: round(down, calc(calc(var(--capture-modrm) + calc(1 - var(--modrm-register))) / 2), 1);
+  --mov-sreg-selector-invalid: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-movSreg) + calc(1 - var(--mov-sreg-selector-valid))) / 2), 1)) / 2), 1);
+  --modrm-invalid: min(1, calc(var(--modrm-address-invalid) + var(--mov-sreg-selector-invalid)));
   --execute: round(down, calc(calc(var(--capture-imm-high) + calc(1 - var(--opcode-store))) / 2), 1);
+  --update-if: round(down, calc(calc(var(--capture-opcode) + var(--fetched-simple)) / 2), 1);
+  --next-if: min(1, calc(round(down, calc(calc(calc(1 - var(--update-if)) + var(--if)) / 2), 1) + round(down, calc(calc(var(--update-if) + var(--fetched-sti)) / 2), 1)));
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
   --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);
@@ -11244,99 +11658,147 @@
   --modrm-destination-0: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-0)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-0)) / 2), 1)));
   --modrm-xor-result-0: mod(calc(var(--modrm-destination-0) + var(--modrm-source-0)), 2);
   --modrm-result-0: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-0)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-0)) / 2), 1)));
+  --next-es-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-0)) / 2), 1)));
+  --next-ss-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-0)) / 2), 1)));
+  --next-ds-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-0)) / 2), 1)));
   --modrm-reg-value-1: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-1)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-1)) / 2), 1)));
   --modrm-rm-value-1: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-1)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-1)) / 2), 1)));
   --modrm-source-1: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-1)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-1)) / 2), 1)));
   --modrm-destination-1: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-1)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-1)) / 2), 1)));
   --modrm-xor-result-1: mod(calc(var(--modrm-destination-1) + var(--modrm-source-1)), 2);
   --modrm-result-1: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-1)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-1)) / 2), 1)));
+  --next-es-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-1)) / 2), 1)));
+  --next-ss-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-1)) / 2), 1)));
+  --next-ds-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-1)) / 2), 1)));
   --modrm-reg-value-2: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-2)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-2)) / 2), 1)));
   --modrm-rm-value-2: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-2)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-2)) / 2), 1)));
   --modrm-source-2: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-2)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-2)) / 2), 1)));
   --modrm-destination-2: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-2)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-2)) / 2), 1)));
   --modrm-xor-result-2: mod(calc(var(--modrm-destination-2) + var(--modrm-source-2)), 2);
   --modrm-result-2: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-2)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-2)) / 2), 1)));
+  --next-es-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-2)) / 2), 1)));
+  --next-ss-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-2)) / 2), 1)));
+  --next-ds-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-2)) / 2), 1)));
   --modrm-reg-value-3: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-3)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-3)) / 2), 1)));
   --modrm-rm-value-3: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-3)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-3)) / 2), 1)));
   --modrm-source-3: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-3)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-3)) / 2), 1)));
   --modrm-destination-3: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-3)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-3)) / 2), 1)));
   --modrm-xor-result-3: mod(calc(var(--modrm-destination-3) + var(--modrm-source-3)), 2);
   --modrm-result-3: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-3)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-3)) / 2), 1)));
+  --next-es-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-3)) / 2), 1)));
+  --next-ss-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-3)) / 2), 1)));
+  --next-ds-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-3)) / 2), 1)));
   --modrm-reg-value-4: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-4)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-4)) / 2), 1)));
   --modrm-rm-value-4: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-4)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-4)) / 2), 1)));
   --modrm-source-4: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-4)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-4)) / 2), 1)));
   --modrm-destination-4: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-4)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-4)) / 2), 1)));
   --modrm-xor-result-4: mod(calc(var(--modrm-destination-4) + var(--modrm-source-4)), 2);
   --modrm-result-4: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-4)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-4)) / 2), 1)));
+  --next-es-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-4)) / 2), 1)));
+  --next-ss-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-4)) / 2), 1)));
+  --next-ds-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-4)) / 2), 1)));
   --modrm-reg-value-5: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-5)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-5)) / 2), 1)));
   --modrm-rm-value-5: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-5)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-5)) / 2), 1)));
   --modrm-source-5: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-5)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-5)) / 2), 1)));
   --modrm-destination-5: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-5)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-5)) / 2), 1)));
   --modrm-xor-result-5: mod(calc(var(--modrm-destination-5) + var(--modrm-source-5)), 2);
   --modrm-result-5: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-5)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-5)) / 2), 1)));
+  --next-es-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-5)) / 2), 1)));
+  --next-ss-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-5)) / 2), 1)));
+  --next-ds-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-5)) / 2), 1)));
   --modrm-reg-value-6: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-6)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-6)) / 2), 1)));
   --modrm-rm-value-6: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-6)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-6)) / 2), 1)));
   --modrm-source-6: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-6)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-6)) / 2), 1)));
   --modrm-destination-6: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-6)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-6)) / 2), 1)));
   --modrm-xor-result-6: mod(calc(var(--modrm-destination-6) + var(--modrm-source-6)), 2);
   --modrm-result-6: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-6)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-6)) / 2), 1)));
+  --next-es-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-6)) / 2), 1)));
+  --next-ss-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-6)) / 2), 1)));
+  --next-ds-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-6)) / 2), 1)));
   --modrm-reg-value-7: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-7)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-7)) / 2), 1)));
   --modrm-rm-value-7: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-7)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-7)) / 2), 1)));
   --modrm-source-7: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-7)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-7)) / 2), 1)));
   --modrm-destination-7: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-7)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-7)) / 2), 1)));
   --modrm-xor-result-7: mod(calc(var(--modrm-destination-7) + var(--modrm-source-7)), 2);
   --modrm-result-7: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-7)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-7)) / 2), 1)));
+  --next-es-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-7)) / 2), 1)));
+  --next-ss-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-7)) / 2), 1)));
+  --next-ds-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-7)) / 2), 1)));
   --modrm-reg-value-8: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-8)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-8)) / 2), 1)));
   --modrm-rm-value-8: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-8)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-8)) / 2), 1)));
   --modrm-source-8: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-8)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-8)) / 2), 1)));
   --modrm-destination-8: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-8)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-8)) / 2), 1)));
   --modrm-xor-result-8: mod(calc(var(--modrm-destination-8) + var(--modrm-source-8)), 2);
   --modrm-result-8: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-8)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-8)) / 2), 1)));
+  --next-es-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-8)) / 2), 1)));
+  --next-ss-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-8)) / 2), 1)));
+  --next-ds-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-8)) / 2), 1)));
   --modrm-reg-value-9: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-9)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-9)) / 2), 1)));
   --modrm-rm-value-9: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-9)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-9)) / 2), 1)));
   --modrm-source-9: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-9)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-9)) / 2), 1)));
   --modrm-destination-9: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-9)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-9)) / 2), 1)));
   --modrm-xor-result-9: mod(calc(var(--modrm-destination-9) + var(--modrm-source-9)), 2);
   --modrm-result-9: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-9)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-9)) / 2), 1)));
+  --next-es-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-9)) / 2), 1)));
+  --next-ss-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-9)) / 2), 1)));
+  --next-ds-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-9)) / 2), 1)));
   --modrm-reg-value-10: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-10)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-10)) / 2), 1)));
   --modrm-rm-value-10: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-10)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-10)) / 2), 1)));
   --modrm-source-10: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-10)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-10)) / 2), 1)));
   --modrm-destination-10: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-10)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-10)) / 2), 1)));
   --modrm-xor-result-10: mod(calc(var(--modrm-destination-10) + var(--modrm-source-10)), 2);
   --modrm-result-10: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-10)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-10)) / 2), 1)));
+  --next-es-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-10)) / 2), 1)));
+  --next-ss-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-10)) / 2), 1)));
+  --next-ds-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-10)) / 2), 1)));
   --modrm-reg-value-11: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-11)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-11)) / 2), 1)));
   --modrm-rm-value-11: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-11)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-11)) / 2), 1)));
   --modrm-source-11: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-11)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-11)) / 2), 1)));
   --modrm-destination-11: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-11)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-11)) / 2), 1)));
   --modrm-xor-result-11: mod(calc(var(--modrm-destination-11) + var(--modrm-source-11)), 2);
   --modrm-result-11: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-11)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-11)) / 2), 1)));
+  --next-es-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-11)) / 2), 1)));
+  --next-ss-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-11)) / 2), 1)));
+  --next-ds-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-11)) / 2), 1)));
   --modrm-reg-value-12: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-12)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-12)) / 2), 1)));
   --modrm-rm-value-12: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-12)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-12)) / 2), 1)));
   --modrm-source-12: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-12)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-12)) / 2), 1)));
   --modrm-destination-12: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-12)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-12)) / 2), 1)));
   --modrm-xor-result-12: mod(calc(var(--modrm-destination-12) + var(--modrm-source-12)), 2);
   --modrm-result-12: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-12)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-12)) / 2), 1)));
+  --next-es-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-12)) / 2), 1)));
+  --next-ss-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-12)) / 2), 1)));
+  --next-ds-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-12)) / 2), 1)));
   --modrm-reg-value-13: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-13)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-13)) / 2), 1)));
   --modrm-rm-value-13: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-13)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-13)) / 2), 1)));
   --modrm-source-13: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-13)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-13)) / 2), 1)));
   --modrm-destination-13: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-13)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-13)) / 2), 1)));
   --modrm-xor-result-13: mod(calc(var(--modrm-destination-13) + var(--modrm-source-13)), 2);
   --modrm-result-13: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-13)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-13)) / 2), 1)));
+  --next-es-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-13)) / 2), 1)));
+  --next-ss-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-13)) / 2), 1)));
+  --next-ds-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-13)) / 2), 1)));
   --modrm-reg-value-14: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-14)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-14)) / 2), 1)));
   --modrm-rm-value-14: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-14)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-14)) / 2), 1)));
   --modrm-source-14: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-14)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-14)) / 2), 1)));
   --modrm-destination-14: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-14)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-14)) / 2), 1)));
   --modrm-xor-result-14: mod(calc(var(--modrm-destination-14) + var(--modrm-source-14)), 2);
   --modrm-result-14: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-14)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-14)) / 2), 1)));
+  --next-es-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-14)) / 2), 1)));
+  --next-ss-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-14)) / 2), 1)));
+  --next-ds-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-14)) / 2), 1)));
   --modrm-reg-value-15: min(1, calc(round(down, calc(calc(var(--modrm-reg-ax) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-cx) + var(--cx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-dx) + var(--dx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bx) + var(--bx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-sp) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-bp) + var(--bp-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-si) + var(--si-15)) / 2), 1) + round(down, calc(calc(var(--modrm-reg-di) + var(--di-15)) / 2), 1)));
   --modrm-rm-value-15: min(1, calc(round(down, calc(calc(var(--modrm-rm-ax) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-cx) + var(--cx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-dx) + var(--dx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bx) + var(--bx-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-sp) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-bp) + var(--bp-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-si) + var(--si-15)) / 2), 1) + round(down, calc(calc(var(--modrm-rm-di) + var(--di-15)) / 2), 1)));
   --modrm-source-15: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-reg-value-15)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-rm-value-15)) / 2), 1)));
   --modrm-destination-15: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-value-15)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-value-15)) / 2), 1)));
   --modrm-xor-result-15: mod(calc(var(--modrm-destination-15) + var(--modrm-source-15)), 2);
   --modrm-result-15: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-xor)) + var(--modrm-source-15)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-xor) + var(--modrm-xor-result-15)) / 2), 1)));
+  --next-es-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1)) + var(--es-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-es)) / 2), 1) + var(--modrm-rm-value-15)) / 2), 1)));
+  --next-ss-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1)) + var(--ss-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ss)) / 2), 1) + var(--modrm-rm-value-15)) / 2), 1)));
+  --next-ds-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1)) + var(--ds-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--mov-sreg-commit) + var(--mov-sreg-ds)) / 2), 1) + var(--modrm-rm-value-15)) / 2), 1)));
   --update-ax: round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-mov-ax) + var(--opcode-add) + var(--opcode-sub) + var(--opcode-xor)))) / 2), 1);
   --write-immediate-ax: var(--update-ax);
-  --write-modrm-ax: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-ax)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-ax)) / 2), 1)))) / 2), 1);
+  --write-modrm-ax: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-ax)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-ax)) / 2), 1)))) / 2), 1);
   --write-ax: min(1, calc(var(--write-immediate-ax) + var(--write-modrm-ax)));
   --write-source-ax-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-0)) / 2), 1)));
   --next-base-ax-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-0)) / 2), 1)));
@@ -11387,7 +11849,7 @@
   --next-base-ax-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-15)) / 2), 1)));
   --next-ax-15: var(--next-base-ax-15);
   --write-immediate-cx: round(down, calc(calc(var(--execute) + var(--opcode-mov-cx)) / 2), 1);
-  --write-modrm-cx: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-cx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-cx)) / 2), 1)))) / 2), 1);
+  --write-modrm-cx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-cx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-cx)) / 2), 1)))) / 2), 1);
   --write-cx: min(1, calc(var(--write-immediate-cx) + var(--write-modrm-cx)));
   --write-source-cx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-0)) / 2), 1)));
   --next-base-cx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-0)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-0)) / 2), 1)));
@@ -11438,7 +11900,7 @@
   --next-base-cx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-15)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-15)) / 2), 1)));
   --next-cx-15: var(--next-base-cx-15);
   --write-immediate-dx: round(down, calc(calc(var(--execute) + var(--opcode-mov-dx)) / 2), 1);
-  --write-modrm-dx: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-dx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-dx)) / 2), 1)))) / 2), 1);
+  --write-modrm-dx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-dx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-dx)) / 2), 1)))) / 2), 1);
   --write-dx: min(1, calc(var(--write-immediate-dx) + var(--write-modrm-dx)));
   --write-source-dx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-0)) / 2), 1)));
   --next-base-dx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-0)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-0)) / 2), 1)));
@@ -11489,7 +11951,7 @@
   --next-base-dx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-15)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-15)) / 2), 1)));
   --next-dx-15: var(--next-base-dx-15);
   --write-immediate-bx: round(down, calc(calc(var(--execute) + var(--opcode-mov-bx)) / 2), 1);
-  --write-modrm-bx: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-bx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-bx)) / 2), 1)))) / 2), 1);
+  --write-modrm-bx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-bx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-bx)) / 2), 1)))) / 2), 1);
   --write-bx: min(1, calc(var(--write-immediate-bx) + var(--write-modrm-bx)));
   --write-source-bx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-0)) / 2), 1)));
   --next-base-bx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-0)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-0)) / 2), 1)));
@@ -11540,7 +12002,7 @@
   --next-base-bx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-15)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-15)) / 2), 1)));
   --next-bx-15: var(--next-base-bx-15);
   --write-immediate-sp: round(down, calc(calc(var(--execute) + var(--opcode-mov-sp)) / 2), 1);
-  --write-modrm-sp: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-sp)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-sp)) / 2), 1)))) / 2), 1);
+  --write-modrm-sp: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-sp)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-sp)) / 2), 1)))) / 2), 1);
   --write-sp: min(1, calc(var(--write-immediate-sp) + var(--write-modrm-sp)));
   --write-source-sp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-sp)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-sp) + var(--modrm-result-0)) / 2), 1)));
   --next-base-sp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-sp)) + var(--sp-0)) / 2), 1) + round(down, calc(calc(var(--write-sp) + var(--write-source-sp-0)) / 2), 1)));
@@ -11575,7 +12037,7 @@
   --write-source-sp-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-sp)) + var(--immediate-15)) / 2), 1) + round(down, calc(calc(var(--write-modrm-sp) + var(--modrm-result-15)) / 2), 1)));
   --next-base-sp-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-sp)) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--write-sp) + var(--write-source-sp-15)) / 2), 1)));
   --write-immediate-bp: round(down, calc(calc(var(--execute) + var(--opcode-mov-bp)) / 2), 1);
-  --write-modrm-bp: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-bp)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-bp)) / 2), 1)))) / 2), 1);
+  --write-modrm-bp: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-bp)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-bp)) / 2), 1)))) / 2), 1);
   --write-bp: min(1, calc(var(--write-immediate-bp) + var(--write-modrm-bp)));
   --write-source-bp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bp)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bp) + var(--modrm-result-0)) / 2), 1)));
   --next-base-bp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bp)) + var(--bp-0)) / 2), 1) + round(down, calc(calc(var(--write-bp) + var(--write-source-bp-0)) / 2), 1)));
@@ -11626,7 +12088,7 @@
   --next-base-bp-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bp)) + var(--bp-15)) / 2), 1) + round(down, calc(calc(var(--write-bp) + var(--write-source-bp-15)) / 2), 1)));
   --next-bp-15: var(--next-base-bp-15);
   --write-immediate-si: round(down, calc(calc(var(--execute) + var(--opcode-mov-si)) / 2), 1);
-  --write-modrm-si: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-si)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-si)) / 2), 1)))) / 2), 1);
+  --write-modrm-si: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-si)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-si)) / 2), 1)))) / 2), 1);
   --write-si: min(1, calc(var(--write-immediate-si) + var(--write-modrm-si)));
   --write-source-si-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-si)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-si) + var(--modrm-result-0)) / 2), 1)));
   --next-base-si-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-si)) + var(--si-0)) / 2), 1) + round(down, calc(calc(var(--write-si) + var(--write-source-si-0)) / 2), 1)));
@@ -11677,7 +12139,7 @@
   --next-base-si-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-si)) + var(--si-15)) / 2), 1) + round(down, calc(calc(var(--write-si) + var(--write-source-si-15)) / 2), 1)));
   --next-si-15: var(--next-base-si-15);
   --write-immediate-di: round(down, calc(calc(var(--execute) + var(--opcode-mov-di)) / 2), 1);
-  --write-modrm-di: round(down, calc(calc(var(--modrm-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-di)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-di)) / 2), 1)))) / 2), 1);
+  --write-modrm-di: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-di)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-di)) / 2), 1)))) / 2), 1);
   --write-di: min(1, calc(var(--write-immediate-di) + var(--write-modrm-di)));
   --write-source-di-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-di)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-di) + var(--modrm-result-0)) / 2), 1)));
   --next-base-di-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-di)) + var(--di-0)) / 2), 1) + round(down, calc(calc(var(--write-di) + var(--write-source-di-0)) / 2), 1)));
@@ -11728,37 +12190,37 @@
   --next-base-di-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-di)) + var(--di-15)) / 2), 1) + round(down, calc(calc(var(--write-di) + var(--write-source-di-15)) / 2), 1)));
   --next-di-15: var(--next-base-di-15);
   --next-sp-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-0)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-0)) / 2), 1)));
-  --flag-result-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-0)) / 2), 1)));
+  --flag-result-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-0)) / 2), 1)));
   --next-sp-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-1)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-1)) / 2), 1)));
-  --flag-result-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-1)) / 2), 1)));
+  --flag-result-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-1)) / 2), 1)));
   --next-sp-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-2)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-2)) / 2), 1)));
-  --flag-result-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-2)) / 2), 1)));
+  --flag-result-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-2)) / 2), 1)));
   --next-sp-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-3)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-3)) / 2), 1)));
-  --flag-result-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-3)) / 2), 1)));
+  --flag-result-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-3)) / 2), 1)));
   --next-sp-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-4)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-4)) / 2), 1)));
-  --flag-result-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-4)) / 2), 1)));
+  --flag-result-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-4)) / 2), 1)));
   --next-sp-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-5)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-5)) / 2), 1)));
-  --flag-result-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-5)) / 2), 1)));
+  --flag-result-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-5)) / 2), 1)));
   --next-sp-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-6)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-6)) / 2), 1)));
-  --flag-result-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-6)) / 2), 1)));
+  --flag-result-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-6)) / 2), 1)));
   --next-sp-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-7)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-7)) / 2), 1)));
-  --flag-result-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-7)) / 2), 1)));
+  --flag-result-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-7)) / 2), 1)));
   --next-sp-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-8)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-8)) / 2), 1)));
-  --flag-result-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-8)) / 2), 1)));
+  --flag-result-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-8)) / 2), 1)));
   --next-sp-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-9)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-9)) / 2), 1)));
-  --flag-result-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-9)) / 2), 1)));
+  --flag-result-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-9)) / 2), 1)));
   --next-sp-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-10)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-10)) / 2), 1)));
-  --flag-result-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-10)) / 2), 1)));
+  --flag-result-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-10)) / 2), 1)));
   --next-sp-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-11)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-11)) / 2), 1)));
-  --flag-result-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-11)) / 2), 1)));
+  --flag-result-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-11)) / 2), 1)));
   --next-sp-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-12)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-12)) / 2), 1)));
-  --flag-result-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-12)) / 2), 1)));
+  --flag-result-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-12)) / 2), 1)));
   --next-sp-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-13)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-13)) / 2), 1)));
-  --flag-result-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-13)) / 2), 1)));
+  --flag-result-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-13)) / 2), 1)));
   --next-sp-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-14)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-14)) / 2), 1)));
-  --flag-result-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-14)) / 2), 1)));
+  --flag-result-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-14)) / 2), 1)));
   --next-sp-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + min(1, calc(round(down, calc(calc(calc(1 - var(--begin-call)) + var(--next-base-sp-15)) / 2), 1) + round(down, calc(calc(var(--begin-call) + var(--sp-dec-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--sp-inc-15)) / 2), 1)));
-  --flag-result-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-15)) / 2), 1)));
+  --flag-result-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)) + var(--alu-result-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-result-15)) / 2), 1)));
   --alu-arithmetic-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-sub)) + var(--alu-carry-16)) / 2), 1) + round(down, calc(calc(var(--opcode-sub) + calc(1 - var(--alu-carry-16))) / 2), 1)));
   --alu-arithmetic-af: min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-sub)) + var(--alu-carry-4)) / 2), 1) + round(down, calc(calc(var(--opcode-sub) + calc(1 - var(--alu-carry-4))) / 2), 1)));
   --alu-cf: round(down, calc(calc(var(--select-arithmetic) + var(--alu-arithmetic-cf)) / 2), 1);
@@ -11767,7 +12229,7 @@
   --alu-zf: calc(1 - min(1, calc(var(--flag-result-0) + var(--flag-result-1) + var(--flag-result-2) + var(--flag-result-3) + var(--flag-result-4) + var(--flag-result-5) + var(--flag-result-6) + var(--flag-result-7) + var(--flag-result-8) + var(--flag-result-9) + var(--flag-result-10) + var(--flag-result-11) + var(--flag-result-12) + var(--flag-result-13) + var(--flag-result-14) + var(--flag-result-15))));
   --alu-sf: var(--flag-result-15);
   --alu-of: round(down, calc(calc(var(--select-arithmetic) + mod(calc(var(--alu-carry-15) + var(--alu-carry-16)), 2)) / 2), 1);
-  --update-flags: min(1, calc(round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-xor)))) / 2), 1) + round(down, calc(calc(var(--modrm-commit) + var(--opcode-modrm-xor)) / 2), 1)));
+  --update-flags: min(1, calc(round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-xor)))) / 2), 1) + round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1)));
   --next-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--cf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-cf)) / 2), 1)));
   --next-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--pf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-pf)) / 2), 1)));
   --next-af: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--af)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--alu-af)) / 2), 1)));
