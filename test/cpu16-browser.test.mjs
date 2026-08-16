@@ -72,23 +72,27 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       cycles: document.querySelector('#cycles').textContent,
       trace: document.querySelector('#trace').textContent,
     } }));
-    assert.equal(publicDemo.result.state.ip, 0x7c36);
+    assert.equal(publicDemo.result.state.ip, 0x7c44);
     assert.equal(publicDemo.result.state.cs, 0);
     assert.equal(publicDemo.result.state.ax, 0x12c8);
-    assert.equal(publicDemo.rendered.ip, '7c36');
+    assert.equal(publicDemo.rendered.ip, '7c44');
     assert.equal(publicDemo.rendered.ax, '12c8');
-    assert.equal(publicDemo.rendered.cycles, '76');
+    assert.equal(publicDemo.rendered.cycles, '90');
     assert.match(publicDemo.rendered.trace, /^00  read  \[ffff0\] → ea/m);
     assert.match(publicDemo.rendered.trace, /^04  read  \[ffff4\] → 00/m);
     assert.match(publicDemo.rendered.trace, /^05  read  \[07c00\] → e9/m);
     assert.match(publicDemo.rendered.trace, /^08  read  \[07c06\] → b8/m);
     assert.match(publicDemo.rendered.trace, /32  write \[02000\] ← 34/m);
     assert.match(publicDemo.rendered.trace, /33  write \[02001\] ← 12/m);
-    assert.match(publicDemo.rendered.trace, /67  write \[05553\] ← 35/m);
-    assert.match(publicDemo.rendered.trace, /68  write \[05554\] ← 7c/m);
-    assert.match(publicDemo.rendered.trace, /73  read  \[05553\] → 35/m);
-    assert.match(publicDemo.rendered.trace, /74  read  \[05554\] → 7c/m);
-    assert.match(publicDemo.rendered.trace, /75  read  \[07c35\] → f4$/m);
+    assert.match(publicDemo.rendered.trace, /64  read  \[07c32\] → 89/m);
+    assert.match(publicDemo.rendered.trace, /66  read  \[07c34\] → 8b/m);
+    assert.match(publicDemo.rendered.trace, /68  read  \[07c36\] → 31/m);
+    assert.match(publicDemo.rendered.trace, /70  read  \[07c38\] → 33/m);
+    assert.match(publicDemo.rendered.trace, /81  write \[05553\] ← 43/m);
+    assert.match(publicDemo.rendered.trace, /82  write \[05554\] ← 7c/m);
+    assert.match(publicDemo.rendered.trace, /87  read  \[05553\] → 43/m);
+    assert.match(publicDemo.rendered.trace, /88  read  \[05554\] → 7c/m);
+    assert.match(publicDemo.rendered.trace, /89  read  \[07c43\] → f4$/m);
     assert.deepEqual(publicDemo.result.trace.slice(8, 26).map(({ address }) => address), [0x7c06, 0x7c07, 0x7c08, 0x7c09, 0x7c0a, 0x7c0b, 0x7c0c, 0x7c0d, 0x7c09, 0x7c0a, 0x7c0b, 0x7c0c, 0x7c0d, 0x7c09, 0x7c0a, 0x7c0b, 0x7c0c, 0x7c0d]);
     assert.deepEqual(publicDemo.result.trace.slice(0, 9).map(({ address }) => address), [0xffff0, 0xffff1, 0xffff2, 0xffff3, 0xffff4, 0x7c00, 0x7c01, 0x7c02, 0x7c06]);
     assert.equal(publicDemo.result.trace.some(({ address }) => [0x7c03, 0x7c04, 0x7c05].includes(address)), false);
@@ -221,6 +225,40 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     );
     assert.equal(registerFile.state.ip, 25);
     assert.equal(registerFile.state.halted, 1);
+
+    const modrmProgram = [
+      0xb8, 0x11, 0x11, 0xb9, 0x22, 0x22, 0xba, 0x33, 0x33, 0xbb, 0x44, 0x44,
+      0xbc, 0x55, 0x55, 0xbd, 0x66, 0x66, 0xbe, 0x77, 0x77, 0xbf, 0x88, 0x88,
+      0x89, 0xc1, 0x89, 0xda, 0x8b, 0xec, 0x8b, 0xfe,
+      0x31, 0xc9, 0x33, 0xf6, 0xf4,
+    ];
+    const modrm = await execute(page, baseUrl, modrmProgram);
+    assert.deepEqual(modrm.trace, modrmProgram.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, modrm.state[name]])),
+      { ax: 0x1111, cx: 0, dx: 0x4444, bx: 0x4444, sp: 0x5555, bp: 0x5555, si: 0, di: 0x7777 },
+    );
+    assert.deepEqual(
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, modrm.state[name]])),
+      { cf: 0, pf: 1, af: 0, zf: 1, sf: 0, of: 0 },
+    );
+    assert.equal(modrm.state.ip, modrmProgram.length);
+    assert.equal(modrm.state.halted, 1);
+    assert.equal(modrm.state.faulted, 0);
+
+    const modrmXor = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xbb, 0x78, 0x56, 0x31, 0xd8, 0xf4]);
+    assert.equal(modrmXor.state.ax, 0x444c);
+    assert.deepEqual(
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, modrmXor.state[name]])),
+      { cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0 },
+    );
+
+    const memoryModeFault = await execute(page, baseUrl, [0x89, 0x00]);
+    assert.deepEqual(memoryModeFault.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(memoryModeFault.state.ip, 2);
+    assert.equal(memoryModeFault.state.halted, 1);
+    assert.equal(memoryModeFault.state.faulted, 1);
+
     const manifest = await page.evaluate(() => fetch('/generated/cpu16.manifest.json').then((response) => response.json()));
     assert.deepEqual(Object.keys(manifest.aliases), ['al', 'cl', 'dl', 'bl', 'ah', 'ch', 'dh', 'bh']);
   } finally {

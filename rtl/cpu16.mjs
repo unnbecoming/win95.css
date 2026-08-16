@@ -1,13 +1,17 @@
 import { add, div, floor, lit, min, mod, ref, sub } from './ir.mjs';
-import { andBit, anyBits, equalConstant, notBit, orBit, muxBit, xorBit } from './bits.mjs';
+import { allBits, andBit, anyBits, equalConstant, notBit, orBit, muxBit, xorBit } from './bits.mjs';
 
 const WIDTH = 16;
 const bits = (prefix, width) => Array.from({ length: width }, (_, index) => `${prefix}-${index}`);
 const signalBits = (prefix, width) => bits(prefix, width).map(ref);
 const signal = {};
+const equalBusField = (offset, constant) => allBits(Array.from({ length: 3 }, (_, index) => {
+  const bit = ref(`busData-${offset + index}`);
+  return ((constant >>> index) & 1) === 1 ? bit : notBit(bit);
+}));
 const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
 const segments = ['cs', 'ds', 'ss', 'es'];
-const opcodes = { add: 0x05, sub: 0x2d, xor: 0x35, store: 0xa3, jz: 0x74, jnz: 0x75, call: 0xe8, jmp: 0xe9, far: 0xea, ret: 0xc3, hlt: 0xf4 };
+const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, movRmReg: 0x89, movRegRm: 0x8b, store: 0xa3, jz: 0x74, jnz: 0x75, call: 0xe8, jmp: 0xe9, far: 0xea, ret: 0xc3, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -18,7 +22,8 @@ signal['phase-ret-low'] = equalConstant('phase', 4, 5);
 signal['phase-ret-high'] = equalConstant('phase', 4, 6);
 signal['phase-far-low'] = equalConstant('phase', 4, 7);
 signal['phase-far-high'] = equalConstant('phase', 4, 8);
-signal['instruction-read'] = anyBits([ref('phase-opcode'), ref('phase-imm-low'), ref('phase-imm-high'), ref('phase-far-low'), ref('phase-far-high')]);
+signal['phase-modrm'] = equalConstant('phase', 4, 9);
+signal['instruction-read'] = anyBits([ref('phase-opcode'), ref('phase-imm-low'), ref('phase-imm-high'), ref('phase-far-low'), ref('phase-far-high'), ref('phase-modrm')]);
 signal['stack-read'] = orBit(ref('phase-ret-low'), ref('phase-ret-high'));
 signal['read-phase'] = orBit(ref('instruction-read'), ref('stack-read'));
 signal['write-phase'] = orBit(ref('phase-write-low'), ref('phase-write-high'));
@@ -37,13 +42,21 @@ signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${reg
 signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store', 'call', 'jmp', 'far'].map((name) => ref(`fetched-${name}`)));
 signal['fetched-short'] = orBit(ref('fetched-jz'), ref('fetched-jnz'));
 signal['opcode-short'] = orBit(ref('opcode-jz'), ref('opcode-jnz'));
-signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-ret'), ref('fetched-hlt')]);
+signal['fetched-modrm'] = anyBits([ref('fetched-movRmReg'), ref('fetched-movRegRm'), ref('fetched-xorRmReg'), ref('fetched-xorRegRm')]);
+signal['opcode-modrm'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm')]);
+signal['opcode-modrm-to-reg'] = orBit(ref('opcode-movRegRm'), ref('opcode-xorRegRm'));
+signal['opcode-modrm-xor'] = orBit(ref('opcode-xorRmReg'), ref('opcode-xorRegRm'));
+signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-modrm'), ref('fetched-ret'), ref('fetched-hlt')]);
 signal['fetched-invalid'] = notBit(ref('fetched-supported'));
 signal['capture-opcode'] = andBit(ref('phase-opcode'), ref('bus-read'));
 signal['capture-imm-low'] = andBit(ref('phase-imm-low'), ref('bus-read'));
 signal['capture-imm-high'] = andBit(ref('phase-imm-high'), ref('bus-read'));
 signal['capture-far-low'] = andBit(ref('phase-far-low'), ref('bus-read'));
 signal['capture-far-high'] = andBit(ref('phase-far-high'), ref('bus-read'));
+signal['capture-modrm'] = andBit(ref('phase-modrm'), ref('bus-read'));
+signal['modrm-register'] = andBit(ref('busData-7'), ref('busData-6'));
+signal['modrm-commit'] = andBit(ref('capture-modrm'), ref('modrm-register'));
+signal['modrm-invalid'] = andBit(ref('capture-modrm'), notBit(ref('modrm-register')));
 signal['execute'] = andBit(ref('capture-imm-high'), notBit(ref('opcode-store')));
 
 signal['ip-carry-0'] = lit(1);
@@ -66,12 +79,13 @@ signal['begin-ret'] = andBit(ref('capture-opcode'), ref('fetched-ret'));
 signal['finish-ret'] = andBit(ref('phase-ret-high'), ref('bus-read'));
 signal['begin-far'] = andBit(ref('capture-imm-high'), ref('opcode-far'));
 signal['finish-far'] = ref('capture-far-high');
-signal['next-phase-0'] = anyBits([andBit(ref('capture-opcode'), orBit(ref('fetched-immediate'), ref('fetched-short'))), ref('begin-write'), ref('begin-ret'), ref('begin-far')]);
+signal['begin-modrm'] = andBit(ref('capture-opcode'), ref('fetched-modrm'));
+signal['next-phase-0'] = anyBits([andBit(ref('capture-opcode'), orBit(ref('fetched-immediate'), ref('fetched-short'))), ref('begin-write'), ref('begin-ret'), ref('begin-far'), ref('begin-modrm')]);
 signal['next-phase-1'] = anyBits([andBit(ref('capture-imm-low'), notBit(ref('opcode-short'))), ref('begin-write'), ref('phase-ret-low'), ref('begin-far')]);
 signal['next-phase-2'] = anyBits([ref('phase-write-low'), ref('begin-ret'), ref('phase-ret-low'), ref('begin-far')]);
-signal['next-phase-3'] = ref('phase-far-low');
-signal['next-halted'] = orBit(ref('halted'), andBit(ref('capture-opcode'), orBit(ref('fetched-hlt'), ref('fetched-invalid'))));
-signal['next-faulted'] = orBit(ref('faulted'), andBit(ref('capture-opcode'), ref('fetched-invalid')));
+signal['next-phase-3'] = orBit(ref('phase-far-low'), ref('begin-modrm'));
+signal['next-halted'] = anyBits([ref('halted'), andBit(ref('capture-opcode'), orBit(ref('fetched-hlt'), ref('fetched-invalid'))), ref('modrm-invalid')]);
+signal['next-faulted'] = anyBits([ref('faulted'), andBit(ref('capture-opcode'), ref('fetched-invalid')), ref('modrm-invalid')]);
 
 signal['address-carry-0'] = lit(1);
 signal['stack-carry-0'] = lit(1);
@@ -165,29 +179,46 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`sp-inc-${index}`] = mod(add(ref(`sp-inc-sum-${index}`), ref(`sp-inc-carry-${index}`)), lit(2));
   signal[`sp-inc-carry-${index + 1}`] = floor(div(add(ref(`sp-inc-sum-${index}`), ref(`sp-inc-carry-${index}`)), lit(2)));
 }
+for (const [registerIndex, register] of registers.entries()) {
+  signal[`modrm-reg-${register}`] = equalBusField(3, registerIndex);
+  signal[`modrm-rm-${register}`] = equalBusField(0, registerIndex);
+}
+for (let index = 0; index < WIDTH; index++) {
+  signal[`modrm-reg-value-${index}`] = anyBits(registers.map((register) => andBit(ref(`modrm-reg-${register}`), ref(`${register}-${index}`))));
+  signal[`modrm-rm-value-${index}`] = anyBits(registers.map((register) => andBit(ref(`modrm-rm-${register}`), ref(`${register}-${index}`))));
+  signal[`modrm-source-${index}`] = muxBit(ref('opcode-modrm-to-reg'), ref(`modrm-reg-value-${index}`), ref(`modrm-rm-value-${index}`));
+  signal[`modrm-destination-${index}`] = muxBit(ref('opcode-modrm-to-reg'), ref(`modrm-rm-value-${index}`), ref(`modrm-reg-value-${index}`));
+  signal[`modrm-xor-result-${index}`] = xorBit(ref(`modrm-destination-${index}`), ref(`modrm-source-${index}`));
+  signal[`modrm-result-${index}`] = muxBit(ref('opcode-modrm-xor'), ref(`modrm-source-${index}`), ref(`modrm-xor-result-${index}`));
+}
 signal['update-ax'] = andBit(ref('execute'), anyBits([ref('opcode-mov-ax'), ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')]));
 for (const register of registers) {
-  signal[`write-${register}`] = register === 'ax' ? ref('update-ax') : andBit(ref('execute'), ref(`opcode-mov-${register}`));
+  signal[`write-immediate-${register}`] = register === 'ax' ? ref('update-ax') : andBit(ref('execute'), ref(`opcode-mov-${register}`));
+  const destinationSelector = muxBit(ref('opcode-modrm-to-reg'), ref(`modrm-rm-${register}`), ref(`modrm-reg-${register}`));
+  signal[`write-modrm-${register}`] = andBit(ref('modrm-commit'), destinationSelector);
+  signal[`write-${register}`] = orBit(ref(`write-immediate-${register}`), ref(`write-modrm-${register}`));
   for (let index = 0; index < WIDTH; index++) {
-    const source = register === 'ax' ? ref(`alu-result-${index}`) : ref(`immediate-${index}`);
-    signal[`next-${register}-${index}`] = muxBit(ref(`write-${register}`), ref(`${register}-${index}`), source);
+    const immediateSource = register === 'ax' ? ref(`alu-result-${index}`) : ref(`immediate-${index}`);
+    signal[`write-source-${register}-${index}`] = muxBit(ref(`write-modrm-${register}`), immediateSource, ref(`modrm-result-${index}`));
+    signal[`next-base-${register}-${index}`] = muxBit(ref(`write-${register}`), ref(`${register}-${index}`), ref(`write-source-${register}-${index}`));
+    if (register !== 'sp') signal[`next-${register}-${index}`] = ref(`next-base-${register}-${index}`);
   }
 }
 for (let index = 0; index < WIDTH; index++) {
-  const movSp = muxBit(ref('write-sp'), ref(`sp-${index}`), ref(`immediate-${index}`));
-  const calledSp = muxBit(ref('begin-call'), movSp, ref(`sp-dec-${index}`));
+  const calledSp = muxBit(ref('begin-call'), ref(`next-base-sp-${index}`), ref(`sp-dec-${index}`));
   signal[`next-sp-${index}`] = muxBit(ref('finish-ret'), calledSp, ref(`sp-inc-${index}`));
+  signal[`flag-result-${index}`] = muxBit(andBit(ref('modrm-commit'), ref('opcode-modrm-xor')), ref(`alu-result-${index}`), ref(`modrm-result-${index}`));
 }
 
 signal['alu-arithmetic-cf'] = muxBit(ref('opcode-sub'), ref('alu-carry-16'), notBit(ref('alu-carry-16')));
 signal['alu-arithmetic-af'] = muxBit(ref('opcode-sub'), ref('alu-carry-4'), notBit(ref('alu-carry-4')));
 signal['alu-cf'] = andBit(ref('select-arithmetic'), ref('alu-arithmetic-cf'));
 signal['alu-af'] = andBit(ref('select-arithmetic'), ref('alu-arithmetic-af'));
-signal['alu-pf'] = sub(lit(1), mod(add(...signalBits('alu-result', 8)), lit(2)));
-signal['alu-zf'] = sub(lit(1), min(lit(1), add(...signalBits('alu-result', WIDTH))));
-signal['alu-sf'] = ref('alu-result-15');
+signal['alu-pf'] = sub(lit(1), mod(add(...signalBits('flag-result', 8)), lit(2)));
+signal['alu-zf'] = sub(lit(1), min(lit(1), add(...signalBits('flag-result', WIDTH))));
+signal['alu-sf'] = ref('flag-result-15');
 signal['alu-of'] = andBit(ref('select-arithmetic'), xorBit(ref('alu-carry-15'), ref('alu-carry-16')));
-signal['update-flags'] = andBit(ref('execute'), anyBits([ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')]));
+signal['update-flags'] = orBit(andBit(ref('execute'), anyBits([ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')])), andBit(ref('modrm-commit'), ref('opcode-modrm-xor')));
 for (const flag of ['cf', 'pf', 'af', 'zf', 'sf', 'of']) {
   signal[`next-${flag}`] = muxBit(ref('update-flags'), ref(flag), ref(`alu-${flag}`));
 }
