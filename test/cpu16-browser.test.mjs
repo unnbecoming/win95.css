@@ -177,6 +177,12 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(looped.state.halted, 1);
     assert.equal(looped.state.faulted, 0);
 
+    const shortJumped = await execute(page, baseUrl, [0xeb, 0x03, 0x90, 0x90, 0x90, 0xf4]);
+    assert.deepEqual(shortJumped.trace.map(({ address }) => address), [0, 1, 5]);
+    assert.equal(shortJumped.state.ip, 6);
+    assert.equal(shortJumped.state.halted, 1);
+    assert.equal(shortJumped.state.faulted, 0);
+
     const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
     assert.equal(store.memory[0x2000], 0x34);
     assert.equal(store.memory[0x2001], 0x12);

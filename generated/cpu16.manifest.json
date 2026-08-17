@@ -164,6 +164,8 @@
     "opcode-jnz",
     "fetched-call",
     "opcode-call",
+    "fetched-jmpShort",
+    "opcode-jmpShort",
     "fetched-jmp",
     "opcode-jmp",
     "fetched-far",

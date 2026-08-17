@@ -2237,6 +2237,18 @@
   initial-value: 0;
 }
 
+@property --fetched-jmpShort {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-jmpShort {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-jmp {
   syntax: "<number>";
   inherits: false;
@@ -13291,6 +13303,8 @@
   --opcode-jnz: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-call: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-call: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-jmpShort: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-jmpShort: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-jmp: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-far: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -13322,8 +13336,8 @@
   --fetched-mov: min(1, calc(var(--fetched-mov-ax) + var(--fetched-mov-cx) + var(--fetched-mov-dx) + var(--fetched-mov-bx) + var(--fetched-mov-sp) + var(--fetched-mov-bp) + var(--fetched-mov-si) + var(--fetched-mov-di)));
   --opcode-mov: min(1, calc(var(--opcode-mov-ax) + var(--opcode-mov-cx) + var(--opcode-mov-dx) + var(--opcode-mov-bx) + var(--opcode-mov-sp) + var(--opcode-mov-bp) + var(--opcode-mov-si) + var(--opcode-mov-di)));
   --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far)));
-  --fetched-short: min(1, calc(var(--fetched-jz) + var(--fetched-jnz)));
-  --opcode-short: min(1, calc(var(--opcode-jz) + var(--opcode-jnz)));
+  --fetched-short: min(1, calc(var(--fetched-jz) + var(--fetched-jnz) + var(--fetched-jmpShort)));
+  --opcode-short: min(1, calc(var(--opcode-jz) + var(--opcode-jnz) + var(--opcode-jmpShort)));
   --fetched-modrm: min(1, calc(var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-xorRegRm) + var(--fetched-movSreg)));
   --opcode-modrm: min(1, calc(var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm) + var(--opcode-movSreg)));
   --opcode-modrm-to-reg: min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
@@ -13724,7 +13738,7 @@
   --immediate-15: var(--busData-7);
   --take-near-branch: round(down, calc(calc(var(--capture-imm-high) + min(1, calc(var(--opcode-jmp) + var(--opcode-call)))) / 2), 1);
   --execute-short: round(down, calc(calc(var(--capture-imm-low) + var(--opcode-short)) / 2), 1);
-  --short-condition: min(1, calc(round(down, calc(calc(var(--opcode-jz) + var(--zf)) / 2), 1) + round(down, calc(calc(var(--opcode-jnz) + calc(1 - var(--zf))) / 2), 1)));
+  --short-condition: min(1, calc(var(--opcode-jmpShort) + round(down, calc(calc(var(--opcode-jz) + var(--zf)) / 2), 1) + round(down, calc(calc(var(--opcode-jnz) + calc(1 - var(--zf))) / 2), 1)));
   --take-short-branch: round(down, calc(calc(var(--execute-short) + var(--short-condition)) / 2), 1);
   --branch-carry-0: 0;
   --short-carry-0: 0;
