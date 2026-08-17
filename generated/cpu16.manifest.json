@@ -99,6 +99,9 @@
     "if": {
       "width": 1
     },
+    "df": {
+      "width": 1
+    },
     "cf": {
       "width": 1
     },
@@ -183,6 +186,8 @@
     "opcode-cli",
     "fetched-sti",
     "opcode-sti",
+    "fetched-cld",
+    "opcode-cld",
     "fetched-hlt",
     "opcode-hlt",
     "fetched-mov-ax",
@@ -233,6 +238,24 @@
     "opcode-push-di",
     "fetched-pop-di",
     "opcode-pop-di",
+    "fetched-mov8-al",
+    "opcode-mov8-al",
+    "fetched-mov8-cl",
+    "opcode-mov8-cl",
+    "fetched-mov8-dl",
+    "opcode-mov8-dl",
+    "fetched-mov8-bl",
+    "opcode-mov8-bl",
+    "fetched-mov8-ah",
+    "opcode-mov8-ah",
+    "fetched-mov8-ch",
+    "opcode-mov8-ch",
+    "fetched-mov8-dh",
+    "opcode-mov8-dh",
+    "fetched-mov8-bh",
+    "opcode-mov8-bh",
+    "fetched-mov8",
+    "opcode-mov8",
     "fetched-push-es",
     "opcode-push-es",
     "fetched-push-cs",
@@ -260,6 +283,7 @@
     "opcode-modrm",
     "opcode-modrm-to-reg",
     "opcode-modrm-xor",
+    "fetched-if-control",
     "fetched-simple",
     "fetched-supported",
     "fetched-invalid",
@@ -299,8 +323,11 @@
     "lds-register-invalid",
     "modrm-invalid",
     "execute",
+    "execute-byte-immediate",
     "update-if",
     "next-if",
+    "update-df",
+    "next-df",
     "ip-carry-0",
     "ip-inc-0",
     "ip-carry-1",
@@ -2632,6 +2659,9 @@
     ],
     "if": [
       "next-if"
+    ],
+    "df": [
+      "next-df"
     ],
     "cf": [
       "next-cf"

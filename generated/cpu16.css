@@ -1961,6 +1961,12 @@
   initial-value: 0;
 }
 
+@property --df {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --cf {
   syntax: "<number>";
   inherits: false;
@@ -2381,6 +2387,18 @@
   initial-value: 0;
 }
 
+@property --fetched-cld {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-cld {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-hlt {
   syntax: "<number>";
   inherits: false;
@@ -2681,6 +2699,114 @@
   initial-value: 0;
 }
 
+@property --fetched-mov8-al {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-al {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-cl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-cl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-dl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-dl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-bl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-bl {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-ah {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-ah {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-ch {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-ch {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-dh {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-dh {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8-bh {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8-bh {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-mov8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-mov8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-push-es {
   syntax: "<number>";
   inherits: false;
@@ -2838,6 +2964,12 @@
 }
 
 @property --opcode-modrm-xor {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-if-control {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -3077,6 +3209,12 @@
   initial-value: 0;
 }
 
+@property --execute-byte-immediate {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --update-if {
   syntax: "<number>";
   inherits: false;
@@ -3084,6 +3222,18 @@
 }
 
 @property --next-if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --update-df {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-df {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -15135,6 +15285,7 @@
   --halted: 0;
   --faulted: 0;
   --if: 0;
+  --df: 0;
   --cf: 0;
   --pf: 0;
   --af: 0;
@@ -15205,6 +15356,8 @@
   --opcode-cli: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-sti: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-sti: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-cld: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-cld: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-hlt: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-mov-ax: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -15255,6 +15408,24 @@
   --opcode-push-di: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-pop-di: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + var(--busData-6)) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
   --opcode-pop-di: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-mov8-al: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-al: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-cl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-cl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-dl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-dl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-bl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-bl: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-ah: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-ah: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-ch: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-ch: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-dh: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-dh: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8-bh: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-mov8-bh: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-mov8: min(1, calc(var(--fetched-mov8-al) + var(--fetched-mov8-cl) + var(--fetched-mov8-dl) + var(--fetched-mov8-bl) + var(--fetched-mov8-ah) + var(--fetched-mov8-ch) + var(--fetched-mov8-dh) + var(--fetched-mov8-bh)));
+  --opcode-mov8: min(1, calc(var(--opcode-mov8-al) + var(--opcode-mov8-cl) + var(--opcode-mov8-dl) + var(--opcode-mov8-bl) + var(--opcode-mov8-ah) + var(--opcode-mov8-ch) + var(--opcode-mov8-dh) + var(--opcode-mov8-bh)));
   --fetched-push-es: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
   --opcode-push-es: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-push-cs: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
@@ -15275,14 +15446,15 @@
   --opcode-push: min(1, calc(var(--opcode-push-ax) + var(--opcode-push-cx) + var(--opcode-push-dx) + var(--opcode-push-bx) + var(--opcode-push-sp) + var(--opcode-push-bp) + var(--opcode-push-si) + var(--opcode-push-di) + var(--opcode-push-es) + var(--opcode-push-cs) + var(--opcode-push-ss) + var(--opcode-push-ds)));
   --fetched-pop: min(1, calc(var(--fetched-pop-ax) + var(--fetched-pop-cx) + var(--fetched-pop-dx) + var(--fetched-pop-bx) + var(--fetched-pop-sp) + var(--fetched-pop-bp) + var(--fetched-pop-si) + var(--fetched-pop-di) + var(--fetched-pop-es) + var(--fetched-pop-ss) + var(--fetched-pop-ds)));
   --opcode-pop: min(1, calc(var(--opcode-pop-ax) + var(--opcode-pop-cx) + var(--opcode-pop-dx) + var(--opcode-pop-bx) + var(--opcode-pop-sp) + var(--opcode-pop-bp) + var(--opcode-pop-si) + var(--opcode-pop-di) + var(--opcode-pop-es) + var(--opcode-pop-ss) + var(--opcode-pop-ds)));
-  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far)));
+  --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far) + var(--fetched-mov8)));
   --fetched-short: min(1, calc(var(--fetched-jz) + var(--fetched-jnz) + var(--fetched-jmpShort)));
   --opcode-short: min(1, calc(var(--opcode-jz) + var(--opcode-jnz) + var(--opcode-jmpShort)));
   --fetched-modrm: min(1, calc(var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-xorRegRm) + var(--fetched-movSreg) + var(--fetched-lds)));
   --opcode-modrm: min(1, calc(var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm) + var(--opcode-movSreg) + var(--opcode-lds)));
   --opcode-modrm-to-reg: min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
   --opcode-modrm-xor: min(1, calc(var(--opcode-xorRmReg) + var(--opcode-xorRegRm)));
-  --fetched-simple: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
+  --fetched-if-control: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
+  --fetched-simple: min(1, calc(var(--fetched-if-control) + var(--fetched-cld)));
   --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-short) + var(--fetched-modrm) + var(--fetched-simple) + var(--fetched-push) + var(--fetched-pop) + var(--fetched-ret) + var(--fetched-hlt)));
   --fetched-invalid: calc(1 - var(--fetched-supported));
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
@@ -15321,8 +15493,11 @@
   --lds-register-invalid: round(down, calc(calc(var(--modrm-commit) + var(--opcode-lds)) / 2), 1);
   --modrm-invalid: min(1, calc(var(--modrm-address-invalid) + var(--mov-sreg-selector-invalid) + var(--lds-register-invalid)));
   --execute: round(down, calc(calc(var(--capture-imm-high) + calc(1 - var(--opcode-store))) / 2), 1);
-  --update-if: round(down, calc(calc(var(--capture-opcode) + var(--fetched-simple)) / 2), 1);
+  --execute-byte-immediate: round(down, calc(calc(var(--capture-imm-low) + var(--opcode-mov8)) / 2), 1);
+  --update-if: round(down, calc(calc(var(--capture-opcode) + var(--fetched-if-control)) / 2), 1);
   --next-if: min(1, calc(round(down, calc(calc(calc(1 - var(--update-if)) + var(--if)) / 2), 1) + round(down, calc(calc(var(--update-if) + var(--fetched-sti)) / 2), 1)));
+  --update-df: round(down, calc(calc(var(--capture-opcode) + var(--fetched-cld)) / 2), 1);
+  --next-df: min(1, calc(round(down, calc(calc(calc(1 - var(--update-df)) + var(--df)) / 2), 1) + round(down, calc(calc(var(--update-df) + 0) / 2), 1)));
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
   --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);
@@ -15453,7 +15628,7 @@
   --next-memHigh-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-memory-high)) + var(--memHigh-7)) / 2), 1) + round(down, calc(calc(var(--capture-memory-high) + var(--busData-7)) / 2), 1)));
   --next-ldsSegLow-7: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-lds-segment-low)) + var(--ldsSegLow-7)) / 2), 1) + round(down, calc(calc(var(--capture-lds-segment-low) + var(--busData-7)) / 2), 1)));
   --begin-immediate: round(down, calc(calc(var(--capture-opcode) + min(1, calc(var(--fetched-immediate) + var(--fetched-short)))) / 2), 1);
-  --continue-immediate: round(down, calc(calc(var(--capture-imm-low) + calc(1 - var(--opcode-short))) / 2), 1);
+  --continue-immediate: round(down, calc(calc(var(--capture-imm-low) + round(down, calc(calc(calc(1 - var(--opcode-short)) + calc(1 - var(--opcode-mov8))) / 2), 1)) / 2), 1);
   --begin-store: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-store)) / 2), 1);
   --begin-call: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-call)) / 2), 1);
   --begin-push: round(down, calc(calc(var(--capture-opcode) + var(--fetched-push)) / 2), 1);
@@ -16828,52 +17003,52 @@
   --write-ax: min(1, calc(var(--write-immediate-ax) + var(--write-modrm-ax) + var(--write-memory-ax) + var(--write-pop-ax)));
   --write-source-ax-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-0)) / 2), 1)));
   --next-base-ax-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-0)) / 2), 1)));
-  --next-ax-0: var(--next-base-ax-0);
+  --next-ax-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-ax-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-1)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-1)) / 2), 1)));
   --next-base-ax-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-1)) / 2), 1)));
-  --next-ax-1: var(--next-base-ax-1);
+  --next-ax-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-ax-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-2)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-2)) / 2), 1)));
   --next-base-ax-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-2)) / 2), 1)));
-  --next-ax-2: var(--next-base-ax-2);
+  --next-ax-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-ax-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-3)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-3)) / 2), 1)));
   --next-base-ax-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-3)) / 2), 1)));
-  --next-ax-3: var(--next-base-ax-3);
+  --next-ax-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-ax-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-4)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-4)) / 2), 1)));
   --next-base-ax-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-4)) / 2), 1)));
-  --next-ax-4: var(--next-base-ax-4);
+  --next-ax-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-ax-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-5)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-5)) / 2), 1)));
   --next-base-ax-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-5)) / 2), 1)));
-  --next-ax-5: var(--next-base-ax-5);
+  --next-ax-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-ax-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-6)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-6)) / 2), 1)));
   --next-base-ax-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-6)) / 2), 1)));
-  --next-ax-6: var(--next-base-ax-6);
+  --next-ax-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-ax-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-7)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-7)) / 2), 1)));
   --next-base-ax-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-7)) / 2), 1)));
-  --next-ax-7: var(--next-base-ax-7);
+  --next-ax-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1)) + var(--next-base-ax-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-al)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-source-ax-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-8)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-8)) / 2), 1)));
   --next-base-ax-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-8)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-8)) / 2), 1)));
-  --next-ax-8: var(--next-base-ax-8);
+  --next-ax-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-ax-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-9)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-9)) / 2), 1)));
   --next-base-ax-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-9)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-9)) / 2), 1)));
-  --next-ax-9: var(--next-base-ax-9);
+  --next-ax-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-ax-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-10)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-10)) / 2), 1)));
   --next-base-ax-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-10)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-10)) / 2), 1)));
-  --next-ax-10: var(--next-base-ax-10);
+  --next-ax-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-ax-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-11)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-11)) / 2), 1)));
   --next-base-ax-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-11)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-11)) / 2), 1)));
-  --next-ax-11: var(--next-base-ax-11);
+  --next-ax-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-ax-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-12)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-12)) / 2), 1)));
   --next-base-ax-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-12)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-12)) / 2), 1)));
-  --next-ax-12: var(--next-base-ax-12);
+  --next-ax-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-ax-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-13)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-13)) / 2), 1)));
   --next-base-ax-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-13)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-13)) / 2), 1)));
-  --next-ax-13: var(--next-base-ax-13);
+  --next-ax-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-ax-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-14)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-14)) / 2), 1)));
   --next-base-ax-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-14)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-14)) / 2), 1)));
-  --next-ax-14: var(--next-base-ax-14);
+  --next-ax-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-ax-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-ax)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-ax)) + var(--alu-result-15)) / 2), 1) + round(down, calc(calc(var(--write-modrm-ax) + var(--modrm-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-ax) + var(--memory-load-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-ax) + var(--ret-target-15)) / 2), 1)));
   --next-base-ax-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-ax)) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--write-ax) + var(--write-source-ax-15)) / 2), 1)));
-  --next-ax-15: var(--next-base-ax-15);
+  --next-ax-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1)) + var(--next-base-ax-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ah)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-immediate-cx: round(down, calc(calc(var(--execute) + var(--opcode-mov-cx)) / 2), 1);
   --write-modrm-cx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-cx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-cx)) / 2), 1)))) / 2), 1);
   --write-memory-cx: round(down, calc(calc(var(--memory-load-commit) + var(--saved-modrm-reg-cx)) / 2), 1);
@@ -16881,52 +17056,52 @@
   --write-cx: min(1, calc(var(--write-immediate-cx) + var(--write-modrm-cx) + var(--write-memory-cx) + var(--write-pop-cx)));
   --write-source-cx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-0)) / 2), 1)));
   --next-base-cx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-0)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-0)) / 2), 1)));
-  --next-cx-0: var(--next-base-cx-0);
+  --next-cx-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-cx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-1)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-1)) / 2), 1)));
   --next-base-cx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-1)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-1)) / 2), 1)));
-  --next-cx-1: var(--next-base-cx-1);
+  --next-cx-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-cx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-2)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-2)) / 2), 1)));
   --next-base-cx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-2)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-2)) / 2), 1)));
-  --next-cx-2: var(--next-base-cx-2);
+  --next-cx-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-cx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-3)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-3)) / 2), 1)));
   --next-base-cx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-3)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-3)) / 2), 1)));
-  --next-cx-3: var(--next-base-cx-3);
+  --next-cx-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-cx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-4)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-4)) / 2), 1)));
   --next-base-cx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-4)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-4)) / 2), 1)));
-  --next-cx-4: var(--next-base-cx-4);
+  --next-cx-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-cx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-5)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-5)) / 2), 1)));
   --next-base-cx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-5)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-5)) / 2), 1)));
-  --next-cx-5: var(--next-base-cx-5);
+  --next-cx-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-cx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-6)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-6)) / 2), 1)));
   --next-base-cx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-6)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-6)) / 2), 1)));
-  --next-cx-6: var(--next-base-cx-6);
+  --next-cx-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-cx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-7)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-7)) / 2), 1)));
   --next-base-cx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-7)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-7)) / 2), 1)));
-  --next-cx-7: var(--next-base-cx-7);
+  --next-cx-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1)) + var(--next-base-cx-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-cl)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-source-cx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-8)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-8)) / 2), 1)));
   --next-base-cx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-8)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-8)) / 2), 1)));
-  --next-cx-8: var(--next-base-cx-8);
+  --next-cx-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-cx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-9)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-9)) / 2), 1)));
   --next-base-cx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-9)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-9)) / 2), 1)));
-  --next-cx-9: var(--next-base-cx-9);
+  --next-cx-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-cx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-10)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-10)) / 2), 1)));
   --next-base-cx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-10)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-10)) / 2), 1)));
-  --next-cx-10: var(--next-base-cx-10);
+  --next-cx-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-cx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-11)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-11)) / 2), 1)));
   --next-base-cx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-11)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-11)) / 2), 1)));
-  --next-cx-11: var(--next-base-cx-11);
+  --next-cx-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-cx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-12)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-12)) / 2), 1)));
   --next-base-cx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-12)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-12)) / 2), 1)));
-  --next-cx-12: var(--next-base-cx-12);
+  --next-cx-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-cx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-13)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-13)) / 2), 1)));
   --next-base-cx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-13)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-13)) / 2), 1)));
-  --next-cx-13: var(--next-base-cx-13);
+  --next-cx-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-cx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-14)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-14)) / 2), 1)));
   --next-base-cx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-14)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-14)) / 2), 1)));
-  --next-cx-14: var(--next-base-cx-14);
+  --next-cx-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-cx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-cx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-cx)) + var(--immediate-15)) / 2), 1) + round(down, calc(calc(var(--write-modrm-cx) + var(--modrm-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-cx) + var(--memory-load-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-cx) + var(--ret-target-15)) / 2), 1)));
   --next-base-cx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-cx)) + var(--cx-15)) / 2), 1) + round(down, calc(calc(var(--write-cx) + var(--write-source-cx-15)) / 2), 1)));
-  --next-cx-15: var(--next-base-cx-15);
+  --next-cx-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1)) + var(--next-base-cx-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-ch)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-immediate-dx: round(down, calc(calc(var(--execute) + var(--opcode-mov-dx)) / 2), 1);
   --write-modrm-dx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-dx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-dx)) / 2), 1)))) / 2), 1);
   --write-memory-dx: round(down, calc(calc(var(--memory-load-commit) + var(--saved-modrm-reg-dx)) / 2), 1);
@@ -16934,52 +17109,52 @@
   --write-dx: min(1, calc(var(--write-immediate-dx) + var(--write-modrm-dx) + var(--write-memory-dx) + var(--write-pop-dx)));
   --write-source-dx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-0)) / 2), 1)));
   --next-base-dx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-0)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-0)) / 2), 1)));
-  --next-dx-0: var(--next-base-dx-0);
+  --next-dx-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-dx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-1)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-1)) / 2), 1)));
   --next-base-dx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-1)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-1)) / 2), 1)));
-  --next-dx-1: var(--next-base-dx-1);
+  --next-dx-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-dx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-2)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-2)) / 2), 1)));
   --next-base-dx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-2)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-2)) / 2), 1)));
-  --next-dx-2: var(--next-base-dx-2);
+  --next-dx-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-dx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-3)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-3)) / 2), 1)));
   --next-base-dx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-3)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-3)) / 2), 1)));
-  --next-dx-3: var(--next-base-dx-3);
+  --next-dx-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-dx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-4)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-4)) / 2), 1)));
   --next-base-dx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-4)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-4)) / 2), 1)));
-  --next-dx-4: var(--next-base-dx-4);
+  --next-dx-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-dx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-5)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-5)) / 2), 1)));
   --next-base-dx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-5)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-5)) / 2), 1)));
-  --next-dx-5: var(--next-base-dx-5);
+  --next-dx-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-dx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-6)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-6)) / 2), 1)));
   --next-base-dx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-6)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-6)) / 2), 1)));
-  --next-dx-6: var(--next-base-dx-6);
+  --next-dx-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-dx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-7)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-7)) / 2), 1)));
   --next-base-dx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-7)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-7)) / 2), 1)));
-  --next-dx-7: var(--next-base-dx-7);
+  --next-dx-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1)) + var(--next-base-dx-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dl)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-source-dx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-8)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-8)) / 2), 1)));
   --next-base-dx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-8)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-8)) / 2), 1)));
-  --next-dx-8: var(--next-base-dx-8);
+  --next-dx-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-dx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-9)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-9)) / 2), 1)));
   --next-base-dx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-9)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-9)) / 2), 1)));
-  --next-dx-9: var(--next-base-dx-9);
+  --next-dx-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-dx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-10)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-10)) / 2), 1)));
   --next-base-dx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-10)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-10)) / 2), 1)));
-  --next-dx-10: var(--next-base-dx-10);
+  --next-dx-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-dx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-11)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-11)) / 2), 1)));
   --next-base-dx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-11)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-11)) / 2), 1)));
-  --next-dx-11: var(--next-base-dx-11);
+  --next-dx-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-dx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-12)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-12)) / 2), 1)));
   --next-base-dx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-12)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-12)) / 2), 1)));
-  --next-dx-12: var(--next-base-dx-12);
+  --next-dx-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-dx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-13)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-13)) / 2), 1)));
   --next-base-dx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-13)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-13)) / 2), 1)));
-  --next-dx-13: var(--next-base-dx-13);
+  --next-dx-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-dx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-14)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-14)) / 2), 1)));
   --next-base-dx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-14)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-14)) / 2), 1)));
-  --next-dx-14: var(--next-base-dx-14);
+  --next-dx-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-dx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-dx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-dx)) + var(--immediate-15)) / 2), 1) + round(down, calc(calc(var(--write-modrm-dx) + var(--modrm-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-dx) + var(--memory-load-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-dx) + var(--ret-target-15)) / 2), 1)));
   --next-base-dx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-dx)) + var(--dx-15)) / 2), 1) + round(down, calc(calc(var(--write-dx) + var(--write-source-dx-15)) / 2), 1)));
-  --next-dx-15: var(--next-base-dx-15);
+  --next-dx-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1)) + var(--next-base-dx-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-dh)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-immediate-bx: round(down, calc(calc(var(--execute) + var(--opcode-mov-bx)) / 2), 1);
   --write-modrm-bx: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-bx)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-bx)) / 2), 1)))) / 2), 1);
   --write-memory-bx: round(down, calc(calc(var(--memory-load-commit) + var(--saved-modrm-reg-bx)) / 2), 1);
@@ -16987,52 +17162,52 @@
   --write-bx: min(1, calc(var(--write-immediate-bx) + var(--write-modrm-bx) + var(--write-memory-bx) + var(--write-pop-bx)));
   --write-source-bx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-0)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-0)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-0)) / 2), 1)));
   --next-base-bx-0: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-0)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-0)) / 2), 1)));
-  --next-bx-0: var(--next-base-bx-0);
+  --next-bx-0: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-0)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-bx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-1)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-1)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-1)) / 2), 1)));
   --next-base-bx-1: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-1)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-1)) / 2), 1)));
-  --next-bx-1: var(--next-base-bx-1);
+  --next-bx-1: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-1)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-bx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-2)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-2)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-2)) / 2), 1)));
   --next-base-bx-2: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-2)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-2)) / 2), 1)));
-  --next-bx-2: var(--next-base-bx-2);
+  --next-bx-2: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-2)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-bx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-3)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-3)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-3)) / 2), 1)));
   --next-base-bx-3: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-3)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-3)) / 2), 1)));
-  --next-bx-3: var(--next-base-bx-3);
+  --next-bx-3: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-3)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-bx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-4)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-4)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-4)) / 2), 1)));
   --next-base-bx-4: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-4)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-4)) / 2), 1)));
-  --next-bx-4: var(--next-base-bx-4);
+  --next-bx-4: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-4)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-bx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-5)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-5)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-5)) / 2), 1)));
   --next-base-bx-5: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-5)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-5)) / 2), 1)));
-  --next-bx-5: var(--next-base-bx-5);
+  --next-bx-5: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-5)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-bx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-6)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-6)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-6)) / 2), 1)));
   --next-base-bx-6: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-6)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-6)) / 2), 1)));
-  --next-bx-6: var(--next-base-bx-6);
+  --next-bx-6: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-6)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-bx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-7)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-7)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-7)) / 2), 1)));
   --next-base-bx-7: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-7)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-7)) / 2), 1)));
-  --next-bx-7: var(--next-base-bx-7);
+  --next-bx-7: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1)) + var(--next-base-bx-7)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bl)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-source-bx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-8)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-8)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-8)) / 2), 1)));
   --next-base-bx-8: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-8)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-8)) / 2), 1)));
-  --next-bx-8: var(--next-base-bx-8);
+  --next-bx-8: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-8)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-0)) / 2), 1)));
   --write-source-bx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-9)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-9)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-9)) / 2), 1)));
   --next-base-bx-9: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-9)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-9)) / 2), 1)));
-  --next-bx-9: var(--next-base-bx-9);
+  --next-bx-9: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-9)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-1)) / 2), 1)));
   --write-source-bx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-10)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-10)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-10)) / 2), 1)));
   --next-base-bx-10: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-10)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-10)) / 2), 1)));
-  --next-bx-10: var(--next-base-bx-10);
+  --next-bx-10: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-10)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-2)) / 2), 1)));
   --write-source-bx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-11)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-11)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-11)) / 2), 1)));
   --next-base-bx-11: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-11)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-11)) / 2), 1)));
-  --next-bx-11: var(--next-base-bx-11);
+  --next-bx-11: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-11)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-3)) / 2), 1)));
   --write-source-bx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-12)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-12)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-12)) / 2), 1)));
   --next-base-bx-12: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-12)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-12)) / 2), 1)));
-  --next-bx-12: var(--next-base-bx-12);
+  --next-bx-12: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-12)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-4)) / 2), 1)));
   --write-source-bx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-13)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-13)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-13)) / 2), 1)));
   --next-base-bx-13: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-13)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-13)) / 2), 1)));
-  --next-bx-13: var(--next-base-bx-13);
+  --next-bx-13: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-13)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-5)) / 2), 1)));
   --write-source-bx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-14)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-14)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-14)) / 2), 1)));
   --next-base-bx-14: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-14)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-14)) / 2), 1)));
-  --next-bx-14: var(--next-base-bx-14);
+  --next-bx-14: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-14)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-6)) / 2), 1)));
   --write-source-bx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-pop-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-memory-bx)) + min(1, calc(round(down, calc(calc(calc(1 - var(--write-modrm-bx)) + var(--immediate-15)) / 2), 1) + round(down, calc(calc(var(--write-modrm-bx) + var(--modrm-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-memory-bx) + var(--memory-load-result-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--write-pop-bx) + var(--ret-target-15)) / 2), 1)));
   --next-base-bx-15: min(1, calc(round(down, calc(calc(calc(1 - var(--write-bx)) + var(--bx-15)) / 2), 1) + round(down, calc(calc(var(--write-bx) + var(--write-source-bx-15)) / 2), 1)));
-  --next-bx-15: var(--next-base-bx-15);
+  --next-bx-15: min(1, calc(round(down, calc(calc(calc(1 - round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1)) + var(--next-base-bx-15)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--execute-byte-immediate) + var(--opcode-mov8-bh)) / 2), 1) + var(--busData-7)) / 2), 1)));
   --write-immediate-sp: round(down, calc(calc(var(--execute) + var(--opcode-mov-sp)) / 2), 1);
   --write-modrm-sp: round(down, calc(calc(var(--modrm-gpr-commit) + min(1, calc(round(down, calc(calc(calc(1 - var(--opcode-modrm-to-reg)) + var(--modrm-rm-sp)) / 2), 1) + round(down, calc(calc(var(--opcode-modrm-to-reg) + var(--modrm-reg-sp)) / 2), 1)))) / 2), 1);
   --write-memory-sp: round(down, calc(calc(var(--memory-load-commit) + var(--saved-modrm-reg-sp)) / 2), 1);
