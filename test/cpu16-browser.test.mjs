@@ -124,19 +124,19 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
@@ -547,6 +547,63 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(invalidRepTarget.state.ip, 2);
     assert.equal(invalidRepTarget.state.halted, 1);
     assert.equal(invalidRepTarget.state.faulted, 1);
+
+    const movRm8RegisterProgram = [
+      0xc6, 0xc0, 0x10, 0xc6, 0xc1, 0x11, 0xc6, 0xc2, 0x12, 0xc6, 0xc3, 0x13,
+      0xc6, 0xc4, 0x14, 0xc6, 0xc5, 0x15, 0xc6, 0xc6, 0x16, 0xc6, 0xc7, 0x17, 0xf4,
+    ];
+    const movRm8Registers = await execute(page, baseUrl, movRm8RegisterProgram, {
+      state: { ax: 0xaabb, cx: 0xccdd, dx: 0xeeff, bx: 0x1234, sp: 0x5678, bp: 0x9abc, si: 0xdef0, di: 0x1357, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
+    });
+    assert.deepEqual(movRm8Registers.trace.map(({ kind, address }) => ({ kind, address })), movRm8RegisterProgram.map((_, address) => ({ kind: 'read', address })));
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, movRm8Registers.state[name]])),
+      { ax: 0x1410, cx: 0x1511, dx: 0x1612, bx: 0x1713, sp: 0x5678, bp: 0x9abc, si: 0xdef0, di: 0x1357 },
+    );
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, movRm8Registers.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
+
+    const movRm8LowOnly = await execute(page, baseUrl, [0xc6, 0xc1, 0x2a, 0xf4], { state: { cx: 0xab00 } });
+    assert.equal(movRm8LowOnly.state.cx, 0xab2a);
+    const movRm8HighOnly = await execute(page, baseUrl, [0xc6, 0xc5, 0x2b, 0xf4], { state: { cx: 0x0034 } });
+    assert.equal(movRm8HighOnly.state.cx, 0x2b34);
+
+    const movRm8Memory = await execute(page, baseUrl, [0xc6, 0x45, 0xfe, 0x0f, 0xf4], {
+      state: { di: 0x0100, ds: 0x1000, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
+    });
+    assert.deepEqual(movRm8Memory.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0xc6 }, { kind: 'read', address: 1, data: 0x45 },
+      { kind: 'read', address: 2, data: 0xfe }, { kind: 'read', address: 3, data: 0x0f },
+      { kind: 'write', address: 0x100fe, data: 0x0f }, { kind: 'read', address: 4, data: 0xf4 },
+    ]);
+    assert.deepEqual(movRm8Memory.memory, { 65790: 0x0f });
+    assert.equal(movRm8Memory.state.byteImmediate, 0x0f);
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, movRm8Memory.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
+
+    const movRm8Bp = await execute(page, baseUrl, [0xc6, 0x46, 0xfe, 0xaa, 0xf4], {
+      state: { bp: 0x0200, ss: 0x2000, ds: 0x1000 },
+    });
+    assert.deepEqual(movRm8Bp.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+      { kind: 'read', address: 3 }, { kind: 'write', address: 0x201fe }, { kind: 'read', address: 4 },
+    ]);
+    assert.deepEqual(movRm8Bp.memory, { 131582: 0xaa });
+
+    const movRm8Direct = await execute(page, baseUrl, [0xc6, 0x06, 0x34, 0x12, 0x55, 0xf4], { state: { ds: 0x1000 } });
+    assert.deepEqual(movRm8Direct.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+      { kind: 'read', address: 3 }, { kind: 'read', address: 4 }, { kind: 'write', address: 0x11234 },
+      { kind: 'read', address: 5 },
+    ]);
+    assert.deepEqual(movRm8Direct.memory, { 70196: 0x55 });
+
+    const invalidMovRm8Selector = await execute(page, baseUrl, [0xc6, 0x4d, 0xfe, 0x99, 0xf4], { state: { di: 0x0100, ds: 0x1000 } });
+    assert.deepEqual(invalidMovRm8Selector.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+    ]);
+    assert.equal(invalidMovRm8Selector.state.ip, 2);
+    assert.equal(invalidMovRm8Selector.state.halted, 1);
+    assert.equal(invalidMovRm8Selector.state.faulted, 1);
+    assert.deepEqual(invalidMovRm8Selector.memory, {});
 
     const manifest = await page.evaluate(() => fetch('/generated/cpu16.manifest.json').then((response) => response.json()));
     assert.deepEqual(Object.keys(manifest.aliases), ['al', 'cl', 'dl', 'bl', 'ah', 'ch', 'dh', 'bh']);
