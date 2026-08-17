@@ -120,19 +120,19 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
@@ -421,6 +421,50 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     });
     assert.equal(memoryXorLoad.state.ax, 0x12cb);
     assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, memoryXorLoad.state[name]])), { cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0 });
+
+    const ldsBp = await execute(page, baseUrl, [0xc5, 0x76, 0xfe, 0xf4], {
+      state: { bp: 0x0202, ss: 0x2000, ds: 0x1111, si: 0xaaaa, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
+      placements: [{ address: 0x20200, bytes: [0x34, 0x12, 0x78, 0x56] }],
+    });
+    assert.deepEqual(ldsBp.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+      { kind: 'read', address: 0x20200 }, { kind: 'read', address: 0x20201 },
+      { kind: 'read', address: 0x20202 }, { kind: 'read', address: 0x20203 }, { kind: 'read', address: 3 },
+    ]);
+    assert.deepEqual({ si: ldsBp.state.si, ds: ldsBp.state.ds, ldsSegLow: ldsBp.state.ldsSegLow }, { si: 0x1234, ds: 0x5678, ldsSegLow: 0x78 });
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, ldsBp.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
+    assert.equal(ldsBp.state.faulted, 0);
+
+    const ldsRegisters = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
+    for (const [index, register] of ldsRegisters.entries()) {
+      const offset = 0x4000 + index;
+      const segment = 0x5000 + index;
+      const loaded = await execute(page, baseUrl, [0xc5, (index << 3) | 0x06, 0x00, 0x30, 0xf4], {
+        state: { ds: 0x1000 },
+        placements: [{ address: 0x13000, bytes: [offset & 0xff, offset >>> 8, segment & 0xff, segment >>> 8] }],
+      });
+      assert.equal(loaded.state[register], offset, register);
+      assert.equal(loaded.state.ds, segment, register);
+      assert.deepEqual(loaded.trace.map(({ address }) => address), [0, 1, 2, 3, 0x13000, 0x13001, 0x13002, 0x13003, 4], register);
+      assert.equal(loaded.state.halted, 1, register);
+      assert.equal(loaded.state.faulted, 0, register);
+    }
+
+    const ldsWrapped = await execute(page, baseUrl, [0xc5, 0x06, 0xfe, 0xff, 0xf4], {
+      state: { ds: 0x1000 },
+      placements: [
+        { address: 0x1fffe, bytes: [0xcd, 0xab] },
+        { address: 0x10000, bytes: [0x34, 0x12] },
+      ],
+    });
+    assert.deepEqual(ldsWrapped.trace.map(({ address }) => address), [0, 1, 2, 3, 0x1fffe, 0x1ffff, 0x10000, 0x10001, 4]);
+    assert.deepEqual({ ax: ldsWrapped.state.ax, ds: ldsWrapped.state.ds }, { ax: 0xabcd, ds: 0x1234 });
+
+    const ldsRegisterForm = await execute(page, baseUrl, [0xc5, 0xc0, 0xf4], { state: { ax: 0x1111, ds: 0x2222 } });
+    assert.deepEqual(ldsRegisterForm.trace.map(({ address }) => address), [0, 1]);
+    assert.deepEqual({ ax: ldsRegisterForm.state.ax, ds: ldsRegisterForm.state.ds }, { ax: 0x1111, ds: 0x2222 });
+    assert.equal(ldsRegisterForm.state.halted, 1);
+    assert.equal(ldsRegisterForm.state.faulted, 1);
 
     const manifest = await page.evaluate(() => fetch('/generated/cpu16.manifest.json').then((response) => response.json()));
     assert.deepEqual(Object.keys(manifest.aliases), ['al', 'cl', 'dl', 'bl', 'ah', 'ch', 'dh', 'bh']);

@@ -17,7 +17,7 @@ const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, store: 0xa3, jz: 0x74, jnz: 0x75, call: 0xe8, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, hlt: 0xf4 };
+const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, store: 0xa3, lds: 0xc5, jz: 0x74, jnz: 0x75, call: 0xe8, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -38,8 +38,10 @@ signal['phase-memory-write-high'] = equalConstant('phase', 4, 15);
 signal['instruction-read'] = anyBits([ref('phase-opcode'), ref('phase-imm-low'), ref('phase-imm-high'), ref('phase-far-low'), ref('phase-far-high'), ref('phase-modrm'), ref('phase-disp-low'), ref('phase-disp-high')]);
 signal['stack-read'] = orBit(ref('phase-ret-low'), ref('phase-ret-high'));
 signal['memory-read'] = orBit(ref('phase-memory-read-low'), ref('phase-memory-read-high'));
-signal['memory-write'] = orBit(ref('phase-memory-write-low'), ref('phase-memory-write-high'));
-signal['read-phase'] = anyBits([ref('instruction-read'), ref('stack-read'), ref('memory-read')]);
+signal['memory-final-pair'] = orBit(ref('phase-memory-write-low'), ref('phase-memory-write-high'));
+signal['lds-extra-read'] = andBit(ref('opcode-lds'), ref('memory-final-pair'));
+signal['memory-write'] = andBit(notBit(ref('opcode-lds')), ref('memory-final-pair'));
+signal['read-phase'] = anyBits([ref('instruction-read'), ref('stack-read'), ref('memory-read'), ref('lds-extra-read')]);
 signal['write-phase'] = anyBits([ref('phase-write-low'), ref('phase-write-high'), ref('memory-write')]);
 signal['bus-read'] = andBit(notBit(ref('halted')), ref('read-phase'));
 signal['bus-write'] = andBit(notBit(ref('halted')), ref('write-phase'));
@@ -72,8 +74,8 @@ signal['opcode-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((
 signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store', 'call', 'jmp', 'far'].map((name) => ref(`fetched-${name}`)));
 signal['fetched-short'] = anyBits([ref('fetched-jz'), ref('fetched-jnz'), ref('fetched-jmpShort')]);
 signal['opcode-short'] = anyBits([ref('opcode-jz'), ref('opcode-jnz'), ref('opcode-jmpShort')]);
-signal['fetched-modrm'] = anyBits([ref('fetched-movRmReg'), ref('fetched-movRegRm'), ref('fetched-xorRmReg'), ref('fetched-xorRegRm'), ref('fetched-movSreg')]);
-signal['opcode-modrm'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm'), ref('opcode-movSreg')]);
+signal['fetched-modrm'] = anyBits([ref('fetched-movRmReg'), ref('fetched-movRegRm'), ref('fetched-xorRmReg'), ref('fetched-xorRegRm'), ref('fetched-movSreg'), ref('fetched-lds')]);
+signal['opcode-modrm'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm'), ref('opcode-movSreg'), ref('opcode-lds')]);
 signal['opcode-modrm-to-reg'] = orBit(ref('opcode-movRegRm'), ref('opcode-xorRegRm'));
 signal['opcode-modrm-xor'] = orBit(ref('opcode-xorRmReg'), ref('opcode-xorRegRm'));
 signal['fetched-simple'] = orBit(ref('fetched-cli'), ref('fetched-sti'));
@@ -89,6 +91,8 @@ signal['capture-disp-low'] = andBit(ref('phase-disp-low'), ref('bus-read'));
 signal['capture-disp-high'] = andBit(ref('phase-disp-high'), ref('bus-read'));
 signal['capture-memory-low'] = andBit(ref('phase-memory-read-low'), ref('bus-read'));
 signal['capture-memory-high'] = andBit(ref('phase-memory-read-high'), ref('bus-read'));
+signal['capture-lds-segment-low'] = andBit(ref('phase-memory-write-low'), andBit(ref('opcode-lds'), ref('bus-read')));
+signal['finish-lds'] = andBit(ref('phase-memory-write-high'), andBit(ref('opcode-lds'), ref('bus-read')));
 signal['modrm-mod00'] = andBit(notBit(ref('busData-7')), notBit(ref('busData-6')));
 signal['modrm-mod01'] = andBit(notBit(ref('busData-7')), ref('busData-6'));
 signal['modrm-mod10'] = andBit(ref('busData-7'), notBit(ref('busData-6')));
@@ -101,16 +105,17 @@ signal['mov-sreg-es'] = equalBusField(3, 0);
 signal['mov-sreg-ss'] = equalBusField(3, 2);
 signal['mov-sreg-ds'] = equalBusField(3, 3);
 signal['mov-sreg-selector-valid'] = anyBits([ref('mov-sreg-es'), ref('mov-sreg-ss'), ref('mov-sreg-ds')]);
-signal['opcode-memory-supported'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm')]);
+signal['opcode-memory-supported'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm'), ref('opcode-lds')]);
 signal['opcode-memory-to-reg'] = orBit(ref('opcode-movRegRm'), ref('opcode-xorRegRm'));
-signal['opcode-memory-needs-read'] = orBit(ref('opcode-memory-to-reg'), ref('opcode-xorRmReg'));
+signal['opcode-memory-needs-read'] = anyBits([ref('opcode-memory-to-reg'), ref('opcode-xorRmReg'), ref('opcode-lds')]);
 signal['modrm-commit'] = andBit(ref('capture-modrm'), ref('modrm-register'));
-signal['modrm-gpr-commit'] = andBit(ref('modrm-commit'), notBit(ref('opcode-movSreg')));
+signal['modrm-gpr-commit'] = andBit(ref('modrm-commit'), andBit(notBit(ref('opcode-movSreg')), notBit(ref('opcode-lds'))));
 signal['mov-sreg-commit'] = andBit(ref('modrm-commit'), andBit(ref('opcode-movSreg'), ref('mov-sreg-selector-valid')));
 signal['modrm-memory-begin'] = andBit(ref('capture-modrm'), andBit(notBit(ref('modrm-register')), ref('opcode-memory-supported')));
 signal['modrm-address-invalid'] = andBit(ref('capture-modrm'), andBit(notBit(ref('modrm-register')), notBit(ref('opcode-memory-supported'))));
 signal['mov-sreg-selector-invalid'] = andBit(ref('modrm-commit'), andBit(ref('opcode-movSreg'), notBit(ref('mov-sreg-selector-valid'))));
-signal['modrm-invalid'] = orBit(ref('modrm-address-invalid'), ref('mov-sreg-selector-invalid'));
+signal['lds-register-invalid'] = andBit(ref('modrm-commit'), ref('opcode-lds'));
+signal['modrm-invalid'] = anyBits([ref('modrm-address-invalid'), ref('mov-sreg-selector-invalid'), ref('lds-register-invalid')]);
 signal['execute'] = andBit(ref('capture-imm-high'), notBit(ref('opcode-store')));
 signal['update-if'] = andBit(ref('capture-opcode'), ref('fetched-simple'));
 signal['next-if'] = muxBit(ref('update-if'), ref('if'), ref('fetched-sti'));
@@ -132,6 +137,7 @@ for (let index = 0; index < 8; index++) {
   signal[`next-dispHigh-${index}`] = muxBit(ref('capture-disp-high'), ref(`dispHigh-${index}`), ref(`busData-${index}`));
   signal[`next-memLow-${index}`] = muxBit(ref('capture-memory-low'), ref(`memLow-${index}`), ref(`busData-${index}`));
   signal[`next-memHigh-${index}`] = muxBit(ref('capture-memory-high'), ref(`memHigh-${index}`), ref(`busData-${index}`));
+  signal[`next-ldsSegLow-${index}`] = muxBit(ref('capture-lds-segment-low'), ref(`ldsSegLow-${index}`), ref(`busData-${index}`));
 }
 signal['begin-immediate'] = andBit(ref('capture-opcode'), orBit(ref('fetched-immediate'), ref('fetched-short')));
 signal['continue-immediate'] = andBit(ref('capture-imm-low'), notBit(ref('opcode-short')));
@@ -155,12 +161,13 @@ signal['memory-ready-after-displacement'] = orBit(andBit(ref('capture-disp-low')
 signal['memory-start-read'] = andBit(orBit(ref('memory-ready-after-modrm'), ref('memory-ready-after-displacement')), ref('opcode-memory-needs-read'));
 signal['memory-start-write'] = andBit(orBit(ref('memory-ready-after-modrm'), ref('memory-ready-after-displacement')), ref('opcode-movRmReg'));
 signal['memory-rmw-start-write'] = andBit(ref('capture-memory-high'), ref('opcode-xorRmReg'));
+signal['lds-continue-read'] = andBit(ref('capture-memory-high'), ref('opcode-lds'));
 const phaseRoutes = [
   [1, ref('begin-immediate')], [2, ref('continue-immediate')], [3, ref('begin-write')], [4, ref('phase-write-low')],
   [5, ref('begin-stack-read')], [6, ref('phase-ret-low')], [7, ref('begin-far')], [8, ref('phase-far-low')], [9, ref('begin-modrm')],
   [10, ref('memory-begin-displacement')], [11, andBit(ref('capture-disp-low'), ref('saved-modrm-wide-displacement'))],
   [12, ref('memory-start-read')], [13, ref('capture-memory-low')],
-  [14, orBit(ref('memory-start-write'), ref('memory-rmw-start-write'))], [15, ref('phase-memory-write-low')],
+  [14, anyBits([ref('memory-start-write'), ref('memory-rmw-start-write'), ref('lds-continue-read')])], [15, ref('phase-memory-write-low')],
 ];
 for (let bit = 0; bit < 4; bit++) {
   signal[`next-phase-${bit}`] = anyBits(phaseRoutes.filter(([phase]) => ((phase >>> bit) & 1) === 1).map(([, condition]) => condition));
@@ -173,7 +180,7 @@ signal['stack-carry-0'] = lit(1);
 signal['data-write'] = andBit(ref('write-phase'), ref('opcode-store'));
 signal['stack-write'] = andBit(ref('write-phase'), orBit(ref('opcode-call'), ref('opcode-push')));
 signal['stack-access'] = orBit(ref('stack-read'), ref('stack-write'));
-signal['memory-access'] = orBit(ref('memory-read'), ref('memory-write'));
+signal['memory-access'] = anyBits([ref('memory-read'), ref('memory-write'), ref('lds-extra-read')]);
 signal['memory-high-byte'] = orBit(ref('phase-memory-read-high'), ref('phase-memory-write-high'));
 for (let index = 0; index < WIDTH; index++) {
   signal[`store-address-${index}`] = index < 8 ? ref(`immLow-${index}`) : ref(`immHigh-${index - 8}`);
@@ -187,7 +194,7 @@ for (let index = 0; index < WIDTH; index++) {
     andBit(ref('phase-write-high'), muxBit(ref('stack-write'), ref(`store-address-next-${index}`), ref(`stack-address-next-${index}`))),
     andBit(ref('phase-ret-low'), ref(`sp-${index}`)),
     andBit(ref('phase-ret-high'), ref(`stack-address-next-${index}`)),
-    andBit(ref('memory-access'), muxBit(ref('memory-high-byte'), ref(`effective-address-${index}`), ref(`effective-address-next-${index}`))),
+    andBit(ref('memory-access'), ref(`memory-bus-offset-${index}`)),
   ]);
   signal[`bus-segment-${index}`] = anyBits([
     andBit(ref('instruction-read'), ref(`cs-${index}`)),
@@ -292,6 +299,8 @@ signal['saved-modrm-bp-based'] = anyBits([
 ]);
 signal['effective-address-carry-0'] = lit(0);
 signal['effective-address-next-carry-0'] = lit(1);
+signal['effective-address-plus-two-carry-0'] = lit(0);
+signal['effective-address-plus-three-carry-0'] = lit(0);
 for (let index = 0; index < WIDTH; index++) {
   signal[`effective-base-a-${index}`] = anyBits([
     andBit(anyBits([ref('saved-modrm-rm-bx-si'), ref('saved-modrm-rm-bx-di'), ref('saved-modrm-rm-bx')]), ref(`bx-${index}`)),
@@ -312,9 +321,20 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`effective-address-carry-${index + 1}`] = floor(div(add(ref(`effective-address-sum-${index}`), ref(`effective-address-carry-${index}`)), lit(2)));
   signal[`effective-address-next-${index}`] = xorBit(ref(`effective-address-${index}`), ref(`effective-address-next-carry-${index}`));
   signal[`effective-address-next-carry-${index + 1}`] = andBit(ref(`effective-address-${index}`), ref(`effective-address-next-carry-${index}`));
+  const plusTwoAddend = lit(index === 1 ? 1 : 0);
+  const plusThreeAddend = lit(index < 2 ? 1 : 0);
+  signal[`effective-address-plus-two-sum-${index}`] = add(ref(`effective-address-${index}`), plusTwoAddend);
+  signal[`effective-address-plus-two-${index}`] = mod(add(ref(`effective-address-plus-two-sum-${index}`), ref(`effective-address-plus-two-carry-${index}`)), lit(2));
+  signal[`effective-address-plus-two-carry-${index + 1}`] = floor(div(add(ref(`effective-address-plus-two-sum-${index}`), ref(`effective-address-plus-two-carry-${index}`)), lit(2)));
+  signal[`effective-address-plus-three-sum-${index}`] = add(ref(`effective-address-${index}`), plusThreeAddend);
+  signal[`effective-address-plus-three-${index}`] = mod(add(ref(`effective-address-plus-three-sum-${index}`), ref(`effective-address-plus-three-carry-${index}`)), lit(2));
+  signal[`effective-address-plus-three-carry-${index + 1}`] = floor(div(add(ref(`effective-address-plus-three-sum-${index}`), ref(`effective-address-plus-three-carry-${index}`)), lit(2)));
+  signal[`memory-standard-offset-${index}`] = muxBit(ref('memory-high-byte'), ref(`effective-address-${index}`), ref(`effective-address-next-${index}`));
+  signal[`lds-extra-offset-${index}`] = muxBit(ref('phase-memory-write-high'), ref(`effective-address-plus-two-${index}`), ref(`effective-address-plus-three-${index}`));
+  signal[`memory-bus-offset-${index}`] = muxBit(ref('lds-extra-read'), ref(`memory-standard-offset-${index}`), ref(`lds-extra-offset-${index}`));
   signal[`memory-segment-${index}`] = muxBit(ref('saved-modrm-bp-based'), ref(`ds-${index}`), ref(`ss-${index}`));
 }
-signal['memory-load-commit'] = andBit(ref('capture-memory-high'), ref('opcode-memory-to-reg'));
+signal['memory-load-commit'] = orBit(andBit(ref('capture-memory-high'), ref('opcode-memory-to-reg')), ref('finish-lds'));
 signal['memory-load-flag-commit'] = andBit(ref('capture-memory-high'), ref('opcode-xorRegRm'));
 signal['memory-rmw-flag-commit'] = andBit(andBit(ref('phase-memory-write-high'), ref('bus-write')), ref('opcode-xorRmReg'));
 signal['memory-flag-commit'] = orBit(ref('memory-load-flag-commit'), ref('memory-rmw-flag-commit'));
@@ -329,12 +349,15 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`memory-live-word-${index}`] = index < 8 ? ref(`memLow-${index}`) : ref(`busData-${index - 8}`);
   signal[`memory-stored-word-${index}`] = index < 8 ? ref(`memLow-${index}`) : ref(`memHigh-${index - 8}`);
   signal[`memory-load-xor-result-${index}`] = xorBit(ref(`memory-live-word-${index}`), ref(`memory-register-value-${index}`));
-  signal[`memory-load-result-${index}`] = muxBit(ref('opcode-xorRegRm'), ref(`memory-live-word-${index}`), ref(`memory-load-xor-result-${index}`));
+  signal[`memory-load-normal-result-${index}`] = muxBit(ref('opcode-xorRegRm'), ref(`memory-live-word-${index}`), ref(`memory-load-xor-result-${index}`));
+  signal[`memory-load-result-${index}`] = muxBit(ref('opcode-lds'), ref(`memory-load-normal-result-${index}`), ref(`memory-stored-word-${index}`));
   signal[`memory-rmw-result-${index}`] = xorBit(ref(`memory-stored-word-${index}`), ref(`memory-register-value-${index}`));
   signal[`memory-flag-result-${index}`] = muxBit(ref('opcode-xorRmReg'), ref(`memory-load-xor-result-${index}`), ref(`memory-rmw-result-${index}`));
+  signal[`lds-segment-word-${index}`] = index < 8 ? ref(`ldsSegLow-${index}`) : ref(`busData-${index - 8}`);
   for (const segment of ['es', 'ss', 'ds']) {
     const movSegment = muxBit(andBit(ref('mov-sreg-commit'), ref(`mov-sreg-${segment}`)), ref(`${segment}-${index}`), ref(`modrm-rm-value-${index}`));
-    signal[`next-${segment}-${index}`] = muxBit(andBit(ref('finish-pop'), ref(`opcode-pop-${segment}`)), movSegment, ref(`ret-target-${index}`));
+    const poppedSegment = muxBit(andBit(ref('finish-pop'), ref(`opcode-pop-${segment}`)), movSegment, ref(`ret-target-${index}`));
+    signal[`next-${segment}-${index}`] = segment === 'ds' ? muxBit(ref('finish-lds'), poppedSegment, ref(`lds-segment-word-${index}`)) : poppedSegment;
   }
 }
 signal['update-ax'] = andBit(ref('execute'), anyBits([ref('opcode-mov-ax'), ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')]));
@@ -382,7 +405,7 @@ export const cpu16 = {
     ip: { width: 16, initial: 0xfff0 },
     ...Object.fromEntries(registers.map((register) => [register, { width: 16 }])),
     cs: { width: 16, initial: 0xf000 }, ds: { width: 16, initial: 0 }, ss: { width: 16, initial: 0 }, es: { width: 16, initial: 0 },
-    ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, farSegLow: { width: 8 }, stackLow: { width: 8 }, modrm: { width: 8 }, dispLow: { width: 8 }, dispHigh: { width: 8 }, memLow: { width: 8 }, memHigh: { width: 8 }, returnIp: { width: 16 }, phase: { width: 4 },
+    ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, farSegLow: { width: 8 }, stackLow: { width: 8 }, modrm: { width: 8 }, dispLow: { width: 8 }, dispHigh: { width: 8 }, memLow: { width: 8 }, memHigh: { width: 8 }, ldsSegLow: { width: 8 }, returnIp: { width: 16 }, phase: { width: 4 },
     halted: { width: 1 }, faulted: { width: 1 }, if: { width: 1 },
     cf: { width: 1 }, pf: { width: 1 }, af: { width: 1 }, zf: { width: 1 }, sf: { width: 1 }, of: { width: 1 },
   },
@@ -391,7 +414,7 @@ export const cpu16 = {
     ip: bits('next-ip', 16),
     ...Object.fromEntries(registers.map((register) => [register, bits(`next-${register}`, 16)])),
     cs: bits('next-cs', 16), ds: bits('next-ds', 16), ss: bits('next-ss', 16), es: bits('next-es', 16),
-    ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), farSegLow: bits('next-farSegLow', 8), stackLow: bits('next-stackLow', 8), modrm: bits('next-modrm', 8), dispLow: bits('next-dispLow', 8), dispHigh: bits('next-dispHigh', 8), memLow: bits('next-memLow', 8), memHigh: bits('next-memHigh', 8), returnIp: bits('next-returnIp', 16), phase: bits('next-phase', 4),
+    ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), farSegLow: bits('next-farSegLow', 8), stackLow: bits('next-stackLow', 8), modrm: bits('next-modrm', 8), dispLow: bits('next-dispLow', 8), dispHigh: bits('next-dispHigh', 8), memLow: bits('next-memLow', 8), memHigh: bits('next-memHigh', 8), ldsSegLow: bits('next-ldsSegLow', 8), returnIp: bits('next-returnIp', 16), phase: bits('next-phase', 4),
     halted: ['next-halted'], faulted: ['next-faulted'], if: ['next-if'],
     cf: ['next-cf'], pf: ['next-pf'], af: ['next-af'], zf: ['next-zf'], sf: ['next-sf'], of: ['next-of'],
   },
