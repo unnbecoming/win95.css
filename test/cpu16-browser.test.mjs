@@ -235,6 +235,65 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(segmentedCall.state.sp, 0x8000);
     assert.equal(segmentedCall.state.ax, 0x1234);
 
+    const stackRegisterIndexes = [0, 1, 2, 3, 5, 6, 7];
+    const stackRegisterValues = [0x1111, 0x2222, 0x3333, 0x4444, 0x6666, 0x7777, 0x8888];
+    const registerStackProgram = [
+      0xbc, 0x00, 0x80,
+      ...stackRegisterIndexes.flatMap((index, position) => [0xb8 + index, stackRegisterValues[position] & 0xff, stackRegisterValues[position] >>> 8]),
+      ...stackRegisterIndexes.map((index) => 0x50 + index),
+      ...stackRegisterIndexes.flatMap((index) => [0xb8 + index, 0x00, 0x00]),
+      ...[...stackRegisterIndexes].reverse().map((index) => 0x58 + index),
+      0xf4,
+    ];
+    const registerStack = await execute(page, baseUrl, registerStackProgram, { state: { ss: 0x2000 } });
+    assert.deepEqual(
+      Object.fromEntries(stackRegisterIndexes.map((index, position) => [['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'][index], registerStack.state[['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'][index]]])),
+      { ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, bp: 0x6666, si: 0x7777, di: 0x8888 },
+    );
+    assert.equal(registerStack.state.sp, 0x8000);
+    assert.equal(registerStack.state.faulted, 0);
+    assert.deepEqual(
+      registerStack.trace.filter(({ address }) => address >= 0x20000).map(({ kind, address }) => ({ kind, address })),
+      [
+        ...[0x27ffe, 0x27fff, 0x27ffc, 0x27ffd, 0x27ffa, 0x27ffb, 0x27ff8, 0x27ff9, 0x27ff6, 0x27ff7, 0x27ff4, 0x27ff5, 0x27ff2, 0x27ff3].map((address) => ({ kind: 'write', address })),
+        ...[0x27ff2, 0x27ff3, 0x27ff4, 0x27ff5, 0x27ff6, 0x27ff7, 0x27ff8, 0x27ff9, 0x27ffa, 0x27ffb, 0x27ffc, 0x27ffd, 0x27ffe, 0x27fff].map((address) => ({ kind: 'read', address })),
+      ],
+    );
+
+    const pushSp = await execute(page, baseUrl, [0xbc, 0x00, 0x80, 0x54, 0xf4], { state: { ss: 0x2000 } });
+    assert.equal(pushSp.state.sp, 0x7ffe);
+    assert.equal(pushSp.memory[0x27ffe], 0x00);
+    assert.equal(pushSp.memory[0x27fff], 0x80);
+
+    const popSp = await execute(page, baseUrl, [0xbc, 0x00, 0x80, 0x5c, 0xf4], {
+      state: { ss: 0x2000 },
+      placements: [{ address: 0x28000, bytes: [0x34, 0x12] }],
+    });
+    assert.equal(popSp.state.sp, 0x1234);
+    assert.deepEqual(popSp.trace.filter(({ address }) => address >= 0x20000).map(({ address }) => address), [0x28000, 0x28001]);
+
+    const segmentStack = await execute(page, baseUrl, [0x06, 0x0e, 0x16, 0x1e, 0xf4], {
+      loadAddress: 0x30000,
+      state: { cs: 0x3000, ss: 0x2000, es: 0x1111, ds: 0x4444, sp: 0x8000 },
+    });
+    assert.equal(segmentStack.state.sp, 0x7ff8);
+    assert.deepEqual(segmentStack.memory, {
+      163832: 0x44, 163833: 0x44,
+      163834: 0x00, 163835: 0x20,
+      163836: 0x00, 163837: 0x30,
+      163838: 0x11, 163839: 0x11,
+    });
+
+    const popSegments = await execute(page, baseUrl, [0x07, 0x17, 0x1f, 0xf4], {
+      state: { ss: 0x2000, sp: 0x8000 },
+      placements: [
+        { address: 0x28000, bytes: [0x11, 0x11, 0x00, 0x30] },
+        { address: 0x38004, bytes: [0x44, 0x44] },
+      ],
+    });
+    assert.deepEqual({ es: popSegments.state.es, ss: popSegments.state.ss, ds: popSegments.state.ds, sp: popSegments.state.sp }, { es: 0x1111, ss: 0x3000, ds: 0x4444, sp: 0x8006 });
+    assert.deepEqual(popSegments.trace.filter(({ address }) => address >= 0x20000).map(({ address }) => address), [0x28000, 0x28001, 0x28002, 0x28003, 0x38004, 0x38005]);
+
     const registerProgram = [
       0xb8, 0x11, 0x11, 0xb9, 0x22, 0x22, 0xba, 0x33, 0x33, 0xbb, 0x44, 0x44,
       0xbc, 0x55, 0x55, 0xbd, 0x66, 0x66, 0xbe, 0x77, 0x77, 0xbf, 0x88, 0x88, 0xf4,

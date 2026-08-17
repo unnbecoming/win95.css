@@ -15,6 +15,8 @@ const equalStateField = (name, offset, width, constant) => allBits(Array.from({ 
 }));
 const registers = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
 const segments = ['cs', 'ds', 'ss', 'es'];
+const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
+const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
 const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, store: 0xa3, jz: 0x74, jnz: 0x75, call: 0xe8, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
@@ -48,9 +50,25 @@ for (const [name, opcode] of Object.entries(opcodes)) {
 for (const [index, register] of registers.entries()) {
   signal[`fetched-mov-${register}`] = equalConstant('busData', 8, 0xb8 + index);
   signal[`opcode-mov-${register}`] = equalConstant('ir', 8, 0xb8 + index);
+  signal[`fetched-push-${register}`] = equalConstant('busData', 8, 0x50 + index);
+  signal[`opcode-push-${register}`] = equalConstant('ir', 8, 0x50 + index);
+  signal[`fetched-pop-${register}`] = equalConstant('busData', 8, 0x58 + index);
+  signal[`opcode-pop-${register}`] = equalConstant('ir', 8, 0x58 + index);
+}
+for (const [segment, opcode] of Object.entries(pushSegments)) {
+  signal[`fetched-push-${segment}`] = equalConstant('busData', 8, opcode);
+  signal[`opcode-push-${segment}`] = equalConstant('ir', 8, opcode);
+}
+for (const [segment, opcode] of Object.entries(popSegments)) {
+  signal[`fetched-pop-${segment}`] = equalConstant('busData', 8, opcode);
+  signal[`opcode-pop-${segment}`] = equalConstant('ir', 8, opcode);
 }
 signal['fetched-mov'] = anyBits(registers.map((register) => ref(`fetched-mov-${register}`)));
 signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${register}`)));
+signal['fetched-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`fetched-push-${name}`)));
+signal['opcode-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`opcode-push-${name}`)));
+signal['fetched-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`fetched-pop-${name}`)));
+signal['opcode-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`opcode-pop-${name}`)));
 signal['fetched-immediate'] = anyBits(['mov', 'add', 'sub', 'xor', 'store', 'call', 'jmp', 'far'].map((name) => ref(`fetched-${name}`)));
 signal['fetched-short'] = anyBits([ref('fetched-jz'), ref('fetched-jnz'), ref('fetched-jmpShort')]);
 signal['opcode-short'] = anyBits([ref('opcode-jz'), ref('opcode-jnz'), ref('opcode-jmpShort')]);
@@ -59,7 +77,7 @@ signal['opcode-modrm'] = anyBits([ref('opcode-movRmReg'), ref('opcode-movRegRm')
 signal['opcode-modrm-to-reg'] = orBit(ref('opcode-movRegRm'), ref('opcode-xorRegRm'));
 signal['opcode-modrm-xor'] = orBit(ref('opcode-xorRmReg'), ref('opcode-xorRegRm'));
 signal['fetched-simple'] = orBit(ref('fetched-cli'), ref('fetched-sti'));
-signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-modrm'), ref('fetched-simple'), ref('fetched-ret'), ref('fetched-hlt')]);
+signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-modrm'), ref('fetched-simple'), ref('fetched-push'), ref('fetched-pop'), ref('fetched-ret'), ref('fetched-hlt')]);
 signal['fetched-invalid'] = notBit(ref('fetched-supported'));
 signal['capture-opcode'] = andBit(ref('phase-opcode'), ref('bus-read'));
 signal['capture-imm-low'] = andBit(ref('phase-imm-low'), ref('bus-read'));
@@ -119,9 +137,14 @@ signal['begin-immediate'] = andBit(ref('capture-opcode'), orBit(ref('fetched-imm
 signal['continue-immediate'] = andBit(ref('capture-imm-low'), notBit(ref('opcode-short')));
 signal['begin-store'] = andBit(ref('capture-imm-high'), ref('opcode-store'));
 signal['begin-call'] = andBit(ref('capture-imm-high'), ref('opcode-call'));
-signal['begin-write'] = orBit(ref('begin-store'), ref('begin-call'));
+signal['begin-push'] = andBit(ref('capture-opcode'), ref('fetched-push'));
+signal['begin-write'] = anyBits([ref('begin-store'), ref('begin-call'), ref('begin-push')]);
 signal['begin-ret'] = andBit(ref('capture-opcode'), ref('fetched-ret'));
-signal['finish-ret'] = andBit(ref('phase-ret-high'), ref('bus-read'));
+signal['begin-pop'] = andBit(ref('capture-opcode'), ref('fetched-pop'));
+signal['begin-stack-read'] = orBit(ref('begin-ret'), ref('begin-pop'));
+signal['finish-stack-read'] = andBit(ref('phase-ret-high'), ref('bus-read'));
+signal['finish-ret'] = andBit(ref('finish-stack-read'), ref('opcode-ret'));
+signal['finish-pop'] = andBit(ref('finish-stack-read'), ref('opcode-pop'));
 signal['begin-far'] = andBit(ref('capture-imm-high'), ref('opcode-far'));
 signal['finish-far'] = ref('capture-far-high');
 signal['begin-modrm'] = andBit(ref('capture-opcode'), ref('fetched-modrm'));
@@ -134,7 +157,7 @@ signal['memory-start-write'] = andBit(orBit(ref('memory-ready-after-modrm'), ref
 signal['memory-rmw-start-write'] = andBit(ref('capture-memory-high'), ref('opcode-xorRmReg'));
 const phaseRoutes = [
   [1, ref('begin-immediate')], [2, ref('continue-immediate')], [3, ref('begin-write')], [4, ref('phase-write-low')],
-  [5, ref('begin-ret')], [6, ref('phase-ret-low')], [7, ref('begin-far')], [8, ref('phase-far-low')], [9, ref('begin-modrm')],
+  [5, ref('begin-stack-read')], [6, ref('phase-ret-low')], [7, ref('begin-far')], [8, ref('phase-far-low')], [9, ref('begin-modrm')],
   [10, ref('memory-begin-displacement')], [11, andBit(ref('capture-disp-low'), ref('saved-modrm-wide-displacement'))],
   [12, ref('memory-start-read')], [13, ref('capture-memory-low')],
   [14, orBit(ref('memory-start-write'), ref('memory-rmw-start-write'))], [15, ref('phase-memory-write-low')],
@@ -148,8 +171,8 @@ signal['next-faulted'] = anyBits([ref('faulted'), andBit(ref('capture-opcode'), 
 signal['address-carry-0'] = lit(1);
 signal['stack-carry-0'] = lit(1);
 signal['data-write'] = andBit(ref('write-phase'), ref('opcode-store'));
-signal['call-write'] = andBit(ref('write-phase'), ref('opcode-call'));
-signal['stack-access'] = orBit(ref('stack-read'), ref('call-write'));
+signal['stack-write'] = andBit(ref('write-phase'), orBit(ref('opcode-call'), ref('opcode-push')));
+signal['stack-access'] = orBit(ref('stack-read'), ref('stack-write'));
 signal['memory-access'] = orBit(ref('memory-read'), ref('memory-write'));
 signal['memory-high-byte'] = orBit(ref('phase-memory-read-high'), ref('phase-memory-write-high'));
 for (let index = 0; index < WIDTH; index++) {
@@ -160,8 +183,8 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`stack-carry-${index + 1}`] = andBit(ref(`sp-${index}`), ref(`stack-carry-${index}`));
   signal[`bus-offset-${index}`] = anyBits([
     andBit(ref('instruction-read'), ref(`ip-${index}`)),
-    andBit(ref('phase-write-low'), muxBit(ref('opcode-call'), ref(`store-address-${index}`), ref(`sp-${index}`))),
-    andBit(ref('phase-write-high'), muxBit(ref('opcode-call'), ref(`store-address-next-${index}`), ref(`stack-address-next-${index}`))),
+    andBit(ref('phase-write-low'), muxBit(ref('stack-write'), ref(`store-address-${index}`), ref(`sp-${index}`))),
+    andBit(ref('phase-write-high'), muxBit(ref('stack-write'), ref(`store-address-next-${index}`), ref(`stack-address-next-${index}`))),
     andBit(ref('phase-ret-low'), ref(`sp-${index}`)),
     andBit(ref('phase-ret-high'), ref(`stack-address-next-${index}`)),
     andBit(ref('memory-access'), muxBit(ref('memory-high-byte'), ref(`effective-address-${index}`), ref(`effective-address-next-${index}`))),
@@ -181,10 +204,17 @@ for (let index = 0; index < 20; index++) {
   signal[`bus-address-${index}`] = mod(add(ref(`physical-sum-${index}`), ref(`physical-carry-${index}`)), lit(2));
   signal[`physical-carry-${index + 1}`] = floor(div(add(ref(`physical-sum-${index}`), ref(`physical-carry-${index}`)), lit(2)));
 }
+for (let index = 0; index < WIDTH; index++) {
+  signal[`push-gpr-word-${index}`] = anyBits(registers.map((register) => andBit(ref(`opcode-push-${register}`), ref(register === 'sp' ? `sp-inc-${index}` : `${register}-${index}`))));
+  signal[`push-segment-word-${index}`] = anyBits(Object.keys(pushSegments).map((segment) => andBit(ref(`opcode-push-${segment}`), ref(`${segment}-${index}`))));
+  signal[`push-word-${index}`] = orBit(ref(`push-gpr-word-${index}`), ref(`push-segment-word-${index}`));
+}
 for (let index = 0; index < 8; index++) {
   const storeData = muxBit(ref('phase-write-high'), ref(`ax-${index}`), ref(`ax-${index + 8}`));
   const callData = muxBit(ref('phase-write-high'), ref(`returnIp-${index}`), ref(`returnIp-${index + 8}`));
-  const legacyWriteData = muxBit(ref('opcode-call'), storeData, callData);
+  const pushData = muxBit(ref('phase-write-high'), ref(`push-word-${index}`), ref(`push-word-${index + 8}`));
+  const stackWriteData = muxBit(ref('opcode-call'), pushData, callData);
+  const legacyWriteData = muxBit(ref('stack-write'), storeData, stackWriteData);
   const memoryWriteWord = muxBit(ref('opcode-xorRmReg'), ref(`memory-register-value-${index}`), ref(`memory-rmw-result-${index}`));
   const memoryWriteHighWord = muxBit(ref('opcode-xorRmReg'), ref(`memory-register-value-${index + 8}`), ref(`memory-rmw-result-${index + 8}`));
   const memoryWriteData = muxBit(ref('phase-memory-write-high'), memoryWriteWord, memoryWriteHighWord);
@@ -303,7 +333,8 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`memory-rmw-result-${index}`] = xorBit(ref(`memory-stored-word-${index}`), ref(`memory-register-value-${index}`));
   signal[`memory-flag-result-${index}`] = muxBit(ref('opcode-xorRmReg'), ref(`memory-load-xor-result-${index}`), ref(`memory-rmw-result-${index}`));
   for (const segment of ['es', 'ss', 'ds']) {
-    signal[`next-${segment}-${index}`] = muxBit(andBit(ref('mov-sreg-commit'), ref(`mov-sreg-${segment}`)), ref(`${segment}-${index}`), ref(`modrm-rm-value-${index}`));
+    const movSegment = muxBit(andBit(ref('mov-sreg-commit'), ref(`mov-sreg-${segment}`)), ref(`${segment}-${index}`), ref(`modrm-rm-value-${index}`));
+    signal[`next-${segment}-${index}`] = muxBit(andBit(ref('finish-pop'), ref(`opcode-pop-${segment}`)), movSegment, ref(`ret-target-${index}`));
   }
 }
 signal['update-ax'] = andBit(ref('execute'), anyBits([ref('opcode-mov-ax'), ref('opcode-add'), ref('opcode-sub'), ref('opcode-xor')]));
@@ -312,18 +343,21 @@ for (const register of registers) {
   const destinationSelector = muxBit(ref('opcode-modrm-to-reg'), ref(`modrm-rm-${register}`), ref(`modrm-reg-${register}`));
   signal[`write-modrm-${register}`] = andBit(ref('modrm-gpr-commit'), destinationSelector);
   signal[`write-memory-${register}`] = andBit(ref('memory-load-commit'), ref(`saved-modrm-reg-${register}`));
-  signal[`write-${register}`] = anyBits([ref(`write-immediate-${register}`), ref(`write-modrm-${register}`), ref(`write-memory-${register}`)]);
+  signal[`write-pop-${register}`] = andBit(ref('finish-pop'), ref(`opcode-pop-${register}`));
+  signal[`write-${register}`] = anyBits([ref(`write-immediate-${register}`), ref(`write-modrm-${register}`), ref(`write-memory-${register}`), ref(`write-pop-${register}`)]);
   for (let index = 0; index < WIDTH; index++) {
     const immediateSource = register === 'ax' ? ref(`alu-result-${index}`) : ref(`immediate-${index}`);
     const registerSource = muxBit(ref(`write-modrm-${register}`), immediateSource, ref(`modrm-result-${index}`));
-    signal[`write-source-${register}-${index}`] = muxBit(ref(`write-memory-${register}`), registerSource, ref(`memory-load-result-${index}`));
+    const memorySource = muxBit(ref(`write-memory-${register}`), registerSource, ref(`memory-load-result-${index}`));
+    signal[`write-source-${register}-${index}`] = muxBit(ref(`write-pop-${register}`), memorySource, ref(`ret-target-${index}`));
     signal[`next-base-${register}-${index}`] = muxBit(ref(`write-${register}`), ref(`${register}-${index}`), ref(`write-source-${register}-${index}`));
     if (register !== 'sp') signal[`next-${register}-${index}`] = ref(`next-base-${register}-${index}`);
   }
 }
 for (let index = 0; index < WIDTH; index++) {
-  const calledSp = muxBit(ref('begin-call'), ref(`next-base-sp-${index}`), ref(`sp-dec-${index}`));
-  signal[`next-sp-${index}`] = muxBit(ref('finish-ret'), calledSp, ref(`sp-inc-${index}`));
+  const pushedSp = muxBit(orBit(ref('begin-call'), ref('begin-push')), ref(`next-base-sp-${index}`), ref(`sp-dec-${index}`));
+  const poppedSp = muxBit(orBit(ref('finish-ret'), ref('finish-pop')), pushedSp, ref(`sp-inc-${index}`));
+  signal[`next-sp-${index}`] = muxBit(ref('write-pop-sp'), poppedSp, ref(`next-base-sp-${index}`));
   const registerFlagResult = muxBit(andBit(ref('modrm-gpr-commit'), ref('opcode-modrm-xor')), ref(`alu-result-${index}`), ref(`modrm-result-${index}`));
   signal[`flag-result-${index}`] = muxBit(ref('memory-flag-commit'), registerFlagResult, ref(`memory-flag-result-${index}`));
 }
