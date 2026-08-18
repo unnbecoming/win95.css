@@ -548,6 +548,53 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(invalidRepTarget.state.halted, 1);
     assert.equal(invalidRepTarget.state.faulted, 1);
 
+    const byteAliases = [
+      { register: 'ax', shift: 0 }, { register: 'cx', shift: 0 }, { register: 'dx', shift: 0 }, { register: 'bx', shift: 0 },
+      { register: 'ax', shift: 8 }, { register: 'cx', shift: 8 }, { register: 'dx', shift: 8 }, { register: 'bx', shift: 8 },
+    ];
+    const movRm8RegInitial = { ax: 0x81a1, cx: 0x82b2, dx: 0x83c3, bx: 0x84d4, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 };
+    const byteValue = (state, selector) => (state[byteAliases[selector].register] >>> byteAliases[selector].shift) & 0xff;
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const result = await execute(page, baseUrl, [0x88, 0xc0 | (source << 3) | destination, 0xf4], {
+          state: { ...movRm8RegInitial, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
+        });
+        const expected = { ...movRm8RegInitial };
+        const target = byteAliases[destination];
+        const mask = 0xff << target.shift;
+        expected[target.register] = (expected[target.register] & ~mask) | (byteValue(movRm8RegInitial, source) << target.shift);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+        ]);
+        assert.deepEqual(Object.fromEntries(Object.keys(movRm8RegInitial).map((name) => [name, result.state[name]])), expected);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
+      }
+    }
+
+    for (let source = 0; source < 8; source++) {
+      const result = await execute(page, baseUrl, [0x88, 0x45 | (source << 3), 0xf9, 0xf4], {
+        state: { ...movRm8RegInitial, di: 0x0100, ds: 0x1000, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
+      });
+      assert.deepEqual(result.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+        { kind: 'read', address: 0, data: 0x88 }, { kind: 'read', address: 1, data: 0x45 | (source << 3) },
+        { kind: 'read', address: 2, data: 0xf9 }, { kind: 'write', address: 0x100f9, data: byteValue(movRm8RegInitial, source) },
+        { kind: 'read', address: 3, data: 0xf4 },
+      ]);
+      assert.deepEqual(result.memory, { 65785: byteValue(movRm8RegInitial, source) });
+      assert.deepEqual(Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, result.state[name]])), { ...movRm8RegInitial, di: 0x0100 });
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
+    }
+
+    const movRm8RegBp = await execute(page, baseUrl, [0x88, 0x7e, 0xf9, 0xf4], {
+      state: { ...movRm8RegInitial, bp: 0x0100, ds: 0x1000, ss: 0x2000 },
+    });
+    assert.deepEqual(movRm8RegBp.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0x88 }, { kind: 'read', address: 1, data: 0x7e },
+      { kind: 'read', address: 2, data: 0xf9 }, { kind: 'write', address: 0x200f9, data: 0x84 },
+      { kind: 'read', address: 3, data: 0xf4 },
+    ]);
+    assert.deepEqual(movRm8RegBp.memory, { 131321: 0x84 });
+
     const movRm8RegisterProgram = [
       0xc6, 0xc0, 0x10, 0xc6, 0xc1, 0x11, 0xc6, 0xc2, 0x12, 0xc6, 0xc3, 0x13,
       0xc6, 0xc4, 0x14, 0xc6, 0xc5, 0x15, 0xc6, 0xc6, 0x16, 0xc6, 0xc7, 0x17, 0xf4,
