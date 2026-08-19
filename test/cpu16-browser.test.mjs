@@ -10,6 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 const zeroOtherRegisters = { cx: 0, dx: 0, bx: 0, sp: 0, bp: 0, si: 0, di: 0 };
 const zeroSegments = { cs: 0, ds: 0, ss: 0, es: 0 };
+const zeroInterruptState = { intOffsetLow: 0, intOffsetHigh: 0, intSegmentLow: 0, tf: 0, iopl: 0, nt: 0 };
 
 function serve() {
   const server = createServer((request, response) => {
@@ -124,19 +125,19 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
@@ -230,7 +231,69 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(jlArchitecture(jlNegativeWrap.state), jlArchitecture({ ...jlBaseState, sf: 0, of: 1 }));
     assert.equal(jlNegativeWrap.state.ip, 0x0000);
 
+    const intState = {
+      ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x8000, bp: 0x6666, si: 0x7777, di: 0x8888,
+      cs: 0x2222, ds: 0x3333, ss: 0x1000, es: 0x4444,
+      cf: 1, pf: 1, af: 1, zf: 1, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1,
+    };
+    const interrupted = await execute(page, baseUrl, [0xcd, 0x21], {
+      loadAddress: 0x22220,
+      state: intState,
+      placements: [
+        { address: 0x0084, bytes: [0x00, 0x01, 0x00, 0x30] },
+        { address: 0x30100, bytes: [0xf4] },
+      ],
+    });
+    assert.deepEqual(interrupted.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0x22220, data: 0xcd }, { kind: 'read', address: 0x22221, data: 0x21 },
+      { kind: 'write', address: 0x17ffe, data: 0xd7 }, { kind: 'write', address: 0x17fff, data: 0x7f },
+      { kind: 'write', address: 0x17ffc, data: 0x22 }, { kind: 'write', address: 0x17ffd, data: 0x22 },
+      { kind: 'write', address: 0x17ffa, data: 0x02 }, { kind: 'write', address: 0x17ffb, data: 0x00 },
+      { kind: 'read', address: 0x0084, data: 0x00 }, { kind: 'read', address: 0x0085, data: 0x01 },
+      { kind: 'read', address: 0x0086, data: 0x00 }, { kind: 'read', address: 0x0087, data: 0x30 },
+      { kind: 'read', address: 0x30100, data: 0xf4 },
+    ]);
+    assert.deepEqual(interrupted.memory, { 98298: 0x02, 98299: 0x00, 98300: 0x22, 98301: 0x22, 98302: 0xd7, 98303: 0x7f });
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'df', 'of', 'iopl', 'nt'].map((name) => [name, interrupted.state[name]])),
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'df', 'of', 'iopl', 'nt'].map((name) => [name, intState[name]])),
+    );
+    assert.deepEqual(Object.fromEntries(['sp', 'cs', 'ip', 'if', 'tf', 'halted', 'faulted'].map((name) => [name, interrupted.state[name]])), { sp: 0x7ffa, cs: 0x3000, ip: 0x0101, if: 0, tf: 0, halted: 1, faulted: 0 });
+
+    const intVectorZero = await execute(page, baseUrl, [0xcd, 0x00], {
+      loadAddress: 0x4000,
+      state: { cs: 0x0400, ss: 0x0600, sp: 0, ax: 0xaaaa, if: 1, tf: 1 },
+      placements: [
+        { address: 0x0000, bytes: [0x00, 0x02, 0x00, 0x05] },
+        { address: 0x05200, bytes: [0xf4] },
+      ],
+    });
+    assert.deepEqual(intVectorZero.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0x4000 }, { kind: 'read', address: 0x4001 },
+      { kind: 'write', address: 0x15ffe }, { kind: 'write', address: 0x15fff },
+      { kind: 'write', address: 0x15ffc }, { kind: 'write', address: 0x15ffd },
+      { kind: 'write', address: 0x15ffa }, { kind: 'write', address: 0x15ffb },
+      { kind: 'read', address: 0x0000 }, { kind: 'read', address: 0x0001 }, { kind: 'read', address: 0x0002 }, { kind: 'read', address: 0x0003 },
+      { kind: 'read', address: 0x05200 },
+    ]);
+    assert.deepEqual(intVectorZero.memory, { 90106: 0x02, 90107: 0x00, 90108: 0x00, 90109: 0x04, 90110: 0x02, 90111: 0x03 });
+    assert.deepEqual(Object.fromEntries(['sp', 'cs', 'ip', 'ax', 'if', 'tf', 'halted', 'faulted'].map((name) => [name, intVectorZero.state[name]])), { sp: 0xfffa, cs: 0x0500, ip: 0x0201, ax: 0xaaaa, if: 0, tf: 0, halted: 1, faulted: 0 });
+
+    const intVectorMax = await execute(page, baseUrl, [0xcd, 0xff], {
+      loadAddress: 0x7000,
+      state: { cs: 0x0700, ss: 0x0900, sp: 0x0100, bx: 0xbbbb, cf: 1, of: 1 },
+      placements: [
+        { address: 0x03fc, bytes: [0x00, 0x03, 0x00, 0x08] },
+        { address: 0x08300, bytes: [0xf4] },
+      ],
+    });
+    assert.deepEqual(intVectorMax.trace.slice(8, 12).map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0x03fc }, { kind: 'read', address: 0x03fd }, { kind: 'read', address: 0x03fe }, { kind: 'read', address: 0x03ff },
+    ]);
+    assert.deepEqual(Object.fromEntries(['sp', 'cs', 'ip', 'bx', 'cf', 'of', 'halted', 'faulted'].map((name) => [name, intVectorMax.state[name]])), { sp: 0x00fa, cs: 0x0800, ip: 0x0301, bx: 0xbbbb, cf: 1, of: 1, halted: 1, faulted: 0 });
+
     const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
+
     assert.equal(store.memory[0x2000], 0x34);
     assert.equal(store.memory[0x2001], 0x12);
     assert.deepEqual(store.trace.slice(6, 8), [
