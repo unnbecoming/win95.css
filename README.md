@@ -11,16 +11,18 @@ That is **not** the current claim.
 The repository currently contains two generated organs:
 
 - a 32-bit operation-selected ALU for `ADD`, `SUB`, `AND`, `OR`, and `XOR`, with architectural result flags;
-- a 16-bit real-mode seed core with CSS-owned `CS/DS/SS/ES`, `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, arithmetic flags, `IF`, `DF`, and repeat-prefix state;
+- a 16-bit real-mode seed core with CSS-owned `CS/DS/SS/ES`, `IP`, all eight general registers, `IR`, immediate, phase, halt, fault, arithmetic flags, `IF/TF/DF`, `IOPL/NT`, repeat state, and a one-instruction `CS` override latch;
 - generated CSS reset state starts at architectural `CS=F000h`, `IP=FFF0h`, fetching physical `FFFF0h`;
-- CSS decodes the full real x86 `B0..B7` `MOV r8,ib` and `B8..BF` `MOV r16,iw` families; register and memory ModR/M forms for `MOV r/m8,r8` (`88`); register and 16-bit memory ModR/M forms for `MOV r/m16,r16` (`89`), `MOV r16,r/m16` (`8B`), `XOR r/m16,r16` (`31`), and `XOR r16,r/m16` (`33`); register-mode `MOV Sreg,r/m16` (`8E`, valid `ES/SS/DS` destinations only); plus memory-only `LDS r16,m16:16` (`C5`), `PUSH r16`, `POP r16`, `PUSH ES/CS/SS/DS`, `POP ES/SS/DS`, `MOV [moffs16],AX`, `JMP rel8`, `JMP rel16`, `JMP ptr16:16`, `CALL rel16`, `RET`, `JZ rel8`, `JNZ rel8`, `ADD AX,iw`, `SUB AX,iw`, `XOR AX,iw`, register and memory `MOV r/m8,ib` (`C6 /0`), `REP MOVSB` (`F3 A4`), `CLI`, `STI`, `CLD`, and `HLT`;
-- CSS forms 20-bit physical addresses as `segment << 4 + offset`: instruction fetches use `CS:IP`, direct stores use `DS:moffs16`, CALL/RET/PUSH/POP traffic uses `SS:SP`, and ModR/M memory operands implement all eight 8086 base/index forms with signed `disp8`, `disp16`, direct `disp16`, BP-based `SS`, and otherwise `DS`; `LDS` reads offset+segment across four wrapped 16-bit offsets and commits the selected GPR plus `DS` atomically; `MOVSB` reads `DS:SI`, writes `ES:DI`, steps `SI/DI` from `DF`, and under `REP` decrements `CX` and loops without refetching; `88 /r` and `C6 /0` reuse the 8086 effective-address matrix and emit exactly one byte memory write; `88 /r` selects AL…BH from the ModR/M `reg` field while `C6 /0` fetches one immediate byte;
-- a manifest-driven, opcode-blind JavaScript byte bus services CSS-emitted read/write/address/data pins against opaque 1 MiB storage and records the trace;
+- CSS decodes the full real x86 `B0..B7` `MOV r8,ib` and `B8..BF` `MOV r16,iw` families; the working word-width spine includes `MOV` (`89/8B`), `XOR` (`31/33`), register `ADD r16,r/m16` (`03`), register and memory-source `MOV Sreg,r/m16` (`8E`, valid `ES/SS/DS` only), memory `LDS` (`C5`), immediate ALU, stack, near/far branch/call/return, string, and control instructions;
+- the byte-width spine includes register and memory `MOV r/m8,r8` (`88`), `MOV r8,r/m8` (`8A`), `XOR r8,r/m8` (`32`), `CMP r/m8,r8` (`38`), `MOV r/m8,ib` (`C6 /0`), register `CMP r/m8,ib` (`80 /7`), register `SHL r/m8,1` (`D0 /4`), register `ROL r/m8,ib` (`C0 /0`), `MOV AL,moffs8` (`A0`), and `AND/OR AL,ib` (`24/0C`);
+- conditional control now covers `JB`, `JBE`, `JZ`, `JNZ`, and `JL`; `INT imm8` performs the real-mode FLAGS/CS/post-IP stack sequence and IVT transfer; memory `FF /2` performs an indirect near call, including `CS:`-overridden function-table reads and an `SS:SP` return-IP push;
+- CSS forms 20-bit physical addresses as `segment << 4 + offset`: instruction fetches use `CS:IP`, direct operands use `DS:moffs16`, stack traffic uses `SS:SP`, and ModR/M memory operands implement all eight 8086 base/index forms with signed `disp8`, `disp16`, direct `disp16`, BP-based `SS`, otherwise `DS`, and an explicit one-instruction `CS` override;
+- `OUT DX,AL` (`EE`) emits a CSS-owned I/O-write cycle with a 16-bit port and byte data; a manifest-driven, opcode-blind JavaScript adapter records that cycle but performs no controller or device semantics;
 - the public trace begins at `FFFF0h`, fetches the five-byte `EA 0000:7c00` reset stub, then lands at physical `07c00h`; this is a synthetic landing ROM, not a BIOS or boot sector;
-- independent browser proofs preserve ordinary zero-segment execution, verify nonzero `CS:IP`, `DS:moffs16`, and `SS:SP` addressing, execute an unrelated far jump from `1234:0010` to `3000:2000`, prove signed unconditional/conditional short branches, cover every ModR/M GPR selector in both directions, all eight `mod=00` effective-address forms, negative `disp8`, `disp16`, exact DS/SS defaults, two-byte `MOV` loads/stores, `XOR` load and read-modify-write traces/flags, nonzero `ES/SS/DS` loads without source mutation, every 16-bit GPR PUSH/POP selector, segment PUSH/POP, i386 `PUSH SP`/`POP SP` ordering, post-`POP SS` stack addressing, nonzero `LDS` through every destination selector with BP/SS defaults and 16-bit address wrap, rejection of register-form `LDS`, `MOV CS`, reserved segment selectors, and memory-form `MOV Sreg`, all eight byte-immediate register selectors with sibling-byte preservation, plus `CLI`/`STI`, `CLD` clearing a seeded `DF` without disturbing flags, forward/backward single-byte `MOVSB`, `REP MOVSB` countdown and zero-count skip, rejection of unsupported REP targets, all 64 register-direction mappings for `88 /r`, every byte source selector through signed-displacement DS writes, BP/SS defaulting, sibling-byte and flag preservation, all eight `C6 /0` register selectors, signed-displacement DS/SS memory writes, direct addressing, and rejection of invalid C6 extension selectors before operands;
+- independent browser proofs cover exact register selectors, effective addresses, stack ordering and wrap, byte sibling preservation, arithmetic flags, prefix lifetime, interrupt stack/IVT order, indirect-call target and return custody, rotate/shift count behavior, invalid group selectors, and exact memory plus port-output traces;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The byte-memory-capable CPU is **2,725 nets / 833,395 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases in its manifest.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The CPU is **3,285 nets / 1,418,259 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases plus manifest-declared memory and port-output contracts.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -29,7 +31,7 @@ The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a t
 CSS owns:
 
 - operation, x86 opcode, ModR/M field/direction/mode decode, displacement capture and sign extension, and the full 8086 16-bit effective-address matrix;
-- real-mode default-segment selection, segment-register write decode, one- and two-byte memory plus stack read/write/RMW microphases, four-byte far-pointer reads, `MOVSB` source/write cycles, CSS-owned `SI/DI/CX` string updates, architectural SP ordering, `IF`/`DF` update, and 20-bit physical address formation;
+- real-mode default/override segment selection, segment-register write decode, one- and two-byte memory plus stack read/write/RMW microphases, four-byte far-pointer and IVT reads, `MOVSB` source/write cycles, CSS-owned `SI/DI/CX` string updates, architectural SP ordering, `IF/TF/DF` update, interrupt entry, I/O-write issue, and 20-bit physical address formation;
 - generated reset defaults, fetch-phase transitions, `IP` increment, far `CS:IP` transfer, register transfer, halt, and invalid-opcode faulting;
 - the shared add/sub carry networks and bitwise logic paths;
 - result-bit computation and architectural flags (logical operations deliberately drive undefined `AF` to zero for now);
@@ -37,15 +39,15 @@ CSS owns:
 
 The runtime JavaScript owns:
 
-- manifest-declared bus serialization and deserialization;
-- opaque byte storage behind CSS-emitted address/read/write/data pins;
+- manifest-declared memory-bus and port-output serialization;
+- opaque byte storage behind CSS-emitted address/read/write/data pins and recording of CSS-emitted output cycles;
 - driving CSS input pins and sampling CSS output pins;
 - one atomic generic state-bank latch;
 - UI, bus trace, and diagnostics.
 
-`src/chip.js` and `src/byte-bus-machine.js` contain no opcode or ModR/M decode, arithmetic, carry, parity, overflow, or x86 flag logic. The independent operation/x86 oracles exist only in browser tests and are not loaded by either demo.
+`src/chip.js` and `src/byte-bus-machine.js` contain no opcode or ModR/M decode, arithmetic, carry, parity, overflow, x86 flag, or device logic. The independent operation/x86 oracles exist only in browser tests and are not loaded by either demo.
 
-If runtime JavaScript eventually branches on opcode, ModR/M field, addressing mode, flag meaning, privilege level, segment type, page-table semantics, or exception vector, the central claim has failed. The 16-bit memory subset currently covers opcodes `89`, `8B`, `31`, `33`, and memory-only `C5`; register-form `LDS` and memory-form `MOV Sreg` remain deliberately unsupported and fault after their ModR/M byte. The byte-width ModR/M subset is exactly `C6 /0`; byte register/memory transfer and arithmetic families remain unsupported. There are no string instructions beyond `MOVSB`, repeat targets beyond `MOVSB`, or segment-override prefixes yet. `F3` is accepted only as the `REP MOVSB` prefix; another target faults before consuming its operands. `IF` is real state controlled by `CLI`/`STI`; `DF` is real state and `CLD` clears it, but interrupt delivery does not exist, so the architectural interrupt-inhibition window after `MOV SS` has no observable mechanism and is not modeled as a separate shadow.
+If runtime JavaScript branches on opcode, ModR/M field, addressing mode, flag meaning, privilege level, segment type, page-table semantics, exception vector, or device meaning, the central claim has failed. Unsupported group selectors and intentionally absent register/memory forms fault before consuming hidden operands. `F3` is accepted only as `REP MOVSB`; another target faults. `CS` is the only implemented segment-override prefix. `INT` entry exists, but hardware interrupt delivery, interrupt-inhibition shadows, `IRET`, port input, controller state, IRQs, DMA, disks, and firmware ROM are not provided by this repository. An `OUT` trace proves the CPU issued a port cycle; it does **not** prove any FDC or other device exists behind that port.
 
 ## Run the proof
 
@@ -55,7 +57,7 @@ npx playwright install chromium
 npm test
 ```
 
-The tests regenerate both CSS artifacts, exercise the ALU and seed CPU in headless Chromium, compare latched state against independent oracles, and verify the exact byte-bus trace.
+The tests regenerate both CSS artifacts, exercise the ALU and seed CPU in headless Chromium, compare latched state against independent oracles, and verify exact memory-bus and port-output traces.
 
 Open `index.html` for the reset-vector and synthetic landing-ROM spine or `alu.html` for the standalone operation-selected ALU. `cpu.html` is a compatibility redirect to the homepage, preventing duplicate instrument markup from drifting.
 
@@ -65,7 +67,7 @@ Open `index.html` for the reset-vector and synthetic landing-ROM spine or `alu.h
 - `scripts/generate.mjs` — shared IR to generated CSS + manifest compiler
 - `generated/` — auditable generated ALU and CPU artifacts
 - `src/chip.js` — generic physical glue/atomic latch
-- `src/byte-bus-machine.js` — generic manifest-driven byte storage bus
+- `src/byte-bus-machine.js` — generic manifest-driven byte storage bus and port-output recorder
 - `src/app.js` / `src/cpu-app.js` — demo UI only
 - `test/` — real-browser differential tests
 

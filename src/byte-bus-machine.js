@@ -11,7 +11,16 @@ export class ByteBusMachine {
     const outputs = this.chip.outputs();
     const reading = outputs[contract.readOutput] === 1;
     const writing = outputs[contract.writeOutput] === 1;
-    if (reading && writing) throw new Error('byte bus cannot read and write in one cycle');
+    const ioContract = this.chip.manifest.ioBus;
+    const outputting = ioContract && outputs[ioContract.writeOutput] === 1;
+    if (Number(reading) + Number(writing) + Number(outputting) > 1) throw new Error('CPU cannot issue overlapping memory and I/O cycles');
+    if (outputting) {
+      this.chip.drive({ [contract.dataInput]: 0 });
+      const state = this.chip.cycle();
+      const request = { cycle: this.trace.length, kind: 'out', port: outputs[ioContract.portOutput], data: outputs[ioContract.writeDataOutput] };
+      this.trace.push(request);
+      return { state, request };
+    }
     if (!reading && !writing) return { state: this.chip.state(), request: null };
     const address = outputs[contract.addressOutput];
     if (address < 0 || address >= this.bytes.length) throw new Error(`byte bus address outside storage: ${address}`);

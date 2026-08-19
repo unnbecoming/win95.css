@@ -19,6 +19,14 @@ test('state initial values become generated CSS defaults and manifest data', () 
   assert.match(result.css, /--ready: 1;/);
 });
 
+test('declared memory and I/O bus contracts survive compilation', () => {
+  const byteBus = { addressOutput: 'address', readOutput: 'read', writeOutput: 'write', writeDataOutput: 'writeData', dataInput: 'data' };
+  const ioBus = { portOutput: 'port', writeOutput: 'ioWrite', writeDataOutput: 'ioData' };
+  const result = compileNetlist({ name: 'bus-fixture', inputs: {}, state: {}, signals: {}, latches: {}, byteBus, ioBus }, 'bus-fixture');
+  assert.deepEqual(result.manifest.byteBus, byteBus);
+  assert.deepEqual(result.manifest.ioBus, ioBus);
+});
+
 test('state initial values are width-checked', () => {
   assert.throws(() => compileNetlist({
     name: 'bad-reset', inputs: {}, state: { pc: { width: 4, initial: 16 } }, signals: {}, latches: {},

@@ -48,6 +48,7 @@ export function compileNetlist(netlist, className) {
     outputs: netlist.outputs ?? {},
     aliases: netlist.aliases ?? {},
     ...(netlist.byteBus ? { byteBus: netlist.byteBus } : {}),
+    ...(netlist.ioBus ? { ioBus: netlist.ioBus } : {}),
   };
   return { css, manifest, netCount: properties.length };
 }
