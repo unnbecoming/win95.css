@@ -197,6 +197,8 @@
     "opcode-jz",
     "fetched-jnz",
     "opcode-jnz",
+    "fetched-jl",
+    "opcode-jl",
     "fetched-call",
     "opcode-call",
     "fetched-jmpShort",

@@ -23,7 +23,7 @@ const byteRegisters = [
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, movRm8Reg: 0x88, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rep: 0xf3, jz: 0x74, jnz: 0x75, call: 0xe8, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
+const opcodes = { add: 0x05, xor: 0x35, xorRmReg: 0x31, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, movRm8Reg: 0x88, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, call: 0xe8, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -90,8 +90,8 @@ signal['opcode-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map
 signal['fetched-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`fetched-pop-${name}`)));
 signal['opcode-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`opcode-pop-${name}`)));
 signal['fetched-immediate'] = anyBits([...['mov', 'add', 'sub', 'xor', 'store', 'call', 'jmp', 'far'].map((name) => ref(`fetched-${name}`)), ref('fetched-mov8')]);
-signal['fetched-short'] = anyBits([ref('fetched-jz'), ref('fetched-jnz'), ref('fetched-jmpShort')]);
-signal['opcode-short'] = anyBits([ref('opcode-jz'), ref('opcode-jnz'), ref('opcode-jmpShort')]);
+signal['fetched-short'] = anyBits([ref('fetched-jz'), ref('fetched-jnz'), ref('fetched-jl'), ref('fetched-jmpShort')]);
+signal['opcode-short'] = anyBits([ref('opcode-jz'), ref('opcode-jnz'), ref('opcode-jl'), ref('opcode-jmpShort')]);
 signal['fetched-modrm'] = anyBits([ref('fetched-movRm8Reg'), ref('fetched-movRmReg'), ref('fetched-movRegRm'), ref('fetched-xorRmReg'), ref('fetched-xorRegRm'), ref('fetched-cmpRm8Reg'), ref('fetched-movSreg'), ref('fetched-lds'), ref('fetched-movRm8Imm')]);
 signal['opcode-modrm'] = anyBits([ref('opcode-movRm8Reg'), ref('opcode-movRmReg'), ref('opcode-movRegRm'), ref('opcode-xorRmReg'), ref('opcode-xorRegRm'), ref('opcode-cmpRm8Reg'), ref('opcode-movSreg'), ref('opcode-lds'), ref('opcode-movRm8Imm')]);
 signal['opcode-modrm-to-reg'] = orBit(ref('opcode-movRegRm'), ref('opcode-xorRegRm'));
@@ -303,7 +303,7 @@ for (let index = 0; index < WIDTH; index++) {
 }
 signal['take-near-branch'] = andBit(ref('capture-imm-high'), orBit(ref('opcode-jmp'), ref('opcode-call')));
 signal['execute-short'] = andBit(ref('capture-imm-low'), ref('opcode-short'));
-signal['short-condition'] = anyBits([ref('opcode-jmpShort'), andBit(ref('opcode-jz'), ref('zf')), andBit(ref('opcode-jnz'), notBit(ref('zf')))]);
+signal['short-condition'] = anyBits([ref('opcode-jmpShort'), andBit(ref('opcode-jz'), ref('zf')), andBit(ref('opcode-jnz'), notBit(ref('zf'))), andBit(ref('opcode-jl'), xorBit(ref('sf'), ref('of')))]);
 signal['take-short-branch'] = andBit(ref('execute-short'), ref('short-condition'));
 signal['branch-carry-0'] = lit(0);
 signal['short-carry-0'] = lit(0);

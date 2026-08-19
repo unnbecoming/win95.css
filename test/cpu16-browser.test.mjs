@@ -187,6 +187,49 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(shortJumped.state.halted, 1);
     assert.equal(shortJumped.state.faulted, 0);
 
+    const jlArchitecturalKeys = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'if', 'df', 'rep', 'cf', 'pf', 'af', 'zf', 'sf', 'of'];
+    const jlArchitecture = (state) => Object.fromEntries(jlArchitecturalKeys.map((name) => [name, state[name] ?? 0]));
+    const jlBaseState = { ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888, ds: 0x1000, ss: 0x2000, es: 0x3000, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 1 };
+    for (const sf of [0, 1]) {
+      for (const of of [0, 1]) {
+        const state = { ...jlBaseState, sf, of };
+        const result = await execute(page, baseUrl, [0x7c, 0x02, 0xf4, 0x90, 0xf4], { state });
+        const taken = sf !== of;
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: taken ? 4 : 2 },
+        ], `${sf}/${of}`);
+        assert.deepEqual(jlArchitecture(result.state), jlArchitecture(state), `${sf}/${of}`);
+        assert.deepEqual(result.memory, {}, `${sf}/${of}`);
+        assert.equal(result.state.halted, 1, `${sf}/${of}`);
+        assert.equal(result.state.faulted, 0, `${sf}/${of}`);
+      }
+    }
+
+    const jlNegative = await execute(page, baseUrl, [0xf4, 0x7c, 0xfd], {
+      loadAddress: 0x0100,
+      state: { ...jlBaseState, cs: 0, ip: 0x0101, sf: 1, of: 0 },
+    });
+    assert.deepEqual(jlNegative.trace.map(({ address }) => address), [0x0101, 0x0102, 0x0100]);
+    assert.deepEqual(jlArchitecture(jlNegative.state), jlArchitecture({ ...jlBaseState, sf: 1, of: 0 }));
+    assert.equal(jlNegative.state.ip, 0x0101);
+
+    const jlPositiveWrap = await execute(page, baseUrl, [0x7c, 0x02], {
+      loadAddress: 0xfffe,
+      state: { ...jlBaseState, cs: 0, ip: 0xfffe, sf: 1, of: 0 },
+      placements: [{ address: 0x0002, bytes: [0xf4] }],
+    });
+    assert.deepEqual(jlPositiveWrap.trace.map(({ address }) => address), [0xfffe, 0xffff, 0x0002]);
+    assert.deepEqual(jlArchitecture(jlPositiveWrap.state), jlArchitecture({ ...jlBaseState, sf: 1, of: 0 }));
+    assert.equal(jlPositiveWrap.state.ip, 0x0003);
+
+    const jlNegativeWrap = await execute(page, baseUrl, [0x7c, 0xfd], {
+      state: { ...jlBaseState, cs: 0, ip: 0, sf: 0, of: 1 },
+      placements: [{ address: 0xffff, bytes: [0xf4] }],
+    });
+    assert.deepEqual(jlNegativeWrap.trace.map(({ address }) => address), [0x0000, 0x0001, 0xffff]);
+    assert.deepEqual(jlArchitecture(jlNegativeWrap.state), jlArchitecture({ ...jlBaseState, sf: 0, of: 1 }));
+    assert.equal(jlNegativeWrap.state.ip, 0x0000);
+
     const store = await execute(page, baseUrl, [0xb8, 0x34, 0x12, 0xa3, 0x00, 0x20, 0xf4]);
     assert.equal(store.memory[0x2000], 0x34);
     assert.equal(store.memory[0x2001], 0x12);
