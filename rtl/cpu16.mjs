@@ -23,7 +23,7 @@ const byteRegisters = [
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, addRegRm: 0x03, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, cmpRm8Imm: 0x80, jb: 0x72, jbe: 0x76, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, intImm: 0xcd, call: 0xe8, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
+const opcodes = { add: 0x05, addRegRm: 0x03, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, cmpRm8Imm: 0x80, jb: 0x72, jbe: 0x76, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, intImm: 0xcd, call: 0xe8, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, clc: 0xf8, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -118,7 +118,7 @@ signal['opcode-modrm'] = anyBits([ref('opcode-addRegRm'), ref('opcode-movRm8Reg'
 signal['opcode-modrm-to-reg'] = anyBits([ref('opcode-addRegRm'), ref('opcode-movRegRm'), ref('opcode-xorRegRm')]);
 signal['opcode-modrm-xor'] = orBit(ref('opcode-xorRmReg'), ref('opcode-xorRegRm'));
 signal['fetched-if-control'] = orBit(ref('fetched-cli'), ref('fetched-sti'));
-signal['fetched-simple'] = orBit(ref('fetched-if-control'), ref('fetched-cld'));
+signal['fetched-simple'] = anyBits([ref('fetched-if-control'), ref('fetched-clc'), ref('fetched-cld')]);
 signal['fetched-io'] = ref('fetched-outDxAl');
 signal['fetched-prefix'] = orBit(ref('fetched-rep'), ref('fetched-csOverride'));
 signal['fetched-string'] = ref('fetched-movsb');
@@ -201,6 +201,7 @@ signal['execute-rol-rm8-immediate-register'] = andBit(ref('capture-imm-low'), re
 signal['rol-rm8-count-nonzero'] = andBit(ref('execute-rol-rm8-immediate-register'), anyBits(signalBits('busData', 3)));
 signal['rol-rm8-count-one'] = andBit(ref('execute-rol-rm8-immediate-register'), equalBusField(0, 1));
 signal['update-if'] = andBit(ref('capture-opcode'), ref('fetched-if-control'));
+signal['update-clc'] = andBit(ref('capture-opcode'), ref('fetched-clc'));
 signal['controlled-if'] = muxBit(ref('update-if'), ref('if'), ref('fetched-sti'));
 signal['next-if'] = muxBit(ref('finish-int-flags'), ref('controlled-if'), lit(0));
 signal['next-tf'] = muxBit(ref('finish-int-flags'), ref('tf'), lit(0));
@@ -683,7 +684,8 @@ for (const flag of ['cf', 'pf', 'af', 'zf', 'sf', 'of']) {
   signal[`next-base-${flag}`] = muxBit(ref('update-flags'), ref(flag), ref(`selected-${flag}`));
   signal[`next-${flag}`] = ref(`next-base-${flag}`);
 }
-signal['next-cf'] = muxBit(ref('rol-rm8-count-nonzero'), ref('next-base-cf'), ref('rol-rm8-result-0'));
+signal['next-rol-cf'] = muxBit(ref('rol-rm8-count-nonzero'), ref('next-base-cf'), ref('rol-rm8-result-0'));
+signal['next-cf'] = muxBit(ref('update-clc'), ref('next-rol-cf'), lit(0));
 signal['next-of'] = muxBit(ref('rol-rm8-count-one'), ref('next-base-of'), xorBit(ref('rol-rm8-result-7'), ref('rol-rm8-result-0')));
 
 export const cpu16 = {

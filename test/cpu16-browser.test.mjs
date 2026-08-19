@@ -620,6 +620,24 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const sti = await execute(page, baseUrl, [0xfb, 0xf4]);
     assert.equal(sti.state.if, 1);
 
+    for (const initialCarry of [0, 1]) {
+      const initial = {
+        ax: 0x1234, cx: 0x5678, dx: 0x9abc, bx: 0xdef0, sp: 0x2468, bp: 0x1357, si: 0xaaaa, di: 0x5555,
+        ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, tf: 1, df: 1, iopl: 3, nt: 1,
+        cf: initialCarry, pf: 1, af: 1, zf: 1, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+      };
+      const clc = await execute(page, baseUrl, [0xf8, 0xf4], { state: initial });
+      assert.deepEqual(clc.trace.map(({ address }) => address), [0, 1], `CF=${initialCarry}`);
+      assert.equal(clc.state.cf, 0, `CF=${initialCarry}`);
+      assert.deepEqual(
+        Object.fromEntries(Object.keys(initial).filter((name) => name !== 'cf').map((name) => [name, clc.state[name]])),
+        Object.fromEntries(Object.entries(initial).filter(([name]) => name !== 'cf')),
+        `CF=${initialCarry}`,
+      );
+      assert.deepEqual(Object.fromEntries(['fdcReset', 'irq6Request'].map((name) => [name, clc.outputs[name]])), { fdcReset: 0, irq6Request: 1 }, `CF=${initialCarry}`);
+      assert.deepEqual({ ip: clc.state.ip, halted: clc.state.halted, faulted: clc.state.faulted }, { ip: 2, halted: 1, faulted: 0 }, `CF=${initialCarry}`);
+    }
+
     for (const [name, modrmByte] of [['CS', 0xc8], ['reserved', 0xe0]]) {
       const rejected = await execute(page, baseUrl, [0x8e, modrmByte]);
       assert.deepEqual(rejected.trace.map(({ address }) => address), [0, 1], name);

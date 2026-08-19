@@ -285,6 +285,8 @@
     "opcode-far",
     "fetched-ret",
     "opcode-ret",
+    "fetched-clc",
+    "opcode-clc",
     "fetched-cli",
     "opcode-cli",
     "fetched-sti",
@@ -471,6 +473,7 @@
     "rol-rm8-count-nonzero",
     "rol-rm8-count-one",
     "update-if",
+    "update-clc",
     "controlled-if",
     "next-if",
     "next-tf",
@@ -3078,7 +3081,8 @@
     "next-sf",
     "selected-of",
     "next-base-of",
-    "next-of"
+    "next-of",
+    "next-rol-cf"
   ],
   "latches": {
     "ip": [
