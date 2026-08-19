@@ -302,6 +302,8 @@
     "opcode-far",
     "fetched-ret",
     "opcode-ret",
+    "fetched-pushf",
+    "opcode-pushf",
     "fetched-clc",
     "opcode-clc",
     "fetched-stc",

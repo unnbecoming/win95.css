@@ -578,6 +578,51 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(pushSp.memory[0x27ffe], 0x00);
     assert.equal(pushSp.memory[0x27fff], 0x80);
 
+    const pushfAState = {
+      ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x8000, bp: 0x5555, si: 0x6666, di: 0x7777,
+      cs: 0x3000, ds: 0x4000, ss: 0x2000, es: 0x5000,
+      cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 0, if: 1, df: 0, of: 1, iopl: 2, nt: 0,
+      fdcDor: 0x3c, fdcInterrupt: 1,
+    };
+    const pushfA = await execute(page, baseUrl, [0x9c, 0xf4], { loadAddress: 0x30000, state: pushfAState });
+    assert.deepEqual(pushfA.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0x30000, data: 0x9c },
+      { kind: 'write', address: 0x27ffe, data: 0x93 },
+      { kind: 'write', address: 0x27fff, data: 0x2a },
+      { kind: 'read', address: 0x30001, data: 0xf4 },
+    ]);
+    assert.deepEqual(pushfA.memory, { 163838: 0x93, 163839: 0x2a });
+    assert.equal(pushfA.state.sp, 0x7ffe);
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, pushfA.state[name]])),
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, pushfAState[name]])),
+    );
+    assert.equal(pushfA.state.halted, 1);
+    assert.equal(pushfA.state.faulted, 0);
+
+    const pushfBState = {
+      ax: 0x8888, cx: 0x9999, dx: 0xaaaa, bx: 0xbbbb, sp: 0x0000, bp: 0xcccc, si: 0xdddd, di: 0xeeee,
+      cs: 0, ds: 0x1111, ss: 0x1000, es: 0x2222,
+      cf: 0, pf: 1, af: 0, zf: 1, sf: 0, tf: 1, if: 0, df: 1, of: 0, iopl: 1, nt: 1,
+      fdcDor: 0x08, fdcInterrupt: 1,
+    };
+    const pushfB = await execute(page, baseUrl, [0x9c, 0xf4], { state: pushfBState });
+    assert.deepEqual(pushfB.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0x9c },
+      { kind: 'write', address: 0x1fffe, data: 0x46 },
+      { kind: 'write', address: 0x1ffff, data: 0x55 },
+      { kind: 'read', address: 1, data: 0xf4 },
+    ]);
+    assert.equal(pushfB.state.sp, 0xfffe);
+    assert.equal(pushfB.memory[0x1fffe], 0x46);
+    assert.equal(pushfB.memory[0x1ffff], 0x55);
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, pushfB.state[name]])),
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, pushfBState[name]])),
+    );
+    assert.equal(pushfB.state.halted, 1);
+    assert.equal(pushfB.state.faulted, 0);
+
     const popSp = await execute(page, baseUrl, [0xbc, 0x00, 0x80, 0x5c, 0xf4], {
       state: { ss: 0x2000 },
       placements: [{ address: 0x28000, bytes: [0x34, 0x12] }],

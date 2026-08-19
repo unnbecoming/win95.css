@@ -23,7 +23,7 @@ const byteRegisters = [
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
+const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, pushf: 0x9c, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -118,8 +118,8 @@ for (const [segment, opcode] of Object.entries(popSegments)) {
 }
 signal['fetched-mov'] = anyBits(registers.map((register) => ref(`fetched-mov-${register}`)));
 signal['opcode-mov'] = anyBits(registers.map((register) => ref(`opcode-mov-${register}`)));
-signal['fetched-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`fetched-push-${name}`)));
-signal['opcode-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`opcode-push-${name}`)));
+signal['fetched-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`fetched-push-${name}`)).concat(ref('fetched-pushf')));
+signal['opcode-push'] = anyBits([...registers, ...Object.keys(pushSegments)].map((name) => ref(`opcode-push-${name}`)).concat(ref('opcode-pushf')));
 signal['fetched-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`fetched-pop-${name}`)));
 signal['opcode-pop'] = anyBits([...registers, ...Object.keys(popSegments)].map((name) => ref(`opcode-pop-${name}`)));
 signal['fetched-immediate'] = anyBits([...['mov', 'add', 'sub', 'xor', 'andAlImm8', 'orAlImm8', 'movAlMoffs8', 'store', 'call', 'jmp', 'far', 'retfImm'].map((name) => ref(`fetched-${name}`)), ref('fetched-mov8')]);
@@ -419,12 +419,13 @@ for (let index = 0; index < 20; index++) {
   signal[`bus-address-${index}`] = mod(add(ref(`physical-sum-${index}`), ref(`physical-carry-${index}`)), lit(2));
   signal[`physical-carry-${index + 1}`] = floor(div(add(ref(`physical-sum-${index}`), ref(`physical-carry-${index}`)), lit(2)));
 }
+const flagsImage = [ref('cf'), lit(1), ref('pf'), lit(0), ref('af'), lit(0), ref('zf'), ref('sf'), ref('tf'), ref('if'), ref('df'), ref('of'), ref('iopl-0'), ref('iopl-1'), ref('nt'), lit(0)];
 for (let index = 0; index < WIDTH; index++) {
   signal[`push-gpr-word-${index}`] = anyBits(registers.map((register) => andBit(ref(`opcode-push-${register}`), ref(register === 'sp' ? `sp-inc-${index}` : `${register}-${index}`))));
   signal[`push-segment-word-${index}`] = anyBits(Object.keys(pushSegments).map((segment) => andBit(ref(`opcode-push-${segment}`), ref(`${segment}-${index}`))));
-  signal[`push-word-${index}`] = orBit(ref(`push-gpr-word-${index}`), ref(`push-segment-word-${index}`));
+  const ordinaryPushWord = orBit(ref(`push-gpr-word-${index}`), ref(`push-segment-word-${index}`));
+  signal[`push-word-${index}`] = muxBit(ref('opcode-pushf'), ordinaryPushWord, flagsImage[index]);
 }
-const flagsImage = [ref('cf'), lit(1), ref('pf'), lit(0), ref('af'), lit(0), ref('zf'), ref('sf'), ref('tf'), ref('if'), ref('df'), ref('of'), ref('iopl-0'), ref('iopl-1'), ref('nt'), lit(0)];
 for (let index = 0; index < 8; index++) {
   const storeData = muxBit(ref('phase-write-high'), ref(`ax-${index}`), ref(`ax-${index + 8}`));
   const callData = muxBit(ref('phase-write-high'), ref(`returnIp-${index}`), ref(`returnIp-${index + 8}`));
