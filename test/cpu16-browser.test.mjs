@@ -990,6 +990,29 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       }
     }
 
+    const orInitial = { ax: 0x8055, cx: 0xff00, dx: 0x7f01, bx: 0x0faa, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 };
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...orInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x0a, 0xc0 | (destination << 3) | source, 0xf4], { state });
+        const value = byteValue(state, destination) | byteValue(state, source);
+        const target = byteAliases[destination];
+        const expected = { ...orInitial, [target.register]: (state[target.register] & ~(0xff << target.shift)) | (value << target.shift) };
+        assert.deepEqual(Object.fromEntries(Object.keys(orInitial).map((name) => [name, result.state[name]])), expected, `${source}/${destination}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+        ], `${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), xorByteFlags(value), `${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['ds', 'ss', 'es', 'if', 'df', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `${source}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `${source}/${destination}`);
+        assert.deepEqual(result.memory, {}, `${source}/${destination}`);
+        assert.equal(result.state.faulted, 0, `${source}/${destination}`);
+      }
+    }
+    const orMemoryRejected = await execute(page, baseUrl, [0x0a, 0x06, 0x00, 0x10]);
+    assert.deepEqual(orMemoryRejected.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(orMemoryRejected.state.faulted, 1);
+
     const shlValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x40, 0x81, 0x55];
     for (let destination = 0; destination < 8; destination++) {
       const state = { ...movRm8RegInitial, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0 };
