@@ -1224,6 +1224,54 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.equal(result.state.faulted, 1, name);
     }
 
+    const testFlags = (destination, immediate) => {
+      const result = destination & immediate;
+      return { cf: 0, pf: Number(result.toString(2).split('').filter((bit) => bit === '1').length % 2 === 0), af: 0, zf: Number(result === 0), sf: result >>> 7, of: 0 };
+    };
+    const biosTestState = { ...cmpInitial, ds: 0, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 1, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    const biosTest = await execute(page, baseUrl, [0xf6, 0x06, 0x3e, 0x00, 0x80, 0xf4], {
+      state: biosTestState, placements: [{ address: 0x003e, bytes: [0x90] }],
+    });
+    assert.deepEqual(biosTest.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      { kind: 'read', address: 4 }, { kind: 'read', address: 0x003e }, { kind: 'read', address: 5 },
+    ]);
+    assert.deepEqual(architecturalState(biosTest.state), architecturalState(biosTestState));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, biosTest.state[flag]])), testFlags(0x90, 0x80));
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, biosTest.state[name]])), { fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(biosTest.outputs.irq6Request, 1);
+    assert.deepEqual(biosTest.memory, {});
+    assert.equal(biosTest.state.faulted, 0);
+
+    const testMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
+    const testImmediateValues = [0xff, 0x01, 0x80, 0x7f, 0x0f, 0xf0, 0x55, 0xaa];
+    for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      const immediate = testImmediateValues[destination];
+      const state = { ...cmpInitial, ...eaState, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const result = await execute(page, baseUrl, [0xf6, modrmByte, ...displacement, immediate, 0xf4], {
+        state, placements: [{ address: physical, bytes: [testMemoryValues[destination]] }],
+      });
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+        ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+        { kind: 'read', address: 2 + displacement.length }, { kind: 'read', address: physical }, { kind: 'read', address: 3 + displacement.length },
+      ], name);
+      assert.deepEqual(architecturalState(result.state), architecturalState(state), name);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), testFlags(testMemoryValues[destination], immediate), name);
+      assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), { fdcDor: 0x0c, fdcInterrupt: 1 }, name);
+      assert.equal(result.outputs.irq6Request, 1, name);
+      assert.deepEqual(result.memory, {}, name);
+      assert.equal(result.state.faulted, 0, name);
+    }
+    for (const selector of [1, 2, 3, 4, 5, 6, 7]) {
+      const result = await execute(page, baseUrl, [0xf6, 0x06 | (selector << 3), 0x3e, 0x00, 0x80]);
+      assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `f6/selector/${selector}`);
+      assert.equal(result.state.faulted, 1, `f6/selector/${selector}`);
+    }
+    const testRegister = await execute(page, baseUrl, [0xf6, 0xc0, 0x80]);
+    assert.deepEqual(testRegister.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(testRegister.state.faulted, 1);
+
     for (let source = 0; source < 8; source++) {
       for (let destination = 0; destination < 8; destination++) {
         const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0 };
