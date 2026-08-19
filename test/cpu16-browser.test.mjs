@@ -11,6 +11,7 @@ const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 const zeroOtherRegisters = { cx: 0, dx: 0, bx: 0, sp: 0, bp: 0, si: 0, di: 0 };
 const zeroSegments = { cs: 0, ds: 0, ss: 0, es: 0 };
 const zeroInterruptState = { intOffsetLow: 0, intOffsetHigh: 0, intSegmentLow: 0, tf: 0, iopl: 0, nt: 0 };
+const zeroFdcState = { fdcDor: 0, fdcInterrupt: 0 };
 
 function serve() {
   const server = createServer((request, response) => {
@@ -37,7 +38,7 @@ async function execute(page, baseUrl, rom, options = {}) {
     for (const placement of placements) memory.set(placement.bytes, placement.address);
     const result = new ByteBusMachine(chip, memory).run(256);
     const written = Object.fromEntries(result.trace.filter(({ kind }) => kind === 'write').map(({ address }) => [address, memory[address]]));
-    return { ...result, memory: written };
+    return { ...result, outputs: chip.outputs(), memory: written };
   }, { bytes: rom, loadAddress: options.loadAddress ?? 0, state: { cs: 0, ip: 0, ...(options.state ?? {}) }, placements: options.placements ?? [] });
 }
 
@@ -125,7 +126,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
@@ -166,17 +167,45 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(portOutput.state.dx, 0x03f2);
     assert.equal(portOutput.state.ax, 0xab08);
     assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, portOutput.state[flag]])), { cf: 1, pf: 0, af: 1, zf: 1, sf: 1, of: 1 });
+    assert.equal(portOutput.state.fdcDor, 0x08);
+    assert.equal(portOutput.state.fdcInterrupt, 0);
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcReset', 'fdcInterrupt', 'irq6Request'].map((name) => [name, portOutput.outputs[name]])), { fdcDor: 0x08, fdcReset: 1, fdcInterrupt: 0, irq6Request: 0 });
     assert.deepEqual(portOutput.memory, {});
+
+    const resetRelease = await execute(page, baseUrl, [0xba, 0xf2, 0x03, 0xb0, 0x08, 0xee, 0xeb, 0x00, 0xeb, 0x00, 0x0c, 0x04, 0xee, 0xf4]);
+    assert.deepEqual(resetRelease.trace.filter(({ kind }) => kind === 'out').map(({ port, data }) => ({ port, data })), [
+      { port: 0x03f2, data: 0x08 }, { port: 0x03f2, data: 0x0c },
+    ]);
+    assert.equal(resetRelease.state.fdcDor, 0x0c);
+    assert.equal(resetRelease.state.fdcInterrupt, 1);
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcReset', 'fdcInterrupt', 'irq6Request'].map((name) => [name, resetRelease.outputs[name]])), { fdcDor: 0x0c, fdcReset: 0, fdcInterrupt: 1, irq6Request: 1 });
+
+    const gatedPending = await execute(page, baseUrl, [0xba, 0xf2, 0x03, 0xb0, 0x04, 0xee, 0x0c, 0x08, 0xee, 0xf4]);
+    assert.equal(gatedPending.state.fdcDor, 0x0c);
+    assert.equal(gatedPending.state.fdcInterrupt, 1);
+    assert.equal(gatedPending.outputs.irq6Request, 1);
+
+    const resetClears = await execute(page, baseUrl, [0xba, 0xf2, 0x03, 0xb0, 0x08, 0xee, 0xf4], { state: { fdcDor: 0x0c, fdcInterrupt: 1 } });
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, resetClears.state[name]])), { fdcDor: 0x08, fdcInterrupt: 0 });
+    assert.equal(resetClears.outputs.irq6Request, 0);
+
+    const reservedBits = await execute(page, baseUrl, [0xba, 0xf2, 0x03, 0xb0, 0xff, 0xee, 0xf4]);
+    assert.equal(reservedBits.state.fdcDor, 0x3d);
+    assert.equal(reservedBits.outputs.irq6Request, 1);
+
+    const unrelatedPort = await execute(page, baseUrl, [0xba, 0xf3, 0x03, 0xb0, 0x08, 0xee, 0xf4], { state: { fdcDor: 0x0c, fdcInterrupt: 1 } });
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, unrelatedPort.state[name]])), { fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(unrelatedPort.outputs.irq6Request, 1);
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 

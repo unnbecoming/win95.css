@@ -63,6 +63,20 @@ signal['write-phase'] = anyBits([ref('phase-write-low'), ref('phase-write-high')
 signal['bus-read'] = andBit(notBit(ref('halted')), ref('read-phase'));
 signal['bus-write'] = andBit(notBit(ref('halted')), ref('write-phase'));
 signal['io-write'] = andBit(notBit(ref('halted')), andBit(ref('phase-imm-low'), ref('opcode-outDxAl')));
+signal['fdc-dor-port'] = equalConstant('dx', 16, 0x03f2);
+signal['fdc-dor-write'] = andBit(ref('io-write'), ref('fdc-dor-port'));
+signal['fdc-reset-assert'] = andBit(ref('fdc-dor-write'), notBit(ref('ax-2')));
+signal['fdc-reset-release'] = andBit(ref('fdc-dor-write'), andBit(notBit(ref('fdcDor-2')), ref('ax-2')));
+for (let index = 0; index < 8; index++) {
+  const implemented = [0, 2, 3, 4, 5].includes(index);
+  const source = implemented ? ref(`ax-${index}`) : lit(0);
+  signal[`next-fdcDor-${index}`] = muxBit(ref('fdc-dor-write'), ref(`fdcDor-${index}`), source);
+}
+signal['fdc-interrupt-after-reset'] = muxBit(ref('fdc-reset-assert'), ref('fdcInterrupt'), lit(0));
+// The AT adapter only gates the 765 INT pin; reset release starts the controller's post-reset attention event.
+signal['next-fdcInterrupt'] = muxBit(ref('fdc-reset-release'), ref('fdc-interrupt-after-reset'), lit(1));
+signal['fdc-reset'] = notBit(ref('fdcDor-2'));
+signal['irq6-request'] = andBit(ref('fdcInterrupt'), ref('fdcDor-3'));
 for (const [name, opcode] of Object.entries(opcodes)) {
   signal[`fetched-${name}`] = equalConstant('busData', 8, opcode);
   signal[`opcode-${name}`] = equalConstant('ir', 8, opcode);
@@ -682,6 +696,7 @@ export const cpu16 = {
     ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, farSegLow: { width: 8 }, stackLow: { width: 8 }, modrm: { width: 8 }, dispLow: { width: 8 }, dispHigh: { width: 8 }, memLow: { width: 8 }, memHigh: { width: 8 }, ldsSegLow: { width: 8 }, stringByte: { width: 8 }, byteImmediate: { width: 8 }, intOffsetLow: { width: 8 }, intOffsetHigh: { width: 8 }, intSegmentLow: { width: 8 }, returnIp: { width: 16 }, phase: { width: 4 },
     halted: { width: 1 }, faulted: { width: 1 }, if: { width: 1 }, tf: { width: 1 }, df: { width: 1 }, iopl: { width: 2 }, nt: { width: 1 }, rep: { width: 1 }, csOverride: { width: 1 },
     cf: { width: 1 }, pf: { width: 1 }, af: { width: 1 }, zf: { width: 1 }, sf: { width: 1 }, of: { width: 1 },
+    fdcDor: { width: 8 }, fdcInterrupt: { width: 1 },
   },
   signals: signal,
   latches: {
@@ -691,10 +706,12 @@ export const cpu16 = {
     ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), farSegLow: bits('next-farSegLow', 8), stackLow: bits('next-stackLow', 8), modrm: bits('next-modrm', 8), dispLow: bits('next-dispLow', 8), dispHigh: bits('next-dispHigh', 8), memLow: bits('next-memLow', 8), memHigh: bits('next-memHigh', 8), ldsSegLow: bits('next-ldsSegLow', 8), stringByte: bits('next-stringByte', 8), byteImmediate: bits('next-byteImmediate', 8), intOffsetLow: bits('next-intOffsetLow', 8), intOffsetHigh: bits('next-intOffsetHigh', 8), intSegmentLow: bits('next-intSegmentLow', 8), returnIp: bits('next-returnIp', 16), phase: bits('next-phase', 4),
     halted: ['next-halted'], faulted: ['next-faulted'], if: ['next-if'], tf: ['next-tf'], df: ['next-df'], iopl: bits('next-iopl', 2), nt: ['next-nt'], rep: ['next-rep'], csOverride: ['next-csOverride'],
     cf: ['next-cf'], pf: ['next-pf'], af: ['next-af'], zf: ['next-zf'], sf: ['next-sf'], of: ['next-of'],
+    fdcDor: bits('next-fdcDor', 8), fdcInterrupt: ['next-fdcInterrupt'],
   },
   outputs: {
     busAddress: bits('bus-address', 20), busRead: ['bus-read'], busWrite: ['bus-write'], busWriteData: bits('bus-write-data', 8),
     ioPort: bits('dx', 16), ioWrite: ['io-write'], ioWriteData: bits('ax', 8),
+    fdcDor: bits('fdcDor', 8), fdcReset: ['fdc-reset'], fdcInterrupt: ['fdcInterrupt'], irq6Request: ['irq6-request'],
   },
   aliases: Object.fromEntries([
     ...['al', 'cl', 'dl', 'bl'].map((name, index) => [name, bits(registers[index], 8)]),

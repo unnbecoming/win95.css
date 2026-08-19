@@ -17,12 +17,12 @@ The repository currently contains two generated organs:
 - the byte-width spine includes register and memory `MOV r/m8,r8` (`88`), `MOV r8,r/m8` (`8A`), `XOR r8,r/m8` (`32`), `CMP r/m8,r8` (`38`), `MOV r/m8,ib` (`C6 /0`), register `CMP r/m8,ib` (`80 /7`), register `SHL r/m8,1` (`D0 /4`), register `ROL r/m8,ib` (`C0 /0`), `MOV AL,moffs8` (`A0`), and `AND/OR AL,ib` (`24/0C`);
 - conditional control now covers `JB`, `JBE`, `JZ`, `JNZ`, and `JL`; `INT imm8` performs the real-mode FLAGS/CS/post-IP stack sequence and IVT transfer; memory `FF /2` performs an indirect near call, including `CS:`-overridden function-table reads and an `SS:SP` return-IP push;
 - CSS forms 20-bit physical addresses as `segment << 4 + offset`: instruction fetches use `CS:IP`, direct operands use `DS:moffs16`, stack traffic uses `SS:SP`, and ModR/M memory operands implement all eight 8086 base/index forms with signed `disp8`, `disp16`, direct `disp16`, BP-based `SS`, otherwise `DS`, and an explicit one-instruction `CS` override;
-- `OUT DX,AL` (`EE`) emits a CSS-owned I/O-write cycle with a 16-bit port and byte data; a manifest-driven, opcode-blind JavaScript adapter records that cycle but performs no controller or device semantics;
+- `OUT DX,AL` (`EE`) emits a CSS-owned I/O-write cycle with a 16-bit port and byte data; the CSS netlist itself decodes `03F2h`, latches the IBM AT DOR's implemented select/reset/IRQ-DMA-enable/motor bits, clears controller `INT` while reset is asserted, models the first post-reset attention event on reset release, and gates that pending `INT` to an observable IRQ6 request through DOR bit 3; the opcode-blind JavaScript adapter still only records generic bus cycles;
 - the public trace begins at `FFFF0h`, fetches the five-byte `EA 0000:7c00` reset stub, then lands at physical `07c00h`; this is a synthetic landing ROM, not a BIOS or boot sector;
-- independent browser proofs cover exact register selectors, effective addresses, stack ordering and wrap, byte sibling preservation, arithmetic flags, prefix lifetime, interrupt stack/IVT order, indirect-call target and return custody, rotate/shift count behavior, invalid group selectors, and exact memory plus port-output traces;
+- independent browser proofs cover exact register selectors, effective addresses, stack ordering and wrap, byte sibling preservation, arithmetic flags, prefix lifetime, interrupt stack/IVT order, indirect-call target and return custody, rotate/shift count behavior, invalid group selectors, exact memory plus port-output traces, DOR implemented/reserved bits, reset polarity, pending-controller-INT clearing, IRQ-enable gating, and unrelated-port isolation;
 - the ALU proof still differential-tests 1,045 mixed edge/random operation vectors in real Chromium.
 
-The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The CPU is **3,285 nets / 1,418,259 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases plus manifest-declared memory and port-output contracts.
+The generated ALU is **376 registered one-bit nets / 59,974 CSS bytes**. The CPU-plus-current-device slice is **3,310 nets / 1,423,858 CSS bytes** and exposes `AL/CL/DL/BL/AH/CH/DH/BH` aliases plus manifest-declared memory, port-output, DOR, reset, controller-INT, and IRQ6-request contracts.
 
 The first scalar prototype failed usefully: Chromium rounded `0xffffffff` as a typed CSS number, yielding `4294970000`. That made a scalar 32-bit custom property dishonest. The current design therefore uses one custom property per wire. The uglier architecture is also the truer one.
 
@@ -32,6 +32,7 @@ CSS owns:
 
 - operation, x86 opcode, ModR/M field/direction/mode decode, displacement capture and sign extension, and the full 8086 16-bit effective-address matrix;
 - real-mode default/override segment selection, segment-register write decode, one- and two-byte memory plus stack read/write/RMW microphases, four-byte far-pointer and IVT reads, `MOVSB` source/write cycles, CSS-owned `SI/DI/CX` string updates, architectural SP ordering, `IF/TF/DF` update, interrupt entry, I/O-write issue, and 20-bit physical address formation;
+- the current device slice's `03F2h` decode, implemented DOR bit latches, reset assertion/release transition, controller-INT pending bit, and IRQ6 request gate;
 - generated reset defaults, fetch-phase transitions, `IP` increment, far `CS:IP` transfer, register transfer, halt, and invalid-opcode faulting;
 - the shared add/sub carry networks and bitwise logic paths;
 - result-bit computation and architectural flags (logical operations deliberately drive undefined `AF` to zero for now);
@@ -47,7 +48,7 @@ The runtime JavaScript owns:
 
 `src/chip.js` and `src/byte-bus-machine.js` contain no opcode or ModR/M decode, arithmetic, carry, parity, overflow, x86 flag, or device logic. The independent operation/x86 oracles exist only in browser tests and are not loaded by either demo.
 
-If runtime JavaScript branches on opcode, ModR/M field, addressing mode, flag meaning, privilege level, segment type, page-table semantics, exception vector, or device meaning, the central claim has failed. Unsupported group selectors and intentionally absent register/memory forms fault before consuming hidden operands. `F3` is accepted only as `REP MOVSB`; another target faults. `CS` is the only implemented segment-override prefix. `INT` entry exists, but hardware interrupt delivery, interrupt-inhibition shadows, `IRET`, port input, controller state, IRQs, DMA, disks, and firmware ROM are not provided by this repository. An `OUT` trace proves the CPU issued a port cycle; it does **not** prove any FDC or other device exists behind that port.
+If runtime JavaScript branches on opcode, ModR/M field, addressing mode, flag meaning, privilege level, segment type, page-table semantics, exception vector, or device meaning, the central claim has failed. Unsupported group selectors and intentionally absent register/memory forms fault before consuming hidden operands. `F3` is accepted only as `REP MOVSB`; another target faults. `CS` is the only implemented segment-override prefix. `INT` entry exists, but hardware interrupt delivery, interrupt-inhibition shadows, `IRET`, port input, PIC semantics, FDC commands/status/result queues, DMA, drive mechanics, disks, and firmware ROM are not provided. The only device behavior is the narrow CSS-owned `03F2h` DOR/reset/post-reset-INT/IRQ6-request slice above; the IRQ request is not delivered to the CPU. An `OUT` trace by itself still proves only that the CPU issued a port cycle.
 
 ## Run the proof
 

@@ -2279,6 +2279,60 @@
   initial-value: 0;
 }
 
+@property --fdcDor-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcDor-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdcInterrupt {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --phase-opcode {
   syntax: "<number>";
   inherits: false;
@@ -2484,6 +2538,102 @@
 }
 
 @property --io-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-dor-port {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-dor-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-reset-assert {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-reset-release {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcDor-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-interrupt-after-reset {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-fdcInterrupt {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fdc-reset {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --irq6-request {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -20090,6 +20240,15 @@
   --zf: 0;
   --sf: 0;
   --of: 0;
+  --fdcDor-0: 0;
+  --fdcDor-1: 0;
+  --fdcDor-2: 0;
+  --fdcDor-3: 0;
+  --fdcDor-4: 0;
+  --fdcDor-5: 0;
+  --fdcDor-6: 0;
+  --fdcDor-7: 0;
+  --fdcInterrupt: 0;
   --phase-opcode: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
   --phase-imm-low: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--phase-0)) / 2), 1) + calc(1 - var(--phase-1))) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
   --phase-imm-high: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--phase-0))) / 2), 1) + var(--phase-1)) / 2), 1) + calc(1 - var(--phase-2))) / 2), 1) + calc(1 - var(--phase-3))) / 2), 1);
@@ -20125,6 +20284,22 @@
   --bus-read: round(down, calc(calc(calc(1 - var(--halted)) + var(--read-phase)) / 2), 1);
   --bus-write: round(down, calc(calc(calc(1 - var(--halted)) + var(--write-phase)) / 2), 1);
   --io-write: round(down, calc(calc(calc(1 - var(--halted)) + round(down, calc(calc(var(--phase-imm-low) + var(--opcode-outDxAl)) / 2), 1)) / 2), 1);
+  --fdc-dor-port: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--dx-0))) / 2), 1) + var(--dx-1)) / 2), 1) + calc(1 - var(--dx-2))) / 2), 1) + calc(1 - var(--dx-3))) / 2), 1) + var(--dx-4)) / 2), 1) + var(--dx-5)) / 2), 1) + var(--dx-6)) / 2), 1) + var(--dx-7)) / 2), 1) + var(--dx-8)) / 2), 1) + var(--dx-9)) / 2), 1) + calc(1 - var(--dx-10))) / 2), 1) + calc(1 - var(--dx-11))) / 2), 1) + calc(1 - var(--dx-12))) / 2), 1) + calc(1 - var(--dx-13))) / 2), 1) + calc(1 - var(--dx-14))) / 2), 1) + calc(1 - var(--dx-15))) / 2), 1);
+  --fdc-dor-write: round(down, calc(calc(var(--io-write) + var(--fdc-dor-port)) / 2), 1);
+  --fdc-reset-assert: round(down, calc(calc(var(--fdc-dor-write) + calc(1 - var(--ax-2))) / 2), 1);
+  --fdc-reset-release: round(down, calc(calc(var(--fdc-dor-write) + round(down, calc(calc(calc(1 - var(--fdcDor-2)) + var(--ax-2)) / 2), 1)) / 2), 1);
+  --next-fdcDor-0: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-0)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + var(--ax-0)) / 2), 1)));
+  --next-fdcDor-1: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-1)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + 0) / 2), 1)));
+  --next-fdcDor-2: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-2)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + var(--ax-2)) / 2), 1)));
+  --next-fdcDor-3: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-3)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + var(--ax-3)) / 2), 1)));
+  --next-fdcDor-4: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-4)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + var(--ax-4)) / 2), 1)));
+  --next-fdcDor-5: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-5)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + var(--ax-5)) / 2), 1)));
+  --next-fdcDor-6: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-6)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + 0) / 2), 1)));
+  --next-fdcDor-7: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-dor-write)) + var(--fdcDor-7)) / 2), 1) + round(down, calc(calc(var(--fdc-dor-write) + 0) / 2), 1)));
+  --fdc-interrupt-after-reset: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-reset-assert)) + var(--fdcInterrupt)) / 2), 1) + round(down, calc(calc(var(--fdc-reset-assert) + 0) / 2), 1)));
+  --next-fdcInterrupt: min(1, calc(round(down, calc(calc(calc(1 - var(--fdc-reset-release)) + var(--fdc-interrupt-after-reset)) / 2), 1) + round(down, calc(calc(var(--fdc-reset-release) + 1) / 2), 1)));
+  --fdc-reset: calc(1 - var(--fdcDor-2));
+  --irq6-request: round(down, calc(calc(var(--fdcInterrupt) + var(--fdcDor-3)) / 2), 1);
   --fetched-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
   --opcode-add: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-addRegRm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
