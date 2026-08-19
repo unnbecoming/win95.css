@@ -322,6 +322,47 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(shortJumped.state.halted, 1);
     assert.equal(shortJumped.state.faulted, 0);
 
+    const loopState = {
+      ax: 0x1111, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888,
+      ds: 0x1000, ss: 0x2000, es: 0x3000, if: 1, df: 1, rep: 0,
+      cf: 1, pf: 0, af: 1, zf: 1, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    const loopCollateralKeys = ['ax', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'if', 'df', 'rep', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'];
+    for (const cx of [0x0000, 0x0001, 0x0002]) {
+      const decremented = (cx - 1) & 0xffff;
+      const taken = decremented !== 0;
+      const result = await execute(page, baseUrl, [0xe2, 0x02, 0xf4, 0x90, 0xf4], { state: { ...loopState, cx } });
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: taken ? 4 : 2 },
+      ], `loop/${cx}`);
+      assert.equal(result.state.cx, decremented, `loop/${cx}`);
+      assert.deepEqual(Object.fromEntries(loopCollateralKeys.map((key) => [key, result.state[key]])), Object.fromEntries(loopCollateralKeys.map((key) => [key, loopState[key]])), `loop/${cx}`);
+      assert.equal(result.outputs.irq6Request, 1, `loop/${cx}`);
+      assert.deepEqual(result.memory, {}, `loop/${cx}`);
+      assert.equal(result.state.faulted, 0, `loop/${cx}`);
+    }
+
+    const loopNegative = await execute(page, baseUrl, [0xf4, 0xe2, 0xfd], {
+      loadAddress: 0x0100, state: { ...loopState, cs: 0, ip: 0x0101, cx: 2 },
+    });
+    assert.deepEqual(loopNegative.trace.map(({ address }) => address), [0x0101, 0x0102, 0x0100]);
+    assert.deepEqual({ cx: loopNegative.state.cx, ip: loopNegative.state.ip }, { cx: 1, ip: 0x0101 });
+    assert.deepEqual(Object.fromEntries(loopCollateralKeys.map((key) => [key, loopNegative.state[key]])), Object.fromEntries(loopCollateralKeys.map((key) => [key, loopState[key]])));
+
+    const loopPositiveWrap = await execute(page, baseUrl, [0xe2, 0x02], {
+      loadAddress: 0xfffe, state: { ...loopState, cs: 0, ip: 0xfffe, cx: 2 }, placements: [{ address: 0x0002, bytes: [0xf4] }],
+    });
+    assert.deepEqual(loopPositiveWrap.trace.map(({ address }) => address), [0xfffe, 0xffff, 0x0002]);
+    assert.deepEqual({ cx: loopPositiveWrap.state.cx, ip: loopPositiveWrap.state.ip }, { cx: 1, ip: 0x0003 });
+    assert.deepEqual(Object.fromEntries(loopCollateralKeys.map((key) => [key, loopPositiveWrap.state[key]])), Object.fromEntries(loopCollateralKeys.map((key) => [key, loopState[key]])));
+
+    const loopNegativeWrap = await execute(page, baseUrl, [0xe2, 0xfd], {
+      state: { ...loopState, cs: 0, ip: 0, cx: 2 }, placements: [{ address: 0xffff, bytes: [0xf4] }],
+    });
+    assert.deepEqual(loopNegativeWrap.trace.map(({ address }) => address), [0x0000, 0x0001, 0xffff]);
+    assert.deepEqual({ cx: loopNegativeWrap.state.cx, ip: loopNegativeWrap.state.ip }, { cx: 1, ip: 0x0000 });
+    assert.deepEqual(Object.fromEntries(loopCollateralKeys.map((key) => [key, loopNegativeWrap.state[key]])), Object.fromEntries(loopCollateralKeys.map((key) => [key, loopState[key]])));
+
     for (const cf of [0, 1]) {
       const jb = await execute(page, baseUrl, [0x72, 0x02, 0xf4, 0x90, 0xf4], {
         state: { cf, ax: 0x1111, bx: 0x2222, ds: 0x3333, ss: 0x4444, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
