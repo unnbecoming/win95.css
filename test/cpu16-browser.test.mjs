@@ -1067,7 +1067,30 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.memory, {}, `80/${destination}`);
       assert.equal(result.state.faulted, 0, `80/${destination}`);
     }
-    for (const [name, bytes] of [['selector', [0x80, 0xc0, 0x01]], ['memory', [0x80, 0x3e, 0x00, 0x10, 0x01]]]) {
+    const subImmediateValues = [0x01, 0x01, 0xff, 0x01, 0xff, 0x11, 0x10, 0xaa];
+    for (let destination = 0; destination < 8; destination++) {
+      const immediate = subImmediateValues[destination];
+      const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const result = await execute(page, baseUrl, [0x80, 0xe8 | destination, immediate, 0xf4], { state });
+      const target = byteAliases[destination];
+      const subtracted = (byteValue(state, destination) - immediate) & 0xff;
+      const expected = { ...state, [target.register]: (state[target.register] & ~(0xff << target.shift)) | (subtracted << target.shift) };
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      ], `80/5/${destination}`);
+      assert.deepEqual(architecturalState(result.state), architecturalState(expected), `80/5/${destination}`);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), cmpFlags(byteValue(state, destination), immediate), `80/5/${destination}`);
+      assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { fdcDor: 0x0c, fdcInterrupt: 1 }, `80/5/${destination}`);
+      assert.equal(result.outputs.irq6Request, 1, `80/5/${destination}`);
+      assert.deepEqual(result.memory, {}, `80/5/${destination}`);
+      assert.equal(result.state.faulted, 0, `80/5/${destination}`);
+    }
+    for (const selector of [0, 1, 2, 3, 4, 6]) {
+      const result = await execute(page, baseUrl, [0x80, 0xc0 | (selector << 3), 0x01]);
+      assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `selector/${selector}`);
+      assert.equal(result.state.faulted, 1, `selector/${selector}`);
+    }
+    for (const [name, bytes] of [['sub-memory', [0x80, 0x2e, 0x00, 0x10, 0x01]], ['cmp-memory', [0x80, 0x3e, 0x00, 0x10, 0x01]]]) {
       const result = await execute(page, baseUrl, bytes);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], name);
       assert.equal(result.state.faulted, 1, name);
