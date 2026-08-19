@@ -1259,10 +1259,10 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `selector/${selector}`);
       assert.equal(result.state.faulted, 1, `selector/${selector}`);
     }
-    for (const [name, bytes] of [['sub-memory', [0x80, 0x2e, 0x00, 0x10, 0x01]], ['cmp-memory', [0x80, 0x3e, 0x00, 0x10, 0x01]]]) {
-      const result = await execute(page, baseUrl, bytes);
-      assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], name);
-      assert.equal(result.state.faulted, 1, name);
+    for (const selector of [0, 2, 3, 4, 5, 6, 7]) {
+      const result = await execute(page, baseUrl, [0x80, 0x06 | (selector << 3), 0x00, 0x10, 0x01]);
+      assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `memory-selector/${selector}`);
+      assert.equal(result.state.faulted, 1, `memory-selector/${selector}`);
     }
 
     const testFlags = (destination, immediate) => {
@@ -1312,6 +1312,59 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const testRegister = await execute(page, baseUrl, [0xf6, 0xc0, 0x80]);
     assert.deepEqual(testRegister.trace.map(({ address }) => address), [0, 1]);
     assert.equal(testRegister.state.faulted, 1);
+
+    const orFlags = (destination, immediate) => {
+      const result = destination | immediate;
+      return { cf: 0, pf: Number(result.toString(2).split('').filter((bit) => bit === '1').length % 2 === 0), af: 0, zf: Number(result === 0), sf: result >>> 7, of: 0 };
+    };
+    const biosOrState = { ...cmpInitial, ds: 0x0040, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    const biosOr = await execute(page, baseUrl, [0x80, 0x0e, 0x41, 0x00, 0x80, 0xf4], {
+      state: biosOrState, placements: [{ address: 0x0441, bytes: [0x00] }],
+    });
+    assert.deepEqual(biosOr.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      { kind: 'read', address: 4 }, { kind: 'read', address: 0x0441 }, { kind: 'write', address: 0x0441, data: 0x80 }, { kind: 'read', address: 5 },
+    ]);
+    assert.deepEqual(architecturalState(biosOr.state), architecturalState(biosOrState));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, biosOr.state[flag]])), orFlags(0x00, 0x80));
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, biosOr.state[name]])), { fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(biosOr.outputs.irq6Request, 1);
+    assert.deepEqual(biosOr.memory, { 1089: 0x80 });
+    assert.equal(biosOr.state.faulted, 0);
+
+    const orMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
+    const orImmediateValues = [0x00, 0x80, 0x01, 0x7f, 0x0f, 0xf0, 0x55, 0xaa];
+    for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      const immediate = orImmediateValues[destination];
+      const expected = orMemoryValues[destination] | immediate;
+      const state = { ...cmpInitial, ...eaState, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 1, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const result = await execute(page, baseUrl, [0x80, modrmByte | 0x08, ...displacement, immediate, 0xf4], {
+        state, placements: [{ address: physical, bytes: [orMemoryValues[destination]] }],
+      });
+      assert.deepEqual(result.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+        ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+        { kind: 'read', address: 2 + displacement.length }, { kind: 'read', address: physical }, { kind: 'write', address: physical, data: expected }, { kind: 'read', address: 3 + displacement.length },
+      ], name);
+      assert.deepEqual(architecturalState(result.state), architecturalState(state), name);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), orFlags(orMemoryValues[destination], immediate), name);
+      assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), { fdcDor: 0x0c, fdcInterrupt: 1 }, name);
+      assert.equal(result.outputs.irq6Request, 1, name);
+      assert.deepEqual(result.memory, { [physical]: expected }, name);
+      assert.equal(result.state.faulted, 0, name);
+    }
+
+    const csOr = await execute(page, baseUrl, [0x2e, 0x80, 0x0e, 0x41, 0x00, 0x20, 0xf4], {
+      state: { ...biosOrState, cs: 0, ds: 0x0040 },
+      placements: [{ address: 0x0041, bytes: [0x01] }, { address: 0x0441, bytes: [0x02] }],
+    });
+    assert.deepEqual(csOr.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 }, { kind: 'read', address: 4 },
+      { kind: 'read', address: 5 }, { kind: 'read', address: 0x0041 }, { kind: 'write', address: 0x0041, data: 0x21 }, { kind: 'read', address: 6 },
+    ]);
+    assert.deepEqual(csOr.memory, { 65: 0x21 });
+    assert.equal(csOr.state.csOverride, 0);
+    assert.equal(csOr.state.faulted, 0);
 
     for (let source = 0; source < 8; source++) {
       for (let destination = 0; destination < 8; destination++) {
