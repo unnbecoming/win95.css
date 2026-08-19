@@ -781,6 +781,45 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(addMemoryRejected.trace.map(({ address }) => address), [0, 1]);
     assert.equal(addMemoryRejected.state.faulted, 1);
 
+    const subFlags = (left, right) => {
+      const result = (left - right) & 0xffff;
+      return {
+        cf: Number(left < right),
+        pf: Number((result & 0xff).toString(2).split('').filter((bit) => bit === '1').length % 2 === 0),
+        af: Number((left & 0xf) < (right & 0xf)),
+        zf: Number(result === 0),
+        sf: result >>> 15,
+        of: Number((((left ^ right) & (left ^ result)) & 0x8000) !== 0),
+      };
+    };
+    const biosSubSelf = await execute(page, baseUrl, [0x2b, 0xc0, 0xf4], {
+      state: { ax: 0x9001, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 },
+    });
+    assert.equal(biosSubSelf.state.ax, 0);
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, biosSubSelf.state[flag]])), { cf: 0, pf: 1, af: 0, zf: 1, sf: 0, of: 0 });
+    assert.deepEqual(biosSubSelf.trace.map(({ kind, address, data }) => ({ kind, address, data })), [{ kind: 'read', address: 0, data: 0x2b }, { kind: 'read', address: 1, data: 0xc0 }, { kind: 'read', address: 2, data: 0xf4 }]);
+    assert.deepEqual(Object.fromEntries(['cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, biosSubSelf.state[name]])), { cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(biosSubSelf.outputs.irq6Request, 1);
+    assert.deepEqual(biosSubSelf.memory, {});
+
+    const subInitial = { ...addInitial, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...subInitial, cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0 };
+        const result = await execute(page, baseUrl, [0x2b, 0xc0 | (destination << 3) | source, 0xf4], { state });
+        const expected = { ...addInitial, [addRegisters[destination]]: (addInitial[addRegisters[destination]] - addInitial[addRegisters[source]]) & 0xffff };
+        assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), expected, `sub ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), subFlags(addInitial[addRegisters[destination]], addInitial[addRegisters[source]]), `sub ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, subInitial[name]])), `sub collateral ${source}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `sub irq ${source}/${destination}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `sub trace ${source}/${destination}`);
+        assert.deepEqual(result.memory, {}, `sub memory ${source}/${destination}`);
+      }
+    }
+    const subMemoryRejected = await execute(page, baseUrl, [0x2b, 0x06, 0x00, 0x10]);
+    assert.deepEqual(subMemoryRejected.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(subMemoryRejected.state.faulted, 1);
+
     const indirectCall = await execute(page, baseUrl, [0xff, 0x17, 0xf4], {
       state: { bx: 0x0100, ds: 0x1000, ss: 0x2000, sp: 0x8000, ax: 0x1234, cf: 1 },
       placements: [{ address: 0x10100, bytes: [0x00, 0x02] }, { address: 0x00200, bytes: [0xf4] }],
