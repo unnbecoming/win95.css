@@ -1315,7 +1315,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `selector/${selector}`);
       assert.equal(result.state.faulted, 1, `selector/${selector}`);
     }
-    for (const selector of [0, 2, 3, 4, 5, 6, 7]) {
+    for (const selector of [0, 2, 3, 5, 6, 7]) {
       const result = await execute(page, baseUrl, [0x80, 0x06 | (selector << 3), 0x00, 0x10, 0x01]);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `memory-selector/${selector}`);
       assert.equal(result.state.faulted, 1, `memory-selector/${selector}`);
@@ -1368,6 +1368,47 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const testRegister = await execute(page, baseUrl, [0xf6, 0xc0, 0x80]);
     assert.deepEqual(testRegister.trace.map(({ address }) => address), [0, 1]);
     assert.equal(testRegister.state.faulted, 1);
+
+    const biosAndState = { ...cmpInitial, ds: 0, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    const biosAnd = await execute(page, baseUrl, [0x80, 0x26, 0x3e, 0x00, 0x7f, 0xf4], {
+      state: biosAndState, placements: [{ address: 0x003e, bytes: [0xff] }],
+    });
+    assert.deepEqual(biosAnd.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      { kind: 'read', address: 4 }, { kind: 'read', address: 0x003e }, { kind: 'write', address: 0x003e, data: 0x7f }, { kind: 'read', address: 5 },
+    ]);
+    assert.deepEqual(architecturalState(biosAnd.state), architecturalState(biosAndState));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, biosAnd.state[flag]])), testFlags(0xff, 0x7f));
+    assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((name) => [name, biosAnd.state[name]])), { fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(biosAnd.outputs.irq6Request, 1);
+    assert.deepEqual(biosAnd.memory, { 62: 0x7f });
+    assert.equal(biosAnd.state.faulted, 0);
+
+    const andMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
+    const andImmediateValues = [0xff, 0x00, 0x80, 0x7f, 0x0f, 0xf0, 0x55, 0xaa];
+    for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      const immediate = andImmediateValues[destination];
+      const expected = andMemoryValues[destination] & immediate;
+      const state = { ...cmpInitial, ...eaState, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const result = await execute(page, baseUrl, [0x80, modrmByte | 0x20, ...displacement, immediate, 0xf4], {
+        state, placements: [{ address: physical, bytes: [andMemoryValues[destination]] }],
+      });
+      assert.deepEqual(result.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+        ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+        { kind: 'read', address: 2 + displacement.length }, { kind: 'read', address: physical }, { kind: 'write', address: physical, data: expected }, { kind: 'read', address: 3 + displacement.length },
+      ], `and/${name}`);
+      assert.deepEqual(architecturalState(result.state), architecturalState(state), `and/${name}`);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), testFlags(andMemoryValues[destination], immediate), `and/${name}`);
+      assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), { fdcDor: 0x0c, fdcInterrupt: 1 }, `and/${name}`);
+      assert.equal(result.outputs.irq6Request, 1, `and/${name}`);
+      assert.deepEqual(result.memory, { [physical]: expected }, `and/${name}`);
+      assert.equal(result.state.faulted, 0, `and/${name}`);
+    }
+
+    const andRegister = await execute(page, baseUrl, [0x80, 0xe0, 0x7f]);
+    assert.deepEqual(andRegister.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(andRegister.state.faulted, 1);
 
     const orFlags = (destination, immediate) => {
       const result = destination | immediate;
