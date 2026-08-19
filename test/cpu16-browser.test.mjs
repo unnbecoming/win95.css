@@ -42,6 +42,23 @@ async function execute(page, baseUrl, rom, options = {}) {
   }, { bytes: rom, loadAddress: options.loadAddress ?? 0, state: { cs: 0, ip: 0, ...(options.state ?? {}) }, placements: options.placements ?? [] });
 }
 
+async function executeSteps(page, baseUrl, rom, steps, options = {}) {
+  await page.goto(`${baseUrl}/test/cpu16.html`);
+  return page.evaluate(async ({ bytes, loadAddress, state, placements, count }) => {
+    const [{ CssChip }, { ByteBusMachine }] = await Promise.all([import('/src/chip.js'), import('/src/byte-bus-machine.js')]);
+    const manifest = await fetch('/generated/cpu16.manifest.json').then((response) => response.json());
+    const chip = new CssChip(document.querySelector('#cpu'), manifest);
+    chip.seedState(state);
+    const memory = new Uint8Array(0x100000);
+    memory.set(bytes, loadAddress);
+    for (const placement of placements) memory.set(placement.bytes, placement.address);
+    const machine = new ByteBusMachine(chip, memory);
+    const snapshots = [];
+    for (let index = 0; index < count; index++) snapshots.push(machine.step());
+    return { snapshots, trace: machine.trace, state: chip.state() };
+  }, { bytes: rom, loadAddress: options.loadAddress ?? 0, state: { cs: 0, ip: 0, ...(options.state ?? {}) }, placements: options.placements ?? [], count: steps });
+}
+
 test('generated CSS fetches and executes a real-mode ROM byte stream', async () => {
   const server = await serve();
   const address = server.address();
@@ -126,7 +143,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const normal = await execute(page, baseUrl, rom);
     assert.deepEqual(normal.trace, rom.map((data, address) => ({ cycle: address, kind: 'read', address, data })));
     assert.deepEqual(normal.state, {
-      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 13, ax: 0x12c8, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, stackHigh: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 0, pf: 0, af: 0, zf: 0, sf: 0, of: 0,
     });
 
@@ -199,13 +216,13 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
 
     const overflow = await execute(page, baseUrl, [0xb8, 0x00, 0x80, 0x05, 0x00, 0x80, 0xf4]);
     assert.deepEqual(overflow.state, {
-      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 7, ax: 0, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 0, immHigh: 0x80, farSegLow: 0, stackLow: 0, stackHigh: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 1, pf: 1, af: 0, zf: 1, sf: 0, of: 1,
     });
 
     const borrow = await execute(page, baseUrl, [0xb8, 0x00, 0x00, 0x2d, 0x01, 0x00, 0xf4]);
     assert.deepEqual(borrow.state, {
-      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
+      ip: 7, ax: 0xffff, ...zeroOtherRegisters, ...zeroSegments, ...zeroInterruptState, ...zeroFdcState, ir: 0xf4, immLow: 1, immHigh: 0, farSegLow: 0, stackLow: 0, stackHigh: 0, modrm: 0, dispLow: 0, dispHigh: 0, memLow: 0, memHigh: 0, ldsSegLow: 0, stringByte: 0, byteImmediate: 0, returnIp: 0, phase: 0, halted: 1, faulted: 0, if: 0, df: 0, rep: 0, csOverride: 0,
       cf: 1, pf: 1, af: 1, zf: 0, sf: 1, of: 0,
     });
 
@@ -241,6 +258,55 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(farJumped.state.ip, 0x2001);
     assert.equal(farJumped.state.halted, 1);
     assert.equal(farJumped.state.faulted, 0);
+
+    const retfState = {
+      ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0xfffe, bp: 0x5555, si: 0x6666, di: 0x7777,
+      cs: 0x1000, ip: 0, ds: 0x3000, ss: 0, es: 0x4000,
+      if: 1, tf: 1, df: 1, iopl: 3, nt: 1, rep: 0, csOverride: 0,
+      cf: 1, pf: 0, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    const retfPlacements = [
+      { address: 0xfffe, bytes: [0x34, 0x12] },
+      { address: 0x0000, bytes: [0x00, 0x20] },
+      { address: 0x21234, bytes: [0xf4] },
+    ];
+    const returnedFar = await execute(page, baseUrl, [0xca, 0x02, 0x00], {
+      loadAddress: 0x10000, state: retfState, placements: retfPlacements,
+    });
+    assert.deepEqual(returnedFar.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0x10000 }, { kind: 'read', address: 0x10001 }, { kind: 'read', address: 0x10002 },
+      { kind: 'read', address: 0xfffe }, { kind: 'read', address: 0xffff }, { kind: 'read', address: 0x0000 }, { kind: 'read', address: 0x0001 },
+      { kind: 'read', address: 0x21234 },
+    ]);
+    assert.deepEqual(Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'if', 'tf', 'df', 'iopl', 'nt', 'rep', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((name) => [name, returnedFar.state[name]])), Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'if', 'tf', 'df', 'iopl', 'nt', 'rep', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((name) => [name, retfState[name]])));
+    assert.deepEqual({ cs: returnedFar.state.cs, ip: returnedFar.state.ip, sp: returnedFar.state.sp, halted: returnedFar.state.halted, faulted: returnedFar.state.faulted }, { cs: 0x2000, ip: 0x1235, sp: 0x0004, halted: 1, faulted: 0 });
+    assert.deepEqual(returnedFar.memory, {});
+
+    const partialFar = await executeSteps(page, baseUrl, [0xca, 0x02, 0x00], 7, {
+      loadAddress: 0x10000, state: retfState, placements: retfPlacements,
+    });
+    assert.deepEqual(partialFar.snapshots.slice(0, 6).map(({ state }) => ({ ip: state.ip, cs: state.cs, sp: state.sp })), [
+      { ip: 1, cs: 0x1000, sp: 0xfffe },
+      { ip: 2, cs: 0x1000, sp: 0xfffe },
+      { ip: 3, cs: 0x1000, sp: 0xfffe },
+      { ip: 3, cs: 0x1000, sp: 0xfffe },
+      { ip: 3, cs: 0x1000, sp: 0xfffe },
+      { ip: 3, cs: 0x1000, sp: 0xfffe },
+    ]);
+    assert.deepEqual({ ip: partialFar.snapshots[6].state.ip, cs: partialFar.snapshots[6].state.cs, sp: partialFar.snapshots[6].state.sp }, { ip: 0x1234, cs: 0x2000, sp: 0x0004 });
+
+    for (const cleanup of [0, 1, 0x1234, 0xffff]) {
+      const stack = 0x0100;
+      const cleanupResult = await execute(page, baseUrl, [0xca, cleanup & 0xff, cleanup >>> 8], {
+        loadAddress: 0x10000,
+        state: { cs: 0x1000, ip: 0, ss: 0, sp: stack },
+        placements: [{ address: stack, bytes: [0x00, 0x01, 0x00, 0x20] }, { address: 0x20100, bytes: [0xf4] }],
+      });
+      assert.equal(cleanupResult.state.sp, (stack + 4 + cleanup) & 0xffff, `${cleanup}`);
+      assert.equal(cleanupResult.state.cs, 0x2000, `${cleanup}`);
+      assert.equal(cleanupResult.state.ip, 0x0101, `${cleanup}`);
+      assert.equal(cleanupResult.state.faulted, 0, `${cleanup}`);
+    }
 
     const looped = await execute(page, baseUrl, [0xb8, 0x03, 0x00, 0x2d, 0x01, 0x00, 0x75, 0xfb, 0xf4]);
     assert.deepEqual(looped.trace.map(({ address }) => address), [0, 1, 2, 3, 4, 5, 6, 7, 3, 4, 5, 6, 7, 3, 4, 5, 6, 7, 8]);
