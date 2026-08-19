@@ -623,6 +623,67 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(pushfB.state.halted, 1);
     assert.equal(pushfB.state.faulted, 0);
 
+    const popfAInitial = { ...pushfBState, sp: 0x8000, ss: 0x2000, fdcDor: 0x3c, fdcInterrupt: 1 };
+    const popfA = await execute(page, baseUrl, [0x9d, 0xf4], {
+      state: popfAInitial,
+      placements: [{ address: 0x28000, bytes: [0xb9, 0xaa] }],
+    });
+    assert.deepEqual(popfA.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0x9d },
+      { kind: 'read', address: 0x28000, data: 0xb9 },
+      { kind: 'read', address: 0x28001, data: 0xaa },
+      { kind: 'read', address: 1, data: 0xf4 },
+    ]);
+    assert.equal(popfA.state.sp, 0x8002);
+    assert.deepEqual(
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, popfA.state[name]])),
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, pushfAState[name]])),
+    );
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'fdcDor', 'fdcInterrupt'].map((name) => [name, popfA.state[name]])),
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'fdcDor', 'fdcInterrupt'].map((name) => [name, popfAInitial[name]])),
+    );
+    assert.equal(popfA.outputs.irq6Request, 1);
+    assert.equal(popfA.state.halted, 1);
+    assert.equal(popfA.state.faulted, 0);
+
+    const popfBInitial = { ...pushfAState, cs: 0, sp: 0xffff, ss: 0x1000, fdcDor: 0x08, fdcInterrupt: 1 };
+    const popfB = await execute(page, baseUrl, [0x9d, 0xf4], {
+      state: popfBInitial,
+      placements: [{ address: 0x1ffff, bytes: [0x46] }, { address: 0x10000, bytes: [0x55] }],
+    });
+    assert.deepEqual(popfB.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0x9d },
+      { kind: 'read', address: 0x1ffff, data: 0x46 },
+      { kind: 'read', address: 0x10000, data: 0x55 },
+      { kind: 'read', address: 1, data: 0xf4 },
+    ]);
+    assert.equal(popfB.state.sp, 0x0001);
+    assert.deepEqual(
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, popfB.state[name]])),
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, pushfBState[name]])),
+    );
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'fdcDor', 'fdcInterrupt'].map((name) => [name, popfB.state[name]])),
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'fdcDor', 'fdcInterrupt'].map((name) => [name, popfBInitial[name]])),
+    );
+    assert.equal(popfB.state.halted, 1);
+    assert.equal(popfB.state.faulted, 0);
+
+    const popfPartial = await executeSteps(page, baseUrl, [0x9d], 2, {
+      state: popfAInitial,
+      placements: [{ address: 0x28000, bytes: [0xb9, 0xaa] }],
+    });
+    assert.deepEqual(popfPartial.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0x9d },
+      { kind: 'read', address: 0x28000, data: 0xb9 },
+    ]);
+    assert.equal(popfPartial.state.sp, 0x8000);
+    assert.deepEqual(
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, popfPartial.state[name]])),
+      Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, popfAInitial[name]])),
+    );
+
     const popSp = await execute(page, baseUrl, [0xbc, 0x00, 0x80, 0x5c, 0xf4], {
       state: { ss: 0x2000 },
       placements: [{ address: 0x28000, bytes: [0x34, 0x12] }],

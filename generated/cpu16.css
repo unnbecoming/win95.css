@@ -3239,6 +3239,18 @@
   initial-value: 0;
 }
 
+@property --fetched-popf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-popf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-clc {
   syntax: "<number>";
   inherits: false;
@@ -4589,7 +4601,19 @@
   initial-value: 0;
 }
 
+@property --interrupt-if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --next-if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --interrupt-tf {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4620,6 +4644,12 @@
 }
 
 @property --update-df {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --controlled-df {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -5862,6 +5892,12 @@
 }
 
 @property --finish-pop {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-popf {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -21719,6 +21755,18 @@
   initial-value: 0;
 }
 
+@property --controlled-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --rotated-of {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 .css386-cpu {
   --busData-0: 0;
   --busData-1: 0;
@@ -22260,6 +22308,8 @@
   --opcode-ret: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-pushf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-pushf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-popf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-popf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-clc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-clc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-stc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -22356,8 +22406,8 @@
   --opcode-mov: min(1, calc(var(--opcode-mov-ax) + var(--opcode-mov-cx) + var(--opcode-mov-dx) + var(--opcode-mov-bx) + var(--opcode-mov-sp) + var(--opcode-mov-bp) + var(--opcode-mov-si) + var(--opcode-mov-di)));
   --fetched-push: min(1, calc(var(--fetched-push-ax) + var(--fetched-push-cx) + var(--fetched-push-dx) + var(--fetched-push-bx) + var(--fetched-push-sp) + var(--fetched-push-bp) + var(--fetched-push-si) + var(--fetched-push-di) + var(--fetched-push-es) + var(--fetched-push-cs) + var(--fetched-push-ss) + var(--fetched-push-ds) + var(--fetched-pushf)));
   --opcode-push: min(1, calc(var(--opcode-push-ax) + var(--opcode-push-cx) + var(--opcode-push-dx) + var(--opcode-push-bx) + var(--opcode-push-sp) + var(--opcode-push-bp) + var(--opcode-push-si) + var(--opcode-push-di) + var(--opcode-push-es) + var(--opcode-push-cs) + var(--opcode-push-ss) + var(--opcode-push-ds) + var(--opcode-pushf)));
-  --fetched-pop: min(1, calc(var(--fetched-pop-ax) + var(--fetched-pop-cx) + var(--fetched-pop-dx) + var(--fetched-pop-bx) + var(--fetched-pop-sp) + var(--fetched-pop-bp) + var(--fetched-pop-si) + var(--fetched-pop-di) + var(--fetched-pop-es) + var(--fetched-pop-ss) + var(--fetched-pop-ds)));
-  --opcode-pop: min(1, calc(var(--opcode-pop-ax) + var(--opcode-pop-cx) + var(--opcode-pop-dx) + var(--opcode-pop-bx) + var(--opcode-pop-sp) + var(--opcode-pop-bp) + var(--opcode-pop-si) + var(--opcode-pop-di) + var(--opcode-pop-es) + var(--opcode-pop-ss) + var(--opcode-pop-ds)));
+  --fetched-pop: min(1, calc(var(--fetched-pop-ax) + var(--fetched-pop-cx) + var(--fetched-pop-dx) + var(--fetched-pop-bx) + var(--fetched-pop-sp) + var(--fetched-pop-bp) + var(--fetched-pop-si) + var(--fetched-pop-di) + var(--fetched-pop-es) + var(--fetched-pop-ss) + var(--fetched-pop-ds) + var(--fetched-popf)));
+  --opcode-pop: min(1, calc(var(--opcode-pop-ax) + var(--opcode-pop-cx) + var(--opcode-pop-dx) + var(--opcode-pop-bx) + var(--opcode-pop-sp) + var(--opcode-pop-bp) + var(--opcode-pop-si) + var(--opcode-pop-di) + var(--opcode-pop-es) + var(--opcode-pop-ss) + var(--opcode-pop-ds) + var(--opcode-popf)));
   --fetched-immediate: min(1, calc(var(--fetched-mov) + var(--fetched-add) + var(--fetched-sub) + var(--fetched-xor) + var(--fetched-andAlImm8) + var(--fetched-orAlImm8) + var(--fetched-movAlMoffs8) + var(--fetched-store) + var(--fetched-call) + var(--fetched-jmp) + var(--fetched-far) + var(--fetched-retfImm) + var(--fetched-mov8)));
   --opcode-al-logical-immediate: min(1, calc(var(--opcode-andAlImm8) + var(--opcode-orAlImm8)));
   --fetched-short: min(1, calc(var(--fetched-jb) + var(--fetched-jz) + var(--fetched-jnz) + var(--fetched-jbe) + var(--fetched-jl) + var(--fetched-jmpShort) + var(--fetched-loop)));
@@ -22485,13 +22535,16 @@
   --update-stc: round(down, calc(calc(var(--capture-opcode) + var(--fetched-stc)) / 2), 1);
   --update-carry-control: min(1, calc(var(--update-clc) + var(--update-stc)));
   --controlled-if: min(1, calc(round(down, calc(calc(calc(1 - var(--update-if)) + var(--if)) / 2), 1) + round(down, calc(calc(var(--update-if) + var(--fetched-sti)) / 2), 1)));
-  --next-if: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-int-flags)) + var(--controlled-if)) / 2), 1) + round(down, calc(calc(var(--finish-int-flags) + 0) / 2), 1)));
-  --next-tf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-int-flags)) + var(--tf)) / 2), 1) + round(down, calc(calc(var(--finish-int-flags) + 0) / 2), 1)));
-  --next-nt: var(--nt);
-  --next-iopl-0: var(--iopl-0);
-  --next-iopl-1: var(--iopl-1);
+  --interrupt-if: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-int-flags)) + var(--controlled-if)) / 2), 1) + round(down, calc(calc(var(--finish-int-flags) + 0) / 2), 1)));
+  --next-if: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--interrupt-if)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-1)) / 2), 1)));
+  --interrupt-tf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-int-flags)) + var(--tf)) / 2), 1) + round(down, calc(calc(var(--finish-int-flags) + 0) / 2), 1)));
+  --next-tf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--interrupt-tf)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-0)) / 2), 1)));
+  --next-nt: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--nt)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-6)) / 2), 1)));
+  --next-iopl-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--iopl-0)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-4)) / 2), 1)));
+  --next-iopl-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--iopl-1)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-5)) / 2), 1)));
   --update-df: round(down, calc(calc(var(--capture-opcode) + var(--fetched-cld)) / 2), 1);
-  --next-df: min(1, calc(round(down, calc(calc(calc(1 - var(--update-df)) + var(--df)) / 2), 1) + round(down, calc(calc(var(--update-df) + 0) / 2), 1)));
+  --controlled-df: min(1, calc(round(down, calc(calc(calc(1 - var(--update-df)) + var(--df)) / 2), 1) + round(down, calc(calc(var(--update-df) + 0) / 2), 1)));
+  --next-df: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--controlled-df)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-2)) / 2), 1)));
   --cx-nonzero: min(1, calc(var(--cx-0) + var(--cx-1) + var(--cx-2) + var(--cx-3) + var(--cx-4) + var(--cx-5) + var(--cx-6) + var(--cx-7) + var(--cx-8) + var(--cx-9) + var(--cx-10) + var(--cx-11) + var(--cx-12) + var(--cx-13) + var(--cx-14) + var(--cx-15)));
   --capture-rep: round(down, calc(calc(var(--capture-opcode) + var(--fetched-rep)) / 2), 1);
   --capture-cs-override: round(down, calc(calc(var(--capture-opcode) + var(--fetched-csOverride)) / 2), 1);
@@ -22698,6 +22751,7 @@
   --finish-stack-read: round(down, calc(calc(var(--phase-ret-high) + var(--bus-read)) / 2), 1);
   --finish-ret: round(down, calc(calc(var(--finish-stack-read) + var(--opcode-ret)) / 2), 1);
   --finish-pop: round(down, calc(calc(var(--finish-stack-read) + var(--opcode-pop)) / 2), 1);
+  --finish-popf: round(down, calc(calc(var(--finish-stack-read) + var(--opcode-popf)) / 2), 1);
   --begin-far: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-far)) / 2), 1);
   --finish-far-jump: round(down, calc(calc(var(--capture-far-high) + var(--opcode-far)) / 2), 1);
   --finish-retf: round(down, calc(calc(var(--capture-far-high) + var(--opcode-retfImm)) / 2), 1);
@@ -25323,21 +25377,23 @@
   --update-flags: min(1, calc(round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-xor)))) / 2), 1) + round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-add-commit) + var(--memory-flag-commit) + var(--cmp-commit) + var(--execute-byte-logical-rm8) + var(--execute-dec-rm8-register) + var(--execute-shl-rm8-one-register) + var(--execute-al-logical-immediate) + var(--execute-test-rm8-immediate-memory) + var(--group-rm8-immediate-memory-commit)));
   --selected-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-cf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-cf)) / 2), 1)));
   --next-base-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--cf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-cf)) / 2), 1)));
-  --next-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-carry-control)) + var(--next-rol-cf)) / 2), 1) + round(down, calc(calc(var(--update-carry-control) + var(--update-stc)) / 2), 1)));
+  --next-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--controlled-cf)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--stackLow-0)) / 2), 1)));
   --selected-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-pf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-pf)) / 2), 1)));
   --next-base-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--pf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-pf)) / 2), 1)));
-  --next-pf: var(--next-base-pf);
+  --next-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--next-base-pf)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--stackLow-2)) / 2), 1)));
   --selected-af: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-af)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-af)) / 2), 1)));
   --next-base-af: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--af)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-af)) / 2), 1)));
-  --next-af: var(--next-base-af);
+  --next-af: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--next-base-af)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--stackLow-4)) / 2), 1)));
   --selected-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-zf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-zf)) / 2), 1)));
   --next-base-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--zf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-zf)) / 2), 1)));
-  --next-zf: var(--next-base-zf);
+  --next-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--next-base-zf)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--stackLow-6)) / 2), 1)));
   --selected-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-sf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-sf)) / 2), 1)));
   --next-base-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--sf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-sf)) / 2), 1)));
-  --next-sf: var(--next-base-sf);
+  --next-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--next-base-sf)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--stackLow-7)) / 2), 1)));
   --selected-of: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-of)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-of)) / 2), 1)));
   --next-base-of: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--of)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-of)) / 2), 1)));
-  --next-of: min(1, calc(round(down, calc(calc(calc(1 - var(--rol-rm8-count-one)) + var(--next-base-of)) / 2), 1) + round(down, calc(calc(var(--rol-rm8-count-one) + mod(calc(var(--rol-rm8-result-7) + var(--rol-rm8-result-0)), 2)) / 2), 1)));
+  --next-of: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--rotated-of)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-3)) / 2), 1)));
   --next-rol-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--rol-rm8-count-nonzero)) + var(--next-base-cf)) / 2), 1) + round(down, calc(calc(var(--rol-rm8-count-nonzero) + var(--rol-rm8-result-0)) / 2), 1)));
+  --controlled-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-carry-control)) + var(--next-rol-cf)) / 2), 1) + round(down, calc(calc(var(--update-carry-control) + var(--update-stc)) / 2), 1)));
+  --rotated-of: min(1, calc(round(down, calc(calc(calc(1 - var(--rol-rm8-count-one)) + var(--next-base-of)) / 2), 1) + round(down, calc(calc(var(--rol-rm8-count-one) + mod(calc(var(--rol-rm8-result-7) + var(--rol-rm8-result-0)), 2)) / 2), 1)));
 }

@@ -304,6 +304,8 @@
     "opcode-ret",
     "fetched-pushf",
     "opcode-pushf",
+    "fetched-popf",
+    "opcode-popf",
     "fetched-clc",
     "opcode-clc",
     "fetched-stc",
@@ -529,12 +531,15 @@
     "update-stc",
     "update-carry-control",
     "controlled-if",
+    "interrupt-if",
     "next-if",
+    "interrupt-tf",
     "next-tf",
     "next-nt",
     "next-iopl-0",
     "next-iopl-1",
     "update-df",
+    "controlled-df",
     "next-df",
     "cx-nonzero",
     "capture-rep",
@@ -742,6 +747,7 @@
     "finish-stack-read",
     "finish-ret",
     "finish-pop",
+    "finish-popf",
     "begin-far",
     "finish-far-jump",
     "finish-retf",
@@ -3383,7 +3389,9 @@
     "selected-of",
     "next-base-of",
     "next-of",
-    "next-rol-cf"
+    "next-rol-cf",
+    "controlled-cf",
+    "rotated-of"
   ],
   "latches": {
     "ip": [
