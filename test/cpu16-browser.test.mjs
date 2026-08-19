@@ -585,6 +585,78 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), { cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 });
     }
 
+    const cmpFlags = (destination, source) => {
+      const result = (destination - source) & 0xff;
+      return {
+        cf: Number(destination < source),
+        pf: Number(result.toString(2).split('').filter((bit) => bit === '1').length % 2 === 0),
+        af: Number(((destination ^ source ^ result) & 0x10) !== 0),
+        zf: Number(result === 0),
+        sf: result >>> 7,
+        of: Number(((destination ^ source) & (destination ^ result) & 0x80) !== 0),
+      };
+    };
+    const cmpInitial = { ax: 0xff00, cx: 0x1001, dx: 0x0f7f, bx: 0x5580, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 };
+    const architecturalKeys = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'if', 'df', 'rep'];
+    const architecturalState = (state) => Object.fromEntries(architecturalKeys.map((name) => [name, state[name] ?? 0]));
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0 };
+        const result = await execute(page, baseUrl, [0x38, 0xc0 | (source << 3) | destination, 0xf4], { state });
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+        ]);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state));
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), cmpFlags(byteValue(cmpInitial, destination), byteValue(cmpInitial, source)));
+        assert.deepEqual(result.memory, {});
+        assert.equal(result.state.faulted, 0);
+      }
+    }
+
+    const cmpMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
+    for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      for (let source = 0; source < 8; source++) {
+        const state = { ...cmpInitial, ...eaState, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0 };
+        const result = await execute(page, baseUrl, [0x38, modrmByte | (source << 3), ...displacement, 0xf4], {
+          state,
+          placements: [{ address: physical, bytes: [cmpMemoryValues[destination]] }],
+        });
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+          ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+          { kind: 'read', address: physical }, { kind: 'read', address: 2 + displacement.length },
+        ], `${name}/${source}`);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state), `${name}/${source}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), cmpFlags(cmpMemoryValues[destination], byteValue(state, source)), `${name}/${source}`);
+        assert.deepEqual(result.memory, {}, `${name}/${source}`);
+        assert.equal(result.state.faulted, 0, `${name}/${source}`);
+      }
+    }
+
+    const cmpNegativeDisp8 = await execute(page, baseUrl, [0x38, 0x7e, 0xfe, 0xf4], {
+      state: { ...cmpInitial, bx: 0xaa00, bp: 0x0200, ss: 0x2000 },
+      placements: [{ address: 0x201fe, bytes: [0x2a] }],
+    });
+    assert.deepEqual(cmpNegativeDisp8.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+      { kind: 'read', address: 0x201fe }, { kind: 'read', address: 3 },
+    ]);
+    assert.deepEqual(architecturalState(cmpNegativeDisp8.state), architecturalState({ ...cmpInitial, bx: 0xaa00, bp: 0x0200, ss: 0x2000 }));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, cmpNegativeDisp8.state[flag]])), cmpFlags(0x2a, 0xaa));
+    assert.deepEqual(cmpNegativeDisp8.memory, {});
+
+    const cmpDisp16 = await execute(page, baseUrl, [0x38, 0xa8, 0x00, 0x01, 0xf4], {
+      state: { ...cmpInitial, bx: 0x0100, si: 0x0010, cx: 0x1001, ds: 0x1000 },
+      placements: [{ address: 0x10210, bytes: [0x10] }],
+    });
+    assert.deepEqual(cmpDisp16.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      { kind: 'read', address: 0x10210 }, { kind: 'read', address: 4 },
+    ]);
+    assert.deepEqual(architecturalState(cmpDisp16.state), architecturalState({ ...cmpInitial, bx: 0x0100, si: 0x0010, cx: 0x1001, ds: 0x1000 }));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, cmpDisp16.state[flag]])), cmpFlags(0x10, 0x10));
+    assert.deepEqual(cmpDisp16.memory, {});
+
     const movRm8RegBp = await execute(page, baseUrl, [0x88, 0x7e, 0xf9, 0xf4], {
       state: { ...movRm8RegInitial, bp: 0x0100, ds: 0x1000, ss: 0x2000 },
     });
