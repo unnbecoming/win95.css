@@ -1100,6 +1100,36 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.equal(loaded.state.faulted, 0, name);
     }
 
+    const leaRegisters = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'];
+    const leaInitial = { ax: 0xaaaa, cx: 0xbbbb, dx: 0xcccc, bx: 0x0100, sp: 0xdddd, bp: 0x0200, si: 0x0010, di: 0x0020, cs: 0, ds: 0x1000, ss: 0x2000, es: 0x3000, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    const leaOffsets = [0x0110, 0x0120, 0x0210, 0x0220, 0x0010, 0x0020, 0x0030, 0x0100];
+    for (let destination = 0; destination < 8; destination++) {
+      for (const [form, [name, modrmByte, displacement]] of eaCases.entries()) {
+        const loaded = await execute(page, baseUrl, [0x8d, modrmByte | (destination << 3), ...displacement, 0xf4], { state: leaInitial });
+        const expectedRegisters = Object.fromEntries(leaRegisters.map((register) => [register, register === leaRegisters[destination] ? leaOffsets[form] : leaInitial[register]]));
+        assert.deepEqual(Object.fromEntries(leaRegisters.map((register) => [register, loaded.state[register]])), expectedRegisters, `lea ${destination}/${name}`);
+        assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((key) => [key, loaded.state[key]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((key) => [key, leaInitial[key]])), `lea collateral ${destination}/${name}`);
+        assert.deepEqual(loaded.trace.map(({ kind, address }) => ({ kind, address })), Array.from({ length: 3 + displacement.length }, (_, address) => ({ kind: 'read', address })), `lea trace ${destination}/${name}`);
+        assert.deepEqual(loaded.memory, {}, `lea memory ${destination}/${name}`);
+        assert.equal(loaded.outputs.irq6Request, 1, `lea irq ${destination}/${name}`);
+        assert.equal(loaded.state.faulted, 0, `lea fault ${destination}/${name}`);
+      }
+    }
+    const leaNegativeDisp8 = await execute(page, baseUrl, [0x8d, 0x46, 0xfe, 0xf4], { state: leaInitial });
+    assert.equal(leaNegativeDisp8.state.ax, 0x01fe);
+    assert.deepEqual(leaNegativeDisp8.trace.map(({ address }) => address), [0, 1, 2, 3]);
+    const leaDisp16Wrap = await execute(page, baseUrl, [0x8d, 0x80, 0x00, 0xff, 0xf4], { state: leaInitial });
+    assert.equal(leaDisp16Wrap.state.ax, 0x0010);
+    assert.deepEqual(leaDisp16Wrap.trace.map(({ address }) => address), [0, 1, 2, 3, 4]);
+    const leaRegisterRejected = await execute(page, baseUrl, [0x8d, 0xc0, 0xf4], { state: leaInitial });
+    assert.deepEqual(leaRegisterRejected.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(leaRegisterRejected.state.ax, leaInitial.ax);
+    assert.equal(leaRegisterRejected.state.faulted, 1);
+    const leaCsOverride = await execute(page, baseUrl, [0x2e, 0x8d, 0x00, 0xf4], { state: leaInitial });
+    assert.equal(leaCsOverride.state.ax, 0x0110);
+    assert.equal(leaCsOverride.state.csOverride, 0);
+    assert.deepEqual(leaCsOverride.trace.map(({ address }) => address), [0, 1, 2, 3]);
+
     const negativeDisp8 = await execute(page, baseUrl, [0x8b, 0x46, 0xfe, 0xf4], {
       state: eaState,
       placements: [{ address: 0x201fe, bytes: [0xcd, 0xab] }],
