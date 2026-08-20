@@ -1630,6 +1630,34 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
         assert.equal(result.state.faulted, 0, `3c/fault/${al}/${immediate}`);
       }
     }
+    const cmpWordFlags = (destination, source) => {
+      const difference = (destination - source) & 0xffff;
+      return {
+        cf: Number(destination < source),
+        pf: Number((difference & 0xff).toString(2).split('').filter((bit) => bit === '1').length % 2 === 0),
+        af: Number(((destination ^ source ^ difference) & 0x10) !== 0),
+        zf: Number(difference === 0),
+        sf: difference >>> 15,
+        of: Number((((destination ^ source) & (destination ^ difference)) & 0x8000) !== 0),
+      };
+    };
+    const cmpAxValues = [0x0000, 0x0001, 0x000f, 0x0010, 0x7fff, 0x8000, 0xfffe, 0xffff];
+    const cmpAxImmediateValues = [0x0000, 0x0001, 0x0010, 0x7fff, 0x8000, 0xfffe, 0xffff, 0x5555];
+    for (const ax of cmpAxValues) {
+      for (const immediate of cmpAxImmediateValues) {
+        const state = { ...cmpInitial, ax, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x3d, immediate & 0xff, immediate >>> 8, 0xf4], { state });
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+        ], `3d/${ax}/${immediate}`);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state), `3d/${ax}/${immediate}`);
+        assert.deepEqual(Object.fromEntries(['tf', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { tf: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `3d/collateral/${ax}/${immediate}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), cmpWordFlags(ax, immediate), `3d/flags/${ax}/${immediate}`);
+        assert.equal(result.outputs.irq6Request, 1, `3d/irq/${ax}/${immediate}`);
+        assert.deepEqual(result.memory, {}, `3d/memory/${ax}/${immediate}`);
+        assert.equal(result.state.faulted, 0, `3d/fault/${ax}/${immediate}`);
+      }
+    }
     const cmpImmediateValues = [0x01, 0x10, 0x7f, 0x80, 0xff, 0x0f, 0x55, 0xaa];
     for (let destination = 0; destination < 8; destination++) {
       const immediate = cmpImmediateValues[destination];
