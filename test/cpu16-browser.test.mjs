@@ -856,9 +856,51 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
         assert.deepEqual(result.memory, {}, `${source}/${destination}`);
       }
     }
-    const addMemoryRejected = await execute(page, baseUrl, [0x03, 0x06, 0x00, 0x10]);
-    assert.deepEqual(addMemoryRejected.trace.map(({ address }) => address), [0, 1]);
-    assert.equal(addMemoryRejected.state.faulted, 1);
+    const memoryAddEaState = { bx: 0x0100, bp: 0x0200, si: 0x0010, di: 0x0020, ds: 0x1000, ss: 0x2000 };
+    const memoryAddEaCases = [
+      ['BX+SI', 0x00, [], 0x10110], ['BX+DI', 0x01, [], 0x10120],
+      ['BP+SI', 0x02, [], 0x20210], ['BP+DI', 0x03, [], 0x20220],
+      ['SI', 0x04, [], 0x10010], ['DI', 0x05, [], 0x10020],
+      ['disp16', 0x06, [0x30, 0x00], 0x10030], ['BX', 0x07, [], 0x10100],
+    ];
+    const memoryAddValues = [0x0000, 0x0001, 0x7fff, 0x8000, 0xffff, 0x00ff, 0xff01, 0xaaaa];
+    for (let destination = 0; destination < 8; destination++) {
+      for (const [eaIndex, [name, modrmByte, displacement, physical]] of memoryAddEaCases.entries()) {
+        const state = { ...addInitial, ...memoryAddEaState, cs: 0, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 1, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const memoryValue = memoryAddValues[(destination + eaIndex) & 7];
+        const result = await execute(page, baseUrl, [0x03, modrmByte | (destination << 3), ...displacement, 0xf4], { state, placements: [{ address: physical, bytes: [memoryValue & 0xff, memoryValue >>> 8] }] });
+        const expected = Object.fromEntries(addRegisters.map((register) => [register, register === addRegisters[destination] ? (state[register] + memoryValue) & 0xffff : state[register]]));
+        const successor = 2 + displacement.length;
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+          ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+          { kind: 'read', address: physical }, { kind: 'read', address: physical + 1 }, { kind: 'read', address: successor },
+        ], `03/memory/${destination}/${name}`);
+        assert.deepEqual(Object.fromEntries(addRegisters.map((register) => [register, result.state[register]])), expected, `03/memory/result/${destination}/${name}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), addFlags(state[addRegisters[destination]], memoryValue), `03/memory/flags/${destination}/${name}`);
+        assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((key) => [key, state[key]])), `03/memory/collateral/${destination}/${name}`);
+        assert.equal(result.outputs.irq6Request, 1, `03/memory/irq/${destination}/${name}`);
+        assert.deepEqual(result.memory, {}, `03/memory/writes/${destination}/${name}`);
+        assert.equal(result.state.faulted, 0, `03/memory/fault/${destination}/${name}`);
+      }
+    }
+
+    const csMemoryAdd = await execute(page, baseUrl, [0x2e, 0x03, 0x06, 0x30, 0x00, 0xf4], {
+      loadAddress: 0x10000,
+      state: { ...addInitial, ax: 0x7fff, cs: 0x1000, ds: 0x2000, ss: 0x3000, es: 0x4000, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 0, pf: 1, af: 0, zf: 0, sf: 0, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 },
+      placements: [{ address: 0x10030, bytes: [0x01, 0x00] }, { address: 0x20030, bytes: [0xff, 0xff] }],
+    });
+    assert.deepEqual(csMemoryAdd.trace.filter(({ address }) => [0x10030, 0x10031, 0x20030, 0x20031].includes(address)).map(({ address }) => address), [0x10030, 0x10031]);
+    assert.equal(csMemoryAdd.state.ax, 0x8000);
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, csMemoryAdd.state[flag]])), addFlags(0x7fff, 0x0001));
+    assert.equal(csMemoryAdd.state.csOverride, 0);
+    assert.deepEqual(csMemoryAdd.memory, {});
+    assert.equal(csMemoryAdd.state.faulted, 0);
+
+    const memoryAddAtomic = await executeSteps(page, baseUrl, [0x03, 0x06, 0x30, 0x00, 0xf4], 6, { state: { ax: 0x7fff, cf: 0, pf: 1, af: 0, zf: 0, sf: 0, of: 0 }, placements: [{ address: 0x0030, bytes: [0x01, 0x00] }] });
+    assert.deepEqual(memoryAddAtomic.snapshots.map(({ state }) => state.ax), [0x7fff, 0x7fff, 0x7fff, 0x7fff, 0x7fff, 0x8000]);
+    assert.deepEqual(memoryAddAtomic.snapshots.map(({ state }) => [state.cf, state.pf, state.af, state.zf, state.sf, state.of]), [[0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 1, 1, 0, 1, 1]]);
+    assert.deepEqual(memoryAddAtomic.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 }, { kind: 'read', address: 0x0030 }, { kind: 'read', address: 0x0031 }]);
 
     const subFlags = (left, right) => {
       const result = (left - right) & 0xffff;
