@@ -2245,6 +2245,21 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       }
     }
 
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x3a, 0xc0 | (destination << 3) | source, 0xf4], { state });
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+        ], `cmp-reg-rm8 register ${destination}/${source}`);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state), `cmp-reg-rm8 register state ${destination}/${source}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), cmpFlags(byteValue(state, destination), byteValue(state, source)), `cmp-reg-rm8 register flags ${destination}/${source}`);
+        assert.equal(result.outputs.irq6Request, 1, `cmp-reg-rm8 register irq ${destination}/${source}`);
+        assert.deepEqual(result.memory, {}, `cmp-reg-rm8 register memory ${destination}/${source}`);
+        assert.equal(result.state.faulted, 0, `cmp-reg-rm8 register fault ${destination}/${source}`);
+      }
+    }
+
     const cmpMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
     for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
       for (let source = 0; source < 8; source++) {
@@ -2264,6 +2279,42 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
         assert.equal(result.state.faulted, 0, `${name}/${source}`);
       }
     }
+
+    const cmpRegMemoryValues = [0x55, 0x0f, 0x10, 0xff, 0x80, 0x7f, 0x01, 0x00];
+    for (const [source, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...cmpInitial, ...eaState, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x3a, modrmByte | (destination << 3), ...displacement, 0xf4], {
+          state,
+          placements: [{ address: physical, bytes: [cmpRegMemoryValues[source]] }],
+        });
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+          ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+          { kind: 'read', address: physical }, { kind: 'read', address: 2 + displacement.length },
+        ], `cmp-reg-rm8 memory ${name}/${destination}`);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state), `cmp-reg-rm8 memory state ${name}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), cmpFlags(byteValue(state, destination), cmpRegMemoryValues[source]), `cmp-reg-rm8 memory flags ${name}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `cmp-reg-rm8 memory irq ${name}/${destination}`);
+        assert.deepEqual(result.memory, {}, `cmp-reg-rm8 memory writes ${name}/${destination}`);
+        assert.equal(result.state.faulted, 0, `cmp-reg-rm8 memory fault ${name}/${destination}`);
+      }
+    }
+
+    const cmpRegRm8CsState = { ...cmpInitial, cs: 0, ds: 0x1000, dx: 0x7f34, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    const cmpRegRm8Cs = await execute(page, baseUrl, [0x2e, 0x3a, 0x36, 0x00, 0x01, 0xf4], {
+      state: cmpRegRm8CsState,
+      placements: [{ address: 0x00100, bytes: [0x80] }, { address: 0x10100, bytes: [0x7f] }],
+    });
+    assert.deepEqual(cmpRegRm8Cs.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+      { kind: 'read', address: 3 }, { kind: 'read', address: 4 }, { kind: 'read', address: 0x00100 }, { kind: 'read', address: 5 },
+    ]);
+    assert.deepEqual(architecturalState(cmpRegRm8Cs.state), architecturalState(cmpRegRm8CsState));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, cmpRegRm8Cs.state[flag]])), cmpFlags(0x7f, 0x80));
+    assert.equal(cmpRegRm8Cs.state.csOverride, 0);
+    assert.equal(cmpRegRm8Cs.outputs.irq6Request, 1);
+    assert.deepEqual(cmpRegRm8Cs.memory, {});
 
     const cmpNegativeDisp8 = await execute(page, baseUrl, [0x38, 0x7e, 0xfe, 0xf4], {
       state: { ...cmpInitial, bx: 0xaa00, bp: 0x0200, ss: 0x2000 },
