@@ -1794,7 +1794,57 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.memory, {}, name);
       assert.equal(result.state.faulted, 0, name);
     }
-    for (const selector of [1, 2, 3, 4, 5, 6, 7]) {
+    const mulRegisterOperands = [0x00, 0x01, 0x07, 0x11, 0x20, 0x7f, 0x80, 0xff];
+    for (let source = 0; source < 8; source++) {
+      const initial = { ...cmpInitial, ax: 0x5a13, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: source & 1, pf: 1, af: 0, zf: 1, sf: 0, of: source & 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const alias = byteAliases[source];
+      const mask = 0xff << alias.shift;
+      initial[alias.register] = (initial[alias.register] & ~mask) | (mulRegisterOperands[source] << alias.shift);
+      const al = initial.ax & 0xff;
+      const operand = byteValue(initial, source);
+      const product = al * operand;
+      const result = await execute(page, baseUrl, [0xf6, 0xe0 | source, 0xf4], { state: initial });
+      const expectedRegisters = Object.fromEntries(addRegisters.map((name) => [name, name === 'ax' ? product : initial[name]]));
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `f6/4/register/${source}`);
+      assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), expectedRegisters, `f6/4/register/result/${source}`);
+      assert.deepEqual(Object.fromEntries(['pf', 'af', 'zf', 'sf'].map((flag) => [flag, result.state[flag]])), Object.fromEntries(['pf', 'af', 'zf', 'sf'].map((flag) => [flag, initial[flag]])), `f6/4/register/undefined/${source}`);
+      assert.equal(result.state.cf, Number(product > 0xff), `f6/4/register/cf/${source}`);
+      assert.equal(result.state.of, Number(product > 0xff), `f6/4/register/of/${source}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, initial[name]])), `f6/4/register/collateral/${source}`);
+      assert.equal(result.outputs.irq6Request, 1, `f6/4/register/irq/${source}`);
+      assert.deepEqual(result.memory, {}, `f6/4/register/writes/${source}`);
+      assert.equal(result.state.faulted, 0, `f6/4/register/fault/${source}`);
+    }
+
+    const mulMemoryOperands = [0x00, 0x01, 0x02, 0x07, 0x10, 0x7f, 0x80, 0xff];
+    const mulMemoryAl = [0xff, 0xff, 0x80, 0x25, 0x11, 0x03, 0x02, 0xff];
+    for (const [index, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      const initial = { ...cmpInitial, ...eaState, ax: 0xa500 | mulMemoryAl[index], cs: 0, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: index & 1, pf: 0, af: 1, zf: 0, sf: 1, of: index & 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const product = mulMemoryAl[index] * mulMemoryOperands[index];
+      const successor = 2 + displacement.length;
+      const result = await execute(page, baseUrl, [0xf6, modrmByte | 0x20, ...displacement, 0xf4], { state: initial, placements: [{ address: physical, bytes: [mulMemoryOperands[index]] }] });
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+        { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+        ...displacement.map((_, offset) => ({ kind: 'read', address: 2 + offset })),
+        { kind: 'read', address: physical }, { kind: 'read', address: successor },
+      ], `f6/4/memory/${name}`);
+      assert.equal(result.state.ax, product, `f6/4/memory/result/${name}`);
+      assert.deepEqual(Object.fromEntries(addRegisters.slice(1).map((register) => [register, result.state[register]])), Object.fromEntries(addRegisters.slice(1).map((register) => [register, initial[register]])), `f6/4/memory/registers/${name}`);
+      assert.deepEqual(Object.fromEntries(['pf', 'af', 'zf', 'sf'].map((flag) => [flag, result.state[flag]])), Object.fromEntries(['pf', 'af', 'zf', 'sf'].map((flag) => [flag, initial[flag]])), `f6/4/memory/undefined/${name}`);
+      assert.equal(result.state.cf, Number(product > 0xff), `f6/4/memory/cf/${name}`);
+      assert.equal(result.state.of, Number(product > 0xff), `f6/4/memory/of/${name}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((key) => [key, initial[key]])), `f6/4/memory/collateral/${name}`);
+      assert.equal(result.outputs.irq6Request, 1, `f6/4/memory/irq/${name}`);
+      assert.deepEqual(result.memory, {}, `f6/4/memory/writes/${name}`);
+      assert.equal(result.state.faulted, 0, `f6/4/memory/fault/${name}`);
+    }
+
+    const mulAtomic = await executeSteps(page, baseUrl, [0xf6, 0x26, 0x30, 0x00, 0xf4], 5, { state: { ax: 0xab13, cf: 0, pf: 1, af: 1, zf: 0, sf: 1, of: 0 }, placements: [{ address: 0x0030, bytes: [0x21] }] });
+    assert.deepEqual(mulAtomic.snapshots.map(({ state }) => state.ax), [0xab13, 0xab13, 0xab13, 0xab13, 0x0273]);
+    assert.deepEqual(mulAtomic.snapshots.map(({ state }) => [state.cf, state.pf, state.af, state.zf, state.sf, state.of]), [[0, 1, 1, 0, 1, 0], [0, 1, 1, 0, 1, 0], [0, 1, 1, 0, 1, 0], [0, 1, 1, 0, 1, 0], [1, 1, 1, 0, 1, 1]]);
+    assert.deepEqual(mulAtomic.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 }, { kind: 'read', address: 0x0030 }]);
+
+    for (const selector of [1, 2, 3, 5, 6, 7]) {
       const result = await execute(page, baseUrl, [0xf6, 0x06 | (selector << 3), 0x3e, 0x00, 0x80]);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `f6/selector/${selector}`);
       assert.equal(result.state.faulted, 1, `f6/selector/${selector}`);
