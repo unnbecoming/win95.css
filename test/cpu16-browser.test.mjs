@@ -1630,6 +1630,37 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(orMemoryRejected.trace.map(({ address }) => address), [0, 1]);
     assert.equal(orMemoryRejected.state.faulted, 1);
 
+    const incRm8Values = [0x00, 0x01, 0x0f, 0x7f, 0xff, 0x80, 0x11, 0xfe];
+    for (const carry of [0, 1]) {
+      for (let destination = 0; destination < 8; destination++) {
+        const initial = incRm8Values[destination];
+        const incremented = (initial + 1) & 0xff;
+        const state = { ...movRm8RegInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: carry, pf: 0, af: 0, zf: 0, sf: 0, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const target = byteAliases[destination];
+        state[target.register] = (state[target.register] & ~(0xff << target.shift)) | (initial << target.shift);
+        const result = await execute(page, baseUrl, [0xfe, 0xc0 | destination, 0xf4], { state });
+        const expected = (state[target.register] & ~(0xff << target.shift)) | (incremented << target.shift);
+        const expectedRegisters = { ...movRm8RegInitial, [target.register]: expected };
+        const expectedFlags = {
+          cf: carry,
+          pf: Number(incremented.toString(2).split('').filter((bit) => bit === '1').length % 2 === 0),
+          af: Number((initial & 0x0f) === 0x0f),
+          zf: Number(incremented === 0),
+          sf: incremented >>> 7,
+          of: Number(initial === 0x7f),
+        };
+        assert.deepEqual(Object.fromEntries(Object.keys(movRm8RegInitial).map((name) => [name, result.state[name]])), expectedRegisters, `inc-rm8/${carry}/${destination}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 },
+        ], `inc-rm8/${carry}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), expectedFlags, `inc-rm8/${carry}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['ds', 'ss', 'es', 'if', 'df', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `inc-rm8/${carry}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `inc-rm8/${carry}/${destination}`);
+        assert.deepEqual(result.memory, {}, `inc-rm8/${carry}/${destination}`);
+        assert.equal(result.state.faulted, 0, `inc-rm8/${carry}/${destination}`);
+      }
+    }
+
     const decValues = [0x00, 0x01, 0x10, 0x80, 0xff, 0x7f, 0x11, 0x81];
     for (const carry of [0, 1]) {
       for (let destination = 0; destination < 8; destination++) {
@@ -1660,14 +1691,16 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
         assert.equal(result.state.faulted, 0, `${carry}/${destination}`);
       }
     }
-    for (const selector of [0, 2, 3, 4, 5, 6, 7]) {
+    for (const selector of [2, 3, 4, 5, 6, 7]) {
       const result = await execute(page, baseUrl, [0xfe, 0xc0 | (selector << 3)]);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `fe/${selector}`);
       assert.equal(result.state.faulted, 1, `fe/${selector}`);
     }
-    const decMemoryRejected = await execute(page, baseUrl, [0xfe, 0x0e, 0x00, 0x10]);
-    assert.deepEqual(decMemoryRejected.trace.map(({ address }) => address), [0, 1]);
-    assert.equal(decMemoryRejected.state.faulted, 1);
+    for (const [name, modrm] of [['inc', 0x06], ['dec', 0x0e]]) {
+      const memoryRejected = await execute(page, baseUrl, [0xfe, modrm, 0x00, 0x10]);
+      assert.deepEqual(memoryRejected.trace.map(({ address }) => address), [0, 1], `fe-memory/${name}`);
+      assert.equal(memoryRejected.state.faulted, 1, `fe-memory/${name}`);
+    }
 
     const shlValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x40, 0x81, 0x55];
     for (let destination = 0; destination < 8; destination++) {
