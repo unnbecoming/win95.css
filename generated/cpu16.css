@@ -2423,6 +2423,12 @@
   initial-value: 0;
 }
 
+@property --lock {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --rep {
   syntax: "<number>";
   inherits: false;
@@ -3282,6 +3288,18 @@
 }
 
 @property --opcode-shlRm8One {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fetched-lock {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-lock {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -4235,6 +4253,18 @@
   initial-value: 0;
 }
 
+@property --fetched-lockable {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --lock-target-invalid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-invalid {
   syntax: "<number>";
   inherits: false;
@@ -4631,6 +4661,12 @@
   initial-value: 0;
 }
 
+@property --modrm-register-capture {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --modrm-commit {
   syntax: "<number>";
   inherits: false;
@@ -4692,6 +4728,12 @@
 }
 
 @property --lea-register-invalid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --lock-register-invalid {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -5057,6 +5099,12 @@
   initial-value: 0;
 }
 
+@property --capture-lock {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --capture-rep {
   syntax: "<number>";
   inherits: false;
@@ -5124,6 +5172,42 @@
 }
 
 @property --next-rep {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-locked-byte-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-locked-word-write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --clear-lock {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --lock-after-capture {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --next-lock {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --bus-lock {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -24914,6 +24998,7 @@
   --iopl-0: 0;
   --iopl-1: 0;
   --nt: 0;
+  --lock: 0;
   --rep: 0;
   --csOverride: 0;
   --cf: 0;
@@ -25058,6 +25143,8 @@
   --opcode-rolRm8Imm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-shlRm8One: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-shlRm8One: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-lock: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-lock: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-rep: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-rep: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-jz: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
@@ -25211,12 +25298,14 @@
   --fetched-if-control: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
   --fetched-simple: min(1, calc(var(--fetched-if-control) + var(--fetched-cbw) + var(--fetched-cmc) + var(--fetched-clc) + var(--fetched-stc) + var(--fetched-cld)));
   --fetched-io: min(1, calc(var(--fetched-inDxAl) + var(--fetched-outDxAl)));
-  --fetched-prefix: min(1, calc(var(--fetched-rep) + var(--fetched-csOverride)));
+  --fetched-prefix: min(1, calc(var(--fetched-lock) + var(--fetched-rep) + var(--fetched-csOverride)));
   --fetched-string: min(1, calc(var(--fetched-movsb) + var(--fetched-lodsb)));
   --fetched-supported: min(1, calc(var(--fetched-immediate) + var(--fetched-short) + var(--fetched-intImm) + var(--fetched-modrm) + var(--fetched-simple) + var(--fetched-io) + var(--fetched-prefix) + var(--fetched-string) + var(--fetched-push) + var(--fetched-pop) + var(--fetched-ret) + var(--fetched-iret) + var(--fetched-hlt)));
   --rep-target-invalid: round(down, calc(calc(var(--rep) + calc(1 - min(1, calc(var(--fetched-rep) + var(--fetched-csOverride) + var(--fetched-movsb))))) / 2), 1);
-  --cs-override-target-invalid: round(down, calc(calc(var(--csOverride) + calc(1 - min(1, calc(var(--fetched-csOverride) + var(--fetched-rep) + var(--fetched-modrm) + var(--fetched-lodsb))))) / 2), 1);
-  --fetched-invalid: min(1, calc(calc(1 - var(--fetched-supported)) + var(--rep-target-invalid) + var(--cs-override-target-invalid)));
+  --cs-override-target-invalid: round(down, calc(calc(var(--csOverride) + calc(1 - min(1, calc(var(--fetched-prefix) + var(--fetched-modrm) + var(--fetched-lodsb))))) / 2), 1);
+  --fetched-lockable: min(1, calc(var(--fetched-addRm8Reg) + var(--fetched-xorRmReg) + var(--fetched-groupRm8Imm)));
+  --lock-target-invalid: round(down, calc(calc(var(--lock) + calc(1 - min(1, calc(var(--fetched-lock) + var(--fetched-csOverride) + var(--fetched-lockable))))) / 2), 1);
+  --fetched-invalid: min(1, calc(calc(1 - var(--fetched-supported)) + var(--rep-target-invalid) + var(--cs-override-target-invalid) + var(--lock-target-invalid)));
   --capture-opcode: round(down, calc(calc(var(--phase-opcode) + var(--bus-read)) / 2), 1);
   --capture-imm-low: round(down, calc(calc(var(--phase-imm-low) + var(--bus-read)) / 2), 1);
   --capture-imm-high: round(down, calc(calc(var(--phase-imm-high) + var(--bus-read)) / 2), 1);
@@ -25282,7 +25371,8 @@
   --opcode-memory-supported: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-movRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-testRm8Reg) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-groupRm8Imm)));
   --opcode-memory-to-reg: min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
   --opcode-memory-needs-read: min(1, calc(var(--opcode-memory-to-reg) + var(--opcode-addRm8Reg) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-cmpRm8Reg) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-callRm16)));
-  --modrm-commit: round(down, calc(calc(var(--capture-modrm) + var(--modrm-register)) / 2), 1);
+  --modrm-register-capture: round(down, calc(calc(var(--capture-modrm) + var(--modrm-register)) / 2), 1);
+  --modrm-commit: round(down, calc(calc(var(--modrm-register-capture) + calc(1 - var(--lock))) / 2), 1);
   --modrm-gpr-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(calc(1 - var(--opcode-movSreg)) + calc(1 - var(--opcode-lds))) / 2), 1) + calc(1 - var(--opcode-mov-rm8))) / 2), 1) + calc(1 - min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-cmpRm8Reg) + var(--opcode-groupRm8Imm) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-orRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-shlRm8One) + var(--opcode-rolRm8Imm) + var(--opcode-decRm8) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-xchgRmReg) + var(--opcode-subRegRm8))))) / 2), 1)) / 2), 1);
   --mov-sreg-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-movSreg) + var(--mov-sreg-selector-valid)) / 2), 1)) / 2), 1);
   --mov-rm8-form-valid: min(1, calc(calc(1 - var(--opcode-movRm8Imm)) + var(--mov-rm8-selector-valid)));
@@ -25293,6 +25383,7 @@
   --mov-sreg-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-movSreg) + calc(1 - var(--mov-sreg-selector-valid))) / 2), 1)) / 2), 1);
   --lds-register-invalid: round(down, calc(calc(var(--modrm-commit) + var(--opcode-lds)) / 2), 1);
   --lea-register-invalid: round(down, calc(calc(var(--modrm-commit) + var(--opcode-lea)) / 2), 1);
+  --lock-register-invalid: round(down, calc(calc(var(--modrm-register-capture) + var(--lock)) / 2), 1);
   --mov-rm8-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-movRm8Imm) + calc(1 - var(--mov-rm8-selector-valid))) / 2), 1)) / 2), 1);
   --group-rm8-immediate-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-groupRm8Imm) + calc(1 - var(--group-rm8-immediate-selector-valid))) / 2), 1)) / 2), 1);
   --shl-rm8-one-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-shlRm8One) + calc(1 - var(--shl-rm8-one-selector-valid))) / 2), 1)) / 2), 1);
@@ -25302,7 +25393,7 @@
   --dec-rm8-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-decRm8) + calc(1 - var(--dec-rm8-selector-valid))) / 2), 1)) / 2), 1);
   --test-rm8-immediate-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-testRm8Imm) + calc(1 - var(--test-rm8-immediate-selector-valid))) / 2), 1)) / 2), 1);
   --test-rm8-immediate-register-invalid: round(down, calc(calc(var(--modrm-commit) + var(--opcode-testRm8Imm)) / 2), 1);
-  --modrm-invalid: min(1, calc(var(--modrm-address-invalid) + var(--mov-sreg-selector-invalid) + var(--lds-register-invalid) + var(--lea-register-invalid) + var(--mov-rm8-selector-invalid) + var(--group-rm8-immediate-selector-invalid) + var(--shl-rm8-one-selector-invalid) + var(--call-rm16-selector-invalid) + var(--call-rm16-register-invalid) + var(--rol-rm8-immediate-selector-invalid) + var(--dec-rm8-selector-invalid) + var(--test-rm8-immediate-selector-invalid) + var(--test-rm8-immediate-register-invalid)));
+  --modrm-invalid: min(1, calc(var(--modrm-address-invalid) + var(--mov-sreg-selector-invalid) + var(--lds-register-invalid) + var(--lea-register-invalid) + var(--lock-register-invalid) + var(--mov-rm8-selector-invalid) + var(--group-rm8-immediate-selector-invalid) + var(--shl-rm8-one-selector-invalid) + var(--call-rm16-selector-invalid) + var(--call-rm16-register-invalid) + var(--rol-rm8-immediate-selector-invalid) + var(--dec-rm8-selector-invalid) + var(--test-rm8-immediate-selector-invalid) + var(--test-rm8-immediate-register-invalid)));
   --finish-lea: round(down, calc(calc(var(--capture-opcode) + var(--opcode-lea)) / 2), 1);
   --execute: round(down, calc(calc(var(--capture-imm-high) + calc(1 - var(--opcode-store))) / 2), 1);
   --execute-byte-immediate: round(down, calc(calc(var(--capture-imm-low) + var(--opcode-mov8)) / 2), 1);
@@ -25353,6 +25444,7 @@
   --controlled-df: min(1, calc(round(down, calc(calc(calc(1 - var(--update-df)) + var(--df)) / 2), 1) + round(down, calc(calc(var(--update-df) + 0) / 2), 1)));
   --next-df: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--controlled-df)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + var(--busData-2)) / 2), 1)));
   --cx-nonzero: min(1, calc(var(--cx-0) + var(--cx-1) + var(--cx-2) + var(--cx-3) + var(--cx-4) + var(--cx-5) + var(--cx-6) + var(--cx-7) + var(--cx-8) + var(--cx-9) + var(--cx-10) + var(--cx-11) + var(--cx-12) + var(--cx-13) + var(--cx-14) + var(--cx-15)));
+  --capture-lock: round(down, calc(calc(var(--capture-opcode) + var(--fetched-lock)) / 2), 1);
   --capture-rep: round(down, calc(calc(var(--capture-opcode) + var(--fetched-rep)) / 2), 1);
   --capture-cs-override: round(down, calc(calc(var(--capture-opcode) + var(--fetched-csOverride)) / 2), 1);
   --clear-cs-override: min(1, calc(var(--modrm-commit) + round(down, calc(calc(var(--capture-memory-low) + min(1, calc(var(--opcode-cmpRm8Reg) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-xorRegRm8)))) / 2), 1) + round(down, calc(calc(var(--capture-memory-high) + min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm) + var(--opcode-movSreg) + var(--opcode-callRm16) + var(--opcode-testRm8Imm)))) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-low) + var(--bus-write)) / 2), 1) + var(--opcode-byte-memory-write)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-high) + var(--bus-write)) / 2), 1) + calc(1 - var(--opcode-byte-memory-write))) / 2), 1) + var(--finish-lds) + var(--finish-lea) + var(--finish-lodsb)));
@@ -25365,6 +25457,12 @@
   --clear-rep: min(1, calc(var(--skip-rep-movsb) + round(down, calc(calc(var(--finish-movsb) + calc(1 - var(--repeat-movsb))) / 2), 1)));
   --rep-after-clear: min(1, calc(round(down, calc(calc(calc(1 - var(--clear-rep)) + var(--rep)) / 2), 1) + round(down, calc(calc(var(--clear-rep) + 0) / 2), 1)));
   --next-rep: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-rep)) + var(--rep-after-clear)) / 2), 1) + round(down, calc(calc(var(--capture-rep) + 1) / 2), 1)));
+  --finish-locked-byte-write: round(down, calc(calc(round(down, calc(calc(var(--lock) + var(--phase-memory-write-low)) / 2), 1) + round(down, calc(calc(var(--bus-write) + var(--opcode-byte-memory-write)) / 2), 1)) / 2), 1);
+  --finish-locked-word-write: round(down, calc(calc(round(down, calc(calc(var(--lock) + var(--phase-memory-write-high)) / 2), 1) + var(--bus-write)) / 2), 1);
+  --clear-lock: min(1, calc(round(down, calc(calc(var(--capture-opcode) + var(--fetched-invalid)) / 2), 1) + var(--modrm-invalid) + var(--finish-locked-byte-write) + var(--finish-locked-word-write)));
+  --lock-after-capture: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-lock)) + var(--lock)) / 2), 1) + round(down, calc(calc(var(--capture-lock) + 1) / 2), 1)));
+  --next-lock: min(1, calc(round(down, calc(calc(calc(1 - var(--clear-lock)) + var(--lock-after-capture)) / 2), 1) + round(down, calc(calc(var(--clear-lock) + 0) / 2), 1)));
+  --bus-lock: round(down, calc(calc(var(--lock) + min(1, calc(var(--memory-read) + var(--bus-write)))) / 2), 1);
   --ip-carry-0: 1;
   --ip-inc-0: mod(calc(var(--ip-0) + var(--ip-carry-0)), 2);
   --ip-carry-1: round(down, calc(calc(var(--ip-0) + var(--ip-carry-0)) / 2), 1);

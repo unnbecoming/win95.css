@@ -135,6 +135,9 @@
     "nt": {
       "width": 1
     },
+    "lock": {
+      "width": 1
+    },
     "rep": {
       "width": 1
     },
@@ -294,6 +297,8 @@
     "opcode-rolRm8Imm",
     "fetched-shlRm8One",
     "opcode-shlRm8One",
+    "fetched-lock",
+    "opcode-lock",
     "fetched-rep",
     "opcode-rep",
     "fetched-jz",
@@ -452,6 +457,8 @@
     "fetched-supported",
     "rep-target-invalid",
     "cs-override-target-invalid",
+    "fetched-lockable",
+    "lock-target-invalid",
     "fetched-invalid",
     "capture-opcode",
     "capture-imm-low",
@@ -518,6 +525,7 @@
     "opcode-memory-supported",
     "opcode-memory-to-reg",
     "opcode-memory-needs-read",
+    "modrm-register-capture",
     "modrm-commit",
     "modrm-gpr-commit",
     "mov-sreg-commit",
@@ -529,6 +537,7 @@
     "mov-sreg-selector-invalid",
     "lds-register-invalid",
     "lea-register-invalid",
+    "lock-register-invalid",
     "mov-rm8-selector-invalid",
     "group-rm8-immediate-selector-invalid",
     "shl-rm8-one-selector-invalid",
@@ -589,6 +598,7 @@
     "controlled-df",
     "next-df",
     "cx-nonzero",
+    "capture-lock",
     "capture-rep",
     "capture-cs-override",
     "clear-cs-override",
@@ -601,6 +611,12 @@
     "clear-rep",
     "rep-after-clear",
     "next-rep",
+    "finish-locked-byte-write",
+    "finish-locked-word-write",
+    "clear-lock",
+    "lock-after-capture",
+    "next-lock",
+    "bus-lock",
     "ip-carry-0",
     "ip-inc-0",
     "ip-carry-1",
@@ -4311,6 +4327,9 @@
     "nt": [
       "next-nt"
     ],
+    "lock": [
+      "next-lock"
+    ],
     "rep": [
       "next-rep"
     ],
@@ -4387,6 +4406,9 @@
       "bus-write-data-5",
       "bus-write-data-6",
       "bus-write-data-7"
+    ],
+    "busLock": [
+      "bus-lock"
     ],
     "ioPort": [
       "dx-0",
@@ -4529,6 +4551,7 @@
     "readOutput": "busRead",
     "writeOutput": "busWrite",
     "writeDataOutput": "busWriteData",
+    "lockOutput": "busLock",
     "dataInput": "busData"
   },
   "ioBus": {

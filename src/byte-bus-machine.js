@@ -42,6 +42,7 @@ export class ByteBusMachine {
     this.chip.drive({ [contract.dataInput]: reading ? data : 0 });
     const state = this.chip.cycle();
     const request = { cycle: this.trace.length, kind: reading ? 'read' : 'write', address, data };
+    if (contract.lockOutput && outputs[contract.lockOutput] === 1) request.locked = true;
     this.trace.push(request);
     return { state, request };
   }
