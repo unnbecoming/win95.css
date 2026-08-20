@@ -820,6 +820,33 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(subMemoryRejected.trace.map(({ address }) => address), [0, 1]);
     assert.equal(subMemoryRejected.state.faulted, 1);
 
+    const xchgBxDx = await execute(page, baseUrl, [0x87, 0xd3, 0xf4], {
+      state: { ax: 0x1001, cx: 0x1002, dx: 0xabcd, bx: 0x1234, sp: 0x1005, bp: 0x1006, si: 0x1007, di: 0x1008, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 },
+    });
+    assert.equal(xchgBxDx.state.bx, 0xabcd);
+    assert.equal(xchgBxDx.state.dx, 0x1234);
+    assert.deepEqual(Object.fromEntries(['ax', 'cx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, xchgBxDx.state[name]])), { ax: 0x1001, cx: 0x1002, sp: 0x1005, bp: 0x1006, si: 0x1007, di: 0x1008, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 });
+    assert.equal(xchgBxDx.outputs.irq6Request, 1);
+    assert.deepEqual(xchgBxDx.trace.map(({ kind, address, data }) => ({ kind, address, data })), [{ kind: 'read', address: 0, data: 0x87 }, { kind: 'read', address: 1, data: 0xd3 }, { kind: 'read', address: 2, data: 0xf4 }]);
+    assert.deepEqual(xchgBxDx.memory, {});
+
+    const xchgInitial = { ax: 0x1101, cx: 0x2202, dx: 0x3303, bx: 0x4404, sp: 0x5505, bp: 0x6606, si: 0x7707, di: 0x8808, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    for (let reg = 0; reg < 8; reg++) {
+      for (let rm = 0; rm < 8; rm++) {
+        const result = await execute(page, baseUrl, [0x87, 0xc0 | (reg << 3) | rm, 0xf4], { state: xchgInitial });
+        const expected = Object.fromEntries(addRegisters.map((name) => [name, xchgInitial[name]]));
+        [expected[addRegisters[reg]], expected[addRegisters[rm]]] = [xchgInitial[addRegisters[rm]], xchgInitial[addRegisters[reg]]];
+        assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), expected, `xchg ${reg}/${rm}`);
+        assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, xchgInitial[name]])), `xchg collateral ${reg}/${rm}`);
+        assert.equal(result.outputs.irq6Request, 1, `xchg irq ${reg}/${rm}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `xchg trace ${reg}/${rm}`);
+        assert.deepEqual(result.memory, {}, `xchg memory ${reg}/${rm}`);
+      }
+    }
+    const xchgMemoryRejected = await execute(page, baseUrl, [0x87, 0x06, 0x00, 0x10]);
+    assert.deepEqual(xchgMemoryRejected.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(xchgMemoryRejected.state.faulted, 1);
+
     const indirectCall = await execute(page, baseUrl, [0xff, 0x17, 0xf4], {
       state: { bx: 0x0100, ds: 0x1000, ss: 0x2000, sp: 0x8000, ax: 0x1234, cf: 1 },
       placements: [{ address: 0x10100, bytes: [0x00, 0x02] }, { address: 0x00200, bytes: [0xf4] }],
