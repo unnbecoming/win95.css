@@ -1103,6 +1103,21 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     const sti = await execute(page, baseUrl, [0xfb, 0xf4]);
     assert.equal(sti.state.if, 1);
 
+    const incValues = [0x0000, 0x000e, 0x000f, 0x007f, 0x7fff, 0x8000, 0xfffe, 0xffff];
+    for (let destination = 0; destination < 8; destination++) {
+      const state = { ax: 0x1101, cx: 0x2202, dx: 0x3303, bx: 0x4404, sp: 0x5505, bp: 0x6606, si: 0x7707, di: 0x8808, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: destination & 1, pf: 0, af: 0, zf: 0, sf: 0, tf: 1, if: 1, df: 1, of: 0, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1, [addRegisters[destination]]: incValues[destination] };
+      const result = await execute(page, baseUrl, [0x40 + destination, 0xf4], { state });
+      const incremented = (incValues[destination] + 1) & 0xffff;
+      const expectedFlags = { cf: state.cf, pf: Number((incremented & 0xff).toString(2).split('').filter((bit) => bit === '1').length % 2 === 0), af: Number((incValues[destination] & 0x0f) === 0x0f), zf: Number(incremented === 0), sf: incremented >>> 15, of: Number(incValues[destination] === 0x7fff) };
+      assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), Object.fromEntries(addRegisters.map((name) => [name, name === addRegisters[destination] ? incremented : state[name]])), `inc registers/${destination}`);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), expectedFlags, `inc flags/${destination}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, state[name]])), `inc collateral/${destination}`);
+      assert.equal(result.outputs.irq6Request, 1, `inc irq/${destination}`);
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }], `inc trace/${destination}`);
+      assert.deepEqual(result.memory, {}, `inc memory/${destination}`);
+      assert.deepEqual({ halted: result.state.halted, faulted: result.state.faulted }, { halted: 1, faulted: 0 }, `inc terminal/${destination}`);
+    }
+
     for (const initialCarry of [0, 1]) {
       const initial = {
         ax: 0x1234, cx: 0x5678, dx: 0x9abc, bx: 0xdef0, sp: 0x2468, bp: 0x1357, si: 0xaaaa, di: 0x5555,
