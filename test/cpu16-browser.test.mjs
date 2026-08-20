@@ -10,7 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 const zeroOtherRegisters = { cx: 0, dx: 0, bx: 0, sp: 0, bp: 0, si: 0, di: 0 };
 const zeroSegments = { cs: 0, ds: 0, ss: 0, es: 0 };
-const zeroInterruptState = { intOffsetLow: 0, intOffsetHigh: 0, intSegmentLow: 0, tf: 0, iopl: 0, nt: 0 };
+const zeroInterruptState = { intOffsetLow: 0, intOffsetHigh: 0, intSegmentLow: 0, iretFlagsLow: 0, iretCs: 0, tf: 0, iopl: 0, nt: 0 };
 const zeroFdcState = { fdcDor: 0, fdcInterrupt: 0 };
 
 function serve() {
@@ -462,6 +462,40 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'df', 'of', 'iopl', 'nt'].map((name) => [name, intState[name]])),
     );
     assert.deepEqual(Object.fromEntries(['sp', 'cs', 'ip', 'if', 'tf', 'halted', 'faulted'].map((name) => [name, interrupted.state[name]])), { sp: 0x7ffa, cs: 0x3000, ip: 0x0101, if: 0, tf: 0, halted: 1, faulted: 0 });
+
+    const iretState = {
+      ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0xfffc, bp: 0x5555, si: 0x6666, di: 0x7777,
+      cs: 0, ip: 0, ds: 0x1111, ss: 0x1000, es: 0x2222,
+      cf: 0, pf: 1, af: 0, zf: 1, sf: 0, tf: 0, if: 0, df: 1, of: 0, iopl: 0, nt: 0, rep: 0, csOverride: 0,
+      fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    const iretPlacements = [
+      { address: 0x1fffc, bytes: [0x23, 0x01, 0x00, 0x30] },
+      { address: 0x10000, bytes: [0xbb, 0xfb] },
+      { address: 0x30123, bytes: [0xf4] },
+    ];
+    const returnedInterrupt = await execute(page, baseUrl, [0xcf], { state: iretState, placements: iretPlacements });
+    assert.deepEqual(returnedInterrupt.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0x00000, data: 0xcf },
+      { kind: 'read', address: 0x1fffc, data: 0x23 }, { kind: 'read', address: 0x1fffd, data: 0x01 },
+      { kind: 'read', address: 0x1fffe, data: 0x00 }, { kind: 'read', address: 0x1ffff, data: 0x30 },
+      { kind: 'read', address: 0x10000, data: 0xbb }, { kind: 'read', address: 0x10001, data: 0xfb },
+      { kind: 'read', address: 0x30123, data: 0xf4 },
+    ]);
+    assert.deepEqual(Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'rep', 'fdcDor', 'fdcInterrupt'].map((name) => [name, returnedInterrupt.state[name]])), Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'rep', 'fdcDor', 'fdcInterrupt'].map((name) => [name, iretState[name]])));
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'].map((name) => [name, returnedInterrupt.state[name]])), { cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 0, of: 1, iopl: 3, nt: 1 });
+    assert.deepEqual(Object.fromEntries(['sp', 'cs', 'ip', 'returnIp', 'iretCs', 'iretFlagsLow', 'halted', 'faulted'].map((name) => [name, returnedInterrupt.state[name]])), { sp: 0x0002, cs: 0x3000, ip: 0x0124, returnIp: 0x0123, iretCs: 0x3000, iretFlagsLow: 0xbb, halted: 1, faulted: 0 });
+    assert.equal(returnedInterrupt.outputs.irq6Request, 1);
+    assert.deepEqual(returnedInterrupt.memory, {});
+
+    const partialIret = await executeSteps(page, baseUrl, [0xcf], 7, { state: iretState, placements: iretPlacements });
+    assert.deepEqual(partialIret.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0x00000 }, { kind: 'read', address: 0x1fffc }, { kind: 'read', address: 0x1fffd },
+      { kind: 'read', address: 0x1fffe }, { kind: 'read', address: 0x1ffff }, { kind: 'read', address: 0x10000 }, { kind: 'read', address: 0x10001 },
+    ]);
+    const iretAtomicFields = ['ip', 'cs', 'sp', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt'];
+    assert.deepEqual(partialIret.snapshots.slice(0, 6).map(({ state }) => Object.fromEntries(iretAtomicFields.map((name) => [name, state[name]]))), Array.from({ length: 6 }, () => ({ ip: 1, cs: 0, sp: 0xfffc, cf: 0, pf: 1, af: 0, zf: 1, sf: 0, tf: 0, if: 0, df: 1, of: 0, iopl: 0, nt: 0 })));
+    assert.deepEqual(Object.fromEntries(iretAtomicFields.map((name) => [name, partialIret.snapshots[6].state[name]])), { ip: 0x0123, cs: 0x3000, sp: 0x0002, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 0, of: 1, iopl: 3, nt: 1 });
 
     const intVectorZero = await execute(page, baseUrl, [0xcd, 0x00], {
       loadAddress: 0x4000,

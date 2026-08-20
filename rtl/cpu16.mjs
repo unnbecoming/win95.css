@@ -23,7 +23,7 @@ const byteRegisters = [
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, subRegRm8: 0x2a, subRegRm: 0x2b, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, xchgRmReg: 0x87, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, pushf: 0x9c, popf: 0x9d, cmc: 0xf5, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
+const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, subRegRm8: 0x2a, subRegRm: 0x2b, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, xchgRmReg: 0x87, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, iret: 0xcf, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, pushf: 0x9c, popf: 0x9d, cmc: 0xf5, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -51,15 +51,16 @@ signal['int-stack-write'] = andBit(ref('opcode-intImm'), anyBits([ref('phase-wri
 signal['instruction-read'] = anyBits([
   ref('phase-opcode'), andBit(ref('phase-imm-low'), notBit(ref('opcode-outDxAl'))), ref('phase-imm-high'), ref('mov-rm8-immediate-read'), ref('test-rm8-immediate-read'), ref('group-rm8-immediate-read'),
   andBit(notBit(ref('opcode-intImm')), anyBits([
-    andBit(notBit(ref('opcode-retfImm')), orBit(ref('phase-far-low'), ref('phase-far-high'))),
+    andBit(notBit(anyBits([ref('opcode-retfImm'), ref('opcode-iret')])), orBit(ref('phase-far-low'), ref('phase-far-high'))),
     ref('phase-modrm'), ref('phase-disp-low'), ref('phase-disp-high'),
   ])),
 ]);
 signal['stack-read'] = andBit(notBit(ref('opcode-intImm')), anyBits([
   ref('phase-ret-low'), ref('phase-ret-high'),
-  andBit(ref('opcode-retfImm'), orBit(ref('phase-far-low'), ref('phase-far-high'))),
+  andBit(anyBits([ref('opcode-retfImm'), ref('opcode-iret')]), orBit(ref('phase-far-low'), ref('phase-far-high'))),
+  andBit(ref('opcode-iret'), orBit(ref('phase-memory-read-low'), ref('phase-memory-read-high'))),
 ]));
-signal['memory-read'] = andBit(andBit(notBit(ref('opcode-movRm8Imm')), notBit(ref('opcode-intImm'))), anyBits([
+signal['memory-read'] = andBit(andBit(andBit(notBit(ref('opcode-movRm8Imm')), notBit(ref('opcode-intImm'))), notBit(ref('opcode-iret'))), anyBits([
   andBit(notBit(ref('byte-immediate-memory-op')), orBit(ref('phase-memory-read-low'), ref('phase-memory-read-high'))),
   andBit(ref('byte-immediate-memory-op'), ref('phase-memory-read-high')),
 ]));
@@ -135,7 +136,7 @@ signal['fetched-simple'] = anyBits([ref('fetched-if-control'), ref('fetched-cmc'
 signal['fetched-io'] = ref('fetched-outDxAl');
 signal['fetched-prefix'] = orBit(ref('fetched-rep'), ref('fetched-csOverride'));
 signal['fetched-string'] = ref('fetched-movsb');
-signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-intImm'), ref('fetched-modrm'), ref('fetched-simple'), ref('fetched-io'), ref('fetched-prefix'), ref('fetched-string'), ref('fetched-push'), ref('fetched-pop'), ref('fetched-ret'), ref('fetched-hlt')]);
+signal['fetched-supported'] = anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-intImm'), ref('fetched-modrm'), ref('fetched-simple'), ref('fetched-io'), ref('fetched-prefix'), ref('fetched-string'), ref('fetched-push'), ref('fetched-pop'), ref('fetched-ret'), ref('fetched-iret'), ref('fetched-hlt')]);
 signal['rep-target-invalid'] = andBit(ref('rep'), notBit(anyBits([ref('fetched-rep'), ref('fetched-csOverride'), ref('fetched-movsb')])));
 signal['cs-override-target-invalid'] = andBit(ref('csOverride'), notBit(anyBits([ref('fetched-csOverride'), ref('fetched-rep'), ref('fetched-modrm')])));
 signal['fetched-invalid'] = anyBits([notBit(ref('fetched-supported')), ref('rep-target-invalid'), ref('cs-override-target-invalid')]);
@@ -159,6 +160,10 @@ signal['capture-int-segment-low'] = andBit(ref('phase-disp-high'), andBit(ref('o
 signal['finish-int'] = andBit(ref('phase-memory-read-low'), andBit(ref('opcode-intImm'), ref('bus-read')));
 signal['finish-int-flags'] = andBit(ref('phase-write-high'), andBit(ref('opcode-intImm'), ref('bus-write')));
 signal['finish-int-cs'] = andBit(ref('phase-ret-high'), andBit(ref('opcode-intImm'), ref('bus-write')));
+signal['capture-iret-ip'] = andBit(ref('phase-ret-high'), andBit(ref('opcode-iret'), ref('bus-read')));
+signal['capture-iret-cs'] = andBit(ref('phase-far-high'), andBit(ref('opcode-iret'), ref('bus-read')));
+signal['capture-iret-flags-low'] = andBit(ref('phase-memory-read-low'), andBit(ref('opcode-iret'), ref('bus-read')));
+signal['finish-iret'] = andBit(ref('phase-memory-read-high'), andBit(ref('opcode-iret'), ref('bus-read')));
 signal['capture-lds-segment-low'] = andBit(ref('phase-memory-write-low'), andBit(ref('opcode-lds'), ref('bus-read')));
 signal['finish-lds'] = andBit(ref('phase-memory-write-high'), andBit(ref('opcode-lds'), ref('bus-read')));
 signal['capture-string-byte'] = andBit(ref('movsb-read'), ref('bus-read'));
@@ -252,14 +257,15 @@ signal['update-stc'] = andBit(ref('capture-opcode'), ref('fetched-stc'));
 signal['update-carry-control'] = anyBits([ref('update-cmc'), ref('update-clc'), ref('update-stc')]);
 signal['controlled-if'] = muxBit(ref('update-if'), ref('if'), ref('fetched-sti'));
 signal['interrupt-if'] = muxBit(ref('finish-int-flags'), ref('controlled-if'), lit(0));
-signal['next-if'] = muxBit(ref('finish-popf'), ref('interrupt-if'), ref('busData-1'));
+signal['finish-flags-load'] = orBit(ref('finish-popf'), ref('finish-iret'));
+signal['next-if'] = muxBit(ref('finish-flags-load'), ref('interrupt-if'), ref('busData-1'));
 signal['interrupt-tf'] = muxBit(ref('finish-int-flags'), ref('tf'), lit(0));
-signal['next-tf'] = muxBit(ref('finish-popf'), ref('interrupt-tf'), ref('busData-0'));
-signal['next-nt'] = muxBit(ref('finish-popf'), ref('nt'), ref('busData-6'));
-for (let index = 0; index < 2; index++) signal[`next-iopl-${index}`] = muxBit(ref('finish-popf'), ref(`iopl-${index}`), ref(`busData-${index + 4}`));
+signal['next-tf'] = muxBit(ref('finish-flags-load'), ref('interrupt-tf'), ref('busData-0'));
+signal['next-nt'] = muxBit(ref('finish-flags-load'), ref('nt'), ref('busData-6'));
+for (let index = 0; index < 2; index++) signal[`next-iopl-${index}`] = muxBit(ref('finish-flags-load'), ref(`iopl-${index}`), ref(`busData-${index + 4}`));
 signal['update-df'] = andBit(ref('capture-opcode'), ref('fetched-cld'));
 signal['controlled-df'] = muxBit(ref('update-df'), ref('df'), lit(0));
-signal['next-df'] = muxBit(ref('finish-popf'), ref('controlled-df'), ref('busData-2'));
+signal['next-df'] = muxBit(ref('finish-flags-load'), ref('controlled-df'), ref('busData-2'));
 signal['cx-nonzero'] = anyBits(signalBits('cx', WIDTH));
 signal['capture-rep'] = andBit(ref('capture-opcode'), ref('fetched-rep'));
 signal['capture-cs-override'] = andBit(ref('capture-opcode'), ref('fetched-csOverride'));
@@ -304,6 +310,7 @@ for (let index = 0; index < 8; index++) {
   signal[`next-intOffsetLow-${index}`] = muxBit(ref('capture-int-offset-low'), ref(`intOffsetLow-${index}`), ref(`busData-${index}`));
   signal[`next-intOffsetHigh-${index}`] = muxBit(ref('capture-int-offset-high'), ref(`intOffsetHigh-${index}`), ref(`busData-${index}`));
   signal[`next-intSegmentLow-${index}`] = muxBit(ref('capture-int-segment-low'), ref(`intSegmentLow-${index}`), ref(`busData-${index}`));
+  signal[`next-iretFlagsLow-${index}`] = muxBit(ref('capture-iret-flags-low'), ref(`iretFlagsLow-${index}`), ref(`busData-${index}`));
 }
 signal['begin-immediate'] = andBit(ref('capture-opcode'), anyBits([ref('fetched-immediate'), ref('fetched-short'), ref('fetched-intImm')]));
 signal['begin-out'] = andBit(ref('capture-opcode'), ref('fetched-outDxAl'));
@@ -316,6 +323,7 @@ signal['begin-indirect-call'] = andBit(ref('capture-memory-high'), ref('opcode-c
 signal['begin-push'] = andBit(ref('capture-opcode'), ref('fetched-push'));
 signal['begin-write'] = anyBits([ref('begin-store'), ref('begin-call'), ref('begin-indirect-call'), ref('begin-push')]);
 signal['begin-ret'] = andBit(ref('capture-opcode'), ref('fetched-ret'));
+signal['begin-iret'] = andBit(ref('capture-opcode'), ref('fetched-iret'));
 signal['begin-pop'] = andBit(ref('capture-opcode'), ref('fetched-pop'));
 signal['begin-retf'] = andBit(ref('capture-imm-high'), ref('opcode-retfImm'));
 signal['begin-stack-read'] = orBit(ref('begin-ret'), ref('begin-pop'));
@@ -349,9 +357,9 @@ signal['byte-rmw-start-write'] = andBit(ref('capture-memory-high'), ref('opcode-
 signal['lds-continue-read'] = andBit(ref('capture-memory-high'), ref('opcode-lds'));
 const phaseRoutes = [
   [1, anyBits([ref('begin-immediate'), ref('begin-out'), ref('begin-mov-rm8-register'), ref('begin-sub-rm8-immediate-register'), ref('begin-cmp-rm8-immediate-register'), ref('begin-rol-rm8-immediate-register')])], [2, ref('continue-immediate')], [3, orBit(ref('begin-write'), ref('begin-int'))], [4, ref('phase-write-low')],
-  [5, anyBits([ref('begin-stack-read'), ref('begin-retf'), andBit(ref('opcode-intImm'), ref('phase-write-high'))])], [6, ref('phase-ret-low')], [7, anyBits([ref('begin-far'), andBit(ref('opcode-retfImm'), ref('phase-ret-high')), andBit(ref('opcode-intImm'), ref('phase-ret-high'))])], [8, ref('phase-far-low')], [9, orBit(ref('begin-modrm'), andBit(ref('opcode-intImm'), ref('phase-far-high')))],
+  [5, anyBits([ref('begin-stack-read'), ref('begin-retf'), ref('begin-iret'), andBit(ref('opcode-intImm'), ref('phase-write-high'))])], [6, ref('phase-ret-low')], [7, anyBits([ref('begin-far'), andBit(anyBits([ref('opcode-retfImm'), ref('opcode-iret')]), ref('phase-ret-high')), andBit(ref('opcode-intImm'), ref('phase-ret-high'))])], [8, ref('phase-far-low')], [9, orBit(ref('begin-modrm'), andBit(ref('opcode-intImm'), ref('phase-far-high')))],
   [10, orBit(ref('memory-begin-displacement'), andBit(ref('opcode-intImm'), ref('phase-modrm')))], [11, orBit(andBit(ref('capture-disp-low'), ref('saved-modrm-wide-displacement')), andBit(ref('opcode-intImm'), ref('phase-disp-low')))],
-  [12, anyBits([ref('memory-start-read'), ref('mov-rm8-immediate-start'), ref('test-rm8-immediate-start'), ref('group-rm8-immediate-start'), ref('begin-mov-al-moffs8'), andBit(ref('opcode-intImm'), ref('phase-disp-high'))])], [13, anyBits([ref('test-rm8-operand-start'), ref('group-rm8-operand-start'), andBit(ref('capture-memory-low'), notBit(anyBits([ref('opcode-cmpRm8Reg'), ref('opcode-movRegRm8'), ref('opcode-xorRegRm8'), ref('opcode-movAlMoffs8')])) )])],
+  [12, anyBits([ref('memory-start-read'), ref('mov-rm8-immediate-start'), ref('test-rm8-immediate-start'), ref('group-rm8-immediate-start'), ref('begin-mov-al-moffs8'), andBit(ref('opcode-intImm'), ref('phase-disp-high')), andBit(ref('opcode-iret'), ref('phase-far-high'))])], [13, anyBits([ref('test-rm8-operand-start'), ref('group-rm8-operand-start'), ref('capture-iret-flags-low'), andBit(ref('capture-memory-low'), notBit(anyBits([ref('opcode-cmpRm8Reg'), ref('opcode-movRegRm8'), ref('opcode-xorRegRm8'), ref('opcode-movAlMoffs8')])) )])],
   [14, anyBits([ref('memory-start-write'), ref('memory-rmw-start-write'), ref('byte-rmw-start-write'), ref('lds-continue-read'), ref('begin-movsb'), ref('repeat-movsb'), ref('mov-rm8-write-start')])], [15, andBit(ref('phase-memory-write-low'), notBit(ref('opcode-byte-memory-write')))],
 ];
 for (let bit = 0; bit < 4; bit++) {
@@ -363,6 +371,7 @@ signal['next-faulted'] = anyBits([ref('faulted'), andBit(ref('capture-opcode'), 
 signal['address-carry-0'] = lit(1);
 signal['stack-carry-0'] = lit(1);
 signal['stack-plus-three-carry-0'] = lit(0);
+signal['iret-stack-carry-0'] = lit(0);
 signal['int-vector-carry-0'] = lit(0);
 signal['si-inc-carry-0'] = lit(1);
 signal['si-dec-borrow-0'] = lit(1);
@@ -384,6 +393,10 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`address-carry-${index + 1}`] = andBit(ref(`store-address-${index}`), ref(`address-carry-${index}`));
   signal[`stack-carry-${index + 1}`] = andBit(ref(`sp-${index}`), ref(`stack-carry-${index}`));
   signal[`stack-plus-three-carry-${index + 1}`] = floor(div(add(ref(`stack-plus-three-sum-${index}`), ref(`stack-plus-three-carry-${index}`)), lit(2)));
+  const iretStackAddend = index === 2 ? lit(1) : index === 0 ? ref('phase-memory-read-high') : lit(0);
+  signal[`iret-stack-sum-${index}`] = add(ref(`sp-${index}`), iretStackAddend);
+  signal[`iret-stack-address-${index}`] = mod(add(ref(`iret-stack-sum-${index}`), ref(`iret-stack-carry-${index}`)), lit(2));
+  signal[`iret-stack-carry-${index + 1}`] = floor(div(add(ref(`iret-stack-sum-${index}`), ref(`iret-stack-carry-${index}`)), lit(2)));
   const intVectorBase = index >= 2 && index < 10 ? ref(`immLow-${index - 2}`) : lit(0);
   const intVectorAddend = index === 0 ? orBit(ref('phase-disp-low'), ref('phase-memory-read-low')) : index === 1 ? orBit(ref('phase-disp-high'), ref('phase-memory-read-low')) : lit(0);
   signal[`int-vector-sum-${index}`] = add(intVectorBase, intVectorAddend);
@@ -407,6 +420,9 @@ for (let index = 0; index < WIDTH; index++) {
     andBit(ref('phase-ret-high'), ref(`stack-address-next-${index}`)),
     andBit(andBit(ref('opcode-retfImm'), ref('phase-far-low')), ref(`sp-inc-${index}`)),
     andBit(andBit(ref('opcode-retfImm'), ref('phase-far-high')), ref(`stack-address-plus-three-${index}`)),
+    andBit(andBit(ref('opcode-iret'), ref('phase-far-low')), ref(`sp-inc-${index}`)),
+    andBit(andBit(ref('opcode-iret'), ref('phase-far-high')), ref(`stack-address-plus-three-${index}`)),
+    andBit(andBit(ref('opcode-iret'), orBit(ref('phase-memory-read-low'), ref('phase-memory-read-high'))), ref(`iret-stack-address-${index}`)),
     andBit(andBit(ref('opcode-intImm'), ref('phase-far-low')), ref(`sp-${index}`)),
     andBit(andBit(ref('opcode-intImm'), ref('phase-far-high')), ref(`stack-address-next-${index}`)),
     andBit(ref('int-vector-read'), ref(`int-vector-address-${index}`)),
@@ -489,13 +505,17 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`far-jump-ip-${index}`] = muxBit(ref('finish-far-jump'), ref(`return-ip-${index}`), ref(`far-offset-${index}`));
   signal[`far-ip-${index}`] = muxBit(ref('finish-retf'), ref(`far-jump-ip-${index}`), ref(`retf-target-${index}`));
   signal[`int-offset-${index}`] = index < 8 ? ref(`intOffsetLow-${index}`) : ref(`intOffsetHigh-${index - 8}`);
-  signal[`next-ip-${index}`] = muxBit(ref('finish-int'), ref(`far-ip-${index}`), ref(`int-offset-${index}`));
+  signal[`iret-ip-${index}`] = muxBit(ref('finish-iret'), ref(`far-ip-${index}`), ref(`returnIp-${index}`));
+  signal[`next-ip-${index}`] = muxBit(ref('finish-int'), ref(`iret-ip-${index}`), ref(`int-offset-${index}`));
   const directCallReturnIp = muxBit(ref('begin-call'), ref(`returnIp-${index}`), ref(`ip-inc-${index}`));
-  signal[`next-returnIp-${index}`] = muxBit(ref('begin-indirect-call'), directCallReturnIp, ref(`ip-${index}`));
+  const capturedReturnIp = muxBit(ref('capture-iret-ip'), directCallReturnIp, ref(`ret-target-${index}`));
+  signal[`next-returnIp-${index}`] = muxBit(ref('begin-indirect-call'), capturedReturnIp, ref(`ip-${index}`));
   signal[`far-segment-${index}`] = index < 8 ? ref(`farSegLow-${index}`) : ref(`busData-${index - 8}`);
+  signal[`next-iretCs-${index}`] = muxBit(ref('capture-iret-cs'), ref(`iretCs-${index}`), ref(`far-segment-${index}`));
   signal[`far-cs-${index}`] = muxBit(ref('finish-far'), ref(`cs-${index}`), ref(`far-segment-${index}`));
+  signal[`iret-cs-${index}`] = muxBit(ref('finish-iret'), ref(`far-cs-${index}`), ref(`iretCs-${index}`));
   signal[`int-segment-${index}`] = index < 8 ? ref(`intSegmentLow-${index}`) : ref(`busData-${index - 8}`);
-  signal[`next-cs-${index}`] = muxBit(ref('finish-int'), ref(`far-cs-${index}`), ref(`int-segment-${index}`));
+  signal[`next-cs-${index}`] = muxBit(ref('finish-int'), ref(`iret-cs-${index}`), ref(`int-segment-${index}`));
 }
 signal['select-arithmetic'] = orBit(ref('opcode-add'), ref('opcode-sub'));
 signal['alu-carry-0'] = ref('opcode-sub');
@@ -519,6 +539,7 @@ for (let index = 0; index < WIDTH; index++) {
 signal['sp-dec-carry-0'] = lit(0);
 signal['sp-inc-carry-0'] = lit(0);
 signal['retf-sp-carry-0'] = lit(0);
+signal['iret-sp-carry-0'] = lit(0);
 for (let index = 0; index < WIDTH; index++) {
   const decAddend = lit(index === 0 ? 0 : 1);
   const incAddend = lit(index === 1 ? 1 : 0);
@@ -533,6 +554,10 @@ for (let index = 0; index < WIDTH; index++) {
   signal[`retf-sp-sum-${index}`] = add(ref(`sp-${index}`), retfCleanupBit, retfFrameBit);
   signal[`retf-sp-result-${index}`] = mod(add(ref(`retf-sp-sum-${index}`), ref(`retf-sp-carry-${index}`)), lit(2));
   signal[`retf-sp-carry-${index + 1}`] = floor(div(add(ref(`retf-sp-sum-${index}`), ref(`retf-sp-carry-${index}`)), lit(2)));
+  const iretFrameBit = lit(index === 1 || index === 2 ? 1 : 0);
+  signal[`iret-sp-sum-${index}`] = add(ref(`sp-${index}`), iretFrameBit);
+  signal[`iret-sp-result-${index}`] = mod(add(ref(`iret-sp-sum-${index}`), ref(`iret-sp-carry-${index}`)), lit(2));
+  signal[`iret-sp-carry-${index + 1}`] = floor(div(add(ref(`iret-sp-sum-${index}`), ref(`iret-sp-carry-${index}`)), lit(2)));
 }
 for (const [registerIndex, register] of registers.entries()) {
   signal[`modrm-reg-${register}`] = equalBusField(3, registerIndex);
@@ -739,7 +764,8 @@ for (let index = 0; index < WIDTH; index++) {
   const pushedSp = muxBit(anyBits([ref('begin-call'), ref('begin-indirect-call'), ref('begin-push'), intSpDecrement]), ref(`next-base-sp-${index}`), ref(`sp-dec-${index}`));
   const poppedSp = muxBit(orBit(ref('finish-ret'), ref('finish-pop')), pushedSp, ref(`sp-inc-${index}`));
   const returnedFarSp = muxBit(ref('finish-retf'), poppedSp, ref(`retf-sp-result-${index}`));
-  signal[`next-sp-${index}`] = muxBit(ref('write-pop-sp'), returnedFarSp, ref(`next-base-sp-${index}`));
+  const returnedIretSp = muxBit(ref('finish-iret'), returnedFarSp, ref(`iret-sp-result-${index}`));
+  signal[`next-sp-${index}`] = muxBit(ref('write-pop-sp'), returnedIretSp, ref(`next-base-sp-${index}`));
   const nextSi = signal[`next-si-${index}`];
   const nextDi = signal[`next-di-${index}`];
   const nextCx = signal[`next-cx-${index}`];
@@ -829,15 +855,19 @@ for (const flag of ['cf', 'pf', 'af', 'zf', 'sf', 'of']) {
   const groupImmediateFlag = muxBit(ref('group-rm8-immediate-memory-commit'), testFlag, ref(`group-rm8-immediate-${flag}`));
   signal[`selected-${flag}`] = muxBit(ref('cmp-commit'), groupImmediateFlag, ref(`cmp-${flag}`));
   signal[`next-base-${flag}`] = muxBit(ref('update-flags'), ref(flag), ref(`selected-${flag}`));
-  const popfSource = ['cf', 'pf', 'af', 'zf', 'sf'].includes(flag) ? ref(`stackLow-${{ cf: 0, pf: 2, af: 4, zf: 6, sf: 7 }[flag]}`) : ref('busData-3');
-  signal[`next-${flag}`] = muxBit(ref('finish-popf'), ref(`next-base-${flag}`), popfSource);
+  const lowFlagIndex = { cf: 0, pf: 2, af: 4, zf: 6, sf: 7 }[flag];
+  const popfSource = lowFlagIndex === undefined ? ref('busData-3') : ref(`stackLow-${lowFlagIndex}`);
+  const iretSource = lowFlagIndex === undefined ? ref('busData-3') : ref(`iretFlagsLow-${lowFlagIndex}`);
+  const frameSource = muxBit(ref('finish-iret'), popfSource, iretSource);
+  signal[`next-${flag}`] = muxBit(ref('finish-flags-load'), ref(`next-base-${flag}`), frameSource);
 }
 signal['next-rol-cf'] = muxBit(ref('rol-rm8-count-nonzero'), ref('next-base-cf'), ref('rol-rm8-result-0'));
 signal['carry-control-value'] = muxBit(ref('update-cmc'), ref('update-stc'), notBit(ref('cf')));
 signal['controlled-cf'] = muxBit(ref('update-carry-control'), ref('next-rol-cf'), ref('carry-control-value'));
-signal['next-cf'] = muxBit(ref('finish-popf'), ref('controlled-cf'), ref('stackLow-0'));
+signal['loaded-cf'] = muxBit(ref('finish-iret'), ref('stackLow-0'), ref('iretFlagsLow-0'));
+signal['next-cf'] = muxBit(ref('finish-flags-load'), ref('controlled-cf'), ref('loaded-cf'));
 signal['rotated-of'] = muxBit(ref('rol-rm8-count-one'), ref('next-base-of'), xorBit(ref('rol-rm8-result-7'), ref('rol-rm8-result-0')));
-signal['next-of'] = muxBit(ref('finish-popf'), ref('rotated-of'), ref('busData-3'));
+signal['next-of'] = muxBit(ref('finish-flags-load'), ref('rotated-of'), ref('busData-3'));
 
 export const cpu16 = {
   name: 'css386-real-mode-seed',
@@ -846,7 +876,7 @@ export const cpu16 = {
     ip: { width: 16, initial: 0xfff0 },
     ...Object.fromEntries(registers.map((register) => [register, { width: 16 }])),
     cs: { width: 16, initial: 0xf000 }, ds: { width: 16, initial: 0 }, ss: { width: 16, initial: 0 }, es: { width: 16, initial: 0 },
-    ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, farSegLow: { width: 8 }, stackLow: { width: 8 }, stackHigh: { width: 8 }, modrm: { width: 8 }, dispLow: { width: 8 }, dispHigh: { width: 8 }, memLow: { width: 8 }, memHigh: { width: 8 }, ldsSegLow: { width: 8 }, stringByte: { width: 8 }, byteImmediate: { width: 8 }, intOffsetLow: { width: 8 }, intOffsetHigh: { width: 8 }, intSegmentLow: { width: 8 }, returnIp: { width: 16 }, phase: { width: 4 },
+    ir: { width: 8 }, immLow: { width: 8 }, immHigh: { width: 8 }, farSegLow: { width: 8 }, stackLow: { width: 8 }, stackHigh: { width: 8 }, modrm: { width: 8 }, dispLow: { width: 8 }, dispHigh: { width: 8 }, memLow: { width: 8 }, memHigh: { width: 8 }, ldsSegLow: { width: 8 }, stringByte: { width: 8 }, byteImmediate: { width: 8 }, intOffsetLow: { width: 8 }, intOffsetHigh: { width: 8 }, intSegmentLow: { width: 8 }, iretFlagsLow: { width: 8 }, returnIp: { width: 16 }, iretCs: { width: 16 }, phase: { width: 4 },
     halted: { width: 1 }, faulted: { width: 1 }, if: { width: 1 }, tf: { width: 1 }, df: { width: 1 }, iopl: { width: 2 }, nt: { width: 1 }, rep: { width: 1 }, csOverride: { width: 1 },
     cf: { width: 1 }, pf: { width: 1 }, af: { width: 1 }, zf: { width: 1 }, sf: { width: 1 }, of: { width: 1 },
     fdcDor: { width: 8 }, fdcInterrupt: { width: 1 },
@@ -856,7 +886,7 @@ export const cpu16 = {
     ip: bits('next-ip', 16),
     ...Object.fromEntries(registers.map((register) => [register, bits(`next-${register}`, 16)])),
     cs: bits('next-cs', 16), ds: bits('next-ds', 16), ss: bits('next-ss', 16), es: bits('next-es', 16),
-    ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), farSegLow: bits('next-farSegLow', 8), stackLow: bits('next-stackLow', 8), stackHigh: bits('next-stackHigh', 8), modrm: bits('next-modrm', 8), dispLow: bits('next-dispLow', 8), dispHigh: bits('next-dispHigh', 8), memLow: bits('next-memLow', 8), memHigh: bits('next-memHigh', 8), ldsSegLow: bits('next-ldsSegLow', 8), stringByte: bits('next-stringByte', 8), byteImmediate: bits('next-byteImmediate', 8), intOffsetLow: bits('next-intOffsetLow', 8), intOffsetHigh: bits('next-intOffsetHigh', 8), intSegmentLow: bits('next-intSegmentLow', 8), returnIp: bits('next-returnIp', 16), phase: bits('next-phase', 4),
+    ir: bits('next-ir', 8), immLow: bits('next-immLow', 8), immHigh: bits('next-immHigh', 8), farSegLow: bits('next-farSegLow', 8), stackLow: bits('next-stackLow', 8), stackHigh: bits('next-stackHigh', 8), modrm: bits('next-modrm', 8), dispLow: bits('next-dispLow', 8), dispHigh: bits('next-dispHigh', 8), memLow: bits('next-memLow', 8), memHigh: bits('next-memHigh', 8), ldsSegLow: bits('next-ldsSegLow', 8), stringByte: bits('next-stringByte', 8), byteImmediate: bits('next-byteImmediate', 8), intOffsetLow: bits('next-intOffsetLow', 8), intOffsetHigh: bits('next-intOffsetHigh', 8), intSegmentLow: bits('next-intSegmentLow', 8), iretFlagsLow: bits('next-iretFlagsLow', 8), returnIp: bits('next-returnIp', 16), iretCs: bits('next-iretCs', 16), phase: bits('next-phase', 4),
     halted: ['next-halted'], faulted: ['next-faulted'], if: ['next-if'], tf: ['next-tf'], df: ['next-df'], iopl: bits('next-iopl', 2), nt: ['next-nt'], rep: ['next-rep'], csOverride: ['next-csOverride'],
     cf: ['next-cf'], pf: ['next-pf'], af: ['next-af'], zf: ['next-zf'], sf: ['next-sf'], of: ['next-of'],
     fdcDor: bits('next-fdcDor', 8), fdcInterrupt: ['next-fdcInterrupt'],
