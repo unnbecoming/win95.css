@@ -1191,6 +1191,55 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual({ si: movsbBackward.state.si, di: movsbBackward.state.di, cx: movsbBackward.state.cx, df: movsbBackward.state.df }, { si: 0x000f, di: 0x001f, cx: 7, df: 1 });
     assert.deepEqual(movsbBackward.memory, { 131104: 0xcd });
 
+    const lodsbState = {
+      ax: 0x5a11, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0xffff, di: 0x7777,
+      ds: 0x1000, ss: 0x2000, es: 0x3000, if: 1, tf: 1, df: 0, iopl: 3, nt: 1,
+      cf: 1, pf: 0, af: 1, zf: 1, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    const lodsb = await execute(page, baseUrl, [0xac, 0xf4], {
+      state: lodsbState, placements: [{ address: 0x1ffff, bytes: [0xa7] }],
+    });
+    assert.deepEqual(lodsb.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+      { kind: 'read', address: 0, data: 0xac },
+      { kind: 'read', address: 0x1ffff, data: 0xa7 },
+      { kind: 'read', address: 1, data: 0xf4 },
+    ]);
+    assert.deepEqual(
+      Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'ds', 'ss', 'es', 'if', 'tf', 'df', 'iopl', 'nt', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((name) => [name, lodsb.state[name]])),
+      { ...lodsbState, ax: 0x5aa7, si: 0 },
+    );
+    assert.equal(lodsb.outputs.irq6Request, 1);
+    assert.deepEqual(lodsb.memory, {});
+    assert.equal(lodsb.state.faulted, 0);
+
+    const lodsbBackward = await execute(page, baseUrl, [0xac, 0xf4], {
+      state: { ...lodsbState, ax: 0x3c99, ds: 0x4000, si: 0, df: 1 },
+      placements: [{ address: 0x40000, bytes: [0x42] }],
+    });
+    assert.deepEqual({ ax: lodsbBackward.state.ax, si: lodsbBackward.state.si, df: lodsbBackward.state.df }, { ax: 0x3c42, si: 0xffff, df: 1 });
+    assert.deepEqual(lodsbBackward.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 0x40000 }, { kind: 'read', address: 1 },
+    ]);
+    assert.deepEqual(lodsbBackward.memory, {});
+
+    const lodsbCsOverride = await execute(page, baseUrl, [0x2e, 0xac, 0xf4], {
+      state: { ...lodsbState, ax: 0x6b00, cs: 0, ds: 0x1000, si: 0x0020 },
+      placements: [{ address: 0x0020, bytes: [0x66] }, { address: 0x10020, bytes: [0x77] }],
+    });
+    assert.deepEqual(lodsbCsOverride.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 0x0020 }, { kind: 'read', address: 2 },
+    ]);
+    assert.deepEqual({ ax: lodsbCsOverride.state.ax, si: lodsbCsOverride.state.si, csOverride: lodsbCsOverride.state.csOverride }, { ax: 0x6b66, si: 0x0021, csOverride: 0 });
+    assert.deepEqual(lodsbCsOverride.memory, {});
+
+    const lodsbAtomic = await executeSteps(page, baseUrl, [0xac, 0xf4], 2, {
+      state: lodsbState, placements: [{ address: 0x1ffff, bytes: [0xa7] }],
+    });
+    assert.deepEqual(lodsbAtomic.snapshots.map(({ state }) => ({ ax: state.ax, si: state.si, ip: state.ip, phase: state.phase })), [
+      { ax: 0x5a11, si: 0xffff, ip: 1, phase: 14 },
+      { ax: 0x5aa7, si: 0, ip: 1, phase: 0 },
+    ]);
+
     const repMovsb = await execute(page, baseUrl, [0xf3, 0xa4, 0xf4], {
       state: { ds: 0x1000, es: 0x2000, si: 0x0010, di: 0x0020, cx: 3, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 },
       placements: [{ address: 0x10010, bytes: [0x11, 0x22, 0x33] }],
