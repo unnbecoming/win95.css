@@ -1529,6 +1529,18 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
         of: Number(((destination ^ source) & (destination ^ result) & 0x80) !== 0),
       };
     };
+    const addByteFlags = (destination, source) => {
+      const sum = destination + source;
+      const result = sum & 0xff;
+      return {
+        cf: Number(sum > 0xff),
+        pf: Number(result.toString(2).split('').filter((bit) => bit === '1').length % 2 === 0),
+        af: Number(((destination ^ source ^ result) & 0x10) !== 0),
+        zf: Number(result === 0),
+        sf: result >>> 7,
+        of: Number(((~(destination ^ source) & (destination ^ result)) & 0x80) !== 0),
+      };
+    };
     const cmpInitial = { ax: 0xff00, cx: 0x1001, dx: 0x0f7f, bx: 0x5580, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888 };
     const architecturalKeys = ['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di', 'cs', 'ds', 'ss', 'es', 'if', 'df', 'rep'];
     const architecturalState = (state) => Object.fromEntries(architecturalKeys.map((name) => [name, state[name] ?? 0]));
@@ -1768,6 +1780,45 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.deepEqual(csOr.memory, { 65: 0x21 });
     assert.equal(csOr.state.csOverride, 0);
     assert.equal(csOr.state.faulted, 0);
+
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
+        const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x00, 0xc0 | (source << 3) | destination, 0xf4], { state });
+        const target = byteAliases[destination];
+        const destinationValue = byteValue(state, destination);
+        const sourceValue = byteValue(state, source);
+        const value = (destinationValue + sourceValue) & 0xff;
+        const expected = { ...cmpInitial, [target.register]: (state[target.register] & ~(0xff << target.shift)) | (value << target.shift) };
+        assert.deepEqual(Object.fromEntries(Object.keys(cmpInitial).map((name) => [name, result.state[name]])), expected, `add8 ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `add8 collateral ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), addByteFlags(destinationValue, sourceValue), `add8 flags ${source}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `add8 irq ${source}/${destination}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `add8 trace ${source}/${destination}`);
+        assert.deepEqual(result.memory, {}, `add8 memory ${source}/${destination}`);
+        assert.equal(result.state.faulted, 0, `add8 fault ${source}/${destination}`);
+      }
+    }
+    const addMemoryValues = [0x00, 0x01, 0x7f, 0x80, 0xff, 0x10, 0x0f, 0x55];
+    for (const [destination, [name, modrmByte, displacement, physical]] of eaCases.entries()) {
+      for (let source = 0; source < 8; source++) {
+        const state = { ...cmpInitial, ...eaState, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const sourceValue = byteValue(state, source);
+        const expected = (addMemoryValues[destination] + sourceValue) & 0xff;
+        const result = await execute(page, baseUrl, [0x00, modrmByte | (source << 3), ...displacement, 0xf4], { state, placements: [{ address: physical, bytes: [addMemoryValues[destination]] }] });
+        assert.deepEqual(result.trace.map(({ kind, address, data }) => ({ kind, address, ...(kind === 'write' ? { data } : {}) })), [
+          { kind: 'read', address: 0 }, { kind: 'read', address: 1 },
+          ...displacement.map((_, index) => ({ kind: 'read', address: 2 + index })),
+          { kind: 'read', address: physical }, { kind: 'write', address: physical, data: expected }, { kind: 'read', address: 2 + displacement.length },
+        ], `add8 memory trace ${name}/${source}`);
+        assert.deepEqual(architecturalState(result.state), architecturalState(state), `add8 memory state ${name}/${source}`);
+        assert.deepEqual(Object.fromEntries(['tf', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((key) => [key, result.state[key]])), { tf: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `add8 memory collateral ${name}/${source}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), addByteFlags(addMemoryValues[destination], sourceValue), `add8 memory flags ${name}/${source}`);
+        assert.equal(result.outputs.irq6Request, 1, `add8 memory irq ${name}/${source}`);
+        assert.deepEqual(result.memory, { [physical]: expected }, `add8 memory write ${name}/${source}`);
+        assert.equal(result.state.faulted, 0, `add8 memory fault ${name}/${source}`);
+      }
+    }
 
     for (let source = 0; source < 8; source++) {
       for (let destination = 0; destination < 8; destination++) {
