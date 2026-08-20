@@ -1,8 +1,10 @@
 export class ByteBusMachine {
-  constructor(chip, bytes) {
+  constructor(chip, bytes, { ioRead = () => 0xff } = {}) {
     if (!chip.manifest.byteBus) throw new Error('manifest has no byte bus contract');
+    if (typeof ioRead !== 'function') throw new Error('I/O read handler must be a function');
     this.chip = chip;
     this.bytes = bytes;
+    this.ioRead = ioRead;
     this.trace = [];
   }
 
@@ -12,8 +14,19 @@ export class ByteBusMachine {
     const reading = outputs[contract.readOutput] === 1;
     const writing = outputs[contract.writeOutput] === 1;
     const ioContract = this.chip.manifest.ioBus;
-    const outputting = ioContract && outputs[ioContract.writeOutput] === 1;
-    if (Number(reading) + Number(writing) + Number(outputting) > 1) throw new Error('CPU cannot issue overlapping memory and I/O cycles');
+    const inputting = ioContract?.readOutput && outputs[ioContract.readOutput] === 1;
+    const outputting = ioContract?.writeOutput && outputs[ioContract.writeOutput] === 1;
+    if (Number(reading) + Number(writing) + Number(inputting) + Number(outputting) > 1) throw new Error('CPU cannot issue overlapping memory and I/O cycles');
+    if (inputting) {
+      const port = outputs[ioContract.portOutput];
+      const data = this.ioRead(port, this.trace.length);
+      if (!Number.isInteger(data) || data < 0 || data > 0xff) throw new Error(`I/O read handler returned invalid byte: ${data}`);
+      this.chip.drive({ [ioContract.dataInput ?? contract.dataInput]: data });
+      const state = this.chip.cycle();
+      const request = { cycle: this.trace.length, kind: 'in', port, data };
+      this.trace.push(request);
+      return { state, request };
+    }
     if (outputting) {
       this.chip.drive({ [contract.dataInput]: 0 });
       const state = this.chip.cycle();

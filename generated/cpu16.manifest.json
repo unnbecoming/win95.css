@@ -206,6 +206,7 @@
     "write-phase",
     "bus-read",
     "bus-write",
+    "io-read",
     "io-write",
     "fdc-dor-port",
     "fdc-dor-write",
@@ -315,6 +316,8 @@
     "opcode-decRm8",
     "fetched-callRm16",
     "opcode-callRm16",
+    "fetched-inDxAl",
+    "opcode-inDxAl",
     "fetched-outDxAl",
     "opcode-outDxAl",
     "fetched-jmpShort",
@@ -780,7 +783,7 @@
     "next-intSegmentLow-7",
     "next-iretFlagsLow-7",
     "begin-immediate",
-    "begin-out",
+    "begin-io",
     "begin-int",
     "continue-immediate",
     "begin-store",
@@ -4391,6 +4394,9 @@
       "dx-14",
       "dx-15"
     ],
+    "ioRead": [
+      "io-read"
+    ],
     "ioWrite": [
       "io-write"
     ],
@@ -4515,7 +4521,9 @@
   },
   "ioBus": {
     "portOutput": "ioPort",
+    "readOutput": "ioRead",
     "writeOutput": "ioWrite",
-    "writeDataOutput": "ioWriteData"
+    "writeDataOutput": "ioWriteData",
+    "dataInput": "busData"
   }
 }

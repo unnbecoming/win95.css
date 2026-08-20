@@ -28,7 +28,7 @@ function serve() {
 
 async function execute(page, baseUrl, rom, options = {}) {
   await page.goto(`${baseUrl}/test/cpu16.html`);
-  return page.evaluate(async ({ bytes, loadAddress, state, placements }) => {
+  return page.evaluate(async ({ bytes, loadAddress, state, placements, ioReads }) => {
     const [{ CssChip }, { ByteBusMachine }] = await Promise.all([import('/src/chip.js'), import('/src/byte-bus-machine.js')]);
     const manifest = await fetch('/generated/cpu16.manifest.json').then((response) => response.json());
     const chip = new CssChip(document.querySelector('#cpu'), manifest);
@@ -36,10 +36,10 @@ async function execute(page, baseUrl, rom, options = {}) {
     const memory = new Uint8Array(0x100000);
     memory.set(bytes, loadAddress);
     for (const placement of placements) memory.set(placement.bytes, placement.address);
-    const result = new ByteBusMachine(chip, memory).run(256);
+    const result = new ByteBusMachine(chip, memory, { ioRead: (port) => ioReads[String(port)] ?? 0xff }).run(256);
     const written = Object.fromEntries(result.trace.filter(({ kind }) => kind === 'write').map(({ address }) => [address, memory[address]]));
     return { ...result, outputs: chip.outputs(), memory: written };
-  }, { bytes: rom, loadAddress: options.loadAddress ?? 0, state: { cs: 0, ip: 0, ...(options.state ?? {}) }, placements: options.placements ?? [] });
+  }, { bytes: rom, loadAddress: options.loadAddress ?? 0, state: { cs: 0, ip: 0, ...(options.state ?? {}) }, placements: options.placements ?? [], ioReads: options.ioReads ?? {} });
 }
 
 async function executeSteps(page, baseUrl, rom, steps, options = {}) {
@@ -188,6 +188,22 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(portOutput.state.fdcInterrupt, 0);
     assert.deepEqual(Object.fromEntries(['fdcDor', 'fdcReset', 'fdcInterrupt', 'irq6Request'].map((name) => [name, portOutput.outputs[name]])), { fdcDor: 0x08, fdcReset: 1, fdcInterrupt: 0, irq6Request: 0 });
     assert.deepEqual(portOutput.memory, {});
+
+    const portInputState = {
+      ax: 0x5a11, cx: 0x2222, dx: 0x1234, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888,
+      cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1,
+      cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    const portInput = await execute(page, baseUrl, [0xec, 0xf4], { state: portInputState, ioReads: { 4660: 0xa7 } });
+    assert.deepEqual(portInput.trace, [
+      { cycle: 0, kind: 'read', address: 0, data: 0xec },
+      { cycle: 1, kind: 'in', port: 0x1234, data: 0xa7 },
+      { cycle: 2, kind: 'read', address: 1, data: 0xf4 },
+    ]);
+    assert.deepEqual(Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, portInput.state[name]])), { ...Object.fromEntries(['ax', 'cx', 'dx', 'bx', 'sp', 'bp', 'si', 'di'].map((name) => [name, portInputState[name]])), ax: 0x5aa7 });
+    assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((name) => [name, portInput.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'cf', 'pf', 'af', 'zf', 'sf', 'of', 'fdcDor', 'fdcInterrupt'].map((name) => [name, portInputState[name]])));
+    assert.equal(portInput.outputs.irq6Request, 1);
+    assert.deepEqual(portInput.memory, {});
 
     const resetRelease = await execute(page, baseUrl, [0xba, 0xf2, 0x03, 0xb0, 0x08, 0xee, 0xeb, 0x00, 0xeb, 0x00, 0x0c, 0x04, 0xee, 0xf4]);
     assert.deepEqual(resetRelease.trace.filter(({ kind }) => kind === 'out').map(({ port, data }) => ({ port, data })), [
