@@ -955,6 +955,61 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(csIndirectCall.state.csOverride, 0);
     assert.equal(csIndirectCall.state.faulted, 0);
 
+    const indirectJumpInitial = { ax: 0x1101, cx: 0x2202, dx: 0x3303, bx: 0x4404, sp: 0x5505, bp: 0x6606, si: 0x7707, di: 0x8808, cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, tf: 1, if: 1, df: 1, of: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+    for (let rm = 0; rm < 8; rm++) {
+      const target = 0x0400 + (rm * 0x10);
+      const state = { ...indirectJumpInitial, [addRegisters[rm]]: target };
+      const result = await execute(page, baseUrl, [0xff, 0xe0 | rm], { state, placements: [{ address: target, bytes: [0xf4] }] });
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: target }], `ff/4/register/${rm}`);
+      assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), Object.fromEntries(addRegisters.map((name) => [name, state[name]])), `ff/4/register/state/${rm}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, state[name]])), `ff/4/register/collateral/${rm}`);
+      assert.equal(result.outputs.irq6Request, 1, `ff/4/register/irq/${rm}`);
+      assert.deepEqual(result.memory, {}, `ff/4/register/memory/${rm}`);
+      assert.equal(result.state.ip, target + 1, `ff/4/register/ip/${rm}`);
+      assert.equal(result.state.faulted, 0, `ff/4/register/fault/${rm}`);
+    }
+    const indirectJumpEaState = { bx: 0x0100, bp: 0x0200, si: 0x0010, di: 0x0020, ds: 0x1000, ss: 0x2000 };
+    const indirectJumpEaCases = [
+      ['BX+SI', 0x00, [], 0x10110], ['BX+DI', 0x01, [], 0x10120],
+      ['BP+SI', 0x02, [], 0x20210], ['BP+DI', 0x03, [], 0x20220],
+      ['SI', 0x04, [], 0x10010], ['DI', 0x05, [], 0x10020],
+      ['disp16', 0x06, [0x30, 0x00], 0x10030], ['BX', 0x07, [], 0x10100],
+    ];
+    for (const [name, modrmByte, displacement, physical] of indirectJumpEaCases) {
+      const target = 0x0500;
+      const state = { ...indirectJumpInitial, ...indirectJumpEaState };
+      const result = await execute(page, baseUrl, [0xff, modrmByte | 0x20, ...displacement], { state, placements: [{ address: physical, bytes: [target & 0xff, target >>> 8] }, { address: target, bytes: [0xf4] }] });
+      assert.deepEqual(result.trace.filter(({ address }) => address === physical || address === physical + 1).map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: physical }, { kind: 'read', address: physical + 1 }], `ff/4/memory/operand/${name}`);
+      assert.equal(result.trace.at(-1).address, target, `ff/4/memory/target/${name}`);
+      assert.equal(result.state.ip, target + 1, `ff/4/memory/ip/${name}`);
+      assert.deepEqual(Object.fromEntries(addRegisters.map((register) => [register, result.state[register]])), Object.fromEntries(addRegisters.map((register) => [register, state[register]])), `ff/4/memory/state/${name}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((flag) => [flag, result.state[flag]])), Object.fromEntries(['cs', 'ds', 'ss', 'es', 'cf', 'pf', 'af', 'zf', 'sf', 'tf', 'if', 'df', 'of', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((flag) => [flag, state[flag]])), `ff/4/memory/collateral/${name}`);
+      assert.equal(result.outputs.irq6Request, 1, `ff/4/memory/irq/${name}`);
+      assert.deepEqual(result.memory, {}, `ff/4/memory/writes/${name}`);
+      assert.equal(result.state.faulted, 0, `ff/4/memory/fault/${name}`);
+    }
+    const csIndirectJump = await execute(page, baseUrl, [0x2e, 0xff, 0xa4, 0x10, 0x00], {
+      loadAddress: 0x10000,
+      state: { ...indirectJumpInitial, cs: 0x1000, ds: 0x2000, si: 0x0100 },
+      placements: [
+        { address: 0x10110, bytes: [0x00, 0x02] }, { address: 0x20110, bytes: [0x00, 0x03] },
+        { address: 0x10200, bytes: [0xf4] }, { address: 0x10300, bytes: [0x90] },
+      ],
+    });
+    assert.deepEqual(csIndirectJump.trace.filter(({ address }) => [0x10110, 0x10111, 0x20110, 0x20111].includes(address)).map(({ address }) => address), [0x10110, 0x10111]);
+    assert.equal(csIndirectJump.state.ip, 0x0201);
+    assert.equal(csIndirectJump.state.sp, indirectJumpInitial.sp);
+    assert.equal(csIndirectJump.state.csOverride, 0);
+    assert.deepEqual(csIndirectJump.memory, {});
+    assert.equal(csIndirectJump.state.faulted, 0);
+
+    const indirectJumpAtomic = await executeSteps(page, baseUrl, [0xff, 0x26, 0x10, 0x00], 6, { placements: [{ address: 0x0010, bytes: [0x00, 0x03] }] });
+    assert.deepEqual(indirectJumpAtomic.snapshots.map(({ state }) => state.ip), [1, 2, 3, 4, 4, 0x0300]);
+    assert.deepEqual(indirectJumpAtomic.trace.map(({ kind, address }) => ({ kind, address })), [
+      { kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 },
+      { kind: 'read', address: 0x0010 }, { kind: 'read', address: 0x0011 },
+    ]);
+
     for (const [name, bytes] of [['selector', [0xff, 0x07]], ['register', [0xff, 0xd0]]]) {
       const rejected = await execute(page, baseUrl, bytes);
       assert.deepEqual(rejected.trace.map(({ address }) => address), [0, 1], name);

@@ -4661,6 +4661,30 @@
   initial-value: 0;
 }
 
+@property --jump-rm16-selector-valid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ff-rm16-selector-valid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --saved-call-rm16-selector-valid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --saved-jump-rm16-selector-valid {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --rol-rm8-immediate-selector-valid {
   syntax: "<number>";
   inherits: false;
@@ -6408,6 +6432,24 @@
 }
 
 @property --begin-indirect-call {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --execute-indirect-jump-register {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-indirect-jump-memory {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --finish-indirect-jump {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -10193,6 +10235,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-0 {
   syntax: "<number>";
   inherits: false;
@@ -10350,6 +10404,18 @@
 }
 
 @property --indirect-call-ip-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-1 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -10517,6 +10583,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-2 {
   syntax: "<number>";
   inherits: false;
@@ -10674,6 +10752,18 @@
 }
 
 @property --indirect-call-ip-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-3 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -10841,6 +10931,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-4 {
   syntax: "<number>";
   inherits: false;
@@ -10998,6 +11100,18 @@
 }
 
 @property --indirect-call-ip-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-5 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -11165,6 +11279,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-6 {
   syntax: "<number>";
   inherits: false;
@@ -11322,6 +11448,18 @@
 }
 
 @property --indirect-call-ip-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-7 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -11489,6 +11627,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-8 {
   syntax: "<number>";
   inherits: false;
@@ -11646,6 +11796,18 @@
 }
 
 @property --indirect-call-ip-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-9 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -11813,6 +11975,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-10 {
   syntax: "<number>";
   inherits: false;
@@ -11970,6 +12144,18 @@
 }
 
 @property --indirect-call-ip-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-11 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -12137,6 +12323,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-12 {
   syntax: "<number>";
   inherits: false;
@@ -12294,6 +12492,18 @@
 }
 
 @property --indirect-call-ip-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-13 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -12461,6 +12671,18 @@
   initial-value: 0;
 }
 
+@property --indirect-jump-target-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --return-ip-14 {
   syntax: "<number>";
   inherits: false;
@@ -12618,6 +12840,18 @@
 }
 
 @property --indirect-call-ip-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-target-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --indirect-jump-ip-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -25695,6 +25929,10 @@
   --shl-rm8-one-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1);
   --shl-rm16-one-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1);
   --call-rm16-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
+  --jump-rm16-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + var(--busData-5)) / 2), 1);
+  --ff-rm16-selector-valid: min(1, calc(var(--call-rm16-selector-valid) + var(--jump-rm16-selector-valid)));
+  --saved-call-rm16-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--modrm-3))) / 2), 1) + var(--modrm-4)) / 2), 1) + calc(1 - var(--modrm-5))) / 2), 1);
+  --saved-jump-rm16-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--modrm-3))) / 2), 1) + calc(1 - var(--modrm-4))) / 2), 1) + var(--modrm-5)) / 2), 1);
   --rol-rm8-immediate-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
   --dec-rm8-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
   --opcode-memory-supported: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-movRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-testRm8Reg) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-groupRm8Imm)));
@@ -25717,8 +25955,8 @@
   --group-rm8-immediate-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-groupRm8Imm) + calc(1 - var(--group-rm8-immediate-selector-valid))) / 2), 1)) / 2), 1);
   --shl-rm8-one-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-shlRm8One) + calc(1 - var(--shl-rm8-one-selector-valid))) / 2), 1)) / 2), 1);
   --shl-rm16-one-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-shlRm16One) + calc(1 - var(--shl-rm16-one-selector-valid))) / 2), 1)) / 2), 1);
-  --call-rm16-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-callRm16) + calc(1 - var(--call-rm16-selector-valid))) / 2), 1)) / 2), 1);
-  --call-rm16-register-invalid: round(down, calc(calc(var(--modrm-commit) + var(--opcode-callRm16)) / 2), 1);
+  --call-rm16-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-callRm16) + calc(1 - var(--ff-rm16-selector-valid))) / 2), 1)) / 2), 1);
+  --call-rm16-register-invalid: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-callRm16) + var(--call-rm16-selector-valid)) / 2), 1)) / 2), 1);
   --rol-rm8-immediate-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-rolRm8Imm) + calc(1 - var(--rol-rm8-immediate-selector-valid))) / 2), 1)) / 2), 1);
   --dec-rm8-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-decRm8) + calc(1 - var(--dec-rm8-selector-valid))) / 2), 1)) / 2), 1);
   --test-rm8-immediate-selector-invalid: round(down, calc(calc(var(--capture-modrm) + round(down, calc(calc(var(--opcode-testRm8Imm) + calc(1 - var(--test-rm8-immediate-selector-valid))) / 2), 1)) / 2), 1);
@@ -25986,7 +26224,10 @@
   --begin-store: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-store)) / 2), 1);
   --begin-mov-al-moffs8: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-movAlMoffs8)) / 2), 1);
   --begin-call: round(down, calc(calc(var(--capture-imm-high) + var(--opcode-call)) / 2), 1);
-  --begin-indirect-call: round(down, calc(calc(var(--capture-memory-high) + var(--opcode-callRm16)) / 2), 1);
+  --begin-indirect-call: round(down, calc(calc(var(--capture-memory-high) + round(down, calc(calc(var(--opcode-callRm16) + var(--saved-call-rm16-selector-valid)) / 2), 1)) / 2), 1);
+  --execute-indirect-jump-register: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-callRm16) + var(--jump-rm16-selector-valid)) / 2), 1)) / 2), 1);
+  --finish-indirect-jump-memory: round(down, calc(calc(var(--capture-memory-high) + round(down, calc(calc(var(--opcode-callRm16) + var(--saved-jump-rm16-selector-valid)) / 2), 1)) / 2), 1);
+  --finish-indirect-jump: min(1, calc(var(--execute-indirect-jump-register) + var(--finish-indirect-jump-memory)));
   --begin-push: round(down, calc(calc(var(--capture-opcode) + var(--fetched-push)) / 2), 1);
   --begin-write: min(1, calc(var(--begin-store) + var(--begin-call) + var(--begin-indirect-call) + var(--begin-push)));
   --begin-ret: round(down, calc(calc(var(--capture-opcode) + var(--fetched-ret)) / 2), 1);
@@ -26617,7 +26858,9 @@
   --branch-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-0)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-0)) / 2), 1)));
   --indirect-call-target-0: var(--memLow-0);
   --indirect-call-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-0)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-0)) / 2), 1)));
-  --return-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-0)) / 2), 1)));
+  --indirect-jump-target-0: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-0)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-0)) / 2), 1)));
+  --indirect-jump-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-0)) / 2), 1)));
+  --return-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-0)) / 2), 1)));
   --far-offset-0: var(--immLow-0);
   --far-jump-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-0)) / 2), 1)));
   --far-ip-0: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-0)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-0)) / 2), 1)));
@@ -26644,7 +26887,9 @@
   --branch-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-1)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-1)) / 2), 1)));
   --indirect-call-target-1: var(--memLow-1);
   --indirect-call-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-1)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-1)) / 2), 1)));
-  --return-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-1)) / 2), 1)));
+  --indirect-jump-target-1: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-1)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-1)) / 2), 1)));
+  --indirect-jump-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-1)) / 2), 1)));
+  --return-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-1)) / 2), 1)));
   --far-offset-1: var(--immLow-1);
   --far-jump-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-1)) / 2), 1)));
   --far-ip-1: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-1)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-1)) / 2), 1)));
@@ -26671,7 +26916,9 @@
   --branch-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-2)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-2)) / 2), 1)));
   --indirect-call-target-2: var(--memLow-2);
   --indirect-call-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-2)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-2)) / 2), 1)));
-  --return-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-2)) / 2), 1)));
+  --indirect-jump-target-2: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-2)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-2)) / 2), 1)));
+  --indirect-jump-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-2)) / 2), 1)));
+  --return-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-2)) / 2), 1)));
   --far-offset-2: var(--immLow-2);
   --far-jump-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-2)) / 2), 1)));
   --far-ip-2: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-2)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-2)) / 2), 1)));
@@ -26698,7 +26945,9 @@
   --branch-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-3)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-3)) / 2), 1)));
   --indirect-call-target-3: var(--memLow-3);
   --indirect-call-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-3)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-3)) / 2), 1)));
-  --return-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-3)) / 2), 1)));
+  --indirect-jump-target-3: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-3)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-3)) / 2), 1)));
+  --indirect-jump-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-3)) / 2), 1)));
+  --return-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-3)) / 2), 1)));
   --far-offset-3: var(--immLow-3);
   --far-jump-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-3)) / 2), 1)));
   --far-ip-3: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-3)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-3)) / 2), 1)));
@@ -26725,7 +26974,9 @@
   --branch-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-4)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-4)) / 2), 1)));
   --indirect-call-target-4: var(--memLow-4);
   --indirect-call-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-4)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-4)) / 2), 1)));
-  --return-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-4)) / 2), 1)));
+  --indirect-jump-target-4: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-4)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-4)) / 2), 1)));
+  --indirect-jump-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-4)) / 2), 1)));
+  --return-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-4)) / 2), 1)));
   --far-offset-4: var(--immLow-4);
   --far-jump-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-4)) / 2), 1)));
   --far-ip-4: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-4)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-4)) / 2), 1)));
@@ -26752,7 +27003,9 @@
   --branch-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-5)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-5)) / 2), 1)));
   --indirect-call-target-5: var(--memLow-5);
   --indirect-call-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-5)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-5)) / 2), 1)));
-  --return-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-5)) / 2), 1)));
+  --indirect-jump-target-5: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-5)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-5)) / 2), 1)));
+  --indirect-jump-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-5)) / 2), 1)));
+  --return-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-5)) / 2), 1)));
   --far-offset-5: var(--immLow-5);
   --far-jump-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-5)) / 2), 1)));
   --far-ip-5: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-5)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-5)) / 2), 1)));
@@ -26779,7 +27032,9 @@
   --branch-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-6)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-6)) / 2), 1)));
   --indirect-call-target-6: var(--memLow-6);
   --indirect-call-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-6)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-6)) / 2), 1)));
-  --return-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-6)) / 2), 1)));
+  --indirect-jump-target-6: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-6)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-6)) / 2), 1)));
+  --indirect-jump-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-6)) / 2), 1)));
+  --return-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-6)) / 2), 1)));
   --far-offset-6: var(--immLow-6);
   --far-jump-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-6)) / 2), 1)));
   --far-ip-6: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-6)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-6)) / 2), 1)));
@@ -26806,7 +27061,9 @@
   --branch-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-7)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-7)) / 2), 1)));
   --indirect-call-target-7: var(--memLow-7);
   --indirect-call-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-7)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-7)) / 2), 1)));
-  --return-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-7)) / 2), 1)));
+  --indirect-jump-target-7: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-7)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-7)) / 2), 1)));
+  --indirect-jump-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-7)) / 2), 1)));
+  --return-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-7)) / 2), 1)));
   --far-offset-7: var(--immLow-7);
   --far-jump-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-7)) / 2), 1)));
   --far-ip-7: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-7)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-7)) / 2), 1)));
@@ -26833,7 +27090,9 @@
   --branch-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-8)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-8)) / 2), 1)));
   --indirect-call-target-8: var(--busData-0);
   --indirect-call-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-8)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-8)) / 2), 1)));
-  --return-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-8)) / 2), 1)));
+  --indirect-jump-target-8: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-8)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-8)) / 2), 1)));
+  --indirect-jump-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-8)) / 2), 1)));
+  --return-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-8)) / 2), 1)));
   --far-offset-8: var(--immHigh-0);
   --far-jump-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-8)) / 2), 1)));
   --far-ip-8: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-8)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-8)) / 2), 1)));
@@ -26860,7 +27119,9 @@
   --branch-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-9)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-9)) / 2), 1)));
   --indirect-call-target-9: var(--busData-1);
   --indirect-call-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-9)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-9)) / 2), 1)));
-  --return-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-9)) / 2), 1)));
+  --indirect-jump-target-9: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-9)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-9)) / 2), 1)));
+  --indirect-jump-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-9)) / 2), 1)));
+  --return-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-9)) / 2), 1)));
   --far-offset-9: var(--immHigh-1);
   --far-jump-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-9)) / 2), 1)));
   --far-ip-9: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-9)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-9)) / 2), 1)));
@@ -26887,7 +27148,9 @@
   --branch-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-10)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-10)) / 2), 1)));
   --indirect-call-target-10: var(--busData-2);
   --indirect-call-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-10)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-10)) / 2), 1)));
-  --return-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-10)) / 2), 1)));
+  --indirect-jump-target-10: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-10)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-10)) / 2), 1)));
+  --indirect-jump-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-10)) / 2), 1)));
+  --return-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-10)) / 2), 1)));
   --far-offset-10: var(--immHigh-2);
   --far-jump-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-10)) / 2), 1)));
   --far-ip-10: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-10)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-10)) / 2), 1)));
@@ -26914,7 +27177,9 @@
   --branch-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-11)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-11)) / 2), 1)));
   --indirect-call-target-11: var(--busData-3);
   --indirect-call-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-11)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-11)) / 2), 1)));
-  --return-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-11)) / 2), 1)));
+  --indirect-jump-target-11: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-11)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-11)) / 2), 1)));
+  --indirect-jump-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-11)) / 2), 1)));
+  --return-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-11)) / 2), 1)));
   --far-offset-11: var(--immHigh-3);
   --far-jump-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-11)) / 2), 1)));
   --far-ip-11: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-11)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-11)) / 2), 1)));
@@ -26941,7 +27206,9 @@
   --branch-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-12)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-12)) / 2), 1)));
   --indirect-call-target-12: var(--busData-4);
   --indirect-call-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-12)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-12)) / 2), 1)));
-  --return-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-12)) / 2), 1)));
+  --indirect-jump-target-12: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-12)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-12)) / 2), 1)));
+  --indirect-jump-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-12)) / 2), 1)));
+  --return-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-12)) / 2), 1)));
   --far-offset-12: var(--immHigh-4);
   --far-jump-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-12)) / 2), 1)));
   --far-ip-12: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-12)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-12)) / 2), 1)));
@@ -26968,7 +27235,9 @@
   --branch-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-13)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-13)) / 2), 1)));
   --indirect-call-target-13: var(--busData-5);
   --indirect-call-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-13)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-13)) / 2), 1)));
-  --return-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-13)) / 2), 1)));
+  --indirect-jump-target-13: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-13)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-13)) / 2), 1)));
+  --indirect-jump-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-13)) / 2), 1)));
+  --return-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-13)) / 2), 1)));
   --far-offset-13: var(--immHigh-5);
   --far-jump-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-13)) / 2), 1)));
   --far-ip-13: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-13)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-13)) / 2), 1)));
@@ -26995,7 +27264,9 @@
   --branch-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-14)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-14)) / 2), 1)));
   --indirect-call-target-14: var(--busData-6);
   --indirect-call-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-14)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-14)) / 2), 1)));
-  --return-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-14)) / 2), 1)));
+  --indirect-jump-target-14: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-14)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-14)) / 2), 1)));
+  --indirect-jump-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-14)) / 2), 1)));
+  --return-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-14)) / 2), 1)));
   --far-offset-14: var(--immHigh-6);
   --far-jump-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-14)) / 2), 1)));
   --far-ip-14: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-14)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-14)) / 2), 1)));
@@ -27022,7 +27293,9 @@
   --branch-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--take-short-branch)) + var(--near-ip-15)) / 2), 1) + round(down, calc(calc(var(--take-short-branch) + var(--short-result-15)) / 2), 1)));
   --indirect-call-target-15: var(--busData-7);
   --indirect-call-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--begin-indirect-call)) + var(--branch-ip-15)) / 2), 1) + round(down, calc(calc(var(--begin-indirect-call) + var(--indirect-call-target-15)) / 2), 1)));
-  --return-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-call-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-15)) / 2), 1)));
+  --indirect-jump-target-15: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-indirect-jump-register)) + var(--indirect-call-target-15)) / 2), 1) + round(down, calc(calc(var(--execute-indirect-jump-register) + var(--modrm-rm-value-15)) / 2), 1)));
+  --indirect-jump-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-indirect-jump)) + var(--indirect-call-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-indirect-jump) + var(--indirect-jump-target-15)) / 2), 1)));
+  --return-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-ret)) + var(--indirect-jump-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-ret) + var(--ret-target-15)) / 2), 1)));
   --far-offset-15: var(--immHigh-7);
   --far-jump-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-far-jump)) + var(--return-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-far-jump) + var(--far-offset-15)) / 2), 1)));
   --far-ip-15: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-retf)) + var(--far-jump-ip-15)) / 2), 1) + round(down, calc(calc(var(--finish-retf) + var(--retf-target-15)) / 2), 1)));
