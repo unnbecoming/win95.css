@@ -612,6 +612,35 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
     assert.equal(pushSp.memory[0x27ffe], 0x00);
     assert.equal(pushSp.memory[0x27fff], 0x80);
 
+    const cbwState = {
+      cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x5555, bp: 0x6666, si: 0x7777, di: 0x8888,
+      ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, tf: 1, df: 1, iopl: 3, nt: 1,
+      cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1, fdcDor: 0x0c, fdcInterrupt: 1,
+    };
+    for (const { ax, expected, label } of [
+      { ax: 0xa500, expected: 0x0000, label: 'zero' },
+      { ax: 0x5a7f, expected: 0x007f, label: 'positive' },
+      { ax: 0x5a80, expected: 0xff80, label: 'negative-boundary' },
+      { ax: 0xa5ff, expected: 0xffff, label: 'negative-one' },
+    ]) {
+      const initial = { ...cbwState, ax };
+      const cbw = await execute(page, baseUrl, [0x98, 0xf4], { state: initial });
+      assert.deepEqual(cbw.trace.map(({ kind, address, data }) => ({ kind, address, data })), [
+        { kind: 'read', address: 0, data: 0x98 }, { kind: 'read', address: 1, data: 0xf4 },
+      ], `CBW ${label}`);
+      assert.deepEqual(
+        Object.fromEntries(Object.keys(initial).map((name) => [name, cbw.state[name]])),
+        { ...initial, ax: expected },
+        `CBW ${label}`,
+      );
+      assert.deepEqual(cbw.memory, {}, `CBW ${label}`);
+      assert.deepEqual(Object.fromEntries(['fdcReset', 'irq6Request'].map((name) => [name, cbw.outputs[name]])), { fdcReset: 0, irq6Request: 1 }, `CBW ${label}`);
+      assert.deepEqual({ ip: cbw.state.ip, halted: cbw.state.halted, faulted: cbw.state.faulted }, { ip: 2, halted: 1, faulted: 0 }, `CBW ${label}`);
+    }
+    const cbwAtomic = await executeSteps(page, baseUrl, [0x98], 1, { state: { ...cbwState, ax: 0x5a80 } });
+    assert.deepEqual(cbwAtomic.trace.map(({ kind, address, data }) => ({ kind, address, data })), [{ kind: 'read', address: 0, data: 0x98 }]);
+    assert.deepEqual(Object.fromEntries(['ax', 'ip', 'phase', 'halted', 'faulted'].map((name) => [name, cbwAtomic.state[name]])), { ax: 0xff80, ip: 1, phase: 0, halted: 0, faulted: 0 });
+
     const pushfAState = {
       ax: 0x1111, cx: 0x2222, dx: 0x3333, bx: 0x4444, sp: 0x8000, bp: 0x5555, si: 0x6666, di: 0x7777,
       cs: 0x3000, ds: 0x4000, ss: 0x2000, es: 0x5000,

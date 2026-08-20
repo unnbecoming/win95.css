@@ -23,7 +23,7 @@ const byteRegisters = [
 const segments = ['cs', 'ds', 'ss', 'es'];
 const pushSegments = { es: 0x06, cs: 0x0e, ss: 0x16, ds: 0x1e };
 const popSegments = { es: 0x07, ss: 0x17, ds: 0x1f };
-const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, subRegRm8: 0x2a, subRegRm: 0x2b, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, xchgRmReg: 0x87, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lodsb: 0xac, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, iret: 0xcf, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, pushf: 0x9c, popf: 0x9d, cmc: 0xf5, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
+const opcodes = { add: 0x05, addRegRm: 0x03, orRegRm8: 0x0a, orAlImm8: 0x0c, andAlImm8: 0x24, xor: 0x35, csOverride: 0x2e, subRegRm8: 0x2a, subRegRm: 0x2b, xorRmReg: 0x31, xorRegRm8: 0x32, xorRegRm: 0x33, sub: 0x2d, cmpRm8Reg: 0x38, groupRm8Imm: 0x80, jb: 0x72, jbe: 0x76, xchgRmReg: 0x87, movRm8Reg: 0x88, movRegRm8: 0x8a, movRmReg: 0x89, movRegRm: 0x8b, movSreg: 0x8e, movAlMoffs8: 0xa0, store: 0xa3, movsb: 0xa4, lodsb: 0xac, lds: 0xc5, movRm8Imm: 0xc6, rolRm8Imm: 0xc0, shlRm8One: 0xd0, rep: 0xf3, jz: 0x74, jnz: 0x75, jl: 0x7c, retfImm: 0xca, intImm: 0xcd, iret: 0xcf, loop: 0xe2, call: 0xe8, testRm8Imm: 0xf6, decRm8: 0xfe, callRm16: 0xff, outDxAl: 0xee, jmpShort: 0xeb, jmp: 0xe9, far: 0xea, ret: 0xc3, cbw: 0x98, pushf: 0x9c, popf: 0x9d, cmc: 0xf5, clc: 0xf8, stc: 0xf9, cli: 0xfa, sti: 0xfb, cld: 0xfc, hlt: 0xf4 };
 
 signal['phase-opcode'] = equalConstant('phase', 4, 0);
 signal['phase-imm-low'] = equalConstant('phase', 4, 1);
@@ -133,7 +133,7 @@ signal['opcode-modrm'] = anyBits([ref('opcode-addRegRm'), ref('opcode-subRegRm8'
 signal['opcode-modrm-to-reg'] = anyBits([ref('opcode-addRegRm'), ref('opcode-subRegRm'), ref('opcode-movRegRm'), ref('opcode-xorRegRm')]);
 signal['opcode-modrm-xor'] = orBit(ref('opcode-xorRmReg'), ref('opcode-xorRegRm'));
 signal['fetched-if-control'] = orBit(ref('fetched-cli'), ref('fetched-sti'));
-signal['fetched-simple'] = anyBits([ref('fetched-if-control'), ref('fetched-cmc'), ref('fetched-clc'), ref('fetched-stc'), ref('fetched-cld')]);
+signal['fetched-simple'] = anyBits([ref('fetched-if-control'), ref('fetched-cbw'), ref('fetched-cmc'), ref('fetched-clc'), ref('fetched-stc'), ref('fetched-cld')]);
 signal['fetched-io'] = ref('fetched-outDxAl');
 signal['fetched-prefix'] = orBit(ref('fetched-rep'), ref('fetched-csOverride'));
 signal['fetched-string'] = orBit(ref('fetched-movsb'), ref('fetched-lodsb'));
@@ -253,6 +253,7 @@ signal['execute-rol-rm8-immediate-register'] = andBit(ref('capture-imm-low'), re
 signal['rol-rm8-count-nonzero'] = andBit(ref('execute-rol-rm8-immediate-register'), anyBits(signalBits('busData', 3)));
 signal['rol-rm8-count-one'] = andBit(ref('execute-rol-rm8-immediate-register'), equalBusField(0, 1));
 signal['update-if'] = andBit(ref('capture-opcode'), ref('fetched-if-control'));
+signal['execute-cbw'] = andBit(ref('capture-opcode'), ref('fetched-cbw'));
 signal['update-cmc'] = andBit(ref('capture-opcode'), ref('fetched-cmc'));
 signal['update-clc'] = andBit(ref('capture-opcode'), ref('fetched-clc'));
 signal['update-stc'] = andBit(ref('capture-opcode'), ref('fetched-stc'));
@@ -732,6 +733,7 @@ for (const register of registers) {
       const writeAlLogical = andBit(ref('execute-al-logical-immediate'), lit(byteRegister.name === 'al' ? 1 : 0));
       const writeAlMoffs = andBit(ref('execute-mov-al-moffs8'), lit(byteRegister.name === 'al' ? 1 : 0));
       const writeLodsb = andBit(ref('finish-lodsb'), lit(byteRegister.name === 'al' ? 1 : 0));
+      const writeCbw = andBit(ref('execute-cbw'), lit(byteRegister.name === 'ah' ? 1 : 0));
       const selectedBySavedModrm = equalStateField('modrm', 0, 3, byteRegisters.indexOf(byteRegister));
       const writeImmediateModrmByte = andBit(ref('execute-mov-rm8-register'), selectedBySavedModrm);
       const writeSubRm8Immediate = andBit(ref('execute-sub-rm8-immediate-register'), selectedBySavedModrm);
@@ -758,8 +760,9 @@ for (const register of registers) {
       const decrementSource = muxBit(writeDecRm8, subtractSource, ref(`dec-rm8-result-${index % 8}`));
       const byteSource = muxBit(writeAlLogical, decrementSource, ref(`al-logical-result-${index % 8}`));
       const lodsbSource = muxBit(writeLodsb, byteSource, ref(`busData-${index % 8}`));
-      const writeByte = anyBits([writeImmediateByte, writeModrmByte, writeAlLogical, writeAlMoffs, writeLodsb]);
-      signal[`next-${register}-${index}`] = muxBit(writeByte, ref(`next-base-${register}-${index}`), lodsbSource);
+      const cbwSource = muxBit(writeCbw, lodsbSource, ref('ax-7'));
+      const writeByte = anyBits([writeImmediateByte, writeModrmByte, writeAlLogical, writeAlMoffs, writeLodsb, writeCbw]);
+      signal[`next-${register}-${index}`] = muxBit(writeByte, ref(`next-base-${register}-${index}`), cbwSource);
     } else if (register !== 'sp') {
       signal[`next-${register}-${index}`] = ref(`next-base-${register}-${index}`);
     }
