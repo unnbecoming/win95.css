@@ -1592,6 +1592,26 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
 
     for (let source = 0; source < 8; source++) {
       for (let destination = 0; destination < 8; destination++) {
+        const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0, fdcDor: 0x0c, fdcInterrupt: 1 };
+        const result = await execute(page, baseUrl, [0x2a, 0xc0 | (destination << 3) | source, 0xf4], { state });
+        const target = byteAliases[destination];
+        const value = (byteValue(state, destination) - byteValue(state, source)) & 0xff;
+        const expected = { ...cmpInitial, [target.register]: (state[target.register] & ~(0xff << target.shift)) | (value << target.shift) };
+        assert.deepEqual(Object.fromEntries(Object.keys(cmpInitial).map((name) => [name, result.state[name]])), expected, `sub8 ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `sub8 collateral ${source}/${destination}`);
+        assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((name) => [name, result.state[name]])), cmpFlags(byteValue(state, destination), byteValue(state, source)), `sub8 flags ${source}/${destination}`);
+        assert.equal(result.outputs.irq6Request, 1, `sub8 irq ${source}/${destination}`);
+        assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `sub8 trace ${source}/${destination}`);
+        assert.deepEqual(result.memory, {}, `sub8 memory ${source}/${destination}`);
+        assert.equal(result.state.faulted, 0, `sub8 fault ${source}/${destination}`);
+      }
+    }
+    const subRegRm8MemoryRejected = await execute(page, baseUrl, [0x2a, 0x06, 0x00, 0x10]);
+    assert.deepEqual(subRegRm8MemoryRejected.trace.map(({ address }) => address), [0, 1]);
+    assert.equal(subRegRm8MemoryRejected.state.faulted, 1);
+
+    for (let source = 0; source < 8; source++) {
+      for (let destination = 0; destination < 8; destination++) {
         const state = { ...cmpInitial, ds: 0x1111, ss: 0x2222, es: 0x3333, if: 1, df: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 0 };
         const result = await execute(page, baseUrl, [0x38, 0xc0 | (source << 3) | destination, 0xf4], { state });
         assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [
