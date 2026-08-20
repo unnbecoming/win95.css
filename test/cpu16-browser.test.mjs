@@ -1652,14 +1652,30 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.memory, {}, `d1 memory/${destination}`);
       assert.equal(result.state.faulted, 0, `d1 fault/${destination}`);
     }
-    for (const selector of [0, 1, 2, 3, 5, 6, 7]) {
+    const sarWordValues = [0x0000, 0x0001, 0x0002, 0x7fff, 0x8000, 0xffff, 0x8001, 0x5555];
+    for (let destination = 0; destination < 8; destination++) {
+      const state = { ...movRm8RegInitial, [addRegisters[destination]]: sarWordValues[destination], ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, cf: 1, pf: 0, af: 1, zf: 0, sf: 0, of: 1, fdcDor: 0x0c, fdcInterrupt: 1 };
+      const shifted = (sarWordValues[destination] >>> 1) | (sarWordValues[destination] & 0x8000);
+      const expectedFlags = { cf: sarWordValues[destination] & 1, pf: Number((shifted & 0xff).toString(2).split('').filter((bit) => bit === '1').length % 2 === 0), af: 0, zf: Number(shifted === 0), sf: shifted >>> 15, of: 0 };
+      const result = await execute(page, baseUrl, [0xd1, 0xf8 | destination, 0xf4], { state });
+      assert.deepEqual(Object.fromEntries(addRegisters.map((name) => [name, result.state[name]])), Object.fromEntries(addRegisters.map((name) => [name, name === addRegisters[destination] ? shifted : state[name]])), `d1/7 registers/${destination}`);
+      assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }], `d1/7/${destination}`);
+      assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, result.state[flag]])), expectedFlags, `d1/7 flags/${destination}`);
+      assert.deepEqual(Object.fromEntries(['cs', 'ds', 'ss', 'es', 'tf', 'if', 'df', 'iopl', 'nt', 'fdcDor', 'fdcInterrupt'].map((name) => [name, result.state[name]])), { cs: 0, ds: 0x1111, ss: 0x2222, es: 0x3333, tf: 1, if: 1, df: 1, iopl: 3, nt: 1, fdcDor: 0x0c, fdcInterrupt: 1 }, `d1/7 collateral/${destination}`);
+      assert.equal(result.outputs.irq6Request, 1, `d1/7 irq/${destination}`);
+      assert.deepEqual(result.memory, {}, `d1/7 memory/${destination}`);
+      assert.equal(result.state.faulted, 0, `d1/7 fault/${destination}`);
+    }
+    for (const selector of [0, 1, 2, 3, 5, 6]) {
       const result = await execute(page, baseUrl, [0xd1, 0xc0 | (selector << 3)], { state: { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 } });
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `d1 selector/${selector}`);
       assert.deepEqual({ ax: result.state.ax, cf: result.state.cf, pf: result.state.pf, af: result.state.af, zf: result.state.zf, sf: result.state.sf, of: result.state.of, faulted: result.state.faulted }, { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1, faulted: 1 }, `d1 selector/${selector}`);
     }
-    const shlWordMemoryRejected = await execute(page, baseUrl, [0xd1, 0x26, 0x00, 0x10], { state: { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 } });
-    assert.deepEqual(shlWordMemoryRejected.trace.map(({ address }) => address), [0, 1]);
-    assert.deepEqual({ ax: shlWordMemoryRejected.state.ax, cf: shlWordMemoryRejected.state.cf, pf: shlWordMemoryRejected.state.pf, af: shlWordMemoryRejected.state.af, zf: shlWordMemoryRejected.state.zf, sf: shlWordMemoryRejected.state.sf, of: shlWordMemoryRejected.state.of, faulted: shlWordMemoryRejected.state.faulted }, { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1, faulted: 1 });
+    for (const [name, modrm] of [['shl', 0x26], ['sar', 0x3e]]) {
+      const rejected = await execute(page, baseUrl, [0xd1, modrm, 0x00, 0x10], { state: { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1 } });
+      assert.deepEqual(rejected.trace.map(({ address }) => address), [0, 1], `d1 memory/${name}`);
+      assert.deepEqual({ ax: rejected.state.ax, cf: rejected.state.cf, pf: rejected.state.pf, af: rejected.state.af, zf: rejected.state.zf, sf: rejected.state.sf, of: rejected.state.of, faulted: rejected.state.faulted }, { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1, faulted: 1 }, `d1 memory/${name}`);
+    }
 
     for (const count of [0, 1, 4, 7]) {
       for (let destination = 0; destination < 8; destination++) {
