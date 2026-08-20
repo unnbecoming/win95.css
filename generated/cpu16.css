@@ -3287,6 +3287,18 @@
   initial-value: 0;
 }
 
+@property --fetched-cmc {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-cmc {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-clc {
   syntax: "<number>";
   inherits: false;
@@ -4614,6 +4626,12 @@
 }
 
 @property --update-if {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --update-cmc {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -22385,6 +22403,12 @@
   initial-value: 0;
 }
 
+@property --carry-control-value {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --controlled-cf {
   syntax: "<number>";
   inherits: false;
@@ -22946,6 +22970,8 @@
   --opcode-pushf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-popf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-popf: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
+  --fetched-cmc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + var(--busData-2)) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
+  --opcode-cmc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + var(--ir-2)) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-clc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-clc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + var(--ir-6)) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-stc: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + var(--busData-6)) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -23053,7 +23079,7 @@
   --opcode-modrm-to-reg: min(1, calc(var(--opcode-addRegRm) + var(--opcode-subRegRm) + var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
   --opcode-modrm-xor: min(1, calc(var(--opcode-xorRmReg) + var(--opcode-xorRegRm)));
   --fetched-if-control: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
-  --fetched-simple: min(1, calc(var(--fetched-if-control) + var(--fetched-clc) + var(--fetched-stc) + var(--fetched-cld)));
+  --fetched-simple: min(1, calc(var(--fetched-if-control) + var(--fetched-cmc) + var(--fetched-clc) + var(--fetched-stc) + var(--fetched-cld)));
   --fetched-io: var(--fetched-outDxAl);
   --fetched-prefix: min(1, calc(var(--fetched-rep) + var(--fetched-csOverride)));
   --fetched-string: var(--fetched-movsb);
@@ -23168,9 +23194,10 @@
   --rol-rm8-count-nonzero: round(down, calc(calc(var(--execute-rol-rm8-immediate-register) + min(1, calc(var(--busData-0) + var(--busData-1) + var(--busData-2)))) / 2), 1);
   --rol-rm8-count-one: round(down, calc(calc(var(--execute-rol-rm8-immediate-register) + round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1)) / 2), 1);
   --update-if: round(down, calc(calc(var(--capture-opcode) + var(--fetched-if-control)) / 2), 1);
+  --update-cmc: round(down, calc(calc(var(--capture-opcode) + var(--fetched-cmc)) / 2), 1);
   --update-clc: round(down, calc(calc(var(--capture-opcode) + var(--fetched-clc)) / 2), 1);
   --update-stc: round(down, calc(calc(var(--capture-opcode) + var(--fetched-stc)) / 2), 1);
-  --update-carry-control: min(1, calc(var(--update-clc) + var(--update-stc)));
+  --update-carry-control: min(1, calc(var(--update-cmc) + var(--update-clc) + var(--update-stc)));
   --controlled-if: min(1, calc(round(down, calc(calc(calc(1 - var(--update-if)) + var(--if)) / 2), 1) + round(down, calc(calc(var(--update-if) + var(--fetched-sti)) / 2), 1)));
   --interrupt-if: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-int-flags)) + var(--controlled-if)) / 2), 1) + round(down, calc(calc(var(--finish-int-flags) + 0) / 2), 1)));
   --next-if: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--interrupt-if)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-1)) / 2), 1)));
@@ -26129,6 +26156,7 @@
   --next-base-of: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--of)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-of)) / 2), 1)));
   --next-of: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-popf)) + var(--rotated-of)) / 2), 1) + round(down, calc(calc(var(--finish-popf) + var(--busData-3)) / 2), 1)));
   --next-rol-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--rol-rm8-count-nonzero)) + var(--next-base-cf)) / 2), 1) + round(down, calc(calc(var(--rol-rm8-count-nonzero) + var(--rol-rm8-result-0)) / 2), 1)));
-  --controlled-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-carry-control)) + var(--next-rol-cf)) / 2), 1) + round(down, calc(calc(var(--update-carry-control) + var(--update-stc)) / 2), 1)));
+  --carry-control-value: min(1, calc(round(down, calc(calc(calc(1 - var(--update-cmc)) + var(--update-stc)) / 2), 1) + round(down, calc(calc(var(--update-cmc) + calc(1 - var(--cf))) / 2), 1)));
+  --controlled-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-carry-control)) + var(--next-rol-cf)) / 2), 1) + round(down, calc(calc(var(--update-carry-control) + var(--carry-control-value)) / 2), 1)));
   --rotated-of: min(1, calc(round(down, calc(calc(calc(1 - var(--rol-rm8-count-one)) + var(--next-base-of)) / 2), 1) + round(down, calc(calc(var(--rol-rm8-count-one) + mod(calc(var(--rol-rm8-result-7) + var(--rol-rm8-result-0)), 2)) / 2), 1)));
 }
