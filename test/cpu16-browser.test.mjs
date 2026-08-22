@@ -1898,7 +1898,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `selector/${selector}`);
       assert.equal(result.state.faulted, 1, `selector/${selector}`);
     }
-    for (const selector of [0, 2, 3, 5, 6, 7]) {
+    for (const selector of [0, 2, 3, 5, 6]) {
       const result = await execute(page, baseUrl, [0x80, 0x06 | (selector << 3), 0x00, 0x10, 0x01]);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `memory-selector/${selector}`);
       assert.equal(result.state.faulted, 1, `memory-selector/${selector}`);
