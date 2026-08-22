@@ -67,7 +67,7 @@ test('83 /7 CMP r16,imm8 sign-extends and updates flags without writeback', asyn
         const run = execute([0x83, 0xf8 | destination, immediate, 0xf4], { ...initial, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1 });
         return { destination, immediate, state: run.state, addresses: run.trace.map(({ address }) => address) };
       });
-      const rejectedSelectors = [0, 1, 2, 3, 4, 5, 6].map((selector) => {
+      const rejectedSelectors = [1, 2, 3, 4, 5, 6].map((selector) => {
         const chip = new CssChip(document.querySelector('#cpu'), manifest);
         chip.seedState({ cs: 0, ip: 0, ...initial }); chip.drive({ busData: 0 });
         const memory = new Uint8Array(0x100000); memory.set([0x83, 0xc0 | (selector << 3), 0x30], 0);
