@@ -1768,19 +1768,20 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual({ ax: rejected.state.ax, cf: rejected.state.cf, pf: rejected.state.pf, af: rejected.state.af, zf: rejected.state.zf, sf: rejected.state.sf, of: rejected.state.of, faulted: rejected.state.faulted }, { ax: 0x1234, cf: 1, pf: 1, af: 1, zf: 1, sf: 1, of: 1, faulted: 1 }, `d1 memory/${name}`);
     }
 
-    for (const count of [0, 1, 4, 7]) {
+    for (const count of [0, 1, 4, 7, 8, 32]) {
       for (let destination = 0; destination < 8; destination++) {
         const initial = (0x81 + destination * 13) & 0xff;
         const state = { ...movRm8RegInitial, cf: 1, pf: 0, af: 1, zf: 1, sf: 1, of: destination & 1 };
         const target = byteAliases[destination];
         state[target.register] = (state[target.register] & ~(0xff << target.shift)) | (initial << target.shift);
         const result = await execute(page, baseUrl, [0xc0, 0xc0 | destination, count, 0xf4], { state });
-        const effective = count & 7;
+        const masked = count & 0x1f;
+        const effective = masked & 7;
         const rotated = effective === 0 ? initial : ((initial << effective) | (initial >>> (8 - effective))) & 0xff;
         const expected = (state[target.register] & ~(0xff << target.shift)) | (rotated << target.shift);
         assert.equal(result.state[target.register], expected, `${count}/${destination}`);
-        assert.equal(result.state.cf, effective === 0 ? 1 : rotated & 1, `${count}/${destination}`);
-        assert.equal(result.state.of, effective === 1 ? ((rotated >>> 7) ^ (rotated & 1)) : (destination & 1), `${count}/${destination}`);
+        assert.equal(result.state.cf, masked === 0 ? 1 : rotated & 1, `${count}/${destination}`);
+        assert.equal(result.state.of, masked === 1 ? ((rotated >>> 7) ^ (rotated & 1)) : (destination & 1), `${count}/${destination}`);
         assert.deepEqual(Object.fromEntries(['pf', 'af', 'zf', 'sf'].map((flag) => [flag, result.state[flag]])), { pf: 0, af: 1, zf: 1, sf: 1 }, `${count}/${destination}`);
         assert.deepEqual(result.trace.map(({ kind, address }) => ({ kind, address })), [{ kind: 'read', address: 0 }, { kind: 'read', address: 1 }, { kind: 'read', address: 2 }, { kind: 'read', address: 3 }], `${count}/${destination}`);
       }
