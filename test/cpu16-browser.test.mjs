@@ -1894,7 +1894,7 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.deepEqual(result.memory, {}, `80/5/${destination}`);
       assert.equal(result.state.faulted, 0, `80/5/${destination}`);
     }
-    for (const selector of [0, 1, 2, 3, 4, 6]) {
+    for (const selector of [0, 1, 2, 3, 6]) {
       const result = await execute(page, baseUrl, [0x80, 0xc0 | (selector << 3), 0x01]);
       assert.deepEqual(result.trace.map(({ address }) => address), [0, 1], `selector/${selector}`);
       assert.equal(result.state.faulted, 1, `selector/${selector}`);
@@ -2076,9 +2076,12 @@ test('generated CSS fetches and executes a real-mode ROM byte stream', async () 
       assert.equal(result.state.faulted, 0, `and/${name}`);
     }
 
-    const andRegister = await execute(page, baseUrl, [0x80, 0xe0, 0x7f]);
-    assert.deepEqual(andRegister.trace.map(({ address }) => address), [0, 1]);
-    assert.equal(andRegister.state.faulted, 1);
+    const andRegisterState = { ...cmpInitial, ax: 0x12ff, cf: 1, pf: 0, af: 1, zf: 0, sf: 1, of: 1 };
+    const andRegister = await execute(page, baseUrl, [0x80, 0xe0, 0x7f, 0xf4], { state: andRegisterState });
+    assert.deepEqual(andRegister.trace.map(({ address }) => address), [0, 1, 2, 3]);
+    assert.deepEqual(architecturalState(andRegister.state), { ...architecturalState(andRegisterState), ax: 0x127f });
+    assert.deepEqual(Object.fromEntries(['cf', 'pf', 'af', 'zf', 'sf', 'of'].map((flag) => [flag, andRegister.state[flag]])), testFlags(0xff, 0x7f));
+    assert.equal(andRegister.state.faulted, 0);
 
     const orFlags = (destination, immediate) => {
       const result = destination | immediate;
