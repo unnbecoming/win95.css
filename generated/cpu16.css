@@ -3131,6 +3131,18 @@
   initial-value: 0;
 }
 
+@property --fetched-cmpRegRm {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --opcode-cmpRegRm {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --fetched-groupRm8Imm {
   syntax: "<number>";
   inherits: false;
@@ -22541,6 +22553,24 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-register-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-commit {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --xchg-byte-register-commit {
   syntax: "<number>";
   inherits: false;
@@ -22638,6 +22668,12 @@
 }
 
 @property --modrm-sub-carry-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -22782,6 +22818,36 @@
 }
 
 @property --memory-stored-word-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-0 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-0 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -23015,6 +23081,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-1 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-1 {
   syntax: "<number>";
   inherits: false;
@@ -23238,6 +23334,36 @@
 }
 
 @property --memory-stored-word-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-2 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-2 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -23471,6 +23597,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-3 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-3 {
   syntax: "<number>";
   inherits: false;
@@ -23694,6 +23850,36 @@
 }
 
 @property --memory-stored-word-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-4 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-4 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -23927,6 +24113,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-5 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-5 {
   syntax: "<number>";
   inherits: false;
@@ -24150,6 +24366,36 @@
 }
 
 @property --memory-stored-word-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-6 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-6 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -24383,6 +24629,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-7 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-7 {
   syntax: "<number>";
   inherits: false;
@@ -24606,6 +24882,36 @@
 }
 
 @property --memory-stored-word-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-8 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-8 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -24839,6 +25145,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-9 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-9 {
   syntax: "<number>";
   inherits: false;
@@ -25062,6 +25398,36 @@
 }
 
 @property --memory-stored-word-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-10 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-10 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -25295,6 +25661,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-11 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-11 {
   syntax: "<number>";
   inherits: false;
@@ -25518,6 +25914,36 @@
 }
 
 @property --memory-stored-word-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-12 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-12 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -25751,6 +26177,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-13 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-13 {
   syntax: "<number>";
   inherits: false;
@@ -25979,6 +26435,36 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-memory-effective-source-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-14 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --memory-load-xor-result-14 {
   syntax: "<number>";
   inherits: false;
@@ -26202,6 +26688,36 @@
 }
 
 @property --memory-stored-word-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-effective-source-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-sum-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-result-15 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-memory-carry-16 {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-result-15 {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -30023,6 +30539,42 @@
   initial-value: 0;
 }
 
+@property --cmp-reg-rm16-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-pf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-zf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --cmp-reg-rm16-of {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --inc-cf {
   syntax: "<number>";
   inherits: false;
@@ -30137,6 +30689,12 @@
   initial-value: 0;
 }
 
+@property --selected-before-cmp-reg-rm16-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --selected-before-cmp-rm16-cf {
   syntax: "<number>";
   inherits: false;
@@ -30162,6 +30720,12 @@
 }
 
 @property --next-cf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --selected-before-cmp-reg-rm16-pf {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -30197,6 +30761,12 @@
   initial-value: 0;
 }
 
+@property --selected-before-cmp-reg-rm16-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --selected-before-cmp-rm16-af {
   syntax: "<number>";
   inherits: false;
@@ -30222,6 +30792,12 @@
 }
 
 @property --next-af {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --selected-before-cmp-reg-rm16-zf {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -30257,6 +30833,12 @@
   initial-value: 0;
 }
 
+@property --selected-before-cmp-reg-rm16-sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @property --selected-before-cmp-rm16-sf {
   syntax: "<number>";
   inherits: false;
@@ -30282,6 +30864,12 @@
 }
 
 @property --next-sf {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --selected-before-cmp-reg-rm16-of {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
@@ -30882,6 +31470,8 @@
   --opcode-cmpRm8Reg: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-cmpRegRm8: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
   --opcode-cmpRegRm8: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
+  --fetched-cmpRegRm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + var(--busData-1)) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + var(--busData-3)) / 2), 1) + var(--busData-4)) / 2), 1) + var(--busData-5)) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + calc(1 - var(--busData-7))) / 2), 1);
+  --opcode-cmpRegRm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--ir-0)) / 2), 1) + var(--ir-1)) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + var(--ir-3)) / 2), 1) + var(--ir-4)) / 2), 1) + var(--ir-5)) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + calc(1 - var(--ir-7))) / 2), 1);
   --fetched-groupRm8Imm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-0))) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
   --opcode-groupRm8Imm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--ir-0))) / 2), 1) + calc(1 - var(--ir-1))) / 2), 1) + calc(1 - var(--ir-2))) / 2), 1) + calc(1 - var(--ir-3))) / 2), 1) + calc(1 - var(--ir-4))) / 2), 1) + calc(1 - var(--ir-5))) / 2), 1) + calc(1 - var(--ir-6))) / 2), 1) + var(--ir-7)) / 2), 1);
   --fetched-groupRm16Imm: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-0)) / 2), 1) + calc(1 - var(--busData-1))) / 2), 1) + calc(1 - var(--busData-2))) / 2), 1) + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1) + calc(1 - var(--busData-6))) / 2), 1) + var(--busData-7)) / 2), 1);
@@ -31120,9 +31710,9 @@
   --opcode-al-logical-immediate: min(1, calc(var(--opcode-andAlImm8) + var(--opcode-orAlImm8)));
   --fetched-short: min(1, calc(var(--fetched-jb) + var(--fetched-jz) + var(--fetched-jnz) + var(--fetched-jbe) + var(--fetched-jl) + var(--fetched-jmpShort) + var(--fetched-loop) + var(--fetched-jcxz)));
   --opcode-short: min(1, calc(var(--opcode-jb) + var(--opcode-jz) + var(--opcode-jnz) + var(--opcode-jbe) + var(--opcode-jl) + var(--opcode-jmpShort) + var(--opcode-loop) + var(--opcode-jcxz)));
-  --fetched-modrm: min(1, calc(var(--fetched-addRm8Reg) + var(--fetched-addRegRm) + var(--fetched-subRegRm8) + var(--fetched-subRegRm) + var(--fetched-movRm8Reg) + var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-orRegRm8) + var(--fetched-xorRegRm8) + var(--fetched-xorRegRm) + var(--fetched-cmpRm8Reg) + var(--fetched-cmpRegRm8) + var(--fetched-groupRm8Imm) + var(--fetched-groupRm16Imm) + var(--fetched-groupRm16Imm8) + var(--fetched-testRm8Reg) + var(--fetched-xchgRm8Reg) + var(--fetched-xchgRmReg) + var(--fetched-movRegRm8) + var(--fetched-lea) + var(--fetched-movSreg) + var(--fetched-lds) + var(--fetched-movRm8Imm) + var(--fetched-shlRm8One) + var(--fetched-shlRm16One) + var(--fetched-rolRm8Imm) + var(--fetched-incDecRm8) + var(--fetched-callRm16) + var(--fetched-testRm8Imm)));
-  --opcode-modrm: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-addRegRm) + var(--opcode-subRegRm8) + var(--opcode-subRegRm) + var(--opcode-movRm8Reg) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-orRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-groupRm8Imm) + var(--opcode-groupRm16Imm) + var(--opcode-groupRm16Imm8) + var(--opcode-testRm8Reg) + var(--opcode-xchgRm8Reg) + var(--opcode-xchgRmReg) + var(--opcode-movRegRm8) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-shlRm8One) + var(--opcode-shlRm16One) + var(--opcode-rolRm8Imm) + var(--opcode-incDecRm8) + var(--opcode-callRm16) + var(--opcode-testRm8Imm)));
-  --opcode-modrm-to-reg: min(1, calc(var(--opcode-addRegRm) + var(--opcode-subRegRm) + var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
+  --fetched-modrm: min(1, calc(var(--fetched-addRm8Reg) + var(--fetched-addRegRm) + var(--fetched-subRegRm8) + var(--fetched-subRegRm) + var(--fetched-movRm8Reg) + var(--fetched-movRmReg) + var(--fetched-movRegRm) + var(--fetched-xorRmReg) + var(--fetched-orRegRm8) + var(--fetched-xorRegRm8) + var(--fetched-xorRegRm) + var(--fetched-cmpRm8Reg) + var(--fetched-cmpRegRm8) + var(--fetched-cmpRegRm) + var(--fetched-groupRm8Imm) + var(--fetched-groupRm16Imm) + var(--fetched-groupRm16Imm8) + var(--fetched-testRm8Reg) + var(--fetched-xchgRm8Reg) + var(--fetched-xchgRmReg) + var(--fetched-movRegRm8) + var(--fetched-lea) + var(--fetched-movSreg) + var(--fetched-lds) + var(--fetched-movRm8Imm) + var(--fetched-shlRm8One) + var(--fetched-shlRm16One) + var(--fetched-rolRm8Imm) + var(--fetched-incDecRm8) + var(--fetched-callRm16) + var(--fetched-testRm8Imm)));
+  --opcode-modrm: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-addRegRm) + var(--opcode-subRegRm8) + var(--opcode-subRegRm) + var(--opcode-movRm8Reg) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-orRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-cmpRegRm) + var(--opcode-groupRm8Imm) + var(--opcode-groupRm16Imm) + var(--opcode-groupRm16Imm8) + var(--opcode-testRm8Reg) + var(--opcode-xchgRm8Reg) + var(--opcode-xchgRmReg) + var(--opcode-movRegRm8) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-shlRm8One) + var(--opcode-shlRm16One) + var(--opcode-rolRm8Imm) + var(--opcode-incDecRm8) + var(--opcode-callRm16) + var(--opcode-testRm8Imm)));
+  --opcode-modrm-to-reg: min(1, calc(var(--opcode-addRegRm) + var(--opcode-subRegRm) + var(--opcode-cmpRegRm) + var(--opcode-movRegRm) + var(--opcode-xorRegRm)));
   --opcode-modrm-xor: min(1, calc(var(--opcode-xorRmReg) + var(--opcode-xorRegRm)));
   --fetched-if-control: min(1, calc(var(--fetched-cli) + var(--fetched-sti)));
   --fetched-simple: min(1, calc(var(--fetched-inc) + var(--fetched-dec) + var(--fetched-if-control) + var(--fetched-cbw) + var(--fetched-cmc) + var(--fetched-clc) + var(--fetched-stc) + var(--fetched-cld)));
@@ -31223,12 +31813,12 @@
   --inc-rm8-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + calc(1 - var(--busData-3))) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
   --dec-rm8-selector-valid: round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(1 + var(--busData-3)) / 2), 1) + calc(1 - var(--busData-4))) / 2), 1) + calc(1 - var(--busData-5))) / 2), 1);
   --inc-dec-rm8-selector-valid: min(1, calc(var(--inc-rm8-selector-valid) + var(--dec-rm8-selector-valid)));
-  --opcode-memory-supported: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-addRegRm) + var(--opcode-movRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-testRm8Reg) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-groupRm8Imm)));
+  --opcode-memory-supported: min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-addRegRm) + var(--opcode-movRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movRmReg) + var(--opcode-movRegRm) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-xorRegRm) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-cmpRegRm) + var(--opcode-testRm8Reg) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-movRm8Imm) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-groupRm8Imm)));
   --opcode-memory-to-reg: min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm) + var(--opcode-addRegRm)));
-  --opcode-memory-needs-read: min(1, calc(var(--opcode-memory-to-reg) + var(--opcode-addRm8Reg) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-callRm16)));
+  --opcode-memory-needs-read: min(1, calc(var(--opcode-memory-to-reg) + var(--opcode-addRm8Reg) + var(--opcode-xorRmReg) + var(--opcode-xorRegRm8) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-cmpRegRm) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-movSreg) + var(--opcode-lds) + var(--opcode-callRm16)));
   --modrm-register-capture: round(down, calc(calc(var(--capture-modrm) + var(--modrm-register)) / 2), 1);
   --modrm-commit: round(down, calc(calc(var(--modrm-register-capture) + calc(1 - var(--lock))) / 2), 1);
-  --modrm-gpr-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(calc(1 - var(--opcode-movSreg)) + calc(1 - var(--opcode-lds))) / 2), 1) + calc(1 - var(--opcode-mov-rm8))) / 2), 1) + calc(1 - min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-groupRm8Imm) + var(--opcode-groupRm16Imm) + var(--opcode-groupRm16Imm8) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-orRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-shlRm8One) + var(--opcode-shlRm16One) + var(--opcode-rolRm8Imm) + var(--opcode-incDecRm8) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-xchgRm8Reg) + var(--opcode-xchgRmReg) + var(--opcode-subRegRm8))))) / 2), 1)) / 2), 1);
+  --modrm-gpr-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(round(down, calc(calc(round(down, calc(calc(calc(1 - var(--opcode-movSreg)) + calc(1 - var(--opcode-lds))) / 2), 1) + calc(1 - var(--opcode-mov-rm8))) / 2), 1) + calc(1 - min(1, calc(var(--opcode-lea) + var(--opcode-addRm8Reg) + var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-cmpRegRm) + var(--opcode-groupRm8Imm) + var(--opcode-groupRm16Imm) + var(--opcode-groupRm16Imm8) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-orRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-shlRm8One) + var(--opcode-shlRm16One) + var(--opcode-rolRm8Imm) + var(--opcode-incDecRm8) + var(--opcode-callRm16) + var(--opcode-testRm8Imm) + var(--opcode-xchgRm8Reg) + var(--opcode-xchgRmReg) + var(--opcode-subRegRm8))))) / 2), 1)) / 2), 1);
   --mov-sreg-commit: round(down, calc(calc(var(--modrm-commit) + round(down, calc(calc(var(--opcode-movSreg) + var(--mov-sreg-selector-valid)) / 2), 1)) / 2), 1);
   --mov-rm8-form-valid: min(1, calc(calc(1 - var(--opcode-movRm8Imm)) + var(--mov-rm8-selector-valid)));
   --test-rm8-form-valid: min(1, calc(calc(1 - var(--opcode-testRm8Imm)) + var(--f6-rm8-selector-valid)));
@@ -31321,7 +31911,7 @@
   --capture-lock: round(down, calc(calc(var(--capture-opcode) + var(--fetched-lock)) / 2), 1);
   --capture-rep: round(down, calc(calc(var(--capture-opcode) + var(--fetched-rep)) / 2), 1);
   --capture-cs-override: round(down, calc(calc(var(--capture-opcode) + var(--fetched-csOverride)) / 2), 1);
-  --clear-cs-override: min(1, calc(var(--modrm-commit) + round(down, calc(calc(var(--capture-memory-low) + min(1, calc(var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-mul-rm8)))) / 2), 1) + round(down, calc(calc(var(--capture-memory-high) + min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm) + var(--opcode-addRegRm) + var(--opcode-movSreg) + var(--opcode-callRm16) + var(--opcode-test-rm8-immediate) + var(--opcode-cmp-rm8-immediate-memory)))) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-low) + var(--bus-write)) / 2), 1) + var(--opcode-byte-memory-write)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-high) + var(--bus-write)) / 2), 1) + calc(1 - var(--opcode-byte-memory-write))) / 2), 1) + var(--finish-lds) + var(--finish-lea) + var(--finish-lodsb) + var(--finish-lodsw)));
+  --clear-cs-override: min(1, calc(var(--modrm-commit) + round(down, calc(calc(var(--capture-memory-low) + min(1, calc(var(--opcode-cmpRm8Reg) + var(--opcode-cmpRegRm8) + var(--opcode-testRm8Reg) + var(--opcode-movRegRm8) + var(--opcode-xorRegRm8) + var(--opcode-mul-rm8)))) / 2), 1) + round(down, calc(calc(var(--capture-memory-high) + min(1, calc(var(--opcode-movRegRm) + var(--opcode-xorRegRm) + var(--opcode-addRegRm) + var(--opcode-cmpRegRm) + var(--opcode-movSreg) + var(--opcode-callRm16) + var(--opcode-test-rm8-immediate) + var(--opcode-cmp-rm8-immediate-memory)))) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-low) + var(--bus-write)) / 2), 1) + var(--opcode-byte-memory-write)) / 2), 1) + round(down, calc(calc(round(down, calc(calc(var(--phase-memory-write-high) + var(--bus-write)) / 2), 1) + calc(1 - var(--opcode-byte-memory-write))) / 2), 1) + var(--finish-lds) + var(--finish-lea) + var(--finish-lodsb) + var(--finish-lodsw)));
   --cs-override-after-clear: min(1, calc(round(down, calc(calc(calc(1 - var(--clear-cs-override)) + var(--csOverride)) / 2), 1) + round(down, calc(calc(var(--clear-cs-override) + 0) / 2), 1)));
   --next-csOverride: min(1, calc(round(down, calc(calc(calc(1 - var(--capture-cs-override)) + var(--cs-override-after-clear)) / 2), 1) + round(down, calc(calc(var(--capture-cs-override) + 1) / 2), 1)));
   --begin-lodsb: round(down, calc(calc(var(--capture-opcode) + var(--fetched-lodsb)) / 2), 1);
@@ -34117,6 +34707,9 @@
   --memory-segment-15: min(1, calc(round(down, calc(calc(calc(1 - var(--csOverride)) + min(1, calc(round(down, calc(calc(calc(1 - var(--saved-modrm-bp-based)) + var(--ds-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-bp-based) + var(--ss-15)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--csOverride) + var(--cs-15)) / 2), 1)));
   --modrm-add-commit: round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-addRegRm)) / 2), 1);
   --modrm-sub-commit: round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-subRegRm)) / 2), 1);
+  --cmp-reg-rm16-register-commit: round(down, calc(calc(var(--modrm-commit) + var(--opcode-cmpRegRm)) / 2), 1);
+  --cmp-reg-rm16-memory-commit: round(down, calc(calc(var(--capture-memory-high) + var(--opcode-cmpRegRm)) / 2), 1);
+  --cmp-reg-rm16-commit: min(1, calc(var(--cmp-reg-rm16-register-commit) + var(--cmp-reg-rm16-memory-commit)));
   --xchg-byte-register-commit: round(down, calc(calc(var(--modrm-commit) + var(--opcode-xchgRm8Reg)) / 2), 1);
   --xchg-register-commit: round(down, calc(calc(var(--modrm-commit) + var(--opcode-xchgRmReg)) / 2), 1);
   --memory-load-commit: min(1, calc(round(down, calc(calc(var(--capture-memory-high) + var(--opcode-memory-to-reg)) / 2), 1) + var(--finish-lds)));
@@ -34134,6 +34727,7 @@
   --modrm-add-carry-0: 0;
   --memory-add-carry-0: 0;
   --modrm-sub-carry-0: 1;
+  --cmp-reg-rm16-memory-carry-0: 1;
   --inc-destination-0: min(1, calc(round(down, calc(calc(var(--fetched-inc-ax) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-cx) + var(--cx-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-dx) + var(--dx-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-bx) + var(--bx-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-sp) + var(--sp-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-bp) + var(--bp-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-si) + var(--si-0)) / 2), 1) + round(down, calc(calc(var(--fetched-inc-di) + var(--di-0)) / 2), 1)));
   --inc-result-0: mod(calc(var(--inc-destination-0) + var(--inc-carry-0)), 2);
   --inc-carry-1: round(down, calc(calc(var(--inc-destination-0) + var(--inc-carry-0)) / 2), 1);
@@ -34158,6 +34752,11 @@
   --memory-register-value-0: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-0)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-0)) / 2), 1)));
   --memory-live-word-0: var(--memLow-0);
   --memory-stored-word-0: var(--memLow-0);
+  --cmp-reg-rm16-memory-effective-source-0: calc(1 - var(--memory-live-word-0));
+  --cmp-reg-rm16-memory-sum-0: calc(var(--memory-register-value-0) + var(--cmp-reg-rm16-memory-effective-source-0));
+  --cmp-reg-rm16-memory-result-0: mod(calc(var(--cmp-reg-rm16-memory-sum-0) + var(--cmp-reg-rm16-memory-carry-0)), 2);
+  --cmp-reg-rm16-memory-carry-1: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-0) + var(--cmp-reg-rm16-memory-carry-0)) / 2), 1);
+  --cmp-reg-rm16-result-0: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-0)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-0)) / 2), 1)));
   --memory-load-xor-result-0: mod(calc(var(--memory-live-word-0) + var(--memory-register-value-0)), 2);
   --memory-add-sum-0: calc(var(--memory-register-value-0) + var(--memory-live-word-0));
   --memory-add-result-0: mod(calc(var(--memory-add-sum-0) + var(--memory-add-carry-0)), 2);
@@ -34196,6 +34795,11 @@
   --memory-register-value-1: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-1)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-1)) / 2), 1)));
   --memory-live-word-1: var(--memLow-1);
   --memory-stored-word-1: var(--memLow-1);
+  --cmp-reg-rm16-memory-effective-source-1: calc(1 - var(--memory-live-word-1));
+  --cmp-reg-rm16-memory-sum-1: calc(var(--memory-register-value-1) + var(--cmp-reg-rm16-memory-effective-source-1));
+  --cmp-reg-rm16-memory-result-1: mod(calc(var(--cmp-reg-rm16-memory-sum-1) + var(--cmp-reg-rm16-memory-carry-1)), 2);
+  --cmp-reg-rm16-memory-carry-2: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-1) + var(--cmp-reg-rm16-memory-carry-1)) / 2), 1);
+  --cmp-reg-rm16-result-1: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-1)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-1)) / 2), 1)));
   --memory-load-xor-result-1: mod(calc(var(--memory-live-word-1) + var(--memory-register-value-1)), 2);
   --memory-add-sum-1: calc(var(--memory-register-value-1) + var(--memory-live-word-1));
   --memory-add-result-1: mod(calc(var(--memory-add-sum-1) + var(--memory-add-carry-1)), 2);
@@ -34234,6 +34838,11 @@
   --memory-register-value-2: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-2)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-2)) / 2), 1)));
   --memory-live-word-2: var(--memLow-2);
   --memory-stored-word-2: var(--memLow-2);
+  --cmp-reg-rm16-memory-effective-source-2: calc(1 - var(--memory-live-word-2));
+  --cmp-reg-rm16-memory-sum-2: calc(var(--memory-register-value-2) + var(--cmp-reg-rm16-memory-effective-source-2));
+  --cmp-reg-rm16-memory-result-2: mod(calc(var(--cmp-reg-rm16-memory-sum-2) + var(--cmp-reg-rm16-memory-carry-2)), 2);
+  --cmp-reg-rm16-memory-carry-3: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-2) + var(--cmp-reg-rm16-memory-carry-2)) / 2), 1);
+  --cmp-reg-rm16-result-2: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-2)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-2)) / 2), 1)));
   --memory-load-xor-result-2: mod(calc(var(--memory-live-word-2) + var(--memory-register-value-2)), 2);
   --memory-add-sum-2: calc(var(--memory-register-value-2) + var(--memory-live-word-2));
   --memory-add-result-2: mod(calc(var(--memory-add-sum-2) + var(--memory-add-carry-2)), 2);
@@ -34272,6 +34881,11 @@
   --memory-register-value-3: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-3)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-3)) / 2), 1)));
   --memory-live-word-3: var(--memLow-3);
   --memory-stored-word-3: var(--memLow-3);
+  --cmp-reg-rm16-memory-effective-source-3: calc(1 - var(--memory-live-word-3));
+  --cmp-reg-rm16-memory-sum-3: calc(var(--memory-register-value-3) + var(--cmp-reg-rm16-memory-effective-source-3));
+  --cmp-reg-rm16-memory-result-3: mod(calc(var(--cmp-reg-rm16-memory-sum-3) + var(--cmp-reg-rm16-memory-carry-3)), 2);
+  --cmp-reg-rm16-memory-carry-4: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-3) + var(--cmp-reg-rm16-memory-carry-3)) / 2), 1);
+  --cmp-reg-rm16-result-3: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-3)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-3)) / 2), 1)));
   --memory-load-xor-result-3: mod(calc(var(--memory-live-word-3) + var(--memory-register-value-3)), 2);
   --memory-add-sum-3: calc(var(--memory-register-value-3) + var(--memory-live-word-3));
   --memory-add-result-3: mod(calc(var(--memory-add-sum-3) + var(--memory-add-carry-3)), 2);
@@ -34310,6 +34924,11 @@
   --memory-register-value-4: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-4)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-4)) / 2), 1)));
   --memory-live-word-4: var(--memLow-4);
   --memory-stored-word-4: var(--memLow-4);
+  --cmp-reg-rm16-memory-effective-source-4: calc(1 - var(--memory-live-word-4));
+  --cmp-reg-rm16-memory-sum-4: calc(var(--memory-register-value-4) + var(--cmp-reg-rm16-memory-effective-source-4));
+  --cmp-reg-rm16-memory-result-4: mod(calc(var(--cmp-reg-rm16-memory-sum-4) + var(--cmp-reg-rm16-memory-carry-4)), 2);
+  --cmp-reg-rm16-memory-carry-5: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-4) + var(--cmp-reg-rm16-memory-carry-4)) / 2), 1);
+  --cmp-reg-rm16-result-4: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-4)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-4)) / 2), 1)));
   --memory-load-xor-result-4: mod(calc(var(--memory-live-word-4) + var(--memory-register-value-4)), 2);
   --memory-add-sum-4: calc(var(--memory-register-value-4) + var(--memory-live-word-4));
   --memory-add-result-4: mod(calc(var(--memory-add-sum-4) + var(--memory-add-carry-4)), 2);
@@ -34348,6 +34967,11 @@
   --memory-register-value-5: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-5)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-5)) / 2), 1)));
   --memory-live-word-5: var(--memLow-5);
   --memory-stored-word-5: var(--memLow-5);
+  --cmp-reg-rm16-memory-effective-source-5: calc(1 - var(--memory-live-word-5));
+  --cmp-reg-rm16-memory-sum-5: calc(var(--memory-register-value-5) + var(--cmp-reg-rm16-memory-effective-source-5));
+  --cmp-reg-rm16-memory-result-5: mod(calc(var(--cmp-reg-rm16-memory-sum-5) + var(--cmp-reg-rm16-memory-carry-5)), 2);
+  --cmp-reg-rm16-memory-carry-6: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-5) + var(--cmp-reg-rm16-memory-carry-5)) / 2), 1);
+  --cmp-reg-rm16-result-5: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-5)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-5)) / 2), 1)));
   --memory-load-xor-result-5: mod(calc(var(--memory-live-word-5) + var(--memory-register-value-5)), 2);
   --memory-add-sum-5: calc(var(--memory-register-value-5) + var(--memory-live-word-5));
   --memory-add-result-5: mod(calc(var(--memory-add-sum-5) + var(--memory-add-carry-5)), 2);
@@ -34386,6 +35010,11 @@
   --memory-register-value-6: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-6)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-6)) / 2), 1)));
   --memory-live-word-6: var(--memLow-6);
   --memory-stored-word-6: var(--memLow-6);
+  --cmp-reg-rm16-memory-effective-source-6: calc(1 - var(--memory-live-word-6));
+  --cmp-reg-rm16-memory-sum-6: calc(var(--memory-register-value-6) + var(--cmp-reg-rm16-memory-effective-source-6));
+  --cmp-reg-rm16-memory-result-6: mod(calc(var(--cmp-reg-rm16-memory-sum-6) + var(--cmp-reg-rm16-memory-carry-6)), 2);
+  --cmp-reg-rm16-memory-carry-7: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-6) + var(--cmp-reg-rm16-memory-carry-6)) / 2), 1);
+  --cmp-reg-rm16-result-6: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-6)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-6)) / 2), 1)));
   --memory-load-xor-result-6: mod(calc(var(--memory-live-word-6) + var(--memory-register-value-6)), 2);
   --memory-add-sum-6: calc(var(--memory-register-value-6) + var(--memory-live-word-6));
   --memory-add-result-6: mod(calc(var(--memory-add-sum-6) + var(--memory-add-carry-6)), 2);
@@ -34424,6 +35053,11 @@
   --memory-register-value-7: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-7)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-7)) / 2), 1)));
   --memory-live-word-7: var(--memLow-7);
   --memory-stored-word-7: var(--memLow-7);
+  --cmp-reg-rm16-memory-effective-source-7: calc(1 - var(--memory-live-word-7));
+  --cmp-reg-rm16-memory-sum-7: calc(var(--memory-register-value-7) + var(--cmp-reg-rm16-memory-effective-source-7));
+  --cmp-reg-rm16-memory-result-7: mod(calc(var(--cmp-reg-rm16-memory-sum-7) + var(--cmp-reg-rm16-memory-carry-7)), 2);
+  --cmp-reg-rm16-memory-carry-8: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-7) + var(--cmp-reg-rm16-memory-carry-7)) / 2), 1);
+  --cmp-reg-rm16-result-7: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-7)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-7)) / 2), 1)));
   --memory-load-xor-result-7: mod(calc(var(--memory-live-word-7) + var(--memory-register-value-7)), 2);
   --memory-add-sum-7: calc(var(--memory-register-value-7) + var(--memory-live-word-7));
   --memory-add-result-7: mod(calc(var(--memory-add-sum-7) + var(--memory-add-carry-7)), 2);
@@ -34462,6 +35096,11 @@
   --memory-register-value-8: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-8)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-8)) / 2), 1)));
   --memory-live-word-8: var(--busData-0);
   --memory-stored-word-8: var(--memHigh-0);
+  --cmp-reg-rm16-memory-effective-source-8: calc(1 - var(--memory-live-word-8));
+  --cmp-reg-rm16-memory-sum-8: calc(var(--memory-register-value-8) + var(--cmp-reg-rm16-memory-effective-source-8));
+  --cmp-reg-rm16-memory-result-8: mod(calc(var(--cmp-reg-rm16-memory-sum-8) + var(--cmp-reg-rm16-memory-carry-8)), 2);
+  --cmp-reg-rm16-memory-carry-9: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-8) + var(--cmp-reg-rm16-memory-carry-8)) / 2), 1);
+  --cmp-reg-rm16-result-8: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-8)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-8)) / 2), 1)));
   --memory-load-xor-result-8: mod(calc(var(--memory-live-word-8) + var(--memory-register-value-8)), 2);
   --memory-add-sum-8: calc(var(--memory-register-value-8) + var(--memory-live-word-8));
   --memory-add-result-8: mod(calc(var(--memory-add-sum-8) + var(--memory-add-carry-8)), 2);
@@ -34500,6 +35139,11 @@
   --memory-register-value-9: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-9)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-9)) / 2), 1)));
   --memory-live-word-9: var(--busData-1);
   --memory-stored-word-9: var(--memHigh-1);
+  --cmp-reg-rm16-memory-effective-source-9: calc(1 - var(--memory-live-word-9));
+  --cmp-reg-rm16-memory-sum-9: calc(var(--memory-register-value-9) + var(--cmp-reg-rm16-memory-effective-source-9));
+  --cmp-reg-rm16-memory-result-9: mod(calc(var(--cmp-reg-rm16-memory-sum-9) + var(--cmp-reg-rm16-memory-carry-9)), 2);
+  --cmp-reg-rm16-memory-carry-10: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-9) + var(--cmp-reg-rm16-memory-carry-9)) / 2), 1);
+  --cmp-reg-rm16-result-9: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-9)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-9)) / 2), 1)));
   --memory-load-xor-result-9: mod(calc(var(--memory-live-word-9) + var(--memory-register-value-9)), 2);
   --memory-add-sum-9: calc(var(--memory-register-value-9) + var(--memory-live-word-9));
   --memory-add-result-9: mod(calc(var(--memory-add-sum-9) + var(--memory-add-carry-9)), 2);
@@ -34538,6 +35182,11 @@
   --memory-register-value-10: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-10)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-10)) / 2), 1)));
   --memory-live-word-10: var(--busData-2);
   --memory-stored-word-10: var(--memHigh-2);
+  --cmp-reg-rm16-memory-effective-source-10: calc(1 - var(--memory-live-word-10));
+  --cmp-reg-rm16-memory-sum-10: calc(var(--memory-register-value-10) + var(--cmp-reg-rm16-memory-effective-source-10));
+  --cmp-reg-rm16-memory-result-10: mod(calc(var(--cmp-reg-rm16-memory-sum-10) + var(--cmp-reg-rm16-memory-carry-10)), 2);
+  --cmp-reg-rm16-memory-carry-11: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-10) + var(--cmp-reg-rm16-memory-carry-10)) / 2), 1);
+  --cmp-reg-rm16-result-10: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-10)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-10)) / 2), 1)));
   --memory-load-xor-result-10: mod(calc(var(--memory-live-word-10) + var(--memory-register-value-10)), 2);
   --memory-add-sum-10: calc(var(--memory-register-value-10) + var(--memory-live-word-10));
   --memory-add-result-10: mod(calc(var(--memory-add-sum-10) + var(--memory-add-carry-10)), 2);
@@ -34576,6 +35225,11 @@
   --memory-register-value-11: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-11)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-11)) / 2), 1)));
   --memory-live-word-11: var(--busData-3);
   --memory-stored-word-11: var(--memHigh-3);
+  --cmp-reg-rm16-memory-effective-source-11: calc(1 - var(--memory-live-word-11));
+  --cmp-reg-rm16-memory-sum-11: calc(var(--memory-register-value-11) + var(--cmp-reg-rm16-memory-effective-source-11));
+  --cmp-reg-rm16-memory-result-11: mod(calc(var(--cmp-reg-rm16-memory-sum-11) + var(--cmp-reg-rm16-memory-carry-11)), 2);
+  --cmp-reg-rm16-memory-carry-12: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-11) + var(--cmp-reg-rm16-memory-carry-11)) / 2), 1);
+  --cmp-reg-rm16-result-11: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-11)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-11)) / 2), 1)));
   --memory-load-xor-result-11: mod(calc(var(--memory-live-word-11) + var(--memory-register-value-11)), 2);
   --memory-add-sum-11: calc(var(--memory-register-value-11) + var(--memory-live-word-11));
   --memory-add-result-11: mod(calc(var(--memory-add-sum-11) + var(--memory-add-carry-11)), 2);
@@ -34614,6 +35268,11 @@
   --memory-register-value-12: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-12)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-12)) / 2), 1)));
   --memory-live-word-12: var(--busData-4);
   --memory-stored-word-12: var(--memHigh-4);
+  --cmp-reg-rm16-memory-effective-source-12: calc(1 - var(--memory-live-word-12));
+  --cmp-reg-rm16-memory-sum-12: calc(var(--memory-register-value-12) + var(--cmp-reg-rm16-memory-effective-source-12));
+  --cmp-reg-rm16-memory-result-12: mod(calc(var(--cmp-reg-rm16-memory-sum-12) + var(--cmp-reg-rm16-memory-carry-12)), 2);
+  --cmp-reg-rm16-memory-carry-13: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-12) + var(--cmp-reg-rm16-memory-carry-12)) / 2), 1);
+  --cmp-reg-rm16-result-12: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-12)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-12)) / 2), 1)));
   --memory-load-xor-result-12: mod(calc(var(--memory-live-word-12) + var(--memory-register-value-12)), 2);
   --memory-add-sum-12: calc(var(--memory-register-value-12) + var(--memory-live-word-12));
   --memory-add-result-12: mod(calc(var(--memory-add-sum-12) + var(--memory-add-carry-12)), 2);
@@ -34652,6 +35311,11 @@
   --memory-register-value-13: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-13)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-13)) / 2), 1)));
   --memory-live-word-13: var(--busData-5);
   --memory-stored-word-13: var(--memHigh-5);
+  --cmp-reg-rm16-memory-effective-source-13: calc(1 - var(--memory-live-word-13));
+  --cmp-reg-rm16-memory-sum-13: calc(var(--memory-register-value-13) + var(--cmp-reg-rm16-memory-effective-source-13));
+  --cmp-reg-rm16-memory-result-13: mod(calc(var(--cmp-reg-rm16-memory-sum-13) + var(--cmp-reg-rm16-memory-carry-13)), 2);
+  --cmp-reg-rm16-memory-carry-14: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-13) + var(--cmp-reg-rm16-memory-carry-13)) / 2), 1);
+  --cmp-reg-rm16-result-13: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-13)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-13)) / 2), 1)));
   --memory-load-xor-result-13: mod(calc(var(--memory-live-word-13) + var(--memory-register-value-13)), 2);
   --memory-add-sum-13: calc(var(--memory-register-value-13) + var(--memory-live-word-13));
   --memory-add-result-13: mod(calc(var(--memory-add-sum-13) + var(--memory-add-carry-13)), 2);
@@ -34690,6 +35354,11 @@
   --memory-register-value-14: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-14)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-14)) / 2), 1)));
   --memory-live-word-14: var(--busData-6);
   --memory-stored-word-14: var(--memHigh-6);
+  --cmp-reg-rm16-memory-effective-source-14: calc(1 - var(--memory-live-word-14));
+  --cmp-reg-rm16-memory-sum-14: calc(var(--memory-register-value-14) + var(--cmp-reg-rm16-memory-effective-source-14));
+  --cmp-reg-rm16-memory-result-14: mod(calc(var(--cmp-reg-rm16-memory-sum-14) + var(--cmp-reg-rm16-memory-carry-14)), 2);
+  --cmp-reg-rm16-memory-carry-15: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-14) + var(--cmp-reg-rm16-memory-carry-14)) / 2), 1);
+  --cmp-reg-rm16-result-14: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-14)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-14)) / 2), 1)));
   --memory-load-xor-result-14: mod(calc(var(--memory-live-word-14) + var(--memory-register-value-14)), 2);
   --memory-add-sum-14: calc(var(--memory-register-value-14) + var(--memory-live-word-14));
   --memory-add-result-14: mod(calc(var(--memory-add-sum-14) + var(--memory-add-carry-14)), 2);
@@ -34728,6 +35397,11 @@
   --memory-register-value-15: min(1, calc(round(down, calc(calc(var(--saved-modrm-reg-ax) + var(--ax-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-cx) + var(--cx-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-dx) + var(--dx-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bx) + var(--bx-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-sp) + var(--sp-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-bp) + var(--bp-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-si) + var(--si-15)) / 2), 1) + round(down, calc(calc(var(--saved-modrm-reg-di) + var(--di-15)) / 2), 1)));
   --memory-live-word-15: var(--busData-7);
   --memory-stored-word-15: var(--memHigh-7);
+  --cmp-reg-rm16-memory-effective-source-15: calc(1 - var(--memory-live-word-15));
+  --cmp-reg-rm16-memory-sum-15: calc(var(--memory-register-value-15) + var(--cmp-reg-rm16-memory-effective-source-15));
+  --cmp-reg-rm16-memory-result-15: mod(calc(var(--cmp-reg-rm16-memory-sum-15) + var(--cmp-reg-rm16-memory-carry-15)), 2);
+  --cmp-reg-rm16-memory-carry-16: round(down, calc(calc(var(--cmp-reg-rm16-memory-sum-15) + var(--cmp-reg-rm16-memory-carry-15)) / 2), 1);
+  --cmp-reg-rm16-result-15: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-result-15)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-result-15)) / 2), 1)));
   --memory-load-xor-result-15: mod(calc(var(--memory-live-word-15) + var(--memory-register-value-15)), 2);
   --memory-add-sum-15: calc(var(--memory-register-value-15) + var(--memory-live-word-15));
   --memory-add-result-15: mod(calc(var(--memory-add-sum-15) + var(--memory-add-carry-15)), 2);
@@ -35364,6 +36038,12 @@
   --modrm-sub-zf: calc(1 - min(1, calc(var(--modrm-sub-result-0) + var(--modrm-sub-result-1) + var(--modrm-sub-result-2) + var(--modrm-sub-result-3) + var(--modrm-sub-result-4) + var(--modrm-sub-result-5) + var(--modrm-sub-result-6) + var(--modrm-sub-result-7) + var(--modrm-sub-result-8) + var(--modrm-sub-result-9) + var(--modrm-sub-result-10) + var(--modrm-sub-result-11) + var(--modrm-sub-result-12) + var(--modrm-sub-result-13) + var(--modrm-sub-result-14) + var(--modrm-sub-result-15))));
   --modrm-sub-sf: var(--modrm-sub-result-15);
   --modrm-sub-of: mod(calc(var(--modrm-sub-carry-15) + var(--modrm-sub-carry-16)), 2);
+  --cmp-reg-rm16-cf: calc(1 - min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-carry-16)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-carry-16)) / 2), 1))));
+  --cmp-reg-rm16-pf: calc(1 - mod(calc(var(--cmp-reg-rm16-result-0) + var(--cmp-reg-rm16-result-1) + var(--cmp-reg-rm16-result-2) + var(--cmp-reg-rm16-result-3) + var(--cmp-reg-rm16-result-4) + var(--cmp-reg-rm16-result-5) + var(--cmp-reg-rm16-result-6) + var(--cmp-reg-rm16-result-7)), 2));
+  --cmp-reg-rm16-af: calc(1 - min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-carry-4)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-carry-4)) / 2), 1))));
+  --cmp-reg-rm16-zf: calc(1 - min(1, calc(var(--cmp-reg-rm16-result-0) + var(--cmp-reg-rm16-result-1) + var(--cmp-reg-rm16-result-2) + var(--cmp-reg-rm16-result-3) + var(--cmp-reg-rm16-result-4) + var(--cmp-reg-rm16-result-5) + var(--cmp-reg-rm16-result-6) + var(--cmp-reg-rm16-result-7) + var(--cmp-reg-rm16-result-8) + var(--cmp-reg-rm16-result-9) + var(--cmp-reg-rm16-result-10) + var(--cmp-reg-rm16-result-11) + var(--cmp-reg-rm16-result-12) + var(--cmp-reg-rm16-result-13) + var(--cmp-reg-rm16-result-14) + var(--cmp-reg-rm16-result-15))));
+  --cmp-reg-rm16-sf: var(--cmp-reg-rm16-result-15);
+  --cmp-reg-rm16-of: mod(calc(min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-carry-15)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-carry-15)) / 2), 1))) + min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-memory-commit)) + var(--modrm-sub-carry-16)) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-memory-commit) + var(--cmp-reg-rm16-memory-carry-16)) / 2), 1)))), 2);
   --inc-cf: var(--cf);
   --inc-pf: calc(1 - mod(calc(var(--inc-result-0) + var(--inc-result-1) + var(--inc-result-2) + var(--inc-result-3) + var(--inc-result-4) + var(--inc-result-5) + var(--inc-result-6) + var(--inc-result-7)), 2));
   --inc-af: var(--inc-carry-4);
@@ -35382,33 +36062,39 @@
   --al-logical-zf: calc(1 - min(1, calc(var(--al-logical-result-0) + var(--al-logical-result-1) + var(--al-logical-result-2) + var(--al-logical-result-3) + var(--al-logical-result-4) + var(--al-logical-result-5) + var(--al-logical-result-6) + var(--al-logical-result-7))));
   --al-logical-sf: var(--al-logical-result-7);
   --al-logical-of: 0;
-  --update-flags: min(1, calc(round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-cmpAxImm16) + var(--opcode-xor)))) / 2), 1) + round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-add-commit) + var(--modrm-sub-commit) + var(--memory-flag-commit) + var(--execute-add-rm8-reg) + var(--cmp-commit) + var(--execute-byte-logical-rm8) + var(--execute-inc-rm8-register) + var(--execute-dec-rm8-register) + var(--execute-shl-rm8-one-register) + var(--execute-and-rm16-immediate-register) + var(--execute-add-rm16-immediate-register) + var(--execute-cmp-rm16-immediate-register) + var(--execute-shl-rm16-one-register) + var(--execute-sar-rm16-one-register) + var(--execute-al-logical-immediate) + var(--execute-cmp-al-immediate) + var(--execute-test-rm8-immediate-memory) + var(--test-rm8-reg-commit) + var(--group-rm8-immediate-memory-commit) + var(--execute-inc) + var(--execute-dec)));
-  --selected-before-cmp-rm16-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-cf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-cf)) / 2), 1)));
+  --update-flags: min(1, calc(round(down, calc(calc(var(--execute) + min(1, calc(var(--opcode-add) + var(--opcode-sub) + var(--opcode-cmpAxImm16) + var(--opcode-xor)))) / 2), 1) + round(down, calc(calc(var(--modrm-gpr-commit) + var(--opcode-modrm-xor)) / 2), 1) + var(--modrm-add-commit) + var(--modrm-sub-commit) + var(--cmp-reg-rm16-commit) + var(--memory-flag-commit) + var(--execute-add-rm8-reg) + var(--cmp-commit) + var(--execute-byte-logical-rm8) + var(--execute-inc-rm8-register) + var(--execute-dec-rm8-register) + var(--execute-shl-rm8-one-register) + var(--execute-and-rm16-immediate-register) + var(--execute-add-rm16-immediate-register) + var(--execute-cmp-rm16-immediate-register) + var(--execute-shl-rm16-one-register) + var(--execute-sar-rm16-one-register) + var(--execute-al-logical-immediate) + var(--execute-cmp-al-immediate) + var(--execute-test-rm8-immediate-memory) + var(--test-rm8-reg-commit) + var(--group-rm8-immediate-memory-commit) + var(--execute-inc) + var(--execute-dec)));
+  --selected-before-cmp-reg-rm16-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-cf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-cf)) / 2), 1)));
+  --selected-before-cmp-rm16-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-cf)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-cf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-cf)) / 2), 1)));
   --selected-before-group-rm16-immediate8-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-cf)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-cf)) / 2), 1)));
   --selected-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-cf)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-cf)) / 2), 1)));
   --next-base-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--cf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-cf)) / 2), 1)));
   --next-cf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--controlled-cf)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + var(--loaded-cf)) / 2), 1)));
-  --selected-before-cmp-rm16-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-pf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-pf)) / 2), 1)));
+  --selected-before-cmp-reg-rm16-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-pf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-pf)) / 2), 1)));
+  --selected-before-cmp-rm16-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-pf)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-pf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-pf)) / 2), 1)));
   --selected-before-group-rm16-immediate8-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-pf)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-pf)) / 2), 1)));
   --selected-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-pf)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-pf)) / 2), 1)));
   --next-base-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--pf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-pf)) / 2), 1)));
   --next-pf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--next-base-pf)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + min(1, calc(round(down, calc(calc(calc(1 - var(--finish-iret)) + var(--stackLow-2)) / 2), 1) + round(down, calc(calc(var(--finish-iret) + var(--iretFlagsLow-2)) / 2), 1)))) / 2), 1)));
-  --selected-before-cmp-rm16-af: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-af)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-af)) / 2), 1)));
+  --selected-before-cmp-reg-rm16-af: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-af)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-af)) / 2), 1)));
+  --selected-before-cmp-rm16-af: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-af)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-af)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-af)) / 2), 1)));
   --selected-before-group-rm16-immediate8-af: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-af)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-af)) / 2), 1)));
   --selected-af: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-af)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-af)) / 2), 1)));
   --next-base-af: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--af)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-af)) / 2), 1)));
   --next-af: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--next-base-af)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + min(1, calc(round(down, calc(calc(calc(1 - var(--finish-iret)) + var(--stackLow-4)) / 2), 1) + round(down, calc(calc(var(--finish-iret) + var(--iretFlagsLow-4)) / 2), 1)))) / 2), 1)));
-  --selected-before-cmp-rm16-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-zf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-zf)) / 2), 1)));
+  --selected-before-cmp-reg-rm16-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-zf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-zf)) / 2), 1)));
+  --selected-before-cmp-rm16-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-zf)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-zf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-zf)) / 2), 1)));
   --selected-before-group-rm16-immediate8-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-zf)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-zf)) / 2), 1)));
   --selected-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-zf)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-zf)) / 2), 1)));
   --next-base-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--zf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-zf)) / 2), 1)));
   --next-zf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--next-base-zf)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + min(1, calc(round(down, calc(calc(calc(1 - var(--finish-iret)) + var(--stackLow-6)) / 2), 1) + round(down, calc(calc(var(--finish-iret) + var(--iretFlagsLow-6)) / 2), 1)))) / 2), 1)));
-  --selected-before-cmp-rm16-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-sf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-sf)) / 2), 1)));
+  --selected-before-cmp-reg-rm16-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-sf)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-sf)) / 2), 1)));
+  --selected-before-cmp-rm16-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-sf)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-sf)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-sf)) / 2), 1)));
   --selected-before-group-rm16-immediate8-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-sf)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-sf)) / 2), 1)));
   --selected-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-sf)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-sf)) / 2), 1)));
   --next-base-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--sf)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-sf)) / 2), 1)));
   --next-sf: min(1, calc(round(down, calc(calc(calc(1 - var(--finish-flags-load)) + var(--next-base-sf)) / 2), 1) + round(down, calc(calc(var(--finish-flags-load) + min(1, calc(round(down, calc(calc(calc(1 - var(--finish-iret)) + var(--stackLow-7)) / 2), 1) + round(down, calc(calc(var(--finish-iret) + var(--iretFlagsLow-7)) / 2), 1)))) / 2), 1)));
-  --selected-before-cmp-rm16-of: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-of)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-of)) / 2), 1)));
+  --selected-before-cmp-reg-rm16-of: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-reg-rm16-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-sub-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--modrm-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-sar-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm16-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-and-rm16-immediate-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-shl-rm8-one-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--memory-load-add-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-byte-logical-rm8)) + var(--alu-of)) / 2), 1) + round(down, calc(calc(var(--execute-byte-logical-rm8) + var(--byte-logical-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--memory-load-add-commit) + var(--memory-add-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm8-one-register) + var(--shl-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-and-rm16-immediate-register) + var(--and-rm16-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-shl-rm16-one-register) + var(--shl-rm16-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-sar-rm16-one-register) + var(--sar-rm16-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-add-commit) + var(--modrm-add-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--modrm-sub-commit) + var(--modrm-sub-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-reg-rm16-commit) + var(--cmp-reg-rm16-of)) / 2), 1)));
+  --selected-before-cmp-rm16-of: min(1, calc(round(down, calc(calc(calc(1 - var(--cmp-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm8-reg)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-al-immediate)) + min(1, calc(round(down, calc(calc(calc(1 - var(--group-rm8-immediate-memory-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-test-rm8-immediate-memory)) + min(1, calc(round(down, calc(calc(calc(1 - var(--test-rm8-reg-commit)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-inc-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-dec-rm8-register)) + min(1, calc(round(down, calc(calc(calc(1 - var(--execute-al-logical-immediate)) + var(--selected-before-cmp-reg-rm16-of)) / 2), 1) + round(down, calc(calc(var(--execute-al-logical-immediate) + var(--al-logical-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec-rm8-register) + var(--dec-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc-rm8-register) + var(--inc-rm8-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--test-rm8-reg-commit) + var(--test-rm8-reg-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-test-rm8-immediate-memory) + var(--test-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--group-rm8-immediate-memory-commit) + var(--group-rm8-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-cmp-al-immediate) + var(--cmp-al-immediate-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-add-rm8-reg) + var(--add-rm8-reg-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-inc) + var(--inc-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--execute-dec) + var(--dec-of)) / 2), 1)))) / 2), 1) + round(down, calc(calc(var(--cmp-commit) + var(--cmp-of)) / 2), 1)));
   --selected-before-group-rm16-immediate8-of: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-add-rm16-immediate-register)) + var(--selected-before-cmp-rm16-of)) / 2), 1) + round(down, calc(calc(var(--execute-add-rm16-immediate-register) + var(--add-rm16-immediate-of)) / 2), 1)));
   --selected-of: min(1, calc(round(down, calc(calc(calc(1 - var(--execute-cmp-rm16-immediate-register)) + var(--selected-before-group-rm16-immediate8-of)) / 2), 1) + round(down, calc(calc(var(--execute-cmp-rm16-immediate-register) + var(--cmp-rm16-immediate-of)) / 2), 1)));
   --next-base-of: min(1, calc(round(down, calc(calc(calc(1 - var(--update-flags)) + var(--of)) / 2), 1) + round(down, calc(calc(var(--update-flags) + var(--selected-of)) / 2), 1)));
