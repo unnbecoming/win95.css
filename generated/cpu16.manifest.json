@@ -284,6 +284,8 @@
     "opcode-jb",
     "fetched-jbe",
     "opcode-jbe",
+    "fetched-ja",
+    "opcode-ja",
     "fetched-xchgRm8Reg",
     "opcode-xchgRm8Reg",
     "fetched-xchgRmReg",
